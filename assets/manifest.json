@@ -136,6 +136,17 @@
   "ui_floor_marker": "assets/ui/ui_floor_marker.png",
   "ui_status_frame": "assets/ui/ui_status_frame.png",
   "ui_textbox": "assets/ui/ui_textbox.png",
-  "ui_title": "assets/ui/ui_title.png"
+  "ui_title": "assets/ui/ui_title.png",
+  "ui_textbox_box": "assets/ui/ui_textbox_box.png",
+  "ui_textbox_plate": "assets/ui/ui_textbox_plate.png"
+ },
+ "audio": {
+  "bgm_wistful": "assets/audio/bgm_wistful_loop.mp3",
+  "bgm_tavern": "assets/audio/bgm_tavern_loop.mp3",
+  "bgm_dungeon": "assets/audio/bgm_dungeon_loop.mp3",
+  "bgm_tension": "assets/audio/bgm_tension_loop.mp3",
+  "bgm_lament": "assets/audio/bgm_lament_loop.mp3",
+  "bgm_void": "assets/audio/bgm_void_loop.mp3",
+  "sfx_silence-cut": "assets/audio/sfx_silence-cut.wav"
  }
 }

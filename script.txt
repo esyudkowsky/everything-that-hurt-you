@@ -12,6 +12,11 @@
 @note   @overlay inscription ... @overlay end — engine-rendered text over a CG
 @note                           (pamphlet rules, tombstone; spec prefers engine
 @note                           text over baked text)
+@note   @chapter <n> <title>  — chapter marker; the engine's chapter menu lets
+@note                           the reader rejoin any chapter already reached
+@note   @voiceover over       — Skagganauk-font line over the CURRENT scene
+@note                           (letterboxed), not on black; used only for the
+@note                           final line over cg_burning_walk
 @note ------------------------------------------------------------
 @note Nametag rules (engine-side, do not "fix"): lines tagged "Her" display
 @note NO nametag — speaker shown only by sprite highlight. Voiceover-mode
@@ -26,6 +31,7 @@
 
 
 @note ========== 1. OPENING ==========
+@chapter 1 Opening
 
 @bgm bgm_void
 @voiceover on
@@ -93,6 +99,7 @@ Is that there are always two outsiders summoned from another world, not one
 
 
 @note ========== 2. BARTENDER ==========
+@chapter 2 The Bartender
 
 @bgm bgm_tavern
 @sprite avram neutral left
@@ -159,8 +166,10 @@ Avram: ...
 
 
 @note ========== 3. AUCTION / WALK-AWAY / RESTAURANT ==========
+@chapter 3 The Auction
 
 @bg bg_auction_plaza fade
+@clear all
 @sfx sfx_crowd
 
 @cg cg_auction_fierce fade
@@ -251,6 +260,7 @@ Avram: I mean, I *wish* I could say, it's okay for you to thank me if you want t
 
 
 @note ========== 4. NAMING ==========
+@chapter 4 Naming
 
 @bg bg_town_gate fade
 @sprite avram neutral left
@@ -284,6 +294,7 @@ Avram: ...I'll think on it.
 
 
 @note ========== 5. MONTAGE A — SHE TEACHES HIM ==========
+@chapter 5 She Teaches Him
 
 @montage begin 4
 @cg cg_grip_correction
@@ -333,8 +344,10 @@ Avram: We've been lucky.
 
 
 @note ========== 6. BEDROLL ==========
+@chapter 6 Bedroll
 
 @bg bg_camp_night fade
+@clear all
 @tint night
 Night camp. Frost on the grass, visible breath. Avram in his bedroll, hunched.
 
@@ -376,6 +389,7 @@ Avram: The answer to the rest of it is also no.
 
 
 @note ========== 7. TAVERN ==========
+@chapter 7 Tavern
 
 @bg bg_tavern_tables fade
 @bgm bgm_tavern
@@ -449,6 +463,7 @@ Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 
 
 @note ========== 8. CAMPFIRE ==========
+@chapter 8 Campfire
 
 @bg bg_camp_night fade
 @tint firelight
@@ -494,6 +509,7 @@ Avram: Something like that.
 
 
 @note ========== 9. HEALER ==========
+@chapter 9 The Healer
 
 @bg bg_camp_night fade
 @sprite avram neutral left
@@ -529,6 +545,7 @@ Healer: Your coin, your slave.
 
 
 @note ========== 10. MONTAGE B — PARITY ==========
+@chapter 10 Parity
 
 @clear all
 @montage begin 4
@@ -555,6 +572,7 @@ Healer: Your coin, your slave.
 
 
 @note ========== 11. SLAVETAKERS / THE WOUND / THE TEMPLE ==========
+@chapter 11 The Wound
 
 @bg bg_forest_road fade
 @bgm bgm_tension
@@ -582,6 +600,8 @@ Her: Master. I don't think you should. They have the air of slavetakers about th
 @sprite slavetaker easy-menace right
 Slavetaker: Clever one, isn't she? That's right. Our guild source says you're a prodigy with no backing, boy.
 
+@sprite her combat-flat right
+@note ears flat, no smile — the ambush is the only place this face exists
 @sprite avram sad-distant left
 Avram: Then I suppose you will be the first to die by my hand. I hope you end up somewhere else, but not anywhere you'll be important.
 
@@ -682,6 +702,7 @@ Avram looks down at his own hands.
 
 
 @note ========== 12. MONTAGE C — INVERSION ==========
+@chapter 12 Inversion
 @note Avram switches to his LATE sprite set (avram_late) from here to the end:
 @note better armor, cloak more worn, face slightly harder.
 
@@ -732,6 +753,7 @@ Night camp. Her asleep by the fire. Avram sitting awake, looking at her, then at
 
 
 @note ========== 13. THE QUESTION / FREEING ==========
+@chapter 13 The Freeing
 
 @bg bg_camp_night cut
 @bgm bgm_wistful
@@ -814,6 +836,7 @@ She still doesn't say anything, just standing still, as Avram walks away.
 
 
 @note ========== 14. THE CLIFF ==========
+@chapter 14 The Cliff
 
 @bg bg_cliff_sunset fade
 @bgm bgm_lament
@@ -943,6 +966,7 @@ Avram digs deeper with his hands.
 
 
 @note ========== 15. CLOSE ==========
+@chapter 15 Close
 
 @bgm bgm_void
 @voiceover on
@@ -992,9 +1016,11 @@ Of the two outsiders, there is one who chooses to protect the things that are, a
 @note Avram walking through the scathed and burning forest, back to viewer.
 @note The final line renders in the Skagganauk font OVER this CG (letterbox /
 @note voiceover-over-CG mode), not on black.
+@voiceover over
 
 I wish you the best of luck, Demon Lord. May the change you bring, be at last the truth that this world is forever seeking.
 
+@voiceover off
 @hold
 
 @note ========== END — end card, back to title ==========

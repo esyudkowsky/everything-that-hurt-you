@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Everything That Hurt You</title>
+<style>
+  /* Skagganauk display face — drop assets/fonts/skagganauk.woff2 in to use a
+     real font (loaded conditionally by engine.js boot to avoid a guaranteed
+     404); the stack below is the fallback approximation. */
+  :root {
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --vo: "Skagganauk", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    --mono: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace;
+    --gold: #c9a75a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #0b0b0f; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; }
+
+  #stage {
+    position: relative;
+    width: min(100vw, calc(100vh * 16 / 9));
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+    user-select: none;
+    cursor: pointer;
+    container-type: size;
+  }
+
+  /* ---- layers, back to front ---- */
+  .fill { position: absolute; inset: 0; }
+  #bglayer, #cglayer { pointer-events: none; }
+  .layer-img {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: opacity 0.6s ease;
+  }
+  .placeholder-label {
+    position: absolute; left: 50%; top: 58%;
+    transform: translateX(-50%);
+    font-family: var(--mono); font-size: 3.2cqh; color: #9a9a9a;
+  }
+
+  .spr {
+    position: absolute; bottom: 0; height: 88%; width: 38%;
+    display: flex; align-items: flex-end; justify-content: center;
+    transition: opacity 0.35s ease, filter 0.3s ease;
+    pointer-events: none;
+  }
+  #spr-left  { left: 2%; }
+  #spr-right { right: 2%; }
+  .spr img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+  #tint { pointer-events: none; transition: background 1.2s ease; }
+  #flash { pointer-events: none; opacity: 0; }
+
+  /* ---- textbox ---- */
+  #textbox { pointer-events: none; }
+  #textbox-img, #plate {
+    position: absolute; inset: 0;
+    background-size: 100% 100%; background-repeat: no-repeat;
+  }
+  #namelabel {
+    position: absolute;
+    left: 4.74%; top: 67.2%; width: 17.1%; height: 7.1%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 2.9cqh; color: #e8ddc4;
+    letter-spacing: 0.04em;
+  }
+  #dialog {
+    position: absolute;
+    left: 6%; right: 6%; top: 76.5%; bottom: 5.5%;
+    font-family: var(--serif); font-size: 3.4cqh; line-height: 1.5;
+    color: #f0ece2;
+    overflow: hidden;
+  }
+  #dialog em { font-style: italic; }
+  #adv {
+    position: absolute; right: 4.5%; bottom: 4.8%;
+    font-size: 2.6cqh; color: var(--gold);
+    animation: bob 1.1s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(0.5cqh);} }
+
+  /* ---- voiceover ---- */
+  #volayer {
+    background: #000;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+  }
+  #volayer.vo-over {
+    background: linear-gradient(#000d 0%, #0003 25%, #0003 75%, #000d 100%);
+  }
+  #volines {
+    max-width: 78%;
+    display: flex; flex-direction: column; gap: 3.4cqh;
+  }
+  .voline {
+    font-family: var(--vo);
+    font-size: 3.6cqh; line-height: 1.6; letter-spacing: 0.13em;
+    font-weight: 600; text-align: center; color: #e9e4d8;
+    text-shadow: 0 0 1.2cqh #000, 0 0 0.4cqh #000;
+    opacity: 0; transition: opacity 1.4s ease;
+  }
+
+  /* ---- overlays ---- */
+  #status { pointer-events: none; }
+  #status-frame {
+    position: absolute; inset: 0;
+    background-size: 100% 100%; background-repeat: no-repeat;
+  }
+  #status { transform: translateY(4cqh); opacity: 0; transition: transform .5s ease, opacity .5s ease; }
+  #status.slide-in { transform: translateY(0); opacity: 1; }
+  #status-lines {
+    position: absolute; left: 21%; right: 21%; top: 35%; height: 30%;
+    display: flex; flex-direction: column; justify-content: center; gap: 2.6cqh;
+    font-family: var(--mono); font-size: 2.35cqh; line-height: 1.5;
+    color: #e3c67c; text-align: center;
+  }
+  #floor { pointer-events: none; transition: opacity .25s ease; }
+  #floor-frame {
+    position: absolute; inset: 0;
+    background-size: 100% 100%; background-repeat: no-repeat;
+  }
+  #floor-num {
+    position: absolute; left: 39.5%; top: 38.8%; width: 21%; height: 22.5%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 11cqh; font-weight: 700; color: #e3c67c;
+  }
+  #inscription {
+    position: absolute; left: 18%; right: 18%; top: 16%; bottom: 22%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.4cqh;
+    background: radial-gradient(ellipse at center, #000a 0%, #0006 60%, #0000 100%);
+    font-family: var(--serif); font-size: 3cqh; line-height: 1.55;
+    color: #efe9da; text-align: center;
+    text-shadow: 0 0 1cqh #000;
+    pointer-events: none;
+  }
+
+  /* ---- chrome: menus, title, end ---- */
+  #menubtn {
+    position: absolute; top: 2.2%; right: 1.6%;
+    width: 5.4cqh; height: 5.4cqh; border-radius: 0.9cqh;
+    background: #0007; color: #cfc7b4; border: 1px solid #ffffff2e;
+    font-size: 3cqh; line-height: 1; cursor: pointer;
+    opacity: 0.35; transition: opacity .2s;
+    z-index: 40;
+  }
+  #menubtn:hover { opacity: 1; }
+
+  .menu {
+    position: absolute; inset: 0; z-index: 50;
+    background: #000c;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.6cqh; cursor: default;
+  }
+  .menu button {
+    font-family: var(--serif); font-size: 3.1cqh;
+    padding: 1.4cqh 4cqh; min-width: 34cqh;
+    background: #14141cdd; color: #e8e2d2;
+    border: 1px solid #c9a75a66; border-radius: 0.8cqh; cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  .menu button:hover { background: #23232fdd; border-color: var(--gold); }
+  .menu h2 {
+    font-family: var(--vo); letter-spacing: 0.18em; font-weight: 600;
+    color: #d8d2c2; font-size: 4cqh; margin-bottom: 1.5cqh;
+  }
+
+  #title { justify-content: flex-end; padding-bottom: 6cqh; background: none; }
+  #title-art {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    z-index: -1;
+  }
+  #title::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(#0006 0%, #0002 40%, #000c 100%);
+  }
+  #title h1 {
+    font-family: var(--vo); font-weight: 700; letter-spacing: 0.22em;
+    font-size: 6.2cqh; color: #ece5d4; text-align: center;
+    text-shadow: 0 0 2cqh #000, 0 0.3cqh 0.8cqh #000;
+    margin-bottom: 0.4cqh;
+  }
+  #title .byline {
+    font-family: var(--serif); font-size: 2.4cqh; color: #bfb7a4;
+    margin-bottom: 3cqh; letter-spacing: 0.1em;
+  }
+  #title .notice {
+    position: absolute; bottom: 2.2cqh; width: 100%; text-align: center;
+    font-family: var(--serif); font-size: 1.9cqh; color: #8f8878;
+  }
+
+  #chapter-list {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.6cqh; max-width: 86%;
+  }
+  #chapter-list .chapter-btn { min-width: 24cqh; font-size: 2.5cqh; text-align: left; }
+  #chapter-list .locked {
+    opacity: 0.35; cursor: default; border-color: #ffffff22;
+  }
+  #chapter-list .locked:hover { background: #14141cdd; }
+
+  #endcard .fin {
+    font-family: var(--vo); font-size: 4.6cqh; letter-spacing: 0.3em;
+    color: #ddd6c5; margin-bottom: 3cqh;
+  }
+
+  #boot-error {
+    position: absolute; inset: auto 8% 8% 8%; z-index: 60;
+    font-family: var(--mono); font-size: 2.4cqh; color: #e39a9a;
+    background: #200b0bcc; border: 1px solid #a55; border-radius: 1cqh;
+    padding: 2cqh; display: none;
+  }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <!-- layers, back to front (informal spec, Part IV);
+         an active CG covers background AND sprites, so it sits above them -->
+    <div id="bglayer" class="fill"></div>
+    <div id="spr-left"  class="spr" style="display:none"></div>
+    <div id="spr-right" class="spr" style="display:none"></div>
+    <div id="cglayer" class="fill"></div>
+    <div id="tint" class="fill"></div>
+    <div id="flash" class="fill"></div>
+
+    <div id="textbox" class="fill" style="display:none">
+      <div id="textbox-img"></div>
+      <div id="plate"></div>
+      <div id="namelabel"></div>
+      <div id="dialog"></div>
+      <div id="adv">▾</div>
+    </div>
+
+    <div id="inscription" style="display:none"></div>
+
+    <div id="status" class="fill" style="display:none">
+      <div id="status-frame"></div>
+      <div id="status-lines"></div>
+    </div>
+    <div id="floor" class="fill" style="display:none">
+      <div id="floor-frame"></div>
+      <div id="floor-num"></div>
+    </div>
+
+    <div id="volayer" class="fill" style="display:none">
+      <div id="volines"></div>
+    </div>
+
+    <button id="menubtn" style="display:none" title="Menu (Esc)">≡</button>
+
+    <!-- menus -->
+    <div id="title" class="menu" style="display:none">
+      <div id="title-art"></div>
+      <h1>EVERYTHING THAT HURT YOU</h1>
+      <div class="byline">a kinetic novel &middot; Eliezer Yudkowsky</div>
+      <button id="btn-begin">Begin</button>
+      <button id="btn-continue" style="display:none">Continue</button>
+      <button id="btn-chapters-title" style="display:none">Chapters</button>
+      <div class="notice">Contains depictions of slavery and suicide.</div>
+    </div>
+
+    <div id="pausemenu" class="menu" style="display:none">
+      <button id="btn-resume">Resume</button>
+      <button id="btn-chapters">Chapters</button>
+      <button id="btn-totitle">Title Screen</button>
+    </div>
+
+    <div id="chapters" class="menu" style="display:none">
+      <h2>CHAPTERS</h2>
+      <div id="chapter-list"></div>
+      <button id="btn-chapters-back">Back</button>
+    </div>
+
+    <div id="endcard" class="menu" style="display:none">
+      <div class="fin">— fin —</div>
+      <button id="btn-end-chapters">Chapters</button>
+      <button id="btn-end-title">Return to Title</button>
+    </div>
+
+    <div id="boot-error"></div>
+  </div>
+  <script src="engine.js"></script>
+</body>
+</html>
