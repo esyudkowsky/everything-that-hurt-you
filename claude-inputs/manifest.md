@@ -1,0 +1,4 @@
+- script.md -- current version of script.  may have been edited by user since last session; check at start of each new session.
+- informal-spec.md -- current non-detailed plan for the kinetic novel, especially artwork and direction.  check for edits at start of each new session.
+- original-script.md -- first incomplete script shown to Claude Fable.  not authoritative.  but primary source for author's voice.
+- fable-conversation.md -- conversation with Claude Fable on web
