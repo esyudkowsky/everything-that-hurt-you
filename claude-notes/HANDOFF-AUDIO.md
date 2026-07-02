@@ -65,6 +65,69 @@ from experiments that already failed once.
 5. Re-render its spectrogram/waveform (commands in MUSIC-PIPELINE.md "QA without
    ears"), LOOK at them, and tell the user a human still has to listen.
 
+## TODO (not started): title-screen music, two loops
+
+Requested by the user 2026-07-02. **A future session should attempt this** (the user
+said "only try yourself if you think it's within your competence" — this session
+would have attempted it, but `OPENROUTER_KEY` was not set in the environment, so it
+was deferred instead of guessed at). Two new BGM slots, neither in the informal spec:
+
+1. `bgm_title` — soft, cheerful loop for the title screen, played whenever the title
+   screen is shown AND the player has not yet finished the story (`!sv.fin`).
+2. `bgm_title_end` — sad/somber loop, replaces it on the title screen once the player
+   HAS finished the story (`sv.fin` true — see `engine.js` save format, `fin: finished
+   ? 1 : 0`). The user's ideal is the *same melodic theme*, just reharmonized somber —
+   flagged by the user themselves as "much harder to do with AI." Lyria (this API) is
+   text-prompt-only with no audio conditioning, so there is no way to feed it the first
+   track and ask for a variation; the best available approximation is prompting the
+   second generation with an explicit, detailed text description of the first track's
+   melodic/instrumental content and asking for the same melody slowed and reharmonized
+   in a minor key. Do not promise the user a literal shared theme will result — audition
+   both and tell them honestly whether it worked. If it doesn't land, a plain contrasting
+   somber piece (same instrumentation family, different melody) is an acceptable fallback.
+
+Draft prompts (edit to taste, follow the same style as `claude-notes/jobs/music_jobs.json`
+— mood + explicit negatives, "even dynamics ... seamless looping", "Strictly instrumental,
+NO vocals, no big finale"):
+
+- `bgm_title`: "Instrumental main theme for the title screen of a fantasy visual novel.
+  Warm, soft, gently cheerful — solo acoustic guitar or harp carrying a simple, hummable
+  melody, light warm strings underneath, maybe a soft flute answering phrase. Inviting and
+  a little wistful at the edges but mostly bright — like the cover of a beloved storybook
+  being opened. Gentle dynamics throughout, no build to a climax, suitable for seamless
+  looping while the player reads the title screen. Strictly instrumental, NO vocals, no
+  big finale or dramatic ending."
+- `bgm_title_end`: "Instrumental theme for the title screen of a fantasy visual novel,
+  played only after the story has been finished — the same simple melody as [describe
+  bgm_title's actual melodic content once you've heard it], now slow, hollowed-out, and
+  grieving: solo cello or low piano carrying the tune, sparse and spacious, no percussion.
+  Tender and sad rather than tragic or dramatic — the same story, remembered afterward.
+  Even quiet dynamics throughout, no crescendo, suitable for seamless looping. Strictly
+  instrumental, NO vocals, no swelling finale."
+
+How to generate (same pipeline as the 6 existing BGM tracks):
+```
+python3 claude-notes/tools/gen_music.py --out assets/audio/bgm_title.mp3 --prompt "..." --model pro
+python3 claude-notes/tools/gen_music.py --out assets/audio/bgm_title_end.mp3 --prompt "..." --model pro
+python3 claude-notes/tools/make_loops.py assets/audio/bgm_title.mp3 assets/audio/bgm_title_end.mp3
+```
+Then add both `_loop.mp3` paths to `assets/manifest.json → audio` (same pattern as the
+existing six). Cost: ~$0.16 for both at the `pro` model. Needs `OPENROUTER_KEY` in the
+environment (ask the user to set it if it's missing, same as this session hit).
+
+Engine wiring (small, ~2 lines): `engine.js` `showTitle()` (around the `$("title")`
+block) currently never calls `playBgm()` — the title screen is silent today. Add, after
+loading `sv`:
+```js
+playBgm(sv && sv.fin ? "bgm_title_end" : "bgm_title");
+```
+`beginPlay()` doesn't need an explicit stop — the first `@bgm` directive in script.txt
+(chapter 1) will cut over via the existing `playBgm()` replace-on-call behavior. Re-run
+`node claude-notes/tools/validate_script.js` and reload in-browser to confirm the title
+screen now plays audio and that it switches after a full playthrough (use Chapters/dev
+shortcuts or just finish the story once). As always: human audition still required
+afterward, same as every other track (see `/HUMAN.md`).
+
 ## The one big unknown you cannot resolve alone
 
 Whether the six BGM tracks actually FIT the scenes emotionally. Spectrograms cannot

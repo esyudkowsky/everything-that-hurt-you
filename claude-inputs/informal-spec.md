@@ -165,7 +165,7 @@ Expression set (H-armor and H-camp):
 @note <production note — ignored by engine, kept in script>
 ```
 
-**Speaker nametags.** "Avram", "Bartender", "Healer", etc. Her lines display no nametag — speaker indicated only by sprite highlight (non-speaking sprite dims 30%). This is deliberate; do not "fix" it. Skagganauk's voiceover lines have no tag either; the font is the tag.
+**Speaker nametags.** "Avram", "Bartender", "Healer", "Her", etc. — every speaker, including Her, displays a nametag; speaker is also indicated by sprite highlight (non-speaking sprite dims 30%). (Revised 2026-07-02 by author direction: Her's lines previously displayed no nametag; overridden, see `claude-notes/SCRIPT-TODO.md` for the history.) Skagganauk's voiceover lines have no tag either; the font is the tag.
 
 **Fonts.** Three: (1) body font for dialogue/narration, humanist serif or clean sans; (2) Skagganauk font — angular, high-contrast display face, used ONLY for voiceover mode and nowhere else; (3) monospace/geometric UI font for status overlays and floor markers. Emphasis: `*word*` in script renders italic.
 

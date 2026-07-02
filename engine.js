@@ -99,9 +99,11 @@ function parseScript(text) {
         case "sfx":
           ins.push({ op: "sfx", id: rest });
           break;
-        case "bgm":
-          ins.push({ op: "bgm", id: rest });
+        case "bgm": {
+          const p = rest.split(/\s+/);
+          ins.push({ op: "bgm", id: p[0], instant: p[1] === "cut" });
           break;
+        }
         case "chapter": {
           const cm = rest.match(/^(\d+)\s+(.*)$/);
           const ch = { op: "chapter", n: +cm[1], title: cm[2], at: ins.length };
@@ -145,7 +147,8 @@ if (typeof module !== "undefined" && module.exports) {
 if (typeof document !== "undefined") (function () {
   const $ = (id) => document.getElementById(id);
   const SAVE_KEY = "ethy_save";
-  const TYPE_MS = 33; // ~30 chars/sec
+  const SETTINGS_KEY = "ethy_settings";
+  const DEFAULT_SETTINGS = { typeMs: 33, autoplay: false, autoplayDelayMs: 900, showChapter: false };
   const TINTS = {
     night: "rgba(18, 38, 88, 0.30)",
     dusk: "rgba(120, 60, 20, 0.22)",
@@ -165,6 +168,16 @@ if (typeof document !== "undefined") (function () {
   let mode = "title";      // title | play | menu
   let statusShown = false; // status overlay currently waiting
   const st = freshState();
+  let settings = loadSettings();
+
+  function loadSettings() {
+    let s = null;
+    try { s = JSON.parse(localStorage.getItem(SETTINGS_KEY)); } catch (e) {}
+    return Object.assign({}, DEFAULT_SETTINGS, s || {});
+  }
+  function saveSettings() {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {}
+  }
 
   function freshState() {
     return {
@@ -368,7 +381,7 @@ if (typeof document !== "undefined") (function () {
 
   function showTextbox(speaker) {
     $("textbox").style.display = "";
-    const tagged = speaker && speaker !== "Her";
+    const tagged = !!speaker;
     $("plate").style.display = tagged ? "" : "none";
     $("namelabel").style.display = tagged ? "" : "none";
     $("namelabel").textContent = tagged ? speaker : "";
@@ -415,10 +428,13 @@ if (typeof document !== "undefined") (function () {
   }
   function tickTyper() {
     if (!typer) return;
-    typer.count = Math.min(typer.count + 1, typer.total);
+    const step = settings.typeMs <= 0 ? typer.total : 1;
+    typer.count = Math.min(typer.count + step, typer.total);
     renderTyper();
     if (typer.count < typer.total) {
-      typer.timer = setTimeout(tickTyper, TYPE_MS);
+      typer.timer = setTimeout(tickTyper, settings.typeMs);
+    } else {
+      maybeAutoplay();
     }
   }
   function completeTyper() {
@@ -427,6 +443,7 @@ if (typeof document !== "undefined") (function () {
       clearTimeout(typer.timer);
       typer.count = typer.total;
       renderTyper();
+      maybeAutoplay();
       return true; // consumed the click
     }
     return false;
@@ -438,6 +455,10 @@ if (typeof document !== "undefined") (function () {
     st.vo = mode2;
     const layer = $("volayer");
     if (mode2 === "on" || mode2 === "over") {
+      // "on" is meant to be pure black; clear the CG instantly so a stale
+      // image can't flash through while volayer's opacity fades in over the
+      // scene below it. "over" deliberately keeps the scene visible, skip it.
+      if (mode2 === "on") clearCg("cut");
       st.voLines = [];
       $("volines").innerHTML = "";
       layer.classList.toggle("vo-over", mode2 === "over");
@@ -532,20 +553,58 @@ if (typeof document !== "undefined") (function () {
   /* ---------- audio (optional; silent when files absent) ---------- */
 
   let bgmEl = null;
-  function playBgm(id) {
+  const BGM_VOL = 0.7;
+  const BGM_FADE_MS = 1200;
+
+  /* fades el's volume to 0 over BGM_FADE_MS then pauses it; instant = hard cut */
+  function fadeOutBgmEl(el, instant) {
+    if (!el) return;
+    if (instant) { el.pause(); return; }
+    const t0 = performance.now();
+    const startVol = el.volume;
+    (function tick() {
+      const t = Math.min(1, (performance.now() - t0) / BGM_FADE_MS);
+      el.volume = startVol * (1 - t);
+      if (t < 1) requestAnimationFrame(tick);
+      else el.pause();
+    })();
+  }
+  /* fades el's volume from 0 to BGM_VOL; instant = jump straight to full volume.
+     Guarded by "bgmEl === el" so a superseded fade-in doesn't clobber a newer
+     track's volume if @bgm changes again before this one finishes. */
+  function fadeInBgmEl(el, instant) {
+    if (instant) { el.volume = BGM_VOL; return; }
+    const t0 = performance.now();
+    (function tick() {
+      if (bgmEl !== el) return;
+      const t = Math.min(1, (performance.now() - t0) / BGM_FADE_MS);
+      el.volume = BGM_VOL * t;
+      if (t < 1) requestAnimationFrame(tick);
+    })();
+  }
+  function playBgm(id, instant) {
+    const outgoing = bgmEl;
     if (id === "stop" || !id) {
       st.bgm = null;
-      if (bgmEl) { bgmEl.pause(); bgmEl = null; }
+      bgmEl = null;
+      fadeOutBgmEl(outgoing, instant);
       return;
     }
     st.bgm = id;
     const path = assetPath("audio", id);
-    if (bgmEl) { bgmEl.pause(); bgmEl = null; }
-    if (!path) return; // app must run silent when audio absent
-    bgmEl = new Audio(path);
-    bgmEl.loop = true;
-    bgmEl.volume = 0.7;
-    bgmEl.play().catch(() => {});
+    if (!path) {
+      // app must run silent when audio absent
+      bgmEl = null;
+      fadeOutBgmEl(outgoing, instant);
+      return;
+    }
+    const el = new Audio(path);
+    el.loop = true;
+    el.volume = instant ? BGM_VOL : 0;
+    el.play().catch(() => {});
+    bgmEl = el;
+    fadeOutBgmEl(outgoing, instant);
+    fadeInBgmEl(el, instant);
   }
   function playSfx(id) {
     if (id === "stop" || !id) return;
@@ -584,6 +643,20 @@ if (typeof document !== "undefined") (function () {
   function clearTimers() {
     if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
     if (typer) { clearTimeout(typer.timer); typer = null; }
+    clearAutoplayTimer();
+  }
+
+  let autoplayTimer = null;
+  function clearAutoplayTimer() {
+    if (autoplayTimer) { clearTimeout(autoplayTimer); autoplayTimer = null; }
+  }
+  function maybeAutoplay() {
+    clearAutoplayTimer();
+    if (!settings.autoplay) return;
+    autoplayTimer = setTimeout(() => {
+      autoplayTimer = null;
+      if (mode === "play" && waiting) advance();
+    }, settings.autoplayDelayMs);
   }
 
   /* returns true if execution must wait for input/timer */
@@ -594,6 +667,7 @@ if (typeof document !== "undefined") (function () {
         if ((st.vo === "on" || st.vo === "over") && c.op === "narrate") {
           addVoLine(c.text);
           save();
+          maybeAutoplay();
           return true;
         }
         showTextbox(c.op === "say" ? c.speaker : null);
@@ -605,6 +679,7 @@ if (typeof document !== "undefined") (function () {
       case "hold":
         hideTextbox();
         save();
+        maybeAutoplay();
         return true;
       case "pause":
         autoTimer = setTimeout(advance, c.ms);
@@ -617,7 +692,9 @@ if (typeof document !== "undefined") (function () {
         if (st.montage) {
           hideTextbox();
           save();
-          autoTimer = setTimeout(advance, st.montage.secs * 1000);
+          // wait for a click like any other cutscene beat; only auto-advance
+          // (after the script's specified dwell time) if Autoplay is on
+          if (settings.autoplay) autoTimer = setTimeout(advance, st.montage.secs * 1000);
           return true;
         }
         return false;
@@ -641,6 +718,7 @@ if (typeof document !== "undefined") (function () {
           showInscription(c.lines);
         }
         save();
+        maybeAutoplay();
         return true;
       case "floor":
         hideTextbox();
@@ -662,7 +740,7 @@ if (typeof document !== "undefined") (function () {
         setTint(c.mode);
         return false;
       case "bgm":
-        playBgm(c.id);
+        playBgm(c.id, c.instant);
         return false;
       case "sfx":
         playSfx(c.id);
@@ -683,11 +761,24 @@ if (typeof document !== "undefined") (function () {
       if (blocked) {
         waiting = true;
         preloadAhead();
+        updateChapterIndicator();
         return;
       }
       pc++;
     }
     endCard();
+  }
+
+  function updateChapterIndicator() {
+    const el = $("chapter-indicator");
+    if (!settings.showChapter || mode !== "play") { el.style.display = "none"; return; }
+    let current = null;
+    for (const ch of SCRIPT.chapters) {
+      if (ch.at > pc) break;
+      current = ch;
+    }
+    el.textContent = current ? "Ch. " + current.n + " · " + current.title : "";
+    el.style.display = current ? "" : "none";
   }
 
   function advance() {
@@ -699,6 +790,26 @@ if (typeof document !== "undefined") (function () {
     hideFloor();
     pc++;
     step();
+  }
+
+  /* ---------- skip (hold Ctrl to fast-advance through already-read text) ---------- */
+
+  let skipActive = false;
+  let skipTimer = null;
+  function skipTick() {
+    skipTimer = null;
+    if (!skipActive || mode !== "play" || pc >= maxPc) return;
+    advance();
+    if (skipActive) skipTimer = setTimeout(skipTick, 40);
+  }
+  function startSkip() {
+    if (skipActive) return;
+    skipActive = true;
+    skipTick();
+  }
+  function stopSkip() {
+    skipActive = false;
+    if (skipTimer) { clearTimeout(skipTimer); skipTimer = null; }
   }
 
   /* ---------- seek: silent state replay for resume / chapter jump ---------- */
@@ -749,7 +860,7 @@ if (typeof document !== "undefined") (function () {
       for (const l of linesNow) addVoLine(l, true);
     }
     if (st.inscription) showInscription(st.inscription);
-    playBgm(st.bgm || "stop");
+    playBgm(st.bgm || "stop", true);
 
     pc = target;
     step();
@@ -779,6 +890,7 @@ if (typeof document !== "undefined") (function () {
     const sv = loadSave();
     $("btn-continue").style.display = sv && sv.pc > 0 && !sv.fin ? "" : "none";
     $("btn-chapters-title").style.display = sv && sv.max > 0 ? "" : "none";
+    updateChapterIndicator();
   }
   function beginPlay(target) {
     $("title").style.display = "none";
@@ -797,6 +909,7 @@ if (typeof document !== "undefined") (function () {
     mode = "menu";
     $("menubtn").style.display = "none";
     $("endcard").style.display = "";
+    updateChapterIndicator();
   }
 
   function openChapters(fromTitle) {
@@ -821,6 +934,7 @@ if (typeof document !== "undefined") (function () {
     if (fromTitle) $("title").style.display = "none";
     $("chapters").style.display = "";
     if (!fromTitle) mode = "menu";
+    updateChapterIndicator();
   }
   function finishedAll(sv) {
     return !!(sv && sv.fin);
@@ -834,10 +948,37 @@ if (typeof document !== "undefined") (function () {
   function openPause() {
     mode = "menu";
     $("pausemenu").style.display = "";
+    updateChapterIndicator();
   }
   function closePause() {
     $("pausemenu").style.display = "none";
     mode = "play";
+    updateChapterIndicator();
+  }
+
+  function renderSettingsUI() {
+    for (const btn of $("speed-group").children)
+      btn.classList.toggle("selected", +btn.dataset.speed === settings.typeMs);
+    for (const btn of $("autoplay-group").children)
+      btn.classList.toggle("selected", (btn.dataset.autoplay === "1") === settings.autoplay);
+    for (const btn of $("delay-group").children)
+      btn.classList.toggle("selected", +btn.dataset.delay === settings.autoplayDelayMs);
+    $("autoplay-delay-row").classList.toggle("disabled", !settings.autoplay);
+    for (const btn of $("showchapter-group").children)
+      btn.classList.toggle("selected", (btn.dataset.showchapter === "1") === settings.showChapter);
+  }
+  function openSettings(fromTitle) {
+    renderSettingsUI();
+    $("settingsmenu").dataset.from = fromTitle ? "title" : "pause";
+    if (fromTitle) $("title").style.display = "none";
+    else $("pausemenu").style.display = "none";
+    $("settingsmenu").style.display = "";
+    if (!fromTitle) mode = "menu";
+  }
+  function closeSettings() {
+    $("settingsmenu").style.display = "none";
+    if ($("settingsmenu").dataset.from === "title") showTitle();
+    else openPause();
   }
 
   /* ---------- input ---------- */
@@ -859,9 +1000,16 @@ if (typeof document !== "undefined") (function () {
       else if (e.key === "Escape") {
         if (mode === "play") openPause();
         else if ($("chapters").style.display !== "none") closeChapters();
+        else if ($("settingsmenu").style.display !== "none") closeSettings();
         else if ($("pausemenu").style.display !== "none") closePause();
+      } else if (e.key === "Control") {
+        startSkip();
       }
     });
+    document.addEventListener("keyup", (e) => {
+      if (e.key === "Control") stopSkip();
+    });
+    window.addEventListener("blur", stopSkip);
     $("menubtn").onclick = (e) => { e.stopPropagation(); openPause(); };
     $("btn-begin").onclick = () => beginPlay(0);
     $("btn-continue").onclick = () => {
@@ -870,15 +1018,49 @@ if (typeof document !== "undefined") (function () {
       beginPlay((sv && sv.pc) || 0);
     };
     $("btn-chapters-title").onclick = () => openChapters(true);
+    $("btn-settings-title").onclick = () => openSettings(true);
     $("btn-resume").onclick = closePause;
     $("btn-chapters").onclick = () => {
       $("pausemenu").style.display = "none";
       openChapters(false);
     };
+    $("btn-settings").onclick = () => openSettings(false);
+    $("btn-settings-back").onclick = closeSettings;
     $("btn-totitle").onclick = () => { showTitle(); };
     $("btn-chapters-back").onclick = closeChapters;
     $("btn-end-title").onclick = () => showTitle();
     $("btn-end-chapters").onclick = () => openChapters(true);
+
+    $("speed-group").addEventListener("click", (e) => {
+      const btn = e.target.closest(".opt-btn");
+      if (!btn) return;
+      settings.typeMs = +btn.dataset.speed;
+      saveSettings();
+      renderSettingsUI();
+    });
+    $("autoplay-group").addEventListener("click", (e) => {
+      const btn = e.target.closest(".opt-btn");
+      if (!btn) return;
+      settings.autoplay = btn.dataset.autoplay === "1";
+      saveSettings();
+      renderSettingsUI();
+      if (settings.autoplay && mode === "play" && waiting) maybeAutoplay();
+    });
+    $("delay-group").addEventListener("click", (e) => {
+      const btn = e.target.closest(".opt-btn");
+      if (!btn) return;
+      settings.autoplayDelayMs = +btn.dataset.delay;
+      saveSettings();
+      renderSettingsUI();
+    });
+    $("showchapter-group").addEventListener("click", (e) => {
+      const btn = e.target.closest(".opt-btn");
+      if (!btn) return;
+      settings.showChapter = btn.dataset.showchapter === "1";
+      saveSettings();
+      renderSettingsUI();
+      updateChapterIndicator();
+    });
   }
 
   /* ---------- boot ---------- */

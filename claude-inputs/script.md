@@ -1,4 +1,4 @@
-# EVERYTHING THAT HURT YOU — full script (rev. 2)
+# EVERYTHING THAT HURT YOU — full script (rev. 3)
 
 ---
 
@@ -66,7 +66,7 @@ Bartender, still facing the bottles: Aw *slimespit.*
 
 : Bartender, now turned to Avram and leaning forward menacingly: What'd you hear, kid? Tell me everything. Now. — Avram, holding up hands defensively: I just heard some guy talking about it! That's why I'm asking whether -
 
-: Bartender: Some guy *where* saying *what?* — Avram: Some guy in the middle of nowhere drinking tea who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.* If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
+: Bartender: Some guy *where* saying *what?* — Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.* If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
 
 : Bartender: Deathstorms and balefire! No, I haven't heard anything. I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know? Or the Summoned Hero either, for that matter. I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
 

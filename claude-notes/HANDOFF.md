@@ -79,6 +79,13 @@ file:// won't work in Chrome — a server is required (message shown in-app).
     400ms of a `@clear` isn't wiped (`sprGen`).
   - Chapters 3 and 6 needed explicit `@clear all` in script.txt (stale
     sprites from the previous scene otherwise linger behind/beside CGs).
+  - `@voiceover on` (2026-07-02 fix): `setVoiceover()` fades volayer's opacity
+    0→1 over 0.8s; if a CG was still showing when "on" fired, it was visible
+    through the semi-transparent black during that fade — a real flash bug the
+    user caught right before the chapter 15 close voiceover (the previous CG
+    briefly ghosting through). Fixed by instantly `clearCg("cut")` when mode
+    is exactly `"on"` (not `"over"`, which deliberately keeps the scene
+    visible) inside `setVoiceover()`. Don't remove that clear call.
 
 ## script.txt conventions (beyond informal-spec minimum)
 
@@ -114,17 +121,28 @@ reserved for the cliff, `sad-distant` = grieving-before-the-fact beats).
 
 ## Remaining / nice-to-have (none blocking)
 
+0. **Title-screen music, two loops** — requested 2026-07-02, not started (no
+   `OPENROUTER_KEY` in that session's env). Full plan, draft prompts, and the
+   ~2-line engine wiring are in `claude-notes/HANDOFF-AUDIO.md` under "TODO
+   (not started): title-screen music, two loops". Cheerful loop for the title
+   screen; somber loop (ideally same theme, flagged by the user as hard)
+   replaces it once `sv.fin` is true.
 1. **Foley SFX** (above) — source from a library (do NOT generate; closed
    lane, see HANDOFF-AUDIO.md), add to manifest. ~15 min of human time.
 2. **Skagganauk font** — find/make an angular display woff2, drop at
    `assets/fonts/skagganauk.woff2`. Zero code changes needed.
 3. **Pamphlet inscription contrast** — rules text over the bright open-book
    CG is readable but could use a stronger scrim (`#inscription` CSS).
-4. **BGM crossfade + gapless looping** — currently hard cut on `@bgm`; a
-   1–2s fade would be gentler everywhere EXCEPT the whiteout, which must
-   stay instant. Also: if looping is a bare `<audio loop>`, MP3 edge padding
-   (~50ms) will gap at the seam even on the `_loop` files — Web Audio buffer
-   looping (or two crossfading elements) fixes both at once.
+4. ~~BGM crossfade~~ — **DONE 2026-07-02** (user-requested, implemented this
+   session): `@bgm` changes now fade out the old track / fade in the new one
+   over 1.2s (`playBgm`/`fadeOutBgmEl`/`fadeInBgmEl` in `engine.js`). The
+   whiteout stays an instant hard cut via the new `@bgm stop cut` syntax
+   (see `script.txt` header note) — do not remove the `cut` there.
+   **Still open: gapless looping.** Looping is still a bare `<audio loop>`
+   per track (`el.loop = true`), so MP3 edge padding (~50ms) will click/gap
+   at the loop seam even on the `_loop` files, independent of the crossfade
+   work above. Web Audio buffer looping (or two crossfading `<audio>`
+   elements timed to the track length) fixes this; not attempted yet.
 5. **Mobile pass** — layout is responsive (16:9 letterbox) and tap advances,
    but untested on real phones; check tap targets on the menus.
 6. **Human proofread** of script.txt staging against `claude-inputs/

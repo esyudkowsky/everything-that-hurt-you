@@ -1,7 +1,8 @@
 @note ============================================================
-@note EVERYTHING THAT HURT YOU — stage script v1 (from script.md rev. 2)
+@note EVERYTHING THAT HURT YOU — stage script v2 (from script.md rev. 3)
 @note This is the file the engine parses. Dialogue text is verbatim from
-@note claude-inputs/script.md rev. 2; only staging directives are added.
+@note claude-inputs/script.md rev. 3; only staging directives are added.
+@note See claude-inputs/SCRIPT-CHANGES.md for the diff between rev. 2 and rev. 3.
 @note ------------------------------------------------------------
 @note Directive extensions beyond the informal-spec minimum set:
 @note   @hold                 — textbox hidden, wait for one click (silent panel)
@@ -15,12 +16,23 @@
 @note   @chapter <n> <title>  — chapter marker; the engine's chapter menu lets
 @note                           the reader rejoin any chapter already reached
 @note   @voiceover over       — Skagganauk-font line over the CURRENT scene
-@note                           (letterboxed), not on black; used only for the
-@note                           final line over cg_burning_walk
+@note                           (letterboxed), not on black; used for the
+@note                           opening narration after its first beat (once a
+@note                           scene is on screen, later lines float over it
+@note                           instead of cutting to black) and for the final
+@note                           line over cg_burning_walk
+@note   @bgm <id|stop> [cut]  — BGM changes crossfade (1.2s fade out old / in
+@note                           new) by default; "cut" forces an instant hard
+@note                           cut, used ONLY at the whiteout ("@bgm stop cut"
+@note                           before sfx_silence-cut — spec: BGM cuts to
+@note                           silence instantly there). Do not add "cut" to
+@note                           other @bgm lines without a specific reason.
 @note ------------------------------------------------------------
-@note Nametag rules (engine-side, do not "fix"): lines tagged "Her" display
-@note NO nametag — speaker shown only by sprite highlight. Voiceover-mode
-@note lines display no tag; the Skagganauk font is the tag.
+@note Nametag rules (engine-side): lines tagged "Her" display nametag "Her",
+@note same as any other speaker (changed 2026-07-02 by author direction;
+@note previously untagged — see SCRIPT-TODO.md for the history, do not
+@note revert without checking there first). Voiceover-mode lines display no
+@note tag; the Skagganauk font is the tag.
 @note Sprite conventions: Avram defaults left, her right. Side characters
 @note swap into whichever slot is free; max two sprites on screen.
 @note A dialogue line whose text is exactly "..." is a legal silence panel.
@@ -46,7 +58,7 @@ The world of Elhom IV has a cycle.
 @hold
 @note single flash panel: Avram in Earth clothes beside the old white-bearded
 @note man, floating tea table, featureless bright sky. No dialogue, one click.
-@voiceover on
+@voiceover over
 
 From time to time, arises a Demon Lord, feared and accursed
 
@@ -54,7 +66,7 @@ From time to time, arises a Demon Lord, feared and accursed
 @bg bg_forest_day fade
 @sprite avram_earth shock left
 @hold
-@voiceover on
+@voiceover over
 
 And another rises to fight them
 
@@ -65,7 +77,7 @@ The great, the powerful, the Summoned Hero
 @sprite avram neutral left
 @note isekai cloak now, but his old Earth sneakers — keep in any full render
 @hold
-@voiceover on
+@voiceover over
 
 They are not supreme when they first arrive
 
@@ -77,7 +89,7 @@ And they gain in strength very quickly
 @bg bg_town_gate fade
 @sprite avram neutral left
 @hold
-@voiceover on
+@voiceover over
 
 Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It's more convenient that way, perhaps. It leaves less to explain.
 
@@ -87,7 +99,7 @@ There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 @bg bg_guild_exterior fade
 @sprite avram neutral left
 @hold
-@voiceover on
+@voiceover over
 
 But what Avram has not as yet been told, it seems
 
@@ -132,7 +144,7 @@ Avram: I just heard some guy talking about it! That's why I'm asking whether -
 
 Bartender: Some guy *where* saying *what?*
 
-Avram: Some guy in the middle of nowhere drinking tea who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.* If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
+Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.* If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
 
 @sprite bartender startled right
 Bartender: Deathstorms and balefire! No, I haven't heard anything. I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know? Or the Summoned Hero either, for that matter. I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
@@ -287,8 +299,10 @@ Avram: ...
 
 Avram: ...I'll think on it.
 
-@note the nickname he settles on is never shown; her dialogue tag remains
-@note untagged ("Her") throughout — deliberate, do not "fix"
+@note the nickname he settles on is never shown in dialogue text; her speaker
+@note tag displays "Her" throughout (engine-rendered nametag, not her actual
+@note chosen name) — per author direction 2026-07-02, overriding an earlier
+@note no-nametag-for-Her decision (see SCRIPT-TODO.md history)
 @flash black 1000
 @clear all
 
@@ -635,7 +649,7 @@ Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going 
 @note by the panel edge, contents unreadable. NO text. One click to pass.
 @textbox show
 
-@bgm stop
+@bgm stop cut
 @sfx sfx_silence-cut
 @flash white 2000
 @cg cg_whiteout fade

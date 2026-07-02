@@ -211,6 +211,39 @@
     color: #ddd6c5; margin-bottom: 3cqh;
   }
 
+  #settingsmenu .opt-row {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 62cqh; max-width: 90%; gap: 2cqh;
+    transition: opacity .2s;
+  }
+  #settingsmenu .opt-row.disabled { opacity: 0.35; pointer-events: none; }
+  #settingsmenu .opt-label {
+    font-family: var(--serif); font-size: 2.4cqh; color: #cfc8b6;
+  }
+  #settingsmenu .opt-group { display: flex; gap: 0.8cqh; }
+  #settingsmenu .opt-btn {
+    font-family: var(--serif); font-size: 2cqh; min-width: 0;
+    padding: 0.9cqh 1.9cqh;
+    background: #14141cdd; color: #cfc8b6;
+    border: 1px solid #c9a75a44; border-radius: 0.6cqh; cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  #settingsmenu .opt-btn:hover { border-color: var(--gold); }
+  #settingsmenu .opt-btn.selected {
+    background: #c9a75a2e; border-color: var(--gold); color: #f0ece2;
+  }
+  #settingsmenu .opt-note {
+    font-family: var(--serif); font-size: 1.8cqh; color: #8f8878;
+    max-width: 62cqh; text-align: center;
+  }
+
+  #chapter-indicator {
+    position: absolute; top: 1.6cqh; left: 1.6cqh; z-index: 30;
+    font-family: var(--mono); font-size: 1.7cqh; color: #d8d2c2;
+    background: #000a; border: 1px solid #c9a75a44; border-radius: 0.5cqh;
+    padding: 0.5cqh 1.2cqh; pointer-events: none;
+  }
+
   #boot-error {
     position: absolute; inset: auto 8% 8% 8%; z-index: 60;
     font-family: var(--mono); font-size: 2.4cqh; color: #e39a9a;
@@ -253,6 +286,7 @@
       <div id="volines"></div>
     </div>
 
+    <div id="chapter-indicator" style="display:none"></div>
     <button id="menubtn" style="display:none" title="Menu (Esc)">≡</button>
 
     <!-- menus -->
@@ -263,13 +297,52 @@
       <button id="btn-begin">Begin</button>
       <button id="btn-continue" style="display:none">Continue</button>
       <button id="btn-chapters-title" style="display:none">Chapters</button>
-      <div class="notice">Contains depictions of slavery and suicide.</div>
+      <button id="btn-settings-title">Settings</button>
+      <div class="notice">This is a grownup story. Content may be disturbing to some viewers.</div>
     </div>
 
     <div id="pausemenu" class="menu" style="display:none">
       <button id="btn-resume">Resume</button>
       <button id="btn-chapters">Chapters</button>
+      <button id="btn-settings">Settings</button>
       <button id="btn-totitle">Title Screen</button>
+    </div>
+
+    <div id="settingsmenu" class="menu" style="display:none">
+      <h2>SETTINGS</h2>
+      <div class="opt-row">
+        <div class="opt-label">Text Speed</div>
+        <div class="opt-group" id="speed-group">
+          <button class="opt-btn" data-speed="60">Slow</button>
+          <button class="opt-btn" data-speed="33">Normal</button>
+          <button class="opt-btn" data-speed="14">Fast</button>
+          <button class="opt-btn" data-speed="0">Instant</button>
+        </div>
+      </div>
+      <div class="opt-row">
+        <div class="opt-label">Autoplay</div>
+        <div class="opt-group" id="autoplay-group">
+          <button class="opt-btn" data-autoplay="0">Off</button>
+          <button class="opt-btn" data-autoplay="1">On</button>
+        </div>
+      </div>
+      <div class="opt-row" id="autoplay-delay-row">
+        <div class="opt-label">Autoplay Delay</div>
+        <div class="opt-group" id="delay-group">
+          <button class="opt-btn" data-delay="400">Short</button>
+          <button class="opt-btn" data-delay="900">Medium</button>
+          <button class="opt-btn" data-delay="1800">Long</button>
+        </div>
+      </div>
+      <div class="opt-row">
+        <div class="opt-label">Show Chapter</div>
+        <div class="opt-group" id="showchapter-group">
+          <button class="opt-btn" data-showchapter="0">Off</button>
+          <button class="opt-btn" data-showchapter="1">On</button>
+        </div>
+      </div>
+      <div class="opt-note">Hold <b>Ctrl</b> to fast-skip through text you've already read.</div>
+      <button id="btn-settings-back">Back</button>
     </div>
 
     <div id="chapters" class="menu" style="display:none">
