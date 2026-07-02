@@ -1,0 +1,83 @@
+[
+ {
+  "out": "assets/sprites/bartender.menacing-lean.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/bartender.gruff-neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 a huge muscular middle-aged tavern-keeper woman, taller and broader than most men, bare heavily-muscled scarred arms, her left eye missing \u2014 an old scar seaming across the permanently closed eyelid \u2014 short practical dark hair, a dark leather apron over a plain work shirt \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: leaning forward menacingly, palms planted, her one good eye boring into the viewer, jaw set. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/bartender.startled.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/bartender.gruff-neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 a huge muscular middle-aged tavern-keeper woman, taller and broader than most men, bare heavily-muscled scarred arms, her left eye missing \u2014 an old scar seaming across the permanently closed eyelid \u2014 short practical dark hair, a dark leather apron over a plain work shirt \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: startled \u2014 good eye wide, eyebrows up, caught completely off guard mid-motion. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/announcer.leer.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/announcer.barker-grin.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 an oily slave-auction barker, a middle-aged man with slicked-back dark hair, a thin curled mustache, flashy fine clothes \u2014 embroidered burgundy vest, silk cravat, rings on his fingers \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: an unpleasant oily leer, half-lidded eyes, tongue almost visible at the corner of his grin. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/nobleman.irritated.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/nobleman.haughty.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 a rich nobleman with a soft, doughy, pampered face, elaborate silk-and-fur-trimmed robes in deep blue and gold, jeweled rings, immaculately groomed \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: irritated and flushed \u2014 scowling, jaw clenched, the look of a man who has just been outbid. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/adventurer1.awed.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/adventurer1.jeering.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 a burly bearded adventurer in his thirties, thick brown beard, worn leather armor over a broad chest, a tavern mug in one hand \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: awed disbelief \u2014 grin gone, eyes wide, the mug halfway lowered and forgotten. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/adventurer2.awed.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/adventurer2.laughing.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 a younger lanky adventurer barely out of his teens, messy sandy hair, a visible gap between his front teeth, simple padded gambeson \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: awed disbelief \u2014 laughter gone, eyes wide, mouth still half-open but silent. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/healer.pointed.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/healer.dry-neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 an older traveling healer woman in her sixties, gray hair in a single long braid over her shoulder, weathered practical travel clothes with many pockets and a leather satchel of splints and bandages \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: a pointed, direct look \u2014 one eyebrow slightly raised, mouth set, delivering an unwelcome truth kindly but without mercy. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/slavetaker.snarl.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/slavetaker.easy-menace.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 a weathered slavetaker captain in his forties, short gray-flecked hair, several days' stubble, light practical dark armor with no insignia, an easy confident posture; no weapon visible in frame \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: an ugly snarl of rage and pain, teeth bared, all professionalism gone. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/attendant.pitying.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/attendant.curious.png"
+  ],
+  "prompt": "Using the reference image: the exact same character \u2014 a young temple acolyte woman in pale healer's-temple robes with a simple cord belt, short neat dark hair \u2014 same colors, same art style, same waist-up framing, same angle. Change ONLY the expression/pose to: soft pity \u2014 brows tilted up, a small sad sympathetic almost-smile, shaking-her-head energy. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ }
+]

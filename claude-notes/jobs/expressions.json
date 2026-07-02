@@ -1,0 +1,281 @@
+[
+ {
+  "out": "assets/sprites/avram_earth.shock.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_earth.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same modern hoodie and jacket, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: total shock \u2014 eyes very wide, lips parted, disbelief, looking around as if the world just changed. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.wry.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: a dry wry half-smile, one corner of the mouth raised, deadpan amused eyes. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.wry.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: a dry wry half-smile, one corner of the mouth raised, deadpan amused eyes. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.discomfort.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: stiff discomfort \u2014 eyes averted to the side, faint blush across the cheeks, mouth a tight line, shoulders slightly raised. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.discomfort.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: stiff discomfort \u2014 eyes averted to the side, faint blush across the cheeks, mouth a tight line, shoulders slightly raised. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.alarm.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: alarm \u2014 eyes wide, eyebrows raised, mouth slightly open, caught off guard. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.alarm.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: alarm \u2014 eyes wide, eyebrows raised, mouth slightly open, caught off guard. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.horror-distant.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: distant horror \u2014 face gone pale, unfocused eyes staring through something far away, slack mouth. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.horror-distant.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: distant horror \u2014 face gone pale, unfocused eyes staring through something far away, slack mouth. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.sad-distant.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: calm, remote sadness \u2014 grieving-before-the-fact, soft distant eyes, level quiet mouth; quiet and terrible. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.sad-distant.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: calm, remote sadness \u2014 grieving-before-the-fact, soft distant eyes, level quiet mouth; quiet and terrible. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.hollow.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: hollow exhaustion \u2014 empty eyes with dark circles beneath them, utterly drained, slack expression. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.hollow.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: hollow exhaustion \u2014 empty eyes with dark circles beneath them, utterly drained, slack expression. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.gentle.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: a rare, small, true gentle smile, warm tired eyes. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.gentle.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: a rare, small, true gentle smile, warm tired eyes. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.strained.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: barely holding together \u2014 jaw clenched tight, eyes wet and shining but not weeping, brows drawn together. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.strained.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: barely holding together \u2014 jaw clenched tight, eyes wet and shining but not weeping, brows drawn together. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram.unreadable.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: deliberately flat and unreadable \u2014 a carefully composed neutral mask, eyes giving nothing away. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/avram_late.unreadable.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dark curly hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: deliberately flat and unreadable \u2014 a carefully composed neutral mask, eyes giving nothing away. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her.fierce.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/her_armor_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same full-coverage steel-and-leather fighting armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: a fierce combat grin, teeth showing, eyes bright with battle-joy, wolf ears up and forward. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her_camp.fierce.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/her_camp.cheer.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same plain earth-tone tunic camp clothes, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: a fierce combat grin, teeth showing, eyes bright with battle-joy, wolf ears up and forward. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her.fixed-smile.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/her_armor_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same full-coverage steel-and-leather fighting armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: a smile with IDENTICAL shape and geometry to her normal bright cheerful smile, but the eyes are open fractionally too wide and the smile reads as held one beat too long \u2014 an almost imperceptible wrongness; it must still read as 'cheerful' at first glance; do NOT make her look sad, scared, or upset. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her_camp.fixed-smile.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/her_camp.cheer.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same plain earth-tone tunic camp clothes, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: a smile with IDENTICAL shape and geometry to her normal bright cheerful smile, but the eyes are open fractionally too wide and the smile reads as held one beat too long \u2014 an almost imperceptible wrongness; it must still read as 'cheerful' at first glance; do NOT make her look sad, scared, or upset. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her.matter-of-fact.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/her_armor_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same full-coverage steel-and-leather fighting armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: a calm, practical, matter-of-fact look \u2014 small closed mouth, level gaze, businesslike, ears in a neutral position. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her_camp.matter-of-fact.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/her_camp.cheer.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same plain earth-tone tunic camp clothes, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: a calm, practical, matter-of-fact look \u2014 small closed mouth, level gaze, businesslike, ears in a neutral position. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her.content.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/her_armor_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same full-coverage steel-and-leather fighting armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: soft sleepy contentment \u2014 eyes half-closed, a gentle small closed-mouth smile, ears relaxed. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her_camp.content.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/her_camp.cheer.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same plain earth-tone tunic camp clothes, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: soft sleepy contentment \u2014 eyes half-closed, a gentle small closed-mouth smile, ears relaxed. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her.combat-flat.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/her_armor_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same full-coverage steel-and-leather fighting armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: wolf ears pressed completely flat back against her head, no smile at all, cold silent focused combat stare. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her_camp.combat-flat.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/her_camp.cheer.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same plain earth-tone tunic camp clothes, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: wolf ears pressed completely flat back against her head, no smile at all, cold silent focused combat stare. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her_temple.content-fading.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/her_temple.weak.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same plain undyed sick-room gown with white bandages at the shoulder and collarbone, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression (and ear position where stated) to: a faint content smile just beginning to fade at the edges, eyes half-closed and tired, still pale from injury. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ },
+ {
+  "out": "assets/sprites/her_free.final-gentle.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/her_free.still.png"
+  ],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman \u2014 same face, same russet-auburn hair, same amber eyes, same plain earth-tone tunic, same bare uncollared throat (NO collar, nothing around her neck), same art style, same waist-up framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial expression to: a small, real, tired, gentle smile \u2014 quiet warmth from exhausted eyes; the smile of someone saying a kind goodbye. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+ }
+]

@@ -1,0 +1,31 @@
+[
+ {
+  "out": "assets/bg/bg_guild_hall.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. The INTERIOR of an Adventurer's Guild hall in a faux-medieval fantasy town: a long wooden service counter with a clerk's station (ledgers, inkwell, small scale for coin), behind it pigeonhole shelves of documents; on one wall a large notice board crowded with pinned papers and bounty notices (all paper text greeked/unreadable); wood-and-stone hall with ceiling beams, daylight through tall windows, a few benches. Practical, busy, well-worn."
+ },
+ {
+  "out": "assets/cg/cg_slime_lecture.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/refs/her_armor_master.png", "claude-notes/refs/avram_traveler_master.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, painterly detailed background. No text, no watermark. Use the characters from the reference images, keeping faces, hair, colors and outfits consistent; IGNORE the flat magenta reference backgrounds. A rough-stone dungeon corridor with wooden torch brackets and warm torchlight (upper floors, floor three). The beastfolk woman from the first reference — wolf ears, russet-auburn hair, amber eyes, russet wolf tail, dark iron slave collar, full-coverage steel-and-leather armor — stands POINTING WITH HER SWORD at a green acid-slime creature bubbling on the corridor floor a safe distance away, mid-lecture, ears up, bright teacherly energy. Beside her the young man from the second reference — dark curly hair, green-brown cloak over light leather armor, beat-up modern Earth sneakers — nods along attentively like a diligent student, hand on his own sword hilt. Comedic-warm teaching beat, no combat yet."
+ },
+ {
+  "out": "assets/cg/cg_nobleman_bid.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/raw/nobleman.haughty.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, painterly detailed background. No text, no watermark. Use the character from the reference image; IGNORE the flat magenta reference background. In the crowd at a slave auction, harsh midday light, other bidders around him rendered as dark anonymous silhouettes: the rich nobleman from the reference — soft doughy pampered face, silk-and-fur-trimmed robes in deep blue and gold, jeweled rings — with one hand RAISED HIGH mid-bid, mouth open shouting a price, imperious. Behind him stand two heavyset scarred bodyguards with plain dark iron slave collars, faces impassive. At his side KNEELS a skeletally thin young human girl in a threadbare shift, also collared, old scars on her arms, eyes down, motionless — rendered with restraint: no wounds, no gore, just thinness, stillness and downcast eyes. She is small in the composition but clearly visible. The contrast between his opulence and her condition is the entire point of the image."
+ },
+ {
+  "out": "assets/cg/cg_campfire_shoulder.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/raw/her_camp.cheer.png", "claude-notes/refs/avram_traveler_master.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, painterly detailed background. No text, no watermark. Use the characters from the reference images, keeping faces, hair, colors and outfits consistent; IGNORE the flat magenta reference backgrounds. Night camp, the two seated side by side on a log before a warm campfire, seen from across the fire at a slight angle. The beastfolk woman from the first reference — wolf ears, russet-auburn hair, dark iron slave collar, plain earth-tone camp tunic, russet wolf tail curled beside her — rests her head on the shoulder of the young man from the second reference — dark curly hair, cloak off his shoulders like a blanket, light leather armor removed, simple undershirt, sneakers. Her eyes are closed, utterly content. HIS expression is the key: caught between comfort and guilt — a faint almost-smile that does not reach his troubled eyes, gaze fixed on the fire. Warm firelight against cold blue night, intimate and quietly wrong."
+ },
+ {
+  "out": "assets/cg/cg_melee_flank.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/refs/avram_traveler_master.png", "claude-notes/raw/slavetaker.easy-menace.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, speed-line action energy. No text, no watermark. Use the characters from the reference images; IGNORE the flat magenta reference backgrounds. Fast combat panel on a narrow forest road walled by dark trees, late day: the young man from the first reference — dark curly hair, green-brown cloak flying, light leather armor, beat-up modern Earth sneakers planted — mid-swing holding one flank ALONE against two armed slavetakers in dark practical armor (rank-and-file, not the captain), parrying one blade while the second man reels back. Avram is visibly COMPETENT now — balanced, controlled, unafraid. Diagonal composition, motion blur and speed lines, blades crossing, no blood, no wounds."
+ }
+]

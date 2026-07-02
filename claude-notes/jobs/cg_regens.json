@@ -1,0 +1,38 @@
+[
+ {
+  "out": "assets/cg/cg_auction_fierce.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/refs/her_armor_master.png", "claude-notes/raw/announcer.barker-grin.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, painterly detailed background. No text, no speech bubbles, no watermark. Use the characters from the reference images, keeping faces, hair, colors and outfits consistent; IGNORE the flat magenta reference backgrounds. A slave auction dais under harsh midday light. The beastfolk woman from the first reference — wolf ears, russet-auburn hair, amber eyes, russet wolf tail, clawed hands, dark iron slave collar, full-coverage steel-and-leather fighting armor — full body on the wooden dais in a DYNAMIC FIERCE COMBAT POSE: sword raised high in a two-handed guard, knees bent in a fighting crouch, combat grin with teeth showing, ears forward, tail lashing. She is demonstrating her skill to buyers like a showpiece. Beside the dais the oily auction barker from the second reference gestures grandly at her, mid-pitch. Crowd below rendered only as dark anonymous silhouettes seen from behind. Her cheerful ferocity is the bright center of the frame."
+ },
+ {
+  "out": "assets/cg/cg_market_flinch.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/refs/avram_traveler_master.png", "claude-notes/refs/her_armor_master.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, painterly detailed background. No text, no watermark. Use the characters from the reference images, keeping faces, hair, colors and outfits consistent; IGNORE the flat magenta reference backgrounds. Daytime faux-medieval market street. FOREGROUND LEFT, large and joyful: the beastfolk woman (wolf ears, russet hair, iron collar, armor, tail) and the young man (dark curly hair, green-brown cloak, sneakers) at a skewer stall, laughing together mid-haggle, she holding grilled skewers. BACKGROUND RIGHT, SMALL and off-center in the middle distance: a well-dressed merchant has his arm raised — merely pointing up at a stall awning — while the thin young human slave beside him (simple clothes, visible collar) cringes hard away from the raised arm, shoulders up, arms half-raised to shield her head: an unmistakable trained flinch from expected blows. The merchant is not even looking at her. The two foreground characters do NOT see it. Background figures small, ordinary daylight, nothing stylized or monstrous about them — the horror is entirely in the body language."
+ },
+ {
+  "out": "assets/cg/cg_altar_everything.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/refs/avram_traveler_master.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, painterly detailed background. No text, no watermark. Use the character from the reference image; IGNORE the flat magenta reference background. Temple of healing interior: a stone altar draped in pale cloth, many candles. EXACTLY ONE FIGURE in frame: the young man from the reference — dark curly hair, green-brown cloak over light leather armor — standing at the altar, seen from behind and slightly to the side, his face mostly hidden, jaw set. He is UPENDING his leather coin pouch over the altar: a stream of coins spilling and scattering across the altar cloth. His sheathed sword already lies flat on the altar beside the coins. 'Everything. Take everything.' Sacred hush, warm candlelight, single subject, no duplicate figures, no extra people, no disembodied limbs."
+ },
+ {
+  "out": "assets/cg/cg_cliff_alone.png",
+  "aspect": "16:9",
+  "refs": ["assets/cg/cg_cliff_two.png"],
+  "prompt": "Edit the reference image. Reproduce this EXACT scene — the same cliff edge, same trees, same molten sunset sky, same mountains, same colors, same art style, same camera position and framing — with ONE change only: the wolf-eared woman on the right is GONE. Remove her completely. The young man in the cloak remains exactly where he is, unchanged, now alone on the cliff. Where she stood there is only empty cliff edge and sunset light. Do not move the camera, do not change the lighting, do not add anything."
+ },
+ {
+  "out": "assets/cg/cg_sick.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/raw/avram_late.neutral.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, painterly detailed background. No text, no watermark. Use the character from the reference image; IGNORE the flat magenta reference background. Evening in a lonely rocky clearing at the base of a tall cliff — bare stone, scree, sparse grass, NO other graves, NO tombstones, NO graveyard, nothing man-made anywhere: this is wilderness. The young man from the reference — dark curly hair, worn cloak over steel-and-leather armor — kneels turned away to one side from a half-dug earthen grave, one hand braced on the ground, shoulders heaving, head hanging, being sick; framed with restraint, his back mostly to the viewer, face hidden. The half-dug grave pit and its dirt mound are soft in the background behind him. Muted violet-gray dusk light, unglamorous grief."
+ },
+ {
+  "out": "assets/cg/cg_grave_filled.png",
+  "aspect": "16:9",
+  "refs": ["claude-notes/raw/avram_late.neutral.png"],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9. Clean anime lineart, muted earthy palette, soft cel shading, painterly detailed background. No text, no watermark. Use the character from the reference image; IGNORE the flat magenta reference background. Dusk in a lonely rocky clearing at the base of a tall cliff — bare stone, scree, sparse grass. THERE IS EXACTLY ONE GRAVE: the fresh one. NO other graves, NO tombstones, NO crosses, NO markers, NO lanterns, NO graveyard — this is wilderness and this grave is the only one that has ever existed here. The young man from the reference — dark curly hair, worn cloak over steel-and-leather armor, dirt-caked bare forearms — pushes the last of the mounded earth over the filled grave: a low fresh rectangle of turned soil. His movements read as finished, nothing left for his hands to do. Near-dark blue dusk, first stars."
+ }
+]

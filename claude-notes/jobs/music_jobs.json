@@ -1,0 +1,44 @@
+[
+  {
+    "id": "bgm_wistful",
+    "model": "pro",
+    "out": "assets/audio/bgm_wistful.mp3",
+    "prompt": "Instrumental background music for a fantasy visual novel: a gentle traveling theme for long roads and quiet campfires. Warm acoustic guitar and soft lute picking, a plaintive wooden flute melody, light airy strings underneath. Unhurried walking tempo. Warm and companionable on the surface but with a quiet undertow of melancholy, as if something is being lost and no one has noticed yet. Even, understated dynamics from start to finish, suitable for seamless background looping. Strictly instrumental, NO vocals, no singing, no big finale or dramatic ending."
+  },
+  {
+    "id": "bgm_tavern",
+    "model": "pro",
+    "out": "assets/audio/bgm_tavern.mp3",
+    "prompt": "Instrumental background music for a fantasy visual novel tavern scene: cozy medieval folk. Lively lute, cheerful fiddle, a soft hand drum, maybe a whistle. Medium tempo, relaxed and good-humored — a warm crowded room, mugs and firelight, low-stakes banter. Rustic and acoustic, nothing orchestral or epic. Consistent energy throughout, suitable for seamless background looping. Strictly instrumental, NO vocals, no singing, no dramatic ending."
+  },
+  {
+    "id": "bgm_dungeon",
+    "model": "pro",
+    "out": "assets/audio/bgm_dungeon.mp3",
+    "prompt": "Instrumental dark-ambient background music for dungeon exploration in a fantasy visual novel. Deep slow drones, sparse echoing percussion like distant water drips and faraway stone impacts, faint cold metallic shimmer, long reverb tails as if in vast underground halls. Mysterious and cavernous rather than frightening — steady quiet unease, ancient stone, held breath. Very restrained, almost no melody, no percussion groove. Constant mood throughout, suitable for seamless background looping. Strictly instrumental, NO vocals, no dramatic swells or ending."
+  },
+  {
+    "id": "bgm_tension",
+    "model": "pro",
+    "out": "assets/audio/bgm_tension.mp3",
+    "prompt": "Instrumental tension music for an ambush scene in a fantasy visual novel: the moment armed men step out of the trees onto the road, ahead and behind. Low staccato string ostinato, taut muted percussion, a sustained high violin line like a held knife, deep cello stabs. Coiled, seething menace — the fight has not started yet; this is the standoff. Keep it tight and repetitive rather than action-packed or heroic. Consistent threat level throughout, suitable for looping under dialogue. Strictly instrumental, NO vocals, no triumphant resolution, no big ending."
+  },
+  {
+    "id": "bgm_lament",
+    "model": "pro",
+    "out": "assets/audio/bgm_lament.mp3",
+    "prompt": "Instrumental lament for a fantasy visual novel: a temple sickroom vigil, and later a quiet conversation at a cliff edge at sunset. Solo cello carrying a slow grieving melody over very sparse, soft piano chords, with barely-there warm strings far behind. Extremely restrained — tender, hollow, exhausted grief, not melodramatic, no crescendos, no sobbing romanticism. Slow, quiet, with space and silence between phrases. Even dynamics, suitable for looping under long dialogue scenes. Strictly instrumental, NO vocals, no swelling finale."
+  },
+  {
+    "id": "bgm_void",
+    "model": "pro",
+    "out": "assets/audio/bgm_void.mp3",
+    "prompt": "Instrumental cosmic drone for the black-screen voiceover of an ancient world-ending being, bookending a fantasy visual novel. Vast dark sub-bass drone, slow-moving dissonant low brass and synth pads, a faint distant choir-like shimmer high above, enormous empty reverb — the space between stars, something immense and patient and utterly inhuman speaking out of darkness. Almost static: no melody, no rhythm, no percussion, just slow tectonic movement. Awe and emptiness rather than horror-movie scares. Constant texture throughout, suitable for seamless looping. Strictly instrumental, NO vocals, no words, no ending swell."
+  },
+  {
+    "id": "sfx_silence-cut",
+    "model": "clip",
+    "out": "assets/audio/sfx_silence-cut.mp3",
+    "prompt": "A single sound effect and nothing else: one reverse cymbal swell. It begins at near-silence, rises steadily in a long whoosh over several seconds, and cuts off INSTANTLY into total dead silence at its peak. After the cut there is only absolute silence to the end. No music, no melody, no drums, no other sounds of any kind — one rising reverse cymbal, one hard cut to nothing."
+  }
+]

@@ -1,0 +1,115 @@
+[
+ {
+  "out": "assets/bg/bg_void_tea.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A featureless, bright, softly luminous sky in every direction \u2014 no ground, no horizon. Floating impossibly in the middle of the air: a small round wooden table set with a simple teapot and two teacups, and two plain chairs. Serene, dreamlike, divine waiting-room calm. Soft white-gold light."
+ },
+ {
+  "out": "assets/bg/bg_road_dusty.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. An open dusty dirt road stretching toward the horizon through low rolling hills, sparse grass, afternoon light, a few distant trees. Big sky. The long empty middle of a journey."
+ },
+ {
+  "out": "assets/bg/bg_town_gate.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A faux-medieval fantasy town gate seen from just outside: weathered stone archway with wooden doors standing open, a cobbled street visible beyond with timber-framed buildings, daylight."
+ },
+ {
+  "out": "assets/bg/bg_guild_exterior.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. The exterior of an Adventurer's Guild in a faux-medieval fantasy town: a large sturdy timber-and-stone building with a hanging wooden sign over the door bearing crossed swords and the words ADVENTURER'S GUILD, notice board beside the entrance, daylight street."
+ },
+ {
+  "out": "assets/bg/bg_tavern.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A fantasy tavern interior viewed from a seat at the bar: the long wooden bar counter in the foreground, and behind it shelves crowded with bottles, kegs, hanging mugs, warm lamplight. No people."
+ },
+ {
+  "out": "assets/bg/bg_tavern_tables.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A fantasy tavern interior, the table-seating area: heavy wooden tables and benches, candles, warm firelight from a hearth on one wall, low timber ceiling beams. No people."
+ },
+ {
+  "out": "assets/bg/bg_auction_plaza.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A faux-medieval town square set up for an auction: a raised wooden dais/platform at center-back with steps, bunting, and around its base a dense crowd rendered ONLY as dark anonymous silhouettes seen from behind, faceless. Harsh midday light. Slightly oppressive mood."
+ },
+ {
+  "out": "assets/bg/bg_restaurant.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. The interior of the finest restaurant in a faux-medieval fantasy town: candlelit tables with white cloths, fine tableware, warm golden light, wood-paneled walls, subtle luxury by medieval standards. No people."
+ },
+ {
+  "out": "assets/bg/bg_training_clearing.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A grassy forest clearing at dawn: dew on the grass, pale gold-pink first light slanting between distant trees, mist low on the ground, a few worn practice posts. Quiet promise."
+ },
+ {
+  "out": "assets/bg/bg_dungeon_early.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A dungeon corridor, upper floors: rough natural stone walls crudely reinforced, wooden torch brackets with burning torches, warm flickering light, packed-dirt floor. Shallow, almost welcoming danger."
+ },
+ {
+  "out": "assets/bg/bg_dungeon_mid.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A dungeon corridor, middle floors: precisely worked stone in a style no human culture built, subtly wrong geometry, narrower joints, faint carved patterns, cooler light from sparse torches. A place growing stranger."
+ },
+ {
+  "out": "assets/bg/bg_dungeon_deep.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A dungeon depth, deep floors: a vast dark stone hall whose ceiling is lost in blackness, colossal columns, a faint sourceless blue-green glow along the floor seams. Cold, ancient, indifferent scale."
+ },
+ {
+  "out": "assets/bg/bg_boss_doors.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. Enormous sealed double doors of dark stone and blackened bronze at the end of a vast dungeon hall, covered in dim carvings, broad stone steps leading up to them, faint cold glow. The doors dwarf everything."
+ },
+ {
+  "out": "assets/bg/bg_camp_night.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A wilderness campsite at night: a small campfire burning warm orange at center-low, bedrolls beside it, dark treeline behind, and above a huge cold starry sky in deep blues. Warm firelight pocket inside cold night."
+ },
+ {
+  "out": "assets/bg/bg_market.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A faux-medieval daytime market street: wooden stalls with awnings, hanging goods, crates of produce, skewer-grill smoke, cheerful daylight. No people."
+ },
+ {
+  "out": "assets/bg/bg_forest_road.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A narrow dirt road walled in tightly on both sides by dense dark forest, late-day light failing to reach the road, long sightlines ahead and behind cut off by curves. A perfect place for an ambush. Tense stillness."
+ },
+ {
+  "out": "assets/bg/bg_temple_altar.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. The interior of a temple of healing: a stone altar at center draped in pale cloth, many lit candles, soft holy light from high narrow windows, herb bundles and offering bowls. Hushed sanctuary."
+ },
+ {
+  "out": "assets/bg/bg_temple_cot.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A plain temple sick-room at night: a simple cot with clean linens, a small window showing night sky, a single candle on a stool, a wooden chair beside the cot, whitewashed walls. Quiet vigil mood."
+ },
+ {
+  "out": "assets/bg/bg_cliff_sunset.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A cliff edge where a forest ends: grass and stone running out to the drop, an immense view beyond of forested valleys and far mountains, under a heavy, molten, deep-orange and crimson sunset sky. Vast, beautiful, final."
+ },
+ {
+  "out": "assets/bg/bg_cliff_base.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. The base of a tall rocky cliff seen from below at twilight: the dark rock face rising out of frame, scree and boulders at its foot, dim blue-gray failing light. Cold and silent."
+ },
+ {
+  "out": "assets/bg/bg_gravesite.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. A small patch of cleared earth near the base of a cliff at evening: soft dug soil, sparse grass around it, a few stones, the cliff shadow falling long, dusk light in muted violet-gray. Bare and quiet. No gravestone yet."
+ },
+ {
+  "out": "assets/bg/bg_forest_burning.png",
+  "aspect": "16:9",
+  "prompt": "Visual novel background art, 16:9 full-screen, NO people, no characters, no text, no watermark. Clean anime-style painted background, crisp lineart edges, muted earthy palette. REFERENCE IMAGE PROVIDED: the same dense fantasy forest as the reference, now scathed and burning \u2014 trees charred and aflame, embers drifting, smoke columns, the undergrowth scorched away, orange fire-light replacing the green. Keep recognizably the same forest and art style as the reference.",
+  "refs": [
+   "assets/bg/bg_forest_day.png"
+  ]
+ }
+]

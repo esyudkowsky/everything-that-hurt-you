@@ -1,0 +1,62 @@
+[
+ {
+  "out": "assets/sprites/bartender.gruff-neutral.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: a huge muscular middle-aged tavern-keeper woman, taller and broader than most men, bare heavily-muscled scarred arms, her left eye missing \u2014 an old scar seaming across the permanently closed eyelid \u2014 short practical dark hair, a dark leather apron over a plain work shirt. Expression: gruff neutral \u2014 level unimpressed stare while wiping a mug with a rag. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/god.serene.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: an old man with a long white beard and long white hair, in plain undyed robes, holding a small ceramic teacup mid-sip; his face partially in soft shadow and turned well away from the viewer \u2014 his face is never fully lit and never fully frontal; gentle, unknowable. Expression: utterly serene \u2014 eyes nearly closed, the faintest smile, mid-sip of tea. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/announcer.barker-grin.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: an oily slave-auction barker, a middle-aged man with slicked-back dark hair, a thin curled mustache, flashy fine clothes \u2014 embroidered burgundy vest, silk cravat, rings on his fingers. Expression: a wide showman's barker grin, one eyebrow arched, mid-pitch to a crowd. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/nobleman.haughty.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: a rich nobleman with a soft, doughy, pampered face, elaborate silk-and-fur-trimmed robes in deep blue and gold, jeweled rings, immaculately groomed. Expression: haughty \u2014 chin raised, looking down his nose with mild contempt. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/clerk.cheerful-surprise.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: a young adventurer's-guild clerk, a man barely twenty with neat but ink-stained fingers, round wire spectacles, a simple brown vest over a linen shirt, a quill tucked behind one ear. Expression: cheerful surprise \u2014 eyebrows up, bright genuine smile, looking up impressed from a document. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/adventurer1.jeering.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: a burly bearded adventurer in his thirties, thick brown beard, worn leather armor over a broad chest, a tavern mug in one hand. Expression: a jeering mocking grin, leaning sideways as if over the back of a chair, mid-heckle. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/adventurer2.laughing.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: a younger lanky adventurer barely out of his teens, messy sandy hair, a visible gap between his front teeth, simple padded gambeson. Expression: laughing open-mouthed, head tipped back a little, gap-toothed grin on full display. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/healer.dry-neutral.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: an older traveling healer woman in her sixties, gray hair in a single long braid over her shoulder, weathered practical travel clothes with many pockets and a leather satchel of splints and bandages. Expression: dry, level, seen-it-all neutrality \u2014 faint knowing crease at the mouth. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/slavetaker.easy-menace.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: a weathered slavetaker captain in his forties, short gray-flecked hair, several days' stubble, light practical dark armor with no insignia, an easy confident posture; no weapon visible in frame. Expression: easy professional menace \u2014 a relaxed, almost friendly half-smile that never reaches his flat cold eyes. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ },
+ {
+  "out": "assets/sprites/attendant.curious.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "prompt": "Visual novel character sprite: a young temple acolyte woman in pale healer's-temple robes with a simple cord belt, short neat dark hair. Expression: open curiosity \u2014 slight head tilt, eyebrows raised, studying something odd. Body and face angled three-quarters toward the viewer's left. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette. Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style, fantasy-medieval world. Waist-up portrait, single character, no text, no watermark."
+ }
+]
