@@ -75,7 +75,8 @@ The great, the powerful, the Summoned Hero
 @voiceover off
 @bg bg_road_dusty fade
 @sprite avram neutral left
-@note isekai cloak now, but his old Earth sneakers — keep in any full render
+@note isekai cloak and worn leather boots now (Earth sneakers removed everywhere
+@note per ART-TODO #16 — the sneaker motif is dropped from all art)
 @hold
 @voiceover over
 
@@ -183,6 +184,9 @@ Avram: ...
 @bg bg_auction_plaza fade
 @clear all
 @sfx sfx_crowd
+@bgm bgm_tension
+
+The plaza is packed shoulder to shoulder. On the dais, one lot after another is walked out, made to turn, appraised, and sold. Avram stands near the back with a purse of dungeon silver heavy inside his coat, trying not to look like a man about to be sick.
 
 @cg cg_auction_fierce fade
 @hold
@@ -193,11 +197,15 @@ Avram: ...
 @hold
 @note sexy pose, face still cheerful; announcer now leering
 
+@sprite announcer barker-grin right
+Announcer: A *war*-slave, sers! Blooded on the low floors, sound of wind and limb — wolf-blood stock, trains twice as fast as any human and worth it twice over on a campaign!
+
+@clear right
 @cg cg_nobleman_bid cut
 @note NEW ART REQUESTED — nobleman + two scarred bodyguards + skeletally thin
 @note collared girl kneeling at his side, hand raised, shouting. Placeholder
 @note until generated; the entourage matters later ("that awful slimeball").
-A rich-looking, robed nobleman in the crowd — two heavy scarred bodyguards behind him, a skeletally thin and scarred collared girl kneeling at his side — raises his hand and shouts a bid.
+A rich-looking, robed nobleman near the front — two heavy scarred bodyguards behind him, a skeletally thin, scarred, collared girl kneeling at his side — raises his hand and names a price.
 
 @cg cg_auction_fixed cut
 @hold
@@ -206,15 +214,22 @@ A rich-looking, robed nobleman in the crowd — two heavy scarred bodyguards beh
 
 @bg bg_auction_plaza cut
 @sprite avram neutral left
-Avram raises his hand and shouts.
+Avram lifts his hand. His voice comes out steadier than the rest of him feels.
+
+Avram: That, and the rest of it. All of it.
 
 @sprite nobleman irritated right
-The nobleman raises his hand and yells again.
+The nobleman's mouth thins. He raises his hand and names a higher number.
 
-Avram, hand raised higher.
+@sprite avram neutral left
+Avram walks to the clerk's table and empties the purse across it without counting, then raises his hand again. There is nothing left to raise after this one.
+
+@sprite nobleman irritated right
+@note he weighs the thin girl already at his side against the boy's whole purse
+The nobleman looks at the boy with no house and no backing, does the sum, and lets his hand fall.
 
 @clear right
-Avram hands a pouch over to the announcer, who hands back a small pamphlet.
+The announcer sweeps Avram's coin off the table and presses a small printed pamphlet into his hands in its place.
 
 @clear all
 @cg cg_pamphlet_cover_runes fade
@@ -231,7 +246,13 @@ Avram hands a pouch over to the announcer, who hands back a small pamphlet.
 @note pale, unfocused, slack — reading the pamphlet in his hand
 
 @cg cg_ownership_transfer fade
+@note the announcer lays one hand on her collar, one on Avram's head; the collar
+@note flares as the binding changes hands
+The announcer sets one hand on the iron at her throat and one flat on Avram's hair. The collar's runes wake, cold and blue, and something invisible and obscene clicks over from the auction-house to him.
+
 Announcer: [Ownership Transfer.]
+
+The light goes out of the runes. She belongs to him now.
 
 @bg bg_market fade
 @sfx stop
@@ -240,7 +261,13 @@ Announcer: [Ownership Transfer.]
 @sprite her cheer right
 @note walking away from the auction; she follows, collared, in armor
 
-Avram: So. Um. I bought you to help me clear dungeons. I'm not planning to sexually assault you. You didn't *look* like the prospect of risking your life in a dungeon would horrify you to the point where you'd rather have gone with the other guy instead. It *looked* like you'd be better off with me. Like your life would be - better for my buying you, than my not buying you, if those were your only two options. If I was wrong about that - please speak up.
+Avram: So. Um. I bought you to help me clear dungeons. I'm not planning to sexually assault you.
+
+Avram: You didn't *look* like the prospect of risking your life in a dungeon would horrify you to the point where you'd rather have gone with the other guy instead.
+
+Avram: It *looked* like you'd be better off with me. Like your life would be - better for my buying you, than my not buying you, if those were your only two options.
+
+Avram: If I was wrong about that - please speak up.
 
 Her: Helping you clear dungeons is fine, Master! Is there a reason you wouldn't also have sex with me?
 
@@ -310,6 +337,12 @@ Avram: ...I'll think on it.
 @note ========== 5. MONTAGE A — SHE TEACHES HIM ==========
 @chapter 5 She Teaches Him
 
+@bg bg_training_clearing fade
+@sprite avram neutral left
+@sprite her cheer right
+On the road they find a rhythm. She sizes up what he can't do yet — which is nearly everything — and appoints herself his teacher. The first morning off the road, she puts a practice sword in his hands.
+
+@clear all
 @montage begin 4
 @cg cg_grip_correction
 @note training clearing, dawn: her clawed hand closed over his on the hilt
@@ -328,10 +361,9 @@ Campfire. Avram flips through the pamphlet, searching.
 
 @cg cg_pamphlet_rules fade
 @overlay inscription
-> RULE 5: Feed a fighting slave as you would feed a soldier. Skimping on her meat is skimping on your own shield.
-> RULE 6: Inspect your slave's equipment as often as your own. Her armor is your investment.
-> RULE 7: Be polite, and don't ask your slave about their training. Slaves with bad trainers won't want to remember it, and good trainers will request their students not to reveal the master's proprietary techniques.
-> RULE 8: Establish a routine early. A slave who knows what each day holds serves better than one who must guess.
+> RULE 5: Feed and equip a fighting slave as you would a soldier. Skimping on her meat is skimping on your own shield, and her armor is your investment.
+> RULE 6: Be polite, and don't ask your slave about their training. Slaves with bad trainers won't want to remember it, and good trainers will request their students not to reveal the master's proprietary techniques.
+> RULE 7: Establish a routine early. A slave who knows what each day holds serves better than one who must guess.
 @overlay end
 @note his thumb rests next to Rule 5
 
@@ -353,7 +385,7 @@ Avram: We've been lucky.
 @clear all
 @overlay status
 > [AVRAM — Wolf School Swordsmanship: Lv 1 → Lv 6 · Fire Magic: Lv 0 → Lv 2]
-> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 12]
+> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 11 → Lv 12]
 @overlay end
 
 
@@ -421,8 +453,11 @@ Adventurer 1: Heard about you two. The boy who buys a beauty like that and bunks
 @sprite adventurer2 laughing right
 Adventurer 2: Maybe his sword arm's the only arm that works!
 
+@note the room laughs first — no her-sprite yet, so it reads as the tavern's, not hers
+Laughter.
+
 @sprite her_camp cheer right
-Laughter. She works through a plate of her favorite food, unbothered.
+She works through a plate of her favorite food, unbothered.
 
 @sprite adventurer1 jeering right
 @note mock-solemn
@@ -432,6 +467,8 @@ Adventurer 1: It's cruelty is what it is. Girl like that, and he makes her sleep
 @note brightly, mouth half full
 Her: I don't sleep cold. Master shares the bedroll.
 
+@sprite adventurer2 awed right
+@note cut to the next table — the silence is theirs, handed off from her
 Dead silence at the next table.
 
 @pause 900
@@ -482,17 +519,11 @@ Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 @bg bg_camp_night fade
 @tint firelight
 @cg cg_campfire_shoulder fade
-@note NEW ART REQUESTED — the two at the campfire, her head resting on his
-@note shoulder. Placeholder until generated; the scene then falls back to the
-@note sprites below, which is acceptable staging on its own.
-@hold
+@note the two-shot CG holds through Avram's opening line, then falls back to sprites
+Avram: You can go ahead and say what you're thinking. I feel like I can still hear it.
 
 @bg bg_camp_night cut
 @sprite avram wry left
-@sprite her_camp content right
-
-Avram: You can go ahead and say what you're thinking. I feel like I can still hear it.
-
 @sprite her_camp matter-of-fact right
 Her: We'd look less like an anomaly if you told them you were fucking me.
 
@@ -580,8 +611,10 @@ Healer: Your coin, your slave.
 > [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 12 → Lv 16]
 @overlay end
 
+@bg bg_dungeon_mid fade
 @overlay floor 16
 @overlay floor 18
+@bg bg_dungeon_deep cut
 @overlay floor 20
 
 
@@ -600,13 +633,11 @@ Healer: Your coin, your slave.
 @sprite avram neutral left
 @sprite slavetaker easy-menace right
 
-Slavetaker: Easy now. Lay down weapons. No need for anyone to die today.
-
-Avram, hand on sword.
+Bandit: Easy now. Lay down weapons. No need for anyone to die today.
 
 Avram: We've no wealth worth your risk.
 
-Slavetaker: We'll be the judge of that.
+Bandit: We'll be the judge of that.
 
 @sprite her matter-of-fact right
 Her: Master. I don't think you should. They have the air of slavetakers about them.
@@ -668,28 +699,24 @@ Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going 
 Avram: Everything. Take everything.
 
 @cg cg_vigil fade
-@hold
-@note dim sick-room, night. Avram in a chair by her cot, unmoving. A temple
-@note attendant watching from the doorway.
-
-@bg bg_temple_cot cut
-@tint night
-@sprite avram hollow left
-@sprite attendant curious right
+@note dim sick-room, night: Avram in the chair by her cot, her bandaged and
+@note unconscious in the bed, the attendant watching from the doorway. The CG
+@note holds through the whole attendant exchange — fixes ART-TODO #11 (she is
+@note visibly in the bed here, not an empty cot) and SCRIPT-TODO #16 (attendant
+@note speaks to Avram directly, no walk-off).
 
 Attendant: Got attached to the slave, huh.
 
 @note not looking up
-Avram: I'd do it even if I wasn't. Just that kind of guy.
+Avram: I'd do it even if I wasn't attached. Just that kind of guy.
 
-@sprite attendant pitying right
-The attendant walks off, to another acolyte.
+Attendant: Wow. I heard about guys like you, but never met one in real life before. That poor, poor girl.
 
-Attendant: Wow. I heard about guys like that, but never met one in real life before. That poor, poor girl.
-
-@clear right
+@bg bg_temple_cot cut
+@tint night
+@sprite avram hollow left
 @sprite her_temple weak right
-She wakes, bandaged. Avram in the chair.
+She wakes, bandaged.
 
 Her: The slavetakers —
 
@@ -710,7 +737,7 @@ She settles back, eyes closing.
 Her: Pride is one of the customs of my people.
 
 @sprite avram hollow left
-Avram looks down at his own hands.
+Avram: ...
 
 @tint off
 
@@ -722,10 +749,8 @@ Avram looks down at his own hands.
 
 @clear all
 @bgm bgm_dungeon
-@cg cg_one_hand_block fade
-@hold
-@note dungeon corridor: Avram stepping in front of her, stopping one-handed a
-@note blow that would have taken them both
+@note (cg_one_hand_block cut per ART-TODO #8 — jump-cut in tone/lighting after the
+@note quiet temple scene; go straight to the boss doors)
 
 @bg bg_boss_doors fade
 @sprite avram_late neutral left
@@ -735,9 +760,33 @@ Avram: Let me handle this one alone.
 @clear all
 @cg cg_boss_bench fade
 @hold
-@note her on the steps beside the great doors, chin in hands, small against
-@note the architecture
+@note her on the steps outside the great doors, chin in hands, small against the
+@note architecture — anxious/on-edge, NOT smiling (ART-TODO #12)
 
+@bgm bgm_dungeon
+@cg cg_boss_fight cut
+@hold
+@note NEW ART — inside the boss chamber: Avram ALONE mid-fight against the floor
+@note boss, sword lit with magic, holding his own; equal-and-rising, not desperate
+
+@sfx sfx_impact
+@flash white 200
+@cg cg_boss_win cut
+@hold
+@note NEW ART — the finishing stroke: the boss falling / coming apart, Avram
+@note standing spent but victorious, alone in the chamber
+
+@bg bg_boss_doors cut
+@sprite avram_late neutral left
+@sprite her_camp cheer right
+The great doors grind open. She is on her feet before he clears them.
+
+Her: It went quiet in there. You're getting frightening, Master.
+
+@sprite avram_late wry left
+Avram: Getting there.
+
+@clear all
 @bg bg_guild_hall fade
 @bgm stop
 @note guildhall notice board; the gossipers are off-screen voices
@@ -755,13 +804,21 @@ Avram in profile at the counter.
 > [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 16 → Lv 17]
 @overlay end
 
+@bg bg_market fade
+@sprite avram_late neutral left
+@sprite her_camp cheer right
+New armor to replace what the deep floors keep breaking, fresh supplies, coin enough now that no merchant blinks at it. Then back to the poles, and down.
+
+@clear all
+@bg bg_dungeon_mid fade
 @overlay floor 26
+@bg bg_dungeon_deep cut
 @overlay floor 30
 @overlay floor 35
 
 @bg bg_camp_night fade
 @sprite avram_late neutral left
-Night camp. Her asleep by the fire. Avram sitting awake, looking at her, then at his hands.
+Night camp. Her asleep by the fire. Avram sitting awake, looking at her.
 
 @hold
 
@@ -798,7 +855,7 @@ Her: Oh... oh.
 @sprite her_camp cheer right
 Her: I'm fine being your slave, Master. You don't have to -
 
-Avram: I really, really do.
+Avram: I really, really have to.
 
 Her: Master, I - like the way things have been with you. You're very mighty and wise, and I'm proud to be your slave. I would rather that things just stay as they are.
 
@@ -812,7 +869,15 @@ Avram: Yeah, see, the part where they step forward of their own will is importan
 
 Her: Take the collar off, then put it back on me again right away?
 
-Avram: I'm not sure how a magical loyalty collar works, exactly. I worry it might be influencing your thinking patterns, not just preventing overt disobedience. Even if you say it's not doing that, you might just be saying what the collar programmed you to say, or thinking what you subconsciously believe I wish you'd think. Or for all I know, you could be saying these things to me now, because I haven't freed you *yet* and you're scared this is all a trap. You need to be free for a month, at least, before I'll trust that you've had time to get used to being free, and that you can make your own decisions in light of that. If you still want to be my slave then, or just to kiss me, I wouldn't say no.
+Avram: I'm not sure how a magical loyalty collar works, exactly. I worry it might be influencing your thinking patterns, not just preventing overt disobedience.
+
+Avram: Even if you say it's not doing that, you might just be saying what the collar programmed you to say, or thinking what you subconsciously believe I wish you'd think.
+
+Avram: Or for all I know, you could be saying these things to me now, because I haven't freed you *yet* and you're scared this is all a trap.
+
+Avram: You need to be free for a month, at least, before I'll trust that you've had time to get used to being free, and that you can make your own decisions in light of that.
+
+Avram: If you still want to be my slave then, or just to kiss me, I wouldn't say no.
 
 @sprite her_camp matter-of-fact right
 Her: Is this... truly your desire, Master? Truly?
@@ -852,9 +917,11 @@ She still doesn't say anything, just standing still, as Avram walks away.
 @note ========== 14. THE CLIFF ==========
 @chapter 14 The Cliff
 
-@bg bg_cliff_sunset fade
+@bg bg_cliff_wide fade
 @bgm bgm_lament
 @sprite her_free still right
+@note wide cliff-edge staging held through the whole conversation (ART-TODO #15 /
+@note SCRIPT-TODO #22); she is in her nice town clothes, bare throat, at the edge
 Sunset. She's standing on the edge of a cliff, by the end of the forest, looking out on the mountains of the world.
 
 @sprite avram_late strained left
@@ -874,7 +941,19 @@ Avram: You can slap me for having the temerity to say this, if you want to. But 
 @note for every line on this cliff until the final-gentle switch marked below.
 Her: You weren't so bad. It's not a lie that you were the best master I've ever had. If it had only been you, I might be able to - live with it.
 
-Her: The collar punished me. Like a centipede crawling in my brain and biting me when I thought anything it didn't like. Every time I thought how much I hated it. Every time I thought how much I didn't want to keep living. Every time I resented being punished. They left me in a cell to scream for weeks while that part worked itself out. Some people in the cells just died that way. I managed to stop thinking the bad thoughts, and then things were better. I just kept going and never had to think at all about how much I hated it.
+Her: The collar punished me. Like a centipede crawling in my brain and biting me when I thought anything it didn't like.
+
+Her: Every time I thought how much I hated it.
+
+Her: Every time I thought how much I didn't want to keep living.
+
+Her: Every time I resented being punished.
+
+Her: They left me in a cell to scream for weeks while that part worked itself out. Some people in the cells just died that way.
+
+Her: I managed to stop thinking the bad thoughts, and then things were better.
+
+Her: I just kept going and never had to think at all about how much I hated it.
 
 Avram: I was - afraid - it was, it was, it was something, like that...
 
@@ -1004,9 +1083,10 @@ Always two they are, when they come to this place from elsewhere; when the world
 When the dance of Summoned Hero and Demon Lord begins.
 
 @voiceover off
-@bg bg_forest_day fade
-@sprite avram_late neutral left
-@note Avram walking through the forest — the same forest as the arrival
+@clear all
+@cg cg_forest_walk fade
+@note Avram's back, walking a green forest path — the same forest as the arrival;
+@note the calm "before" companion to cg_burning_walk (ART-TODO #18)
 @hold
 @voiceover on
 
@@ -1017,14 +1097,11 @@ Of the two outsiders, there is one who chooses to protect the things that are, a
 @voiceover off
 @clear all
 @cg cg_tombstone fade
-@overlay inscription
-> Slave #3,907,825
-> "Haurvatat"
-> Born 7005, died 7023
-> I will unmake everything that hurt you, and maybe then I'll feel better
-@overlay end
 @hold
-@note engine-rendered inscription text, held on click
+@note ART-TODO #19 tier-1 SUCCESS: the epitaph ("Slave #3,907,825 / Haurvatat /
+@note Born 7005, died 7023 / I will unmake everything that hurt you, and maybe
+@note then I'll feel better") is now CARVED INTO the tombstone art itself. The
+@note former @overlay inscription block was removed to avoid doubling the text.
 
 @cg cg_burning_walk fade
 @note Avram walking through the scathed and burning forest, back to viewer.

@@ -8,6 +8,35 @@ this is a todo list only.
 
 ---
 
+## ✅ RESOLUTION LOG — 2026-07-03 author pass (items checked off, NOT deleted)
+
+Implemented in the master-pipeline rerun (new Pro-generated leads: Avram = dense dark
+Ashkenazi ringlet curls, worn boots; Haurvatat = brown-and-white two-tone wolf coat,
+solid seamless dark-iron slave collar with NON-glowing runes) + upgraded aesthetic.
+Art fixes were **folded into the generation job prompts** so the regen emits corrected art.
+
+- **1 stairs-to-nowhere** — ✅ DONE (`cg_tea_flash` prompt: "NO stairs, no staircase")
+- **2 portrait faceplates** — ⏸ DEFERRED (author: skip for now)
+- **3 guild clerk seated** — ✅ DONE (`bg_guild_hall` regenerated with a prominent clerk's desk in foreground; clerk sprite reads as seated behind it)
+- **4 bedroll cutaway broken** — ✅ DONE (`cg_bedroll_transparent`: full body/anatomy enforced + clearer cutaway)
+- **5 Avram slave-market actions** — ✅ DONE (auction narration rewritten show-not-tell, script side; see SCRIPT #2)
+- **6 melee swords** — ✅ DONE (`cg_melee_flank`: EXACTLY ONE sword, no duplication)
+- **7 whiteout silhouette** — ✅ DONE (`cg_whiteout`: outline reads as armored/cloaked, not Earth clothes)
+- **8 one-hand-block CG** — ✅ DONE (author chose CUT; removed from script)
+- **9 carry-road damage** — ✅ DONE (`cg_carry_road`: cracked chest armor + restrained blood)
+- **10 altar payment figure** — ✅ DONE (`cg_altar_everything`: robed priestess behind the altar)
+- **11 temple-cot empty bed** — ✅ DONE (restaged to hold `cg_vigil` through the attendant exchange; no empty-bed bg)
+- **12 boss-bench expression** — ✅ DONE (`cg_boss_bench`: anxious/on-edge, not smiling)
+- **13 avram hollow too harsh** — ✅ DONE (hollow expression softened: numb/tender, no eyebags)
+- **14 cliff strained too teary** — ✅ DONE (strained expression: dry, controlled eyes)
+- **15 cliff staging / her outfit** — ✅ DONE (new `bg_cliff_wide`; her in nice town clothes per author, NOT armor; bare throat)
+- **16 digging sneakers** — ✅ DONE (author: remove EVERYWHERE — sneaker motif dropped from all prompts + script notes; worn boots)
+- **17 dragon/hoard scale** — ✅ DONE (`cg_dragon_hoard`: cosmic ~30-story scale, hall dwarfed)
+- **18 "when the dance begins" walk** — ✅ DONE (new `cg_forest_walk`; script beat restaged to use it, matched to `cg_burning_walk`)
+- **19 gravestone lettering** — ✅ DONE tier-1 attempt (English epitaph carved into `cg_tombstone`, name "Haurvatat"); `@overlay inscription` kept as fallback pending QA of the carved text
+
+---
+
 ## 1. Remove "stairs to nowhere" from the Avram/teadrinker scene
 
 **Asset:** `assets/cg/cg_tea_flash.png` — confirmed by viewing the rendered

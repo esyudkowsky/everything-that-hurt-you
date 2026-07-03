@@ -1,37 +1,37 @@
 [
-  {
-    "out": "assets/sprites/avram_earth.neutral.png",
-    "sprite": true,
-    "aspect": "3:4",
-    "refs": ["claude-notes/refs/avram_traveler_master.png"],
-    "prompt": "Using the reference image: the exact same young man (same face, same dark curly hair, same tired intelligent brown eyes, same art style), but now wearing modern 21st-century Earth clothes: a dark gray hoodie under an open casual dark jacket. No armor, no cloak, no sword, no fantasy elements. Expression: neutral, guarded, thoughtful. Waist-up visual novel sprite, body angled three-quarters toward the viewer's right, flat solid magenta background (pure #FF00FF), no scenery, no text. Clean anime lineart, muted palette, soft cel shading."
-  },
-  {
-    "out": "assets/sprites/avram_late.neutral.png",
-    "sprite": true,
-    "aspect": "3:4",
-    "refs": ["claude-notes/refs/avram_traveler_master.png"],
-    "prompt": "Using the reference image: the exact same young man (same face structure, same dark curly hair, same brown eyes, same art style), later in his journey: noticeably better armor (fitted steel plates over the leather), his cloak more worn and travel-stained at the edges, his face slightly harder-edged and leaner, expression carrying more weight. Expression: neutral — resting, guarded. Waist-up visual novel sprite, body angled three-quarters toward the viewer's right, flat solid magenta background (pure #FF00FF), no scenery, no text. Clean anime lineart, muted earthy palette, soft cel shading."
-  },
-  {
-    "out": "assets/sprites/her_camp.cheer.png",
-    "sprite": true,
-    "aspect": "3:4",
-    "refs": ["claude-notes/refs/her_armor_master.png"],
-    "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman (same face, same russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same art style), but now out of armor, wearing simple soft camp clothes: a plain earth-tone tunic with rolled sleeves. Expression: her same default bright cheerful open smile, wolf ears perked up happily. Waist-up visual novel sprite, body angled three-quarters toward the viewer's left, flat solid magenta background (pure #FF00FF), no scenery, no text. Clean anime lineart, muted earthy palette, soft cel shading."
-  },
-  {
-    "out": "assets/sprites/her_temple.weak.png",
-    "sprite": true,
-    "aspect": "3:4",
-    "refs": ["claude-notes/refs/her_armor_master.png"],
-    "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman (same face, same russet-auburn hair, same amber eyes, same dark iron slave collar, same art style), now recovering in a temple sick-room: wearing a plain undyed gown, clean white bandages visible wrapping her shoulder and collarbone below the collar, hair slightly mussed. Expression: weak — pale, exhausted, just waking, eyes half open, faint uncertain almost-smile. Ears drooping slightly. Waist-up visual novel sprite, body angled three-quarters toward the viewer's left, flat solid magenta background (pure #FF00FF), no scenery, no text. Clean anime lineart, muted palette, soft cel shading."
-  },
-  {
-    "out": "assets/sprites/her_free.still.png",
-    "sprite": true,
-    "aspect": "3:4",
-    "refs": ["claude-notes/refs/her_armor_master.png"],
-    "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman (same face, same russet-auburn hair, same amber eyes, same art style), wearing a plain earth-tone tunic, and CRITICALLY: no collar of any kind — her bare throat fully and clearly visible, nothing around her neck at all. Expression: perfectly still, flat, expressionless, unreadable, absent — NOT smiling, NOT visibly sad, NOT angry. Eyes open but distant, focused on something far away. Ears neutral, neither perked nor flattened. Waist-up visual novel sprite, body angled three-quarters toward the viewer's left, flat solid magenta background (pure #FF00FF), no scenery, no text. Clean anime lineart, muted palette, soft cel shading."
-  }
+ {
+  "out": "assets/sprites/avram_earth.neutral.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": ["claude-notes/refs/avram_traveler_master.png"],
+  "prompt": "Using the reference image: the exact same young man (same face, same dense dark curly ringlet hair, same tired intelligent brown eyes, same art style), but now wearing modern 21st-century Earth clothes: a dark gray hoodie under an open casual dark jacket. No armor, no cloak, no sword, no fantasy elements. Expression: neutral, guarded, thoughtful. Waist-up visual novel sprite, body angled three-quarters toward the viewer's right, flat solid magenta background (pure #FF00FF), no scenery, no text. Art-book / key-visual quality: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ },
+ {
+  "out": "assets/sprites/avram_late.neutral.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": ["claude-notes/refs/avram_traveler_master.png"],
+  "prompt": "Using the reference image: the exact same young man (same face structure, same dense dark curly ringlet hair, same brown eyes, same art style), later in his journey: noticeably better armor (fitted steel plates over the leather), his cloak more worn and travel-stained at the edges, his face slightly harder-edged and leaner, expression carrying more weight. Expression: neutral — resting, guarded. Waist-up visual novel sprite, body angled three-quarters toward the viewer's right, flat solid magenta background (pure #FF00FF), no scenery, no text. Art-book / key-visual quality: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ },
+ {
+  "out": "assets/sprites/her_camp.cheer.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": ["claude-notes/refs/her_armor_master.png"],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman (same face, same two-tone russet-brown-and-white hair and fur with a white fringe streak and white ear-insides, same amber eyes, same freckles, same solid seamless dark-iron slave collar with dim NON-glowing engraved runes, same art style), but now out of armor, wearing simple soft camp clothes: a plain earth-tone tunic with rolled sleeves. Expression: her same default bright cheerful open smile, wolf ears perked up happily. Waist-up visual novel sprite, body angled three-quarters toward the viewer's left, flat solid magenta background (pure #FF00FF), no scenery, no text. Art-book / key-visual quality: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ },
+ {
+  "out": "assets/sprites/her_temple.weak.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": ["claude-notes/refs/her_armor_master.png"],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman (same face, same two-tone russet-brown-and-white hair and fur, same amber eyes, same freckles, same solid seamless dark-iron slave collar with dim NON-glowing engraved runes, same art style), now recovering in a temple sick-room: wearing a plain undyed gown, clean white bandages visible wrapping her shoulder and collarbone below the collar, hair slightly mussed. Expression: weak — pale, exhausted, just waking, eyes half open, faint uncertain almost-smile. Ears drooping slightly. Waist-up visual novel sprite, body angled three-quarters toward the viewer's left, flat solid magenta background (pure #FF00FF), no scenery, no text. Art-book / key-visual quality: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ },
+ {
+  "out": "assets/sprites/her_free.still.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": ["claude-notes/refs/her_armor_master.png"],
+  "prompt": "Using the reference image: the exact same wolf-eared beastfolk young woman (same face, same two-tone russet-brown-and-white hair and fur with a white fringe streak and white ear-insides, same amber eyes, same freckles, same art style), wearing plain but well-made town clothes (a simple nicely-made tunic-dress, the kind bought for wandering a town — NOT a slave shift, NOT rags), and CRITICALLY: no collar of any kind — her bare throat fully and clearly visible, nothing around her neck at all. Expression: perfectly still, flat, expressionless, unreadable, absent — NOT smiling, NOT visibly sad, NOT angry. Eyes open but distant, focused on something far away. Ears neutral, neither perked nor flattened. Waist-up visual novel sprite, body angled three-quarters toward the viewer's left, flat solid magenta background (pure #FF00FF), no scenery, no text. Art-book / key-visual quality: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ }
 ]

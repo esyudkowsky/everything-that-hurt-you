@@ -4,7 +4,9 @@ import json
 
 BG = ("The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at "
       "full brightness, like a greenscreen chroma key — no gradient, no vignette, no darkening. ")
-STYLE = "Clean anime lineart, muted earthy palette, soft cel shading, visual novel talking-sprite style."
+STYLE = ("Art-book / key-visual quality anime visual-novel talking-sprite: confident expressive lineart, "
+         "refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. "
+         "Appealing and distinctive, not generic.")
 
 AVRAM_EXPR = {
     "wry": "a dry wry half-smile, one corner of the mouth raised, deadpan amused eyes",
@@ -12,9 +14,9 @@ AVRAM_EXPR = {
     "alarm": "alarm — eyes wide, eyebrows raised, mouth slightly open, caught off guard",
     "horror-distant": "distant horror — face gone pale, unfocused eyes staring through something far away, slack mouth",
     "sad-distant": "calm, remote sadness — grieving-before-the-fact, soft distant eyes, level quiet mouth; quiet and terrible",
-    "hollow": "hollow exhaustion — empty eyes with dark circles beneath them, utterly drained, slack expression",
+    "hollow": "hollow and numb — quiet, emptied-out, a little lost and tender, drained of energy behind the eyes; NOT haggard, NO heavy dark eyebags, keep his natural healthy skin tone, mouth soft and closed, gentle rather than wrecked",
     "gentle": "a rare, small, true gentle smile, warm tired eyes",
-    "strained": "barely holding together — jaw clenched tight, eyes wet and shining but not weeping, brows drawn together",
+    "strained": "barely holding together but holding — jaw set, brows drawn, tension carried in the face; eyes DRY and controlled, NOT wet, NOT glistening, NOT tearful, NOT about to cry — restrained, keeping it in",
     "unreadable": "deliberately flat and unreadable — a carefully composed neutral mask, eyes giving nothing away",
 }
 
@@ -34,8 +36,8 @@ def avram_job(char_id, expr, desc, ref, outfit):
         "aspect": "3:4",
         "refs": [ref],
         "prompt": (
-            f"Using the reference image: the exact same young man — same face, same dark curly hair, "
-            f"same brown eyes, same {outfit}, same colors, same art style, same waist-up framing, same "
+            f"Using the reference image: the exact same young man — same face, same dense dark curly "
+            f"ringlet hair, same brown eyes, same {outfit}, same colors, same art style, same waist-up framing, same "
             f"three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: {desc}. "
             + BG + STYLE
         ),
@@ -50,9 +52,11 @@ def her_job(char_id, expr, desc, ref, outfit):
         "refs": [ref],
         "prompt": (
             f"Using the reference image: the exact same wolf-eared beastfolk young woman — same face, same "
-            f"russet-auburn hair, same amber eyes, same dark iron slave collar around her neck, same {outfit}, "
-            f"same colors, same art style, same waist-up framing, same three-quarter body angle toward the "
-            f"viewer's left. Change ONLY her facial expression (and ear position where stated) to: {desc}. "
+            f"two-tone russet-brown-and-white hair and fur (white fringe streak, white ear-insides), same "
+            f"amber eyes, same freckles, same solid seamless dark-iron slave collar with dim NON-glowing "
+            f"engraved runes around her neck, same {outfit}, same colors, same art style, same waist-up "
+            f"framing, same three-quarter body angle toward the viewer's left. Change ONLY her facial "
+            f"expression (and ear position where stated) to: {desc}. "
             + BG + STYLE
         ),
     }
@@ -82,7 +86,8 @@ jobs.append({
     "refs": ["claude-notes/raw/her_free.still.png"],
     "prompt": (
         "Using the reference image: the exact same wolf-eared beastfolk young woman — same face, same "
-        "russet-auburn hair, same amber eyes, same plain earth-tone tunic, same bare uncollared throat "
+        "two-tone russet-brown-and-white hair and fur (white fringe streak, white ear-insides), same amber "
+        "eyes, same freckles, same nice well-made town clothes, same bare uncollared throat "
         "(NO collar, nothing around her neck), same art style, same waist-up framing, same three-quarter "
         "body angle toward the viewer's left. Change ONLY her facial expression to: a small, real, tired, "
         "gentle smile — quiet warmth from exhausted eyes; the smile of someone saying a kind goodbye. "

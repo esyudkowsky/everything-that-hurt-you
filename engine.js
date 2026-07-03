@@ -13,7 +13,7 @@
 
 const SPEAKERS = new Set([
   "Avram", "Her", "Bartender", "Announcer", "Clerk",
-  "Adventurer 1", "Adventurer 2", "Healer", "Slavetaker",
+  "Adventurer 1", "Adventurer 2", "Healer", "Slavetaker", "Bandit",
   "Attendant", "Nobleman", "God",
 ]);
 
@@ -340,7 +340,7 @@ if (typeof document !== "undefined") (function () {
       Avram: "avram", Her: "her", Bartender: "bartender",
       Announcer: "announcer", Clerk: "clerk", Healer: "healer",
       "Adventurer 1": "adventurer1", "Adventurer 2": "adventurer2",
-      Slavetaker: "slavetaker", Attendant: "attendant",
+      Slavetaker: "slavetaker", Bandit: "slavetaker", Attendant: "attendant",
       Nobleman: "nobleman", God: "god",
     };
     return map[sp] || null;

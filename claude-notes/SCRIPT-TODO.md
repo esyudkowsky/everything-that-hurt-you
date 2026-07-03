@@ -10,6 +10,33 @@ cross-reference those files where a fix could go either way.
 
 ---
 
+## ✅ RESOLUTION LOG — 2026-07-03 author pass (items checked off, NOT deleted)
+
+- **1 auction narration + BGM** — ✅ DONE (scene-setting narration, announcer patter, `@bgm bgm_tension`)
+- **2 slave-market immersion** — ✅ DONE (bidding rewritten grounded/show-not-tell)
+- **3 ownership-transfer detail** — ✅ DONE (magical binding-transfer narration added)
+- **4 long paragraphs** — ✅ DONE (all 3 instances split beat-by-beat: post-purchase speech, loyalty-collar reasoning, her collar-punishment speech)
+- **5 restaurant dishes** — ✅ DONE (art side: `cg_restaurant_plates` now a few plates, not a tower)
+- **6 town→sword-practice jump** — ✅ DONE (bridging "she appoints herself his teacher" beat)
+- **7 pamphlet rules** — ✅ DONE (merged feeding+equipping into rule 5; the long rule is now #6, flanked by shorter rules)
+- **8 first status screen** — ✅ DONE (shows `Lv 11 → Lv 12` not a bare `Lv 12`; no animation, per author)
+- **9 tavern laughter** — ✅ DONE (room laughs first with no her-sprite; she cuts in after)
+- **10 dead silence** — ✅ DONE (cut to an adventurer reaction sprite; hands the moment to the room)
+- **11 campfire CG cutaway** — ✅ DONE (Avram's opening line plays over `cg_campfire_shoulder` before falling back to sprites)
+- **12 systemic stage-direction-as-narration** — ⏸ DEFERRED (author flagged Fable-level); the 3 named instances (605 "hand on sword", 713 & 764 "hands") were fixed individually
+- **13 floor markers** — ✅ DONE (author: keep + scarier art — paired with escalating `bg_dungeon_mid`/`bg_dungeon_deep`, deep bg made more menacing)
+- **14 Slavetaker→Bandit** — ✅ DONE (pre-reveal lines relabeled `Bandit`; engine `SPEAKERS` + `speakerPrefix` wired so same sprite, different nametag)
+- **15 line edit "wasn't attached"** — ✅ DONE
+- **16 attendant addresses Avram** — ✅ DONE (walk-off line cut; "guys like that"→"guys like you")
+- **17 "she wakes / Avram in the chair"** — ✅ DONE (restaged; dropped the unshowable "in the chair", leaned on `cg_vigil`)
+- **18 cut "looks at his own hands"** — ✅ DONE (replaced with an `Avram: ...` silence beat)
+- **19 boss fight never shown + return** — ✅ DONE (new `cg_boss_fight` + `cg_boss_win`; armor-buying/return-to-dungeon transition added)
+- **20 "hands" tic (line 764)** — ✅ DONE (dropped "then at his hands")
+- **21 line edit "really, really have to"** — ✅ DONE
+- **22 cliff staging** — ✅ DONE (new `bg_cliff_wide` held through the conversation; her-first-then-Avram sequence preserved)
+
+---
+
 ## 1. Auction scene: no narration for what's happening, and no music
 
 Requested 2026-07-02. The slave-auction sequence (chapter 3, `script.txt` around
