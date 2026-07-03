@@ -109,9 +109,42 @@ God's tea is in a plain ceramic cup; the void table is a small round wooden one.
     first try. If a generation returns empty repeatedly, suspect one noun/adjective, not the
     scene: reword age/body descriptors before abandoning the composition.
 13. What did NOT need fixing: style consistency (the STYLE suffix string in every prompt was
-    enough — no style drift across 130 images); crowd silhouettes; sneakers (mentioning them in
-    every full-body prompt worked); the tail (absent from waist-up masters, so it must be named
-    in every CG prompt: "russet wolf tail").
+    enough — no style drift across 130 images); crowd silhouettes; the tail (absent from
+    waist-up masters, so it must be named in every CG prompt: "russet wolf tail").
+    (A stale clause here used to praise "mentioning sneakers in every full-body prompt" —
+    that described the ORIGINAL Earth-sneakers continuity motif, which the author REVERSED
+    on 2026-07-03: sneakers are REMOVED everywhere, worn leather boots instead, because Earth
+    shoes could give Avram away as Summoned. ART-TODO #16 resolution and make_cg_jobs.py's
+    "NO sneakers anywhere" descriptors are the current truth; `jobs/cg_regens.json` is a
+    superseded 07-02 file that still says "sneakers" — do not reuse its prompts verbatim.)
+14. **`batch.py` skips existing outputs unless `--force` — and this silently strands old art.**
+    The 2026-07-03 master-pipeline rerun left `avram.neutral`, `her.cheer`, all 10 side-cast
+    masters + their expression variants, and `cg_nobleman_bid` at the OLD generation because
+    their files already existed (the two lead sprites weren't even in `expressions.json` —
+    they ARE the master poses, and the master→assets cutout step wasn't in any job list).
+    Result: the two most-used sprites in the game flipped character design scene to scene.
+    After any recast/restyle, diff `ls -la --time-style=+%Y-%m-%d assets/sprites/` dates —
+    every file should carry the rerun's date. Fixed 2026-07-03 (jobs in
+    `claude-notes/jobs/subtle_wave1.json` / `subtle_wave2.json`).
+15. **Author's expression doctrine (2026-07-03, applies to ALL future expression art):**
+    prompt "subtly X" instead of "X"; forbid the failure modes explicitly ("NOT open-mouthed,
+    NOT bug-eyed, NOT cartoonish shock", "no heavy anime blush", "keep his normal tan skin
+    tone — do NOT pale his skin", "mouth fully CLOSED — no teeth visible"). Avram is usually
+    somber; Her "cheer" mask is bright but closed-mouth; full open-mouth intensity is reserved
+    for genuinely earned beats (avram_earth.shock arrival, slavetaker.snarl rage,
+    adventurer2.laughing mid-laugh, announcer barker patter). One reword was needed at this:
+    the first "quiet distant horror" attempt still chalk-whitened his face — the fix was an
+    explicit "keep his normal warm tan skin color exactly as in the reference".
+16. **Grok Imagine as the moderation fallback for auction/slavery-content CGs** (author-
+    suggested): gemini-3.1-flash-image's lesson-12 refusals are STOCHASTIC — the identical
+    nobleman-bid prompt refused twice then passed on a later attempt, and the passing gemini
+    result still missed the composition brief (no raised hand, girl staged as the auction lot).
+    `x-ai/grok-imagine-image-quality` via `gen_style.py --image-only` nailed the composition
+    brief first try (raised hand, kneeling collared girl at his side, collared bodyguards) and
+    is the shipped `cg_nobleman_bid` (grittier tone than the gemini CGs — author has not yet
+    reviewed; the best gemini attempt is kept at `claude-notes/raw/cg_nobleman_bid_gemini_alt.png`).
+    Grok's magenta drifts hot-pink, so for SPRITES it would need bgremove retuning — CG-only
+    fallback for now.
 
 ## If redoing in a different art style
 

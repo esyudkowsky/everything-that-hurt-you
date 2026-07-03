@@ -8,6 +8,20 @@ master script and the live stage script must be kept in sync; check this file's
 
 ---
 
+## ⚠ rev. 3 is STALE relative to the kinetic novel (2026-07-03)
+
+Since rev. 3, two author passes (2026-07-02 evening and 2026-07-03) applied many
+narrative/staging changes directly to `/script.txt` without back-porting them here —
+including a reworded opening line ("I tell you now a tale of the planet, Elhom IV."),
+a new 3-CG truck prequel before it, the restaged opening voiceover (superposed over
+images; the Demon-Lord-line-over-arrival hint), the auction/healer/boss-sequence
+rewrites, and a global spare-prose pass. **`/script.txt` is currently the sole source
+of truth.** The author has requested a full regenerated master script (rev. 4) — task
+spec in `claude-notes/HANDOFF-SCRIPT.md` (Opus-suitable). Do not hand-edit script.md
+rev. 3 content in the meantime; write rev. 4 from script.txt instead.
+
+---
+
 ## rev. 2 → rev. 3 (2026-07-02)
 
 **Change:** "Some guy in the middle of nowhere drinking tea who I heard say something

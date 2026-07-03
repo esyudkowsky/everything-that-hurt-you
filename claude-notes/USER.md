@@ -220,4 +220,63 @@
   fallback — explicitly flagged as a deliberate exception to the documented
   "engine text over baked text" preference for this one asset (`ART-TODO.md`
   item 19).
+- 2026-07-03 (Fable session, after the todo-12 pass): User (Eliezer, the author)
+  gave style + art direction, all actionable now (not todo-prefixed):
+  (a) **Prose style:** recently-added narration has too much "flashy language /
+  eyeball kicks"; match his sparer style. The only place flash is appropriate is
+  the slave auctioneer's patter. Scope confirmed by user: ALL session-added
+  narration (auction rewrite, ownership transfer, ch-9 healer transition, boss/
+  armor transitions, bridging beats); his own script.md-derived lines untouched.
+  (b) **Expressions:** often too exaggerated for their lines — generate subtler
+  artwork with the newer (Opus master-pipeline) style, e.g. prompt "subtly
+  surprised" instead of "surprised"; audit every expression against the lines it
+  appears over; no constant open-mouthed shock; Avram should not smile over
+  somber content — he is *usually somber*, with some exceptions. Her "cheer"
+  calibration (user choice): **bright but closed-mouth** — clearly sunny mask,
+  not the current open-mouthed grin; distinct from fixed-smile/content.
+  (c) **Sprite consistency:** old-gen sprites mixed with new-gen are jarring —
+  found: avram.neutral + her.cheer + all 18 side-cast sprites + cg_nobleman_bid
+  are still 07-02 old-generation. User: regenerate them all in the new style,
+  BUT "if it's taking a lot of your time to do multiple tries on the art, stop
+  and talk to me before proceeding. **Your thinking time is the expensive
+  limiting constraint, not the art price.**"
+- 2026-07-03 (mid-task follow-up): on repeated moderation problems with a
+  specific image, user directed trying **the Grok image generator** for that
+  image. Applied to `cg_nobleman_bid`: shipped from
+  `x-ai/grok-imagine-image-quality` (composition brief nailed first try);
+  gemini alternate kept in `claude-notes/raw/cg_nobleman_bid_gemini_alt.png`.
+  Tone is grittier than neighboring gemini CGs — awaiting author verdict.
+- 2026-07-03: User gave the in-world rationale for the sneaker removal (ART-TODO
+  #16): Avram wouldn't wear Earth sneakers because they could **give him away as
+  Summoned**. Hard worldbuilding rule for all future art — no Earth clothing
+  tells on isekai-era Avram (Earth clothes are fine only in avram_earth /
+  pre-summoning contexts like cg_tea_flash). Verified no sneakers remain in any
+  shipped asset; stale references cleaned from ART-PIPELINE lesson 13
+  (cg_regens.json is a superseded 07-02 prompt file, don't reuse verbatim).
+- 2026-07-03 (same Fable session, later): User asked whether a revised full
+  script matching the KN exists (it didn't — script.md rev. 3 had gone stale),
+  and gave opening-scene direction, all implemented same session EXCEPT the
+  master script which the user redirected to a handoff mid-task ("could be done
+  by Opus instead of you. probably."):
+  (a) **Master script rev. 4** — regenerate `claude-inputs/script.md` from
+  `/script.txt` in enough detail that edits echo back to the KN → Opus handoff
+  spec written at `claude-notes/HANDOFF-SCRIPT.md`; SCRIPT-CHANGES.md marks
+  rev. 3 STALE with script.txt as sole source of truth meanwhile.
+  (b) **Opening fix (confirmed not previously fixed):** the "From time to time,
+  arises a Demon Lord" line must superpose over Avram's ARRIVAL image in Elhom
+  (forest, shock) — **in retrospect a deliberate hint** (he's the Demon Lord).
+  Implemented; staging note in script.txt warns not to restage it off that image.
+  (c) **New truck prequel:** 3 CGs — Earth clothes, crossing the street, turning
+  his head, seeing the oncoming truck — fading into the reworded first line
+  **"I tell you now a tale of the planet, Elhom IV."** then "has a cycle" over
+  the tea CG. Generated (cg_truck_cross/turn/see) and staged.
+  (d) **Standing rule (re-stated; Opus had it but it didn't register):** in the
+  opening, most text beyond the first scene must NOT sit on solid black — it
+  superposes over graphics. Implemented: only the first line is on black; every
+  later voiceover group letterboxes over its image (mapping follows script.md's
+  own panel placements).
+  (e) **Skagganauk font:** not previously resolved (real font file never
+  existed; plain cream serif fallback). Per user: black text in white outline
+  as the interim treatment → implemented in index.html `.voline` (black fill,
+  white text-stroke, dark halo; legibility verified over bright and dark art).
 - 2026-07-02 (session close): User **auditioned the SFX and rejected them** — "came out completely as music … basically do not work" (including the salvaged sword/impact one-shots; those were pulled from the manifest and archived as `claude-notes/raw/sfx_*_salvaged_FAILED.wav`). User was unsure what `sfx_silence-cut` was → explained in /HUMAN.md §3 (spec's reverse-cymbal whiteout sting; synthesized; still needs audition). User hit session limits and directed Claude to close down, leave notes for a less-smart model (→ `claude-notes/HANDOFF-AUDIO.md`) and write a human-readable to-do list for what OpenRouter couldn't do (→ `/HUMAN.md`: source 4 foley SFX from a sound library, audition 6 BGM + loop seams + silence-cut).

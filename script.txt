@@ -36,35 +36,61 @@
 @note Sprite conventions: Avram defaults left, her right. Side characters
 @note swap into whichever slot is free; max two sprites on screen.
 @note A dialogue line whose text is exactly "..." is a legal silence panel.
-@note Missing assets (bg_guild_hall, cg_slime_lecture, cg_nobleman_bid,
-@note cg_campfire_shoulder, cg_melee_flank) render the placeholder card
-@note until generated — see claude-notes/ART-REQUESTS.md.
+@note All referenced art assets are generated — no placeholder cards remain.
+@note See claude-notes/ART-REQUESTS.md for the request/fulfillment history.
 @note ============================================================
 
 
 @note ========== 1. OPENING ==========
 @chapter 1 Opening
+@note Restaged 2026-07-03 per author: (a) NEW truck prequel — three CGs, Avram
+@note on Earth, crossing the street, turning his head, seeing the oncoming
+@note truck — fading into the tale's first line; (b) opening line reworded to
+@note "I tell you now a tale of the planet, Elhom IV."; (c) only that first
+@note line sits on solid black — every later voiceover group is superposed
+@note (letterboxed) over the image it belongs to; (d) the "Demon Lord" line
+@note plays OVER Avram's arrival in Elhom (forest, avram_earth shock) — a
+@note deliberate hint, do not restage it off that image.
 
 @bgm bgm_void
+@cg cg_truck_cross fade
+@hold
+@note Earth, overcast day: Avram in Earth clothes, mid-stride on a crosswalk
+@cg cg_truck_turn cut
+@hold
+@note closer: he stops, head turning, the first instant of noticing
+@cg cg_truck_see cut
+@hold
+@note the oncoming truck, headlights flaring; the moment BEFORE — no impact
+
 @voiceover on
 
-This is a tale of the world of Elhom IV.
-
-The world of Elhom IV has a cycle.
+I tell you now a tale of the planet, Elhom IV.
 
 @voiceover off
 @flash white 300
 @cg cg_tea_flash cut
 @hold
-@note single flash panel: Avram in Earth clothes beside the old white-bearded
-@note man, floating tea table, featureless bright sky. No dialogue, one click.
+@note flash panel: Avram in Earth clothes beside the old white-bearded man,
+@note floating tea table, featureless bright sky. No dialogue.
 @voiceover over
 
-From time to time, arises a Demon Lord, feared and accursed
+The world of Elhom IV has a cycle.
 
 @voiceover off
 @bg bg_forest_day fade
 @sprite avram_earth shock left
+@hold
+@voiceover over
+@note the hint: the Demon Lord line superposed on his arrival in the new world
+
+From time to time, arises a Demon Lord, feared and accursed
+
+@voiceover off
+@bg bg_road_dusty fade
+@sprite avram neutral left
+@note isekai cloak and worn leather boots now (Earth sneakers removed everywhere
+@note per ART-TODO #16 — the sneaker motif is dropped from all art)
 @hold
 @voiceover over
 
@@ -73,10 +99,8 @@ And another rises to fight them
 The great, the powerful, the Summoned Hero
 
 @voiceover off
-@bg bg_road_dusty fade
+@bg bg_town_gate fade
 @sprite avram neutral left
-@note isekai cloak and worn leather boots now (Earth sneakers removed everywhere
-@note per ART-TODO #16 — the sneaker motif is dropped from all art)
 @hold
 @voiceover over
 
@@ -87,7 +111,7 @@ But they fight, in forests, in arenas, in dungeon labyrinths
 And they gain in strength very quickly
 
 @voiceover off
-@bg bg_town_gate fade
+@bg bg_guild_exterior fade
 @sprite avram neutral left
 @hold
 @voiceover over
@@ -97,8 +121,7 @@ Not uncommonly, the outsiders are summoned from higher worlds that have invented
 There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
 @voiceover off
-@bg bg_guild_exterior fade
-@sprite avram neutral left
+@bg bg_tavern fade
 @hold
 @voiceover over
 
@@ -107,7 +130,6 @@ But what Avram has not as yet been told, it seems
 Is that there are always two outsiders summoned from another world, not one
 
 @voiceover off
-@bg bg_tavern fade
 @bgm stop
 
 
@@ -186,7 +208,7 @@ Avram: ...
 @sfx sfx_crowd
 @bgm bgm_tension
 
-The plaza is packed shoulder to shoulder. On the dais, one lot after another is walked out, made to turn, appraised, and sold. Avram stands near the back with a purse of dungeon silver heavy inside his coat, trying not to look like a man about to be sick.
+The plaza is packed. On the dais, one lot after another is walked out, made to turn, appraised, and sold. Avram stands near the back with a purse of dungeon silver.
 
 @cg cg_auction_fierce fade
 @hold
@@ -202,9 +224,9 @@ Announcer: A *war*-slave, sers! Blooded on the low floors, sound of wind and lim
 
 @clear right
 @cg cg_nobleman_bid cut
-@note NEW ART REQUESTED — nobleman + two scarred bodyguards + skeletally thin
-@note collared girl kneeling at his side, hand raised, shouting. Placeholder
-@note until generated; the entourage matters later ("that awful slimeball").
+@note nobleman + two scarred bodyguards + frail collared girl kneeling at his
+@note side, hand raised, shouting; the entourage matters later ("that awful
+@note slimeball").
 A rich-looking, robed nobleman near the front — two heavy scarred bodyguards behind him, a skeletally thin, scarred, collared girl kneeling at his side — raises his hand and names a price.
 
 @cg cg_auction_fixed cut
@@ -214,22 +236,22 @@ A rich-looking, robed nobleman near the front — two heavy scarred bodyguards b
 
 @bg bg_auction_plaza cut
 @sprite avram neutral left
-Avram lifts his hand. His voice comes out steadier than the rest of him feels.
+Avram raises his hand.
 
 Avram: That, and the rest of it. All of it.
 
 @sprite nobleman irritated right
-The nobleman's mouth thins. He raises his hand and names a higher number.
+The nobleman raises his hand and names a higher number.
 
 @sprite avram neutral left
-Avram walks to the clerk's table and empties the purse across it without counting, then raises his hand again. There is nothing left to raise after this one.
+Avram empties the purse across the clerk's table, and raises his hand again. It is all the money he has.
 
 @sprite nobleman irritated right
 @note he weighs the thin girl already at his side against the boy's whole purse
-The nobleman looks at the boy with no house and no backing, does the sum, and lets his hand fall.
+The nobleman looks at him, and lets his hand fall.
 
 @clear right
-The announcer sweeps Avram's coin off the table and presses a small printed pamphlet into his hands in its place.
+The announcer takes Avram's coin and hands him a small printed pamphlet.
 
 @clear all
 @cg cg_pamphlet_cover_runes fade
@@ -248,11 +270,11 @@ The announcer sweeps Avram's coin off the table and presses a small printed pamp
 @cg cg_ownership_transfer fade
 @note the announcer lays one hand on her collar, one on Avram's head; the collar
 @note flares as the binding changes hands
-The announcer sets one hand on the iron at her throat and one flat on Avram's hair. The collar's runes wake, cold and blue, and something invisible and obscene clicks over from the auction-house to him.
+The announcer puts one hand on her collar, and one hand on top of Avram's head. The collar's runes light up. The binding passes from the auction-house to Avram.
 
 Announcer: [Ownership Transfer.]
 
-The light goes out of the runes. She belongs to him now.
+The runes go dark. She belongs to him now.
 
 @bg bg_market fade
 @sfx stop
@@ -340,7 +362,7 @@ Avram: ...I'll think on it.
 @bg bg_training_clearing fade
 @sprite avram neutral left
 @sprite her cheer right
-On the road they find a rhythm. She sizes up what he can't do yet — which is nearly everything — and appoints herself his teacher. The first morning off the road, she puts a practice sword in his hands.
+On the road, she sizes up what he can't do yet, and appoints herself his teacher. The first morning off the road, she puts a practice sword in his hands.
 
 @clear all
 @montage begin 4
@@ -349,15 +371,15 @@ On the road they find a rhythm. She sizes up what he can't do yet — which is n
 @cg cg_knockdown
 @note Avram flat on his back; her standing over him, offering a hand up, cheerful
 @cg cg_slime_lecture
-@note NEW ART REQUESTED — dungeon floor three: her pointing at an acid-slime
-@note with her sword, lecturing; Avram nodding along like a student
+@note dungeon floor three: her pointing at an acid-slime with her sword,
+@note lecturing; Avram nodding along like a student
 @cg cg_first_strike
 @note floor five: his first clean strike; her whooping behind him
 @montage end
 
 @bg bg_camp_night fade
 @sprite avram neutral left
-Campfire. Avram flips through the pamphlet, searching.
+By the campfire, Avram flips through the pamphlet, searching.
 
 @cg cg_pamphlet_rules fade
 @overlay inscription
@@ -372,8 +394,7 @@ Campfire. Avram flips through the pamphlet, searching.
 Avram glances over at her, asleep by the fire. He closes the pamphlet.
 
 @bg bg_guild_hall fade
-@note NEW ART REQUESTED — guild interior (counter, notice board); placeholder
-@note card until generated. Used again in section 12.
+@note guild interior (clerk's desk, notice board). Used again in section 12.
 @sprite avram neutral left
 @sprite clerk cheerful-surprise right
 
@@ -395,7 +416,7 @@ Avram: We've been lucky.
 @bg bg_camp_night fade
 @clear all
 @tint night
-Night camp. Frost on the grass, visible breath. Avram in his bedroll, hunched.
+Frost on the grass, visible breath. Avram in his bedroll, hunched.
 
 @sprite her_camp matter-of-fact right
 She lifts the edge of his bedroll.
@@ -441,7 +462,7 @@ Avram: The answer to the rest of it is also no.
 @bgm bgm_tavern
 @sprite avram neutral left
 @sprite her_camp cheer right
-Crowded tavern. Avram and her at a table. Three adventurers at the next one, deep in cups.
+The tavern is crowded. Three adventurers at the next table, deep in cups.
 
 @sprite adventurer1 jeering right
 Adventurer 1: Oi. That your slave?
@@ -494,7 +515,7 @@ Her: Goodnight, sers!
 @bgm bgm_wistful
 @sprite avram discomfort left
 @sprite her_camp cheer right
-Outside.
+@note the bg change + night tint carry "outside"; no narration needed
 
 Her: Did I say something wrong, Master?
 
@@ -555,11 +576,29 @@ Avram: Something like that.
 
 @note ========== 9. HEALER ==========
 @chapter 9 The Healer
+@note restaged 2026-07-03 (SCRIPT-TODO #12): the old single-line jump cut
+@note ("Joint camp with a traveling caravan...") is now a three-beat
+@note transition — dungeon mishap, walk out, caravan at dusk. The dusk tint
+@note carries "late evening, not full night" per the author's note; an
+@note optional cg_healer_splint is filed in ART-REQUESTS.md if a dedicated
+@note panel is ever wanted here.
+
+@clear all
+@bg bg_dungeon_mid fade
+@sfx sfx_sword
+@flash white 120
+A bad floor, deeper than they should have pushed in one day. Something catches Avram's sword arm against the wall before she kills it.
+
+@bg bg_forest_road fade
+The walk out is slow. His arm is in a sling. She walks between him and the treeline.
 
 @bg bg_camp_night fade
+@tint dusk
+By evening they've fallen in with a traveling caravan. Wagons, cookfires, hired guards. The caravan has a healer.
+
 @sprite avram neutral left
 @sprite healer dry-neutral right
-Joint camp with a traveling caravan. A hired healer, gray-braided, splints Avram's arm. Across the camp, out of earshot, she tends the fire.
+The healer, gray-braided, splints Avram's arm. Across the camp, out of earshot, she tends the fire.
 
 Healer: Your slavegirl's not happy, young man.
 
@@ -587,6 +626,8 @@ Avram looks across at her, silhouetted against the fire.
 The healer ties off the splint.
 
 Healer: Your coin, your slave.
+
+@tint off
 
 
 @note ========== 10. MONTAGE B — PARITY ==========
@@ -654,10 +695,10 @@ Avram: Then I suppose you will be the first to die by my hand. I hope you end up
 @sfx sfx_sword
 @flash white 120
 @cg cg_melee_flank cut
-@note NEW ART REQUESTED (optional) — melee, fast panel: Avram holding one
-@note flank, genuinely good now. Until generated the placeholder is skipped
-@note fast under the flashes and narration carries it.
-Melee. Fast. Avram holds one flank — genuinely good now.
+@note melee, fast panel: Avram holding one flank, genuinely good now. The CG
+@note carries the beat on its own — the old narration fallback ("Melee. Fast.
+@note ...") was cut once the art existed (SCRIPT-TODO #12); silent flash panel.
+@hold
 
 @bg bg_forest_road cut
 @flash white 120
@@ -779,7 +820,7 @@ Avram: Let me handle this one alone.
 @bg bg_boss_doors cut
 @sprite avram_late neutral left
 @sprite her_camp cheer right
-The great doors grind open. She is on her feet before he clears them.
+The great doors open. She is on her feet before he's through.
 
 Her: It went quiet in there. You're getting frightening, Master.
 
@@ -796,7 +837,10 @@ Adventurer 1: They say a Demon Lord is rising, that's what they say.
 Adventurer 2: And I heard a Summoned Hero's been seen already. Over on the western continent.
 
 @sprite avram_late unreadable left
-Avram in profile at the counter.
+@note he's at the counter as the gossip washes over him — the original panel
+@note direction ("Avram in profile at the counter, expression unreadable") is
+@note carried by the sprite + a silence beat, not narration (SCRIPT-TODO #12)
+Avram: ...
 
 @clear all
 @overlay status
@@ -807,7 +851,7 @@ Avram in profile at the counter.
 @bg bg_market fade
 @sprite avram_late neutral left
 @sprite her_camp cheer right
-New armor to replace what the deep floors keep breaking, fresh supplies, coin enough now that no merchant blinks at it. Then back to the poles, and down.
+New armor, to replace what the deep floors keep breaking. Fresh supplies. Then back to the dungeon, and down.
 
 @clear all
 @bg bg_dungeon_mid fade
@@ -818,7 +862,7 @@ New armor to replace what the deep floors keep breaking, fresh supplies, coin en
 
 @bg bg_camp_night fade
 @sprite avram_late neutral left
-Night camp. Her asleep by the fire. Avram sitting awake, looking at her.
+She's asleep by the fire. Avram sits awake, looking at her.
 
 @hold
 

@@ -30,7 +30,7 @@ Art fixes were **folded into the generation job prompts** so the regen emits cor
 - **13 avram hollow too harsh** — ✅ DONE (hollow expression softened: numb/tender, no eyebags)
 - **14 cliff strained too teary** — ✅ DONE (strained expression: dry, controlled eyes)
 - **15 cliff staging / her outfit** — ✅ DONE (new `bg_cliff_wide`; her in nice town clothes per author, NOT armor; bare throat)
-- **16 digging sneakers** — ✅ DONE (author: remove EVERYWHERE — sneaker motif dropped from all prompts + script notes; worn boots)
+- **16 digging sneakers** — ✅ DONE (author: remove EVERYWHERE — sneaker motif dropped from all prompts + script notes; worn boots). Author's in-world rationale, given 2026-07-03: **Avram wouldn't wear Earth sneakers because they could give him away as Summoned** — so this is a hard worldbuilding rule, not an aesthetic preference; item 16's old "maybe a scene-specific exception?" hedge below is obsolete. Verified 2026-07-03: no sneakers in any shipped asset.
 - **17 dragon/hoard scale** — ✅ DONE (`cg_dragon_hoard`: cosmic ~30-story scale, hall dwarfed)
 - **18 "when the dance begins" walk** — ✅ DONE (new `cg_forest_walk`; script beat restaged to use it, matched to `cg_burning_walk`)
 - **19 gravestone lettering** — ✅ DONE tier-1 attempt (English epitaph carved into `cg_tombstone`, name "Haurvatat"); `@overlay inscription` kept as fallback pending QA of the carved text

@@ -23,7 +23,7 @@ cross-reference those files where a fix could go either way.
 - **9 tavern laughter** — ✅ DONE (room laughs first with no her-sprite; she cuts in after)
 - **10 dead silence** — ✅ DONE (cut to an adventurer reaction sprite; hands the moment to the room)
 - **11 campfire CG cutaway** — ✅ DONE (Avram's opening line plays over `cg_campfire_shoulder` before falling back to sprites)
-- **12 systemic stage-direction-as-narration** — ⏸ DEFERRED (author flagged Fable-level); the 3 named instances (605 "hand on sword", 713 & 764 "hands") were fixed individually
+- **12 systemic stage-direction-as-narration** — ✅ DONE 2026-07-03 (Fable pass; see dated resolution note appended to item 12 below for the full sweep results — Healer scene restaged as a 3-beat transition w/ `@tint dusk`, melee fallback narration cut to a silent CG panel, guildhall "in profile" beat → `Avram: ...`, plus 6 smaller panel-label→prose rewrites; optional `cg_healer_splint` filed as ART-REQUESTS #7)
 - **13 floor markers** — ✅ DONE (author: keep + scarier art — paired with escalating `bg_dungeon_mid`/`bg_dungeon_deep`, deep bg made more menacing)
 - **14 Slavetaker→Bandit** — ✅ DONE (pre-reveal lines relabeled `Bandit`; engine `SPEAKERS` + `speakerPrefix` wired so same sprite, different nametag)
 - **15 line edit "wasn't attached"** — ✅ DONE
@@ -319,6 +319,51 @@ for something like "wary"/"guarded"/"ready" for Avram; `avram.strained` exists
 in the unused-sprite list per `validate_script.js` and might already fit) rather
 than prose. Still Fable-flagged at the general-pattern level; this specific line
 may be simple enough for a mechanical pass once the search above is done.
+
+**✅ RESOLVED 2026-07-03 (Claude Fable authorial pass).** Root cause confirmed
+first: `claude-inputs/script.md` is written panel-by-panel, and its `: `-prefixed
+lines are **panel descriptions** (visual direction), not narration — the staging
+conversion carried several of them into reader-facing textboxes verbatim, which
+is exactly the leak the author diagnosed. Full-script sweep done against
+script.md provenance (every narration line checked; `: `-derived lines triaged
+into "reads as real prose, keep" vs. "stage direction, fix"). Changes:
+- **Healer scene (the anchor):** restaged as a three-beat transition — a
+  dungeon mishap beat over `bg_dungeon_mid` (sfx+flash; shows how the arm got
+  hurt, no floor numbers per item 13's critique), a walk-out beat over
+  `bg_forest_road`, then the caravan arrival over `bg_camp_night` + **`@tint
+  dusk`** (the engine already supported dusk; this delivers the author's "late
+  evening, not full night" without new art). The old one-line jump cut is gone;
+  `@tint off` added at scene end. Optional `cg_healer_splint` (healer
+  mid-treatment at dusk, the author's third suggested fix) filed as
+  ART-REQUESTS.md item 7 — deliberately NOT referenced in script.txt yet so no
+  placeholder card appears mid-scene.
+- **Melee fallback narration (3rd instance):** "Melee. Fast. Avram holds one
+  flank — genuinely good now." cut; `cg_melee_flank` exists and was regenerated
+  (ART-TODO #6 ✅), so the beat is now a silent flash panel (`@hold`), per this
+  item's own "cut once the CG is fixed" guidance.
+- **Guildhall blocking line:** "Avram in profile at the counter." → `Avram: ...`
+  silence beat over the existing `unreadable` sprite (same idiom as the
+  bartender scene's held beat).
+- **Panel-label scene-setters rewritten as prose** (bg/tint already shows the
+  label): "Campfire." → "By the campfire, ..."; "Night camp. Frost..." → "Frost
+  on the grass, breath visible in the air. ..."; "Crowded tavern. Avram and her
+  at a table. Three adventurers..." → "The tavern is packed and loud. Three
+  adventurers at the next table over, deep in their cups."; "Outside." → "The
+  night air is cold and quiet after the tavern."; ch12 "Night camp. Her asleep
+  by the fire. Avram sitting awake..." → "She's asleep by the fire. Avram sits
+  awake, looking at her."
+- **Deliberately kept** (judgment calls, not oversights): "Sunset. She's
+  standing on the edge of a cliff..." (ch14 opener — literary cadence opening
+  the climax, not logistics); "She wakes, bandaged." (item-17's own approved
+  fix); ch12's armor/supplies montage line (item-19's approved fix); small
+  action beats that read as genuine prose ("The healer ties off the splint.",
+  "Avram exhales.", the bartender turn, etc.); all aftermath CG captions
+  (paired with real art).
+- **Housekeeping:** stale "NEW ART REQUESTED / placeholder until generated"
+  `@note`s (header missing-assets list, cg_nobleman_bid, cg_slime_lecture,
+  bg_guild_hall, cg_melee_flank) updated — all referenced assets exist now.
+Verified: `validate_script.js` 0 errors (5 pre-existing missing-sfx warnings,
+unchanged behavior), full `e2e.js` click-through to end card, no page errors.
 
 **Third confirmed instance (2026-07-02, same pattern):** `script.txt` line 629,
 chapter 11, right after the ambush turns into a fight:
