@@ -3,6 +3,8 @@
   "bgm_dungeon": "assets/audio/bgm_dungeon_loop.mp3",
   "bgm_lament": "assets/audio/bgm_lament_loop.mp3",
   "bgm_tavern": "assets/audio/bgm_tavern_loop.mp3",
+  "bgm_title": "assets/audio/bgm_title_loop.mp3",
+  "bgm_title_end": "assets/audio/bgm_title_end_loop.mp3",
   "bgm_tension": "assets/audio/bgm_tension_loop.mp3",
   "bgm_void": "assets/audio/bgm_void_loop.mp3",
   "bgm_wistful": "assets/audio/bgm_wistful_loop.mp3",

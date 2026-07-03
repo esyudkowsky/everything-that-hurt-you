@@ -38,6 +38,24 @@ If a track is wrong, tell the next Claude session "regenerate bgm_X, it sounds l
 Y, it should sound like Z" — the pipeline is one command and eight cents; directions
 are in `claude-notes/HANDOFF-AUDIO.md`.
 
+**NEW 2026-07-03 — the two title-screen tracks also need ears.** Generated this
+session (same Lyria pipeline, clean instrumental transcripts, spectrogram not yet
+re-checked), wired into the title screen:
+
+- **bgm_title** (`assets/audio/bgm_title_loop.mp3`) — the cheerful theme, plays on the
+  title screen *before* the story is finished. Meant to be warm/inviting, a storybook
+  being opened.
+- **bgm_title_end** (`assets/audio/bgm_title_end_loop.mp3`) — the somber theme, plays
+  on the title screen *after* the story is finished (save flag `fin`). The author's
+  ideal was the *same melody* as bgm_title, reharmonized minor. Lyria is text-only with
+  no audio conditioning, so this was prompted with a text description of the cheerful
+  theme, not the actual audio — **please judge whether it reads as the same theme or
+  just a different sad piece.** A plain contrasting somber track is an acceptable
+  fallback if it doesn't land; if you want another try, tell the next session and it
+  can regenerate (one command, eight cents each). Note: browsers may keep the title
+  music silent until your first click on the page — that's an autoplay-policy quirk,
+  not a broken track.
+
 ## 3. About sfx_silence-cut (the one SFX that exists)
 
 You asked what it was: the spec calls for "a reverse-cymbal into nothing" to play at

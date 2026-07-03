@@ -102,14 +102,18 @@
     font-family: var(--vo);
     font-size: 3.6cqh; line-height: 1.6; letter-spacing: 0.13em;
     font-weight: 700; text-align: center;
-    /* Skagganauk lettering (author 2026-07-03): black text in white outline,
-       pending a real font file — reads as hollow rune-lettering on black AND
-       over letterboxed graphics. Keep if skagganauk.woff2 ever lands; the
-       outline is the identity, the face is secondary. */
-    color: #0b0b0b;
-    -webkit-text-stroke: 0.22cqh #f3eee0;
-    text-shadow: 0 0 0.35cqh rgba(0,0,0,.95), 0 0 1cqh rgba(0,0,0,.85),
-                 0 0 2.2cqh rgba(0,0,0,.6);
+    /* Skagganauk lettering (author 2026-07-03, rev. 2): the classic MacOS
+       "Outline + Shadow" font-variant look — a solid DARK glyph body, a white
+       outline around it, and a dark drop shadow behind. paint-order draws the
+       white stroke UNDER the dark fill, so the stroke reads as an OUTER outline
+       rather than eating into the glyph. (The previous centered-stroke version
+       left a thin dark hairline in a mostly-white letter — hard to read.)
+       Reads on black AND over letterboxed art. Keep if a real skagganauk.woff2
+       ever lands. */
+    color: #1a1409;
+    -webkit-text-stroke: 0.5cqh #f4efe1;
+    paint-order: stroke fill;
+    text-shadow: 0.36cqh 0.46cqh 0.4cqh rgba(0,0,0,.95);
     opacity: 0; transition: opacity 1.4s ease;
   }
 
@@ -201,6 +205,37 @@
   #title .notice {
     position: absolute; bottom: 2.2cqh; width: 100%; text-align: center;
     font-family: var(--serif); font-size: 1.9cqh; color: #8f8878;
+  }
+  /* stamped PROTOTYPE placard, top-right of the title screen */
+  #prototype-sign {
+    position: absolute; top: 6cqh; right: 3cqh; z-index: 5;
+    font-family: var(--mono); font-weight: 700; letter-spacing: 0.32em;
+    font-size: 3.1cqh; color: #d98a6a;
+    padding: 0.7cqh 1.8cqh;
+    border: 0.4cqh solid #d98a6a; border-radius: 0.6cqh;
+    background: #1a0f0bcc;
+    transform: rotate(9deg);
+    text-shadow: 0 0.2cqh 0.6cqh #000;
+    box-shadow: 0 0.4cqh 1.4cqh #000a;
+    opacity: 0.9; pointer-events: none;
+  }
+
+  /* password gate */
+  #gatemenu .gate-field {
+    font-family: var(--serif); font-size: 2.8cqh;
+    padding: 1.1cqh 2cqh; width: 46cqh; max-width: 84%;
+    background: #0d0d13; color: #f0ece2; text-align: center;
+    border: 1px solid #c9a75a66; border-radius: 0.7cqh; outline: none;
+    letter-spacing: 0.06em;
+  }
+  #gatemenu .gate-field:focus { border-color: var(--gold); }
+  #gatemenu .gate-msg {
+    font-family: var(--serif); font-size: 2cqh; color: #d98a6a;
+    min-height: 2.4cqh; letter-spacing: 0.04em;
+  }
+  #gatemenu .gate-hint {
+    font-family: var(--serif); font-size: 1.8cqh; color: #8f8878;
+    max-width: 60cqh; text-align: center;
   }
 
   #chapter-list {
@@ -299,6 +334,7 @@
     <!-- menus -->
     <div id="title" class="menu" style="display:none">
       <div id="title-art"></div>
+      <div id="prototype-sign">PROTOTYPE</div>
       <h1>EVERYTHING THAT HURT YOU</h1>
       <div class="byline">a kinetic novel &middot; Eliezer Yudkowsky</div>
       <button id="btn-begin">Begin</button>
@@ -306,6 +342,16 @@
       <button id="btn-chapters-title" style="display:none">Chapters</button>
       <button id="btn-settings-title">Settings</button>
       <div class="notice">This is a grownup story. Content may be disturbing to some viewers.</div>
+    </div>
+
+    <div id="gatemenu" class="menu" style="display:none">
+      <h2>PROTOTYPE</h2>
+      <div class="gate-hint">Enter the password to begin.</div>
+      <input id="gate-input" class="gate-field" type="password" autocomplete="off"
+             spellcheck="false" placeholder="password">
+      <div id="gate-msg" class="gate-msg"></div>
+      <button id="btn-gate-ok">Enter</button>
+      <button id="btn-gate-cancel">Back</button>
     </div>
 
     <div id="pausemenu" class="menu" style="display:none">

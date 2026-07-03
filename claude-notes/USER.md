@@ -280,3 +280,41 @@
   as the interim treatment → implemented in index.html `.voline` (black fill,
   white text-stroke, dark halo; legibility verified over bright and dark art).
 - 2026-07-02 (session close): User **auditioned the SFX and rejected them** — "came out completely as music … basically do not work" (including the salvaged sword/impact one-shots; those were pulled from the manifest and archived as `claude-notes/raw/sfx_*_salvaged_FAILED.wav`). User was unsure what `sfx_silence-cut` was → explained in /HUMAN.md §3 (spec's reverse-cymbal whiteout sting; synthesized; still needs audition). User hit session limits and directed Claude to close down, leave notes for a less-smart model (→ `claude-notes/HANDOFF-AUDIO.md`) and write a human-readable to-do list for what OpenRouter couldn't do (→ `/HUMAN.md`: source 4 foley SFX from a sound library, audition 6 BGM + loop seams + silence-cut).
+
+- 2026-07-03 (Opus session — prototype gate + title music + script rev. 4):
+  Four directives, all completed:
+  (a) **PROTOTYPE sign** added to the title screen (stamped placard, top-right;
+  `#prototype-sign` in index.html).
+  (b) **Kid-brother password gate** — password **"red flower rocket"** must be
+  entered to start the game proper. Explicitly "don't bother with real security,
+  just kid-brother security": implemented as a djb2-xor hash (`cf67cb57`) of the
+  case/whitespace-normalized phrase in engine.js — plaintext is NOT in the source,
+  but it's obfuscation, not crypto. Gate wraps Begin/Continue/Chapters on the title
+  screen; unlocks for the rest of the page session once entered. Verified via
+  Playwright (wrong pw rejected, correct pw with messy casing accepted, no leak).
+  (c) **Title-screen music, two loops** (was the deferred HANDOFF-AUDIO todo; key
+  was set this session). Generated via the existing Lyria pipeline: `bgm_title`
+  (cheerful, shown before finishing) and `bgm_title_end` (somber, shown after
+  `sv.fin`). Looped, added to manifest, wired into `showTitle()`. Same-melody-
+  reharmonized ideal attempted via text description only (Lyria has no audio
+  conditioning) — human audition still needed (added to /HUMAN.md §2).
+  (d) **script.md rev. 4** written from /script.txt per HANDOFF-SCRIPT.md — full
+  regeneration with the new "echo-able" bracket-asset annotations. Verified:
+  dialogue parity 169=169 (0 diffs), asset parity complete, 15 chapter headings
+  match. SCRIPT-CHANGES.md logs the rev.3→rev.4 diff and the now-INVERTED sync
+  direction (author edits script.md → sessions echo into script.txt).
+
+- 2026-07-03 (same Opus session, follow-up): User reported the previous
+  Skagganauk treatment (black fill + centered white `-webkit-text-stroke`) read
+  as "a thin line of dark surrounded by mostly white" — the centered stroke ate
+  the glyph. User wants the classic MacOS **Outline + Shadow** font-variant look:
+  dark text, white outline, dark shadow. Fixed in index.html `.voline`:
+  `color:#1a1409` (warm near-black body), `-webkit-text-stroke:0.5cqh #f4efe1`
+  with **`paint-order: stroke fill`** (draws the white stroke UNDER the dark fill
+  so it becomes an outer outline instead of eating the letter), plus a directional
+  dark `text-shadow`. Verified with screenshots over both pure black (first line)
+  and a bright CG (final line over cg_burning_walk) — QA in
+  claude-notes/qa/engine/skag_onblack.png + skag_overimage.png. Physical caveat
+  noted to user: on PURE BLACK a dark body can't literally show, so there it reads
+  as a bold white-outlined letter with a faint warm-dark core; over images it's
+  the full dark-body engraved look.

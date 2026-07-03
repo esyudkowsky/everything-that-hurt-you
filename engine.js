@@ -890,8 +890,52 @@ if (typeof document !== "undefined") (function () {
     const sv = loadSave();
     $("btn-continue").style.display = sv && sv.pc > 0 && !sv.fin ? "" : "none";
     $("btn-chapters-title").style.display = sv && sv.max > 0 ? "" : "none";
+    // Title-screen BGM: cheerful before the story is finished, somber after.
+    // (Browsers may block autoplay until the first user gesture; playBgm no-ops
+    // silently in that case and picks up on the next showTitle after a click.)
+    playBgm(sv && sv.fin ? "bgm_title_end" : "bgm_title");
     updateChapterIndicator();
   }
+  /* ---------- prototype password gate (kid-brother security only) ----------
+     The plaintext ("red flower rocket") is not stored; only this djb2-xor
+     hash of the normalized phrase is. Case/whitespace-insensitive. Once
+     entered correctly it stays unlocked for the rest of the page session. */
+  const GATE_HASH = "cf67cb57";
+  let gateUnlocked = false;
+  let gatePending = null; // fn to run once the gate is passed
+  function gateHash(s) {
+    const norm = s.trim().toLowerCase().replace(/\s+/g, " ");
+    let x = 5381;
+    for (let i = 0; i < norm.length; i++) x = ((x * 33) ^ norm.charCodeAt(i)) >>> 0;
+    return x.toString(16);
+  }
+  function requireGate(fn) {
+    if (gateUnlocked) { fn(); return; }
+    gatePending = fn;
+    $("title").style.display = "none";
+    $("gate-msg").textContent = "";
+    $("gate-input").value = "";
+    $("gatemenu").style.display = "";
+    setTimeout(() => $("gate-input").focus(), 30);
+  }
+  function submitGate() {
+    if (gateHash($("gate-input").value) === GATE_HASH) {
+      gateUnlocked = true;
+      $("gatemenu").style.display = "none";
+      const fn = gatePending; gatePending = null;
+      if (fn) fn();
+    } else {
+      $("gate-msg").textContent = "Not quite. Try again.";
+      $("gate-input").value = "";
+      $("gate-input").focus();
+    }
+  }
+  function cancelGate() {
+    gatePending = null;
+    $("gatemenu").style.display = "none";
+    showTitle();
+  }
+
   function beginPlay(target) {
     $("title").style.display = "none";
     $("endcard").style.display = "none";
@@ -1011,13 +1055,19 @@ if (typeof document !== "undefined") (function () {
     });
     window.addEventListener("blur", stopSkip);
     $("menubtn").onclick = (e) => { e.stopPropagation(); openPause(); };
-    $("btn-begin").onclick = () => beginPlay(0);
-    $("btn-continue").onclick = () => {
+    $("btn-begin").onclick = () => requireGate(() => beginPlay(0));
+    $("btn-continue").onclick = () => requireGate(() => {
       const sv = loadSave();
       maxPc = (sv && sv.max) || 0;
       beginPlay((sv && sv.pc) || 0);
-    };
-    $("btn-chapters-title").onclick = () => openChapters(true);
+    });
+    $("btn-chapters-title").onclick = () => requireGate(() => openChapters(true));
+    $("btn-gate-ok").onclick = submitGate;
+    $("btn-gate-cancel").onclick = cancelGate;
+    $("gate-input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); submitGate(); }
+      else if (e.key === "Escape") { e.preventDefault(); cancelGate(); }
+    });
     $("btn-settings-title").onclick = () => openSettings(true);
     $("btn-resume").onclick = closePause;
     $("btn-chapters").onclick = () => {
