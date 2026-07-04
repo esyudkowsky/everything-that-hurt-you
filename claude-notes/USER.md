@@ -637,3 +637,38 @@
   - **Finished-title notice**: after the story is finished the title's content-warning is replaced by "This story is meant to be read twice. Please do not spoil it for others." (id #title-notice, swapped in showTitle by sv.fin). Verified in browser.
 
 - 2026-07-04 (grave-sequence consistency pass): reworked the whole burial run for consistency. cg_sick: Avram now clearly turned away, being sick onto bare open ground with NO grave hole near him (was retching into the grave). Removed the stray green cloak draped on the rocks and made the ground CONSISTENTLY grass-free across cg_digging / cg_sick / cg_grave_open / cg_grave_filled / cg_gravestone_conjure (grass was "suddenly growing"). Fixed grave_filled Avram likeness + a clean filled MOUND, and made grave_filled ↔ gravestone_conjure mutually consistent (same mound; stone rises UPRIGHT at the HEAD of the grave). Model note: GPT Image 2 (openai/gpt-image-2) was 500-ing via OpenRouter, and Banana Pro's fill-state clarity was weak, so the grave sequence (digging/sick/grave_open/grave_filled/gravestone) was regenerated with **Riverflow (sourceful/riverflow-v2.5-pro, --image-only)** — best composition-following, no moderation issue for a grave scene. Backups in claude-notes/raw/prewarm_backup/.
+
+- 2026-07-04 (voiceover layout + slime sync): (1) Skagganauk voiceover lines shown in series no longer shift the older lines when a new line appears beneath them. The engine now PRE-LAYS-OUT the whole voiceover group as hidden (opacity-0) placeholders when the group starts (prerenderVoGroup scans ahead to the next @voiceover directive), then reveals each line in place — so the block height/position is fixed and earlier lines never move. Seek/resume rebuilds the full group and reveals the read count. Verified in browser: first line moves 0px when the second appears. (2) cg_slime_backoff regenerated to show Avram encountering ONE LARGE slime (Banana Pro), synced to the big slime in cg_slime_rock — the two forest-clearing encounters now match. Backups in claude-notes/raw/prewarm_backup/.
+
+- 2026-07-04 (voice acting feasibility question): User asked whether voice acting can be
+  done through OpenRouter, and whether a different API key is needed. Answer: YES via
+  OpenRouter with the existing `OPENROUTER_KEY` — `openai/gpt-audio` / `openai/gpt-audio-mini`
+  are the only speech-output models on OpenRouter (no ElevenLabs or dedicated TTS carried).
+  Verified working this session with a live test line ("Everything that hurt you — I
+  remember it all.", weary-older-man read, voice "ash") → sample saved for audition at
+  `claude-notes/qa/voice_test_ash.mp3`. API quirks (same family as Lyria's): `stream: true`
+  required for audio output, and when streaming `audio.format` MUST be `pcm16` (mp3
+  rejected) — decode base64 `choices[].delta.audio.data` chunks, concat, then
+  `ffmpeg -f s16le -ar 24000 -ac 1` to mp3. Transcript in the stream matched the requested
+  line verbatim (use it as an automated fidelity check). Cost measured: ~$0.00026/line on
+  mini (~$0.06 for all ~218 dialogue lines; full gpt-audio ~10-50x that, still trivial).
+  Constraints told to user: OpenAI preset voices only (alloy/ash/ballad/coral/echo/sage/
+  shimmer/verse/…), no voice cloning; it's a chat model performing the line, so tone is
+  steerable by prompt but per-line verbatim + consistency needs QA; Claude cannot audition.
+  A different key (e.g. ElevenLabs) would only be needed for higher-grade acting/cloning.
+- 2026-07-04 (voice-acting trial, follow-up): User's two desiderata for VA: (a) voice
+  constancy, (b) correct intonations; suspects intonation is the blocker unless there is
+  a channel to tell the engine about context/delivery. Directed a 4-passage trial (two
+  characters, contrasting emotions) BEFORE any engine changes or full voice pass. Done —
+  `claude-notes/qa/voice_trial/`: avram_market_awkward + avram_first_kill_promise (voice
+  "verse": ashamed stumbling speech vs. quiet sad death-promise) and her_name_number_cheer
+  + her_collar_centipede (voice "sage": sunny-mask joke vs. flat trauma recount). Model
+  `openai/gpt-audio` (full, not mini; ~$0.015/line, $0.058 total), per-character SYSTEM
+  prompt (constancy) + per-line scene context + delivery direction in the user message
+  (the intonation channel — gpt-audio is a chat model, so it takes direction like an
+  actor). All 4 transcripts verbatim. Generator script kept at scratchpad only (trivial to
+  recreate; prompts recorded here). AWAITING AUTHOR AUDITION. Told user: strongest
+  outside-OpenRouter options if intonation disappoints = ElevenLabs v3 (inline audio tags
+  like [whispers]/[sobbing], voice design, best-in-class acting) and Hume Octave
+  (context-conditioned acting by design); both need their own API keys.
+- 2026-07-04 (| mid-line pauses + script.md sync + ch3 expressions): (1) `|` in narration/dialogue is a mid-line PAUSE (VN click-to-continue) — symbol is fine. Engine splits a line on `|` into segments, types to the pause, shows the arrow, and a click reveals the next segment in the same box before the beat advances (rollback/review shows the full line). Verified. (2) Synced script.md edits: removed "bartender turns away"; auction bid now a "large magical core" ("takes Avram's core, gauges him"); dropped "The binding passes..."; ch3 dropped "Avram exhales." and split "Um." onto its own line; ~10 new `|` pauses. Parity 226=226. (3) Ch3 deal scene: Avram is `discomfort` THROUGHOUT (removed stray avram neutral/wry); Haurvatat's mid-scene `matter-of-fact` change now reflected in script.md.

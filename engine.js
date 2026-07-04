@@ -203,6 +203,7 @@ if (typeof document !== "undefined") (function () {
       sprites: { left: null, right: null }, // {char, expr}
       tint: "off",
       vo: "off", voLines: [],
+      voGroup: [], voShown: 0, // full voiceover group (pre-laid-out) + reveal count
       montage: null, // {secs}
       bgm: null,
       inscription: null,
@@ -436,48 +437,77 @@ if (typeof document !== "undefined") (function () {
   function startTyper(text, italicAll, small) {
     const node = $("dialog");
     node.innerHTML = "";
-    fitDialogFont(text);
-    // @small lines (e.g. the defeated "Okay.") render smaller/quieter; override
-    // the fitted size with a deliberately small one and dim slightly.
+    // a "|" in the text is a mid-line pause: type up to it, wait for a click,
+    // then continue. Split into segments; the box is fitted to the full text.
+    fitDialogFont(text.replace(/\s*\|\s*/g, " "));
     node.classList.toggle("small-line", !!small);
     if (small) node.style.fontSize = "1.9cqh";
-    const tokens = emphasisTokens(text);
-    const total = tokens.reduce((a, t) => a + t.t.length, 0);
-    typer = { tokens, count: 0, total, node, italicAll };
+    const segments = text.split("|").map((s) => {
+      const tokens = emphasisTokens(s.trim());
+      return { tokens, total: tokens.reduce((a, t) => a + t.t.length, 0) };
+    });
+    typer = { segments, segIdx: 0, count: 0, node, italicAll, atPause: false };
     tickTyper();
   }
   function renderTyper() {
-    const { tokens, count, node, italicAll } = typer;
+    const { segments, segIdx, count, node, italicAll } = typer;
     node.innerHTML = "";
-    let left = count;
-    for (const tk of tokens) {
-      if (left <= 0) break;
-      const s = tk.t.slice(0, left);
-      left -= tk.t.length;
-      const span = document.createElement(tk.em || italicAll ? "em" : "span");
-      span.textContent = s;
-      node.appendChild(span);
+    for (let si = 0; si <= segIdx; si++) {
+      if (si > 0) node.appendChild(document.createTextNode(" "));
+      const seg = segments[si];
+      let left = si < segIdx ? seg.total : count;
+      for (const tk of seg.tokens) {
+        if (left <= 0) break;
+        const s = tk.t.slice(0, left);
+        left -= tk.t.length;
+        const span = document.createElement(tk.em || italicAll ? "em" : "span");
+        span.textContent = s;
+        node.appendChild(span);
+      }
     }
-    $("adv").style.visibility = typer.count >= typer.total ? "visible" : "hidden";
+    const segDone = count >= segments[segIdx].total;
+    $("adv").style.visibility = segDone ? "visible" : "hidden";
   }
   function tickTyper() {
     if (!typer) return;
-    const step = settings.typeMs <= 0 ? typer.total : 1;
-    typer.count = Math.min(typer.count + step, typer.total);
+    const seg = typer.segments[typer.segIdx];
+    const step = settings.typeMs <= 0 ? seg.total : 1;
+    typer.count = Math.min(typer.count + step, seg.total);
     renderTyper();
-    if (typer.count < typer.total) {
+    if (typer.count < seg.total) {
       typer.timer = setTimeout(tickTyper, settings.typeMs);
     } else {
+      typer.atPause = typer.segIdx < typer.segments.length - 1;
       maybeAutoplay();
     }
   }
+  // reveal every remaining segment at once (rollback/review — no animation, no pauses)
+  function finishTyperFully() {
+    if (!typer) return;
+    clearTimeout(typer.timer);
+    typer.segIdx = typer.segments.length - 1;
+    typer.count = typer.segments[typer.segIdx].total;
+    typer.atPause = false;
+    renderTyper();
+  }
   function completeTyper() {
     if (!typer) return false;
-    if (typer.count < typer.total) {
+    const seg = typer.segments[typer.segIdx];
+    if (typer.count < seg.total) {
+      // still typing this segment: a click fast-forwards it to the end
       clearTimeout(typer.timer);
-      typer.count = typer.total;
+      typer.count = seg.total;
+      typer.atPause = typer.segIdx < typer.segments.length - 1;
       renderTyper();
       maybeAutoplay();
+      return true; // consumed the click
+    }
+    if (typer.atPause) {
+      // finished a segment at a "|" pause: a click continues to the next segment
+      typer.segIdx++;
+      typer.count = 0;
+      typer.atPause = false;
+      tickTyper();
       return true; // consumed the click
     }
     return false;
@@ -522,8 +552,7 @@ if (typeof document !== "undefined") (function () {
       st.voLines = [];
     }
   }
-  function addVoLine(text, instant) {
-    st.voLines.push(text);
+  function voLineDiv(text) {
     const div = document.createElement("div");
     div.className = "voline";
     for (const tk of emphasisTokens(text)) {
@@ -531,7 +560,37 @@ if (typeof document !== "undefined") (function () {
       span.textContent = tk.t;
       div.appendChild(span);
     }
-    $("volines").appendChild(div);
+    return div;
+  }
+  // Collect every voiceover line of the current group (from the instruction after
+  // the @voiceover on/over, up to the next @voiceover directive).
+  function voGroupTexts(fromIdx) {
+    const texts = [];
+    for (let j = fromIdx; j < SCRIPT.ins.length; j++) {
+      const c = SCRIPT.ins[j];
+      if (c.op === "voiceover") break;
+      if (c.op === "narrate") texts.push(c.text);
+    }
+    return texts;
+  }
+  // Lay out the WHOLE group up front as hidden (opacity 0) lines so the block's
+  // final height/position is fixed. Revealing a line then never nudges the
+  // already-visible lines above it (author 2026-07-04).
+  function prerenderVoGroup(fromIdx) {
+    st.voGroup = voGroupTexts(fromIdx);
+    st.voShown = 0;
+    st.voLines = [];
+    const box = $("volines");
+    box.innerHTML = "";
+    for (const text of st.voGroup) box.appendChild(voLineDiv(text));
+  }
+  // Reveal the next pre-laid-out line (or, as a fallback, append one).
+  function revealVoLine(instant) {
+    const box = $("volines");
+    let div = box.children[st.voShown];
+    if (!div) { div = voLineDiv(st.voGroup[st.voShown] || ""); box.appendChild(div); }
+    st.voLines.push(st.voGroup[st.voShown]);
+    st.voShown++;
     if (instant) div.style.opacity = "1";
     else
       requestAnimationFrame(() =>
@@ -755,7 +814,7 @@ if (typeof document !== "undefined") (function () {
       case "say":
       case "narrate": {
         if ((st.vo === "on" || st.vo === "over") && c.op === "narrate") {
-          addVoLine(c.text);
+          revealVoLine(false);
           save();
           maybeAutoplay();
           return true;
@@ -796,6 +855,8 @@ if (typeof document !== "undefined") (function () {
         return false;
       case "voiceover":
         setVoiceover(c.mode);
+        // pre-lay-out the whole upcoming group so lines reveal in place
+        if (c.mode === "on" || c.mode === "over") prerenderVoGroup(pc + 1);
         return false;
       case "flash":
         flash(c.color, c.ms);
@@ -973,8 +1034,8 @@ if (typeof document !== "undefined") (function () {
     reviewing = false;
   }
   function reviewSeek(target) {
-    seek(target);      // reconstruct + render the beat (instant transitions)
-    completeTyper();   // no typewriter animation in review
+    seek(target);        // reconstruct + render the beat (instant transitions)
+    finishTyperFully();  // no typewriter animation or pauses in review
   }
   function rollBack() {
     if (mode !== "play" || uiHidden) return;
@@ -1025,6 +1086,7 @@ if (typeof document !== "undefined") (function () {
     setVoiceover("off", true);
     hideTextbox();
 
+    let voGroupStart = 0; // index of the first line in the current voiceover group
     for (let j = 0; j < target && j < SCRIPT.ins.length; j++) {
       const c = SCRIPT.ins[j];
       switch (c.op) {
@@ -1035,7 +1097,7 @@ if (typeof document !== "undefined") (function () {
           if (c.what === "all") st.sprites = { left: null, right: null };
           else st.sprites[c.what] = null;
           break;
-        case "voiceover": st.vo = c.mode; if (c.mode !== "off") st.voLines = []; break;
+        case "voiceover": st.vo = c.mode; if (c.mode !== "off") { st.voLines = []; voGroupStart = j + 1; } break;
         case "narrate": if (st.vo === "on" || st.vo === "over") st.voLines.push(c.text); break;
         case "tint": st.tint = c.mode; break;
         case "montage": st.montage = { secs: c.secs }; break;
@@ -1053,9 +1115,12 @@ if (typeof document !== "undefined") (function () {
       if (st.sprites[slot]) setSprite(st.sprites[slot].char, st.sprites[slot].expr, slot, true);
     setTint(st.tint);
     if (st.vo === "on" || st.vo === "over") {
-      const linesNow = st.voLines.slice();
+      const shown = st.voLines.length;
       setVoiceover(st.vo, true);
-      for (const l of linesNow) addVoLine(l, true);
+      // rebuild the FULL group laid out (so continuing play won't shift lines),
+      // then instantly reveal the ones already read
+      prerenderVoGroup(voGroupStart);
+      for (let k = 0; k < shown; k++) revealVoLine(true);
     }
     if (st.inscription) showInscription(st.inscription);
     playBgm(st.bgm || "stop", true);

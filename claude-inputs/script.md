@@ -115,15 +115,12 @@ Bartender: Eight copper.
 
 Avram: Got a rumor I'd like to check on.
 
-: The bartender turns away, to the bottles on the other side of the bar. (Staging carried by
-narration; sprite stays gruff-neutral.)
-
 Bartender: Twelve silver.
 
 : [avram neutral L] (Was `avram wry`; the wry sprite read as a dopey grin, so this calm-conversation
 beat uses the neutral face.)
 
-Avram: It's not that type of - look, I'm not sure there's anything to this. Could just have been a guy messing with another guy. But have you heard anything about a rising Demon Lord?
+Avram: It's not that type of - look, I'm not sure there's anything to this. Could just have been a guy messing with another guy. | But have you heard anything about a rising Demon Lord?
 
 Bartender: Aw *slimespit.*
 
@@ -135,7 +132,7 @@ Avram: I just heard some guy talking about it! That's why I'm asking whether -
 
 Bartender: Some guy *where* saying *what?*
 
-Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.*
+Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? | I know practically nothing. That's why I'm *asking.*
 
 Avram: If the Demon Lord has shown up, I'd really like to know where they are, what they're doing.
 
@@ -149,7 +146,7 @@ Bartender: Deathstorms and balefire! No, I haven't heard anything.
 
 Bartender: I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know?
 
-Bartender: Or the Summoned Hero either, for that matter. I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
+Bartender: Or the Summoned Hero either, for that matter. | I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
 
 : [avram neutral L]
 
@@ -226,13 +223,13 @@ The nobleman raises his hand and names a higher number.
 
 : [avram neutral L]
 
-Avram empties the purse across the clerk's table.
+Avram holds up a large magical core, the sort you'd need to be anomalously lucky to find inside the sort of monsters he looks strong enough to fight.
 
 : [nobleman irritated R]
 
 The nobleman looks at him with disgust, and lets his hand fall.
 
-: The announcer takes Avram's coin, guages him, and hands him a small printed pamphlet before gesturing him and the beast-girl toward the back of the auction stand.
+: The announcer takes Avram's core, gauges him, and hands him a small printed pamphlet before gesturing him and the beast-girl toward the back of the auction stand.
 
 : [cg_pamphlet_cover_runes] The pamphlet cover, inscrutable runes.
 
@@ -244,7 +241,7 @@ in his hand.)
 : [cg_ownership_transfer] The announcer lays one hand on her collar, one on top of Avram's head;
 the collar's runes light up. The binding passes from the auction-house to Avram.
 
-The announcer puts one hand on her collar, and one hand on top of Avram's head. The collar's runes light up. The binding passes from the auction-house to Avram.
+The announcer puts one hand on her collar, and one hand on top of Avram's head. The collar's runes light up.
 
 Announcer: [Ownership Transfer.]
 
@@ -255,7 +252,7 @@ The runes go dark. She belongs to him now.
 : [bg_market | avram discomfort L, her cheer R] Walking away from the auction; she follows,
 collared, in armor.
 
-Avram: So. Um. I bought you to help me clear dungeons. I'm not planning to sexually assault you.
+Avram: So. Um. I bought you to help me clear dungeons. | I'm not planning to sexually assault you.
 
 Avram: You didn't *look* like the prospect of risking your life in a dungeon would horrify you to the point where you'd rather have gone with the other guy instead.
 
@@ -263,29 +260,32 @@ Avram: It *looked* like you'd be better off with me. Like your life would be - b
 
 Avram: If I was wrong about that - please speak up.
 
-Her: Helping you clear dungeons is fine, Master! Is there a reason you wouldn't also have sex with me?
+Her: Helping you clear dungeons is fine, Master! | Is there a reason you wouldn't also have sex with me?
 
 Avram: It's - against the customs of my people.
 
 Avram: Are you hungry? Do you need a shower, or a doctor, or new underwear, or - or anything at all?
 
-Her: No, Master. I was fed just yesterday.
+Her: No, Master. | I was fed just yesterday.
 
-Avram exhales.
+Avram: God. | How the hell do I say this? Do this?
 
-Avram: God. How the hell do I say this? Do this?
+Avram: Um.
 
-Avram: Um. I want you to have an experience that is... as comfortable as it can be under these circumstances.
+Avram: I want you to have an experience that is... as comfortable as it can be under these circumstances.
 
 Avram: I don't mean that I'm ordering you to pretend to be happy.
 
-Avram: Just... please let me know, how we can do this, in a way that minimizes fear and uncertainty for you. On the inside.
+Avram: Just... please let me know, how we can do this, in a way that minimizes fear and uncertainty for you. | On the inside.
 
 Avram: A smile on the outside isn't what I'm looking for, not unless you mean it.
 
 Avram: And the *point* of this whole concept is to make things easier on you, which means, I'm *not* going to punish you if you don't get it right.
 
-Her: Master's wishes... are my command? I'm not sure I understand Master's wishes, though.
+: [her matter-of-fact R] (Steadier, less-smiling — the bright cheer mask drops a little. Avram stays
+discomfort throughout this scene.)
+
+Her: Master's wishes... are my command? | I'm not sure I understand Master's wishes, though.
 
 Avram: That's fine.
 
@@ -295,7 +295,7 @@ Avram: And, if it's okay with you, I'd rather you didn't say anything about how 
 
 Her: Why not, Master? It's sort of an obvious thing to say.
 
-Avram: I mean, I *wish* I could say, it's okay for you to thank me if you want to. But I won't actually be able to avoid looking horribly uncomfortable if you do.
+Avram: I mean, I *wish* I could say, it's okay for you to thank me if you want to. | But I won't actually be able to avoid looking horribly uncomfortable if you do.
 
 : [bg_restaurant → cg_restaurant_plates] A tower of emptied plates; she's working on another;
 Avram watching from across the table, chin on hand — his one early unguarded moment (the "gentle"
