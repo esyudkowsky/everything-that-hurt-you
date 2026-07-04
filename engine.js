@@ -45,8 +45,8 @@ function parseScript(text) {
           break;
         }
         case "sprite": {
-          const [char, expr, slot] = rest.split(/\s+/);
-          ins.push({ op: "sprite", char, expr, slot: slot || "left" });
+          const [char, expr, slot, anim] = rest.split(/\s+/);
+          ins.push({ op: "sprite", char, expr, slot: slot || "left", anim: anim || null });
           break;
         }
         case "clear":
@@ -292,7 +292,7 @@ if (typeof document !== "undefined") (function () {
   }
 
   let sprGen = 0;
-  function setSprite(char, expr, slot, instant) {
+  function setSprite(char, expr, slot, instant, anim) {
     st.sprites[slot] = { char, expr };
     const holder = $("spr-" + slot);
     holder.dataset.gen = ++sprGen; // invalidate any pending clearSlot wipe
@@ -312,11 +312,17 @@ if (typeof document !== "undefined") (function () {
     holder.style.display = "";
     if (entering && !instant) {
       holder.style.opacity = "0";
+      if (anim === "slide")
+        holder.style.transform = "translateX(" + (slot === "right" ? "45%" : "-45%") + ")";
       requestAnimationFrame(() =>
-        requestAnimationFrame(() => (holder.style.opacity = "1"))
+        requestAnimationFrame(() => {
+          holder.style.opacity = "1";
+          if (anim === "slide") holder.style.transform = "translateX(0)";
+        })
       );
     } else {
       holder.style.opacity = "1";
+      holder.style.transform = "translateX(0)";
     }
   }
   function clearSlot(slot, instant) {
@@ -637,9 +643,20 @@ if (typeof document !== "undefined") (function () {
         : "Music on (starts on your first click) — click here to keep it off";
   }
   function toggleMusic() {
+    // First interaction on a blocked-but-enabled title: the click just STARTS the
+    // music (unlocks it) — it must NOT also mute. This is the case where the music
+    // shows muted only because autoplay hasn't been unlocked yet.
+    if (!audioUnlocked && musicEnabled) {
+      audioUnlocked = true;
+      if (st.bgm) playBgm(st.bgm, false);
+      updateMusicBtn();
+      return;
+    }
+    // Otherwise a normal on<->off toggle (persisted).
     musicEnabled = !musicEnabled;
     settings.musicOn = musicEnabled;
     saveSettings();
+    audioUnlocked = true;
     updateMusicBtn();
     if (musicEnabled) {
       if (st.bgm) playBgm(st.bgm, false); // resume the current intended track
@@ -742,7 +759,7 @@ if (typeof document !== "undefined") (function () {
         }
         return false;
       case "sprite":
-        setSprite(c.char, c.expr, c.slot);
+        setSprite(c.char, c.expr, c.slot, false, c.anim);
         return false;
       case "clear":
         execClear(c.what);
@@ -1062,6 +1079,10 @@ if (typeof document !== "undefined") (function () {
   }
   function requireGate(fn) {
     if (gateUnlocked) { fn(); return; }
+    // A returning player who already has a save cookie (progress reached, or finished)
+    // has passed the gate before — don't make them re-enter the password.
+    const sv = loadSave();
+    if (sv && (sv.pc > 0 || sv.max > 0 || sv.fin)) { gateUnlocked = true; fn(); return; }
     gatePending = fn;
     $("title").style.display = "none";
     $("gate-msg").textContent = "";
@@ -1244,7 +1265,10 @@ if (typeof document !== "undefined") (function () {
     // pointer/key interaction anywhere, resume the current track if it's paused.
     // Capture phase so it runs regardless of which element was clicked (buttons,
     // backdrop, stage), before that element's own handler. Cheap and idempotent.
-    const unlockAudio = () => {
+    const unlockAudio = (e) => {
+      // the music button handles its own first click (via toggleMusic); don't also
+      // unlock here, or a single click on it would start AND toggle the music at once
+      if (e && e.target && e.target.closest && e.target.closest("#musicbtn")) return;
       const wasLocked = !audioUnlocked;
       audioUnlocked = true;
       // resume the current title/scene track that was created-but-blocked at load

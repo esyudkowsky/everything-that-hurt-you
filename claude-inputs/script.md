@@ -609,7 +609,7 @@ Her: Master. I don't think you should. They have the air of slavetakers about th
 
 : [slavetaker easy-menace R] (Nametag switches Bandit → Slavetaker at her identification line.)
 
-Slavetaker: Clever one, isn't she? That's right. Our guild source says you're a prodigy with no backing, boy.
+Slavetaker: Clever one, isn't she? That's right. Our guild source says you're a prodigy with no backing, boy.  An easy, valuable drop.
 
 : [her combat-flat R | avram sad-distant L] Her ears flat, no smile — the ambush is the only place
 this face exists.
@@ -627,33 +627,34 @@ out after he starts killing them.)
 
 The first life he has ever taken. He does not pause.
 
-Slavetaker: Code mauve!
+: [bg_forest_road | slavetaker easy-menace R, slides in] The captain slides onto the right to call the order.
 
-: [bg_forest_road] [flash white] Another ambusher's off-hand comes up with a short black rod, leveled
-at Avram from the side —
+Slavetaker: Code black!
 
-: [sfx: sfx_impact] [cg_lance_hit] Her leaping in front of him; the dark lance through her armor into
-her chest; sword mid-clatter. No gore beyond the strike itself.
+: [cg_rod_raise] [flash white] An ambusher (NOT the captain, who is the one calling it) raises the dark
+rune-carved rod from the side. Another ambusher's off-hand comes up with a short black rod, leveled at
+Avram from the side —
 
-: [cg_her_fallen] Her crumpled on the road in front of Avram, same scene; punched hole in her
-breastplate, realistic blood. (The slavetaker's post-strike lines play over this panel.)
+: [sfx: sfx_impact] [cg_lance_hit] Avram mid-fight (having just killed a man) as Haurvatat leaps in front
+of him from the same angle she was standing — the dark lance punches through her breastplate. (No spear
+shard protruding; she is hit by magic.)
+
+: [cg_her_fallen] Her, from the same complex melee, fallen to the ground and kneeling — punched hole in
+her breastplate, realistic blood. Avram has no time to kneel beside her. (Slavetaker's line plays over this.)
 
 : [slavetaker snarl R]
 
 Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going to make you regret that really fucking badly --
 
-: [cg_scream_cutoff] (Textbox hidden.) Avram on the ground, her blood on him, mouth open; a speech
-bubble cropped by the panel edge, contents unreadable. No text; one click to pass.
-
 [bgm: stop cut] · [sfx: sfx_silence-cut] · [flash white]
 
-: [cg_whiteout] Pure white, no linework: Avram's silhouette, arms out, six shapes coming apart at the
-edges. Silence from here through the altar.
+: [cg_whiteout] Pure white, no linework: Avram's silhouette (his own build — NOT spiked pauldrons), arms
+out, six shapes coming apart at the edges. Silence from here through the altar.
 
-: [cg_carry_road] Avram running down the road carrying her, glow still guttering off his hands.
+: [cg_carry_road] Avram running down the road carrying her — no lingering hand-glow (any magic here is
+just for speed); nothing protruding from her (she was hit by magic, not a spear).
 
-: [bg_temple_altar → cg_altar_everything] Coin pouch upended on the altar; then the sword, unbuckled
-and laid down.
+: [bg_temple_altar → cg_altar_everything] Coin pouch upended on the altar. (Sword removed — no laid-down sword.)
 
 Avram: Everything. Take everything.
 

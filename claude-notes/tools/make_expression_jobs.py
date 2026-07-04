@@ -69,7 +69,7 @@ jobs.append(avram_job("avram_earth", "shock", "total shock — eyes very wide, l
 
 for expr, desc in AVRAM_EXPR.items():
     jobs.append(avram_job("avram", expr, desc, "claude-notes/refs/avram_traveler_master.png", "green-brown traveler's cloak over light leather armor"))
-    jobs.append(avram_job("avram_late", expr, desc, "claude-notes/raw/avram_late.neutral.png", "worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face"))
+    jobs.append(avram_job("avram_late", expr, desc, "claude-notes/raw/avram_late.neutral.png", "worn travel-stained cloak over fitted steel-and-leather armor; keep his SAME youthful early-twenties face — do NOT age him, not older/harder/leaner/gaunt"))
 
 for expr, desc in HER_EXPR.items():
     jobs.append(her_job("her", expr, desc, "claude-notes/refs/her_armor_master.png", "full-coverage steel-and-leather fighting armor"))

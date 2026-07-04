@@ -498,3 +498,40 @@
   added its own conservatism. Do not silently sanitize violence going forward; if an image
   model refuses or a prompt is being softened for moderation-practicality reasons, SAY SO
   explicitly and use the author's edit-blood-in-afterwards workaround instead.
+
+- 2026-07-04 (Opus, title/gate/music-fix): (a) FIXED music-icon race — clicking the ♪ icon
+  as the very first interaction on a fresh title used to start AND toggle-off the music in one
+  click (and persist an accidental mute). Now: unlockAudio skips the #musicbtn target, and
+  toggleMusic treats "first click while blocked-but-enabled" as START-only (no mute); normal
+  on<->off toggling only once audioUnlocked. Verified: 1st click starts music, 2nd mutes
+  (persisted), and clicking on a persisted-mute title turns it on. (b) Title "EVERYTHING THAT
+  HURT YOU" + byline lifted into the sky: wrapped in #title-head (position:absolute; top:10cqh)
+  so it sits above the tree/heads; the notice+buttons stay bottom-packed. (c) Password gate no
+  longer re-prompts a RETURNING player — requireGate() auto-unlocks if a save cookie exists
+  (sv.pc>0 || sv.max>0 || sv.fin); fresh players still get the password. All browser-verified.
+
+- 2026-07-04 (Opus, ch11 wound rework batch): synced author's script.md edits into script.txt
+  (Slavetaker "...An easy, valuable drop."); "Code mauve" -> "Code black". Slavetaker sprite now
+  SLIDES in from the right before the shout (new optional 4th @sprite token `slide` -> setSprite
+  transform animation). DELETED cg_scream_cutoff (script + manifest + asset). Rod beat: NEW
+  cg_rod_raise (an ordinary ambusher, NOT the captain, raising the glowing rune-carved rod) since
+  bg_forest_road alone was too empty. cg_altar_everything: sword REMOVED (coins only). ART regens
+  via Nano Banana PRO: cg_melee_press (unsuccessful grab + Light-flash), cg_first_kill (pressed,
+  sword through the NECK, 2nd opponent + Haurvatat engaging two), cg_her_fallen (fallen+kneeling,
+  Avram NOT kneeling), cg_whiteout (his own build, no spiked pauldrons), cg_carry_road (no
+  hand-glow, nothing protruding from her). cg_lance_hit: 3 PRO candidates in
+  claude-notes/qa/wound_candidates/ (default=candidate 2, her leaping from the right like
+  cg_first_kill; swap _1/_3 if preferred). bg_temple_cot regenerated WITH Haurvatat in the cot.
+  avram_late looked too old -> master regenerated YOUNG (same early-20s face, late armor) and the
+  whole avram_late expression set + eyes-narrowed re-derived; make_expression_jobs.py descriptor
+  updated to keep the youthful face. validate 0 errors, dialogue parity 214=214, app boots clean.
+
+- 2026-07-04 (Opus, wound follow-ups): cg_lance_hit — the winning composition (author's
+  "candidate 2": Avram left with bloody sword over a fallen enemy, Haurvatat leaping in from
+  the RIGHT, purple magic lance to the chest) regenerated via PRO with an explicit HUMAN-FACE
+  constraint (freckles + human nose/mouth + wolf ears, NO muzzle/snout) — shipped as v2_3
+  (alts v2_1/v2_2 in claude-notes/qa/wound_candidates/). SKY CONSISTENCY: the big-fight CGs
+  (cg_melee_flank, cg_melee_press, cg_first_kill, cg_her_fallen, cg_rod_raise) had mismatched
+  sky shades; unified them with PRO image-EDITS ("reproduce exactly, change only sky/lighting")
+  to a shared warm amber-gold dusk + slate-blue upper sky — compositions/faces/blood preserved.
+  Pre-edit originals backed up at claude-notes/raw/prewarm_backup/ in case any edit degraded.

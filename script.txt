@@ -765,7 +765,7 @@ Bandit: We'll be the judge of that.
 Her: Master. I don't think you should. They have the air of slavetakers about them.
 
 @sprite slavetaker easy-menace right
-Slavetaker: Clever one, isn't she? That's right. Our guild source says you're a prodigy with no backing, boy.
+Slavetaker: Clever one, isn't she? That's right. Our guild source says you're a prodigy with no backing, boy.  An easy, valuable drop.
 
 @sprite her combat-flat right
 @note ears flat, no smile — the ambush is the only place this face exists
@@ -794,10 +794,17 @@ Avram fights to kill.
 
 The first life he has ever taken. He does not pause.
 
-Slavetaker: Code mauve!
-
 @bg bg_forest_road cut
+@sprite slavetaker easy-menace right slide
+@note the captain slides in from the right to call the order (author 2026-07-04);
+@note "Code black" — was "Code mauve", which read as unintended humor at the wrong moment
+Slavetaker: Code black!
+
+@clear all
 @flash white 120
+@cg cg_rod_raise cut
+@note NEW cg_rod_raise: an AMBUSHER (NOT the captain — he's the one calling it) levels the dark
+@note rune-carved rod from the side. bg_forest_road alone was too empty here (author 2026-07-04).
 Another ambusher's off-hand comes up with a short black rod, leveled at Avram from the side —
 
 @sfx sfx_impact
@@ -817,12 +824,7 @@ Another ambusher's off-hand comes up with a short black rod, leveled at Avram fr
 Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going to make you regret that really fucking badly --
 
 @clear all
-@textbox hide
-@cg cg_scream_cutoff cut
-@hold
-@note Avram on the ground, her blood on him, mouth open; speech bubble cropped
-@note by the panel edge, contents unreadable. NO text. One click to pass.
-@textbox show
+@note (the cg_scream_cutoff panel was deleted here per author 2026-07-04)
 
 @bgm stop cut
 @sfx sfx_silence-cut
@@ -838,7 +840,8 @@ Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going 
 
 @bg bg_temple_altar fade
 @cg cg_altar_everything fade
-@note coin pouch upended on the altar; then the sword, unbuckled and laid down
+@note coin pouch upended on the altar (sword REMOVED per author 2026-07-04 — the laid-down-sword
+@note gesture read as flashy/unclear; cg_altar_everything regenerated without it)
 
 Avram: Everything. Take everything.
 

@@ -46,7 +46,7 @@
   .spr {
     position: absolute; bottom: 0; height: 88%; width: 38%;
     display: flex; align-items: flex-end; justify-content: center;
-    transition: opacity 0.35s ease, filter 0.3s ease;
+    transition: opacity 0.35s ease, filter 0.3s ease, transform 0.45s ease;
     pointer-events: none;
   }
   #spr-left  { left: 2%; }
@@ -220,6 +220,11 @@
   #title::before {
     content: ""; position: absolute; inset: 0; z-index: -1;
     background: linear-gradient(#0006 0%, #0002 40%, #000c 100%);
+  }
+  /* title + byline lifted up into the sky (above the tree and the characters' heads) */
+  #title-head {
+    position: absolute; top: 10cqh; left: 0; right: 0;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
   }
   #title h1 {
     font-family: var(--vo); font-weight: 700; letter-spacing: 0.22em;
@@ -410,8 +415,10 @@
     <div id="title" class="menu" style="display:none">
       <div id="title-art"></div>
       <div id="prototype-sign">PROTOTYPE</div>
-      <h1>EVERYTHING THAT HURT YOU</h1>
-      <div class="byline">a kinetic novel &middot; Eliezer Yudkowsky</div>
+      <div id="title-head">
+        <h1>EVERYTHING THAT HURT YOU</h1>
+        <div class="byline">a kinetic novel &middot; Eliezer Yudkowsky</div>
+      </div>
       <div class="notice">This is a grownup story. Content may be disturbing to some viewers.</div>
       <button id="btn-begin">Begin</button>
       <button id="btn-continue" style="display:none">Continue</button>
