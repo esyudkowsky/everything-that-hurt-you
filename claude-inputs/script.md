@@ -562,7 +562,7 @@ Healer: Well if you won't tell even her, that sounds to her like you're planning
 
 : [avram sad-distant L]
 
-Avram:
+Avram: ...
 
 : [healer dry-neutral R] The healer ties off the splint.
 

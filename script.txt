@@ -653,27 +653,31 @@ Avram: Something like that.
 
 @clear all
 @bg bg_dungeon_mid fade
+A bad floor, deeper than they should have pushed in one day.
+
 @sfx sfx_sword
 @flash white 120
-A bad floor, deeper than they should have pushed in one day. Something catches Avram's sword arm against the wall before she kills it.
+A mountain troll's club bashes Avram's sword arm against the wall.
+
+His magic blasts its head clean off, but his wound is not as fast to heal.
 
 @bg bg_forest_road fade
-The walk out is slow. His arm is in a sling. She walks between him and the treeline.
+His arm throbs as he walks the road. Neither of them are expert healers and it's the first serious wound either of them have taken.
 
 @bg bg_camp_night fade
 @tint dusk
-By evening they've fallen in with a traveling caravan. Wagons, cookfires, hired guards. The caravan has a healer.
+By evening they've found a traveling caravan. Wagons, cookfires, hired guards. A healer.
 
 @sprite avram neutral left
 @sprite healer dry-neutral right
-The healer, gray-braided, splints Avram's arm. Across the camp, out of earshot, she tends the fire.
+The gray-braided healer splints Avram's arm for a few coins, though for some reason she insists on talking to his slave in private before agreeing to treat him.
 
 Healer: Your slavegirl's not happy, young man.
 
 Avram: What's wrong?
 
 @sprite healer pointed right
-Healer: That she doesn't know where she stands with you, why you treat her the way you do, what's in store for her, what her life's going to be like, and why you won't fuck her.
+Healer: She doesn't know where she stands with you, why you treat her the way you do, what's in store for her, what her life's going to be like, and why you won't fuck her.
 
 @sprite avram unreadable left
 Avram: It isn't about her. There's a reason and it's a good one.
@@ -687,8 +691,8 @@ Avram: Private.
 Healer: Well if you won't tell even her, that sounds to her like you're planning to sell her off, hm? Not settling down for the long run with her?
 
 @sprite avram sad-distant left
-@note grieving-before-the-fact: he knows exactly what he's planning
-Avram looks across at her, silhouetted against the fire.
+@note author left "Avram:" blank in script.md here — rendered as a silent beat; replace with a line if intended
+Avram: ...
 
 @sprite healer dry-neutral right
 The healer ties off the splint.
@@ -701,6 +705,9 @@ Healer: Your coin, your slave.
 @note ========== 10. MONTAGE B — PARITY ==========
 @chapter 10 Parity
 
+@bgm bgm_montage
+@note bgm change at 9->10 (author 2026-07-03): the campfire theme gives way to the montage theme
+@note for the parity montage, crossfading in during the ch9->10 fade.
 @clear all
 @montage begin 4
 @cg cg_back_to_back
@@ -720,11 +727,14 @@ Healer: Your coin, your slave.
 > [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 12 → Lv 16]
 @overlay end
 
-@bg bg_dungeon_mid fade
+@note descent: a different dungeon CG behind each flashing "Floor N" marker (author 2026-07-03)
+@cg cg_dungeon_a fade
 @overlay floor 16
+@cg cg_dungeon_b fade
 @overlay floor 18
-@bg bg_dungeon_deep cut
+@cg cg_dungeon_c fade
 @overlay floor 20
+@clear all
 
 
 @note ========== 11. SLAVETAKERS / THE WOUND / THE TEMPLE ==========
@@ -739,7 +749,10 @@ Healer: Your coin, your slave.
 @note slavetaking equipment
 
 @bg bg_forest_road cut
-@sprite avram neutral left
+@note eyes-narrowed: Avram looks determined/focused facing the bandit (author 2026-07-03).
+@note ("Then I suppose you will be the first to die..." below keeps sad-distant — the deliberate
+@note grieving-before-the-fact beat; say if you want that one determined too.)
+@sprite avram eyes-narrowed left
 @sprite slavetaker easy-menace right
 
 Bandit: Easy now. Lay down weapons. No need for anyone to die today.

@@ -432,3 +432,20 @@
   script.txt (dialogue text verbatim). git diff shows NOTHING until the file is saved — so the
   author must save (Ctrl+S) before I can pick edits up (enabling VSCode auto-save makes this
   seamless). Parity 212=212, validator 0 errors after the batch.
+
+- 2026-07-04 (Opus, continuation batch): (a) Synced author's Ch9 (Healer) rewrite from
+  script.md -> script.txt: the dungeon mishap is now a mountain-troll fight (club to the
+  sword arm; his magic blasts its head off; wound slow to heal), walk-out/caravan/splint
+  reworded (healer "insists on talking to his slave in private for a few coins"), Healer
+  "That she doesn't know" -> "She doesn't know". Author left a BLANK "Avram:" beat after
+  the healer's "sell her off" line -> rendered as a silent "Avram: ..." in both files
+  (flagged: replace with a real line if intended). (b) BGM change 9->10: campfire theme ->
+  bgm_montage for the parity montage. (c) Ch10 floor markers now show a DIFFERENT dungeon
+  CG per floor (cg_dungeon_a corridor/16, cg_dungeon_b chasm-bridge/18, cg_dungeon_c pillar
+  hall/20) and the flashing sign reads "Floor 16" not "16" (engine showFloor). Same pattern
+  could be applied to ch12's floors 26/30/35 if wanted. (d) cg_ambush_ring regenerated (PRO):
+  camera behind the pair so we see their backs as they face the ring of attackers (attackers'
+  fronts visible), Avram's profile SUBTLY alarmed, hers harder. (e) Ambush confrontation
+  ("We've no wealth worth your risk") -> avram eyes-narrowed (determined facing the bandit);
+  the later "first to die by my hand" line kept sad-distant (deliberate grief beat).
+  All validated: 0 errors, dialogue parity 213=213, app boots clean.

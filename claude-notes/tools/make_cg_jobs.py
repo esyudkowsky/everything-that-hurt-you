@@ -198,10 +198,28 @@ CGS = [
   "cheerful; {AVRAM} holds out his bowl to receive it. A practiced wordless ritual between them — calm "
   "domestic warmth. Firelight palette."),
  ("cg_ambush_ring", [AV, HER, SLV],
-  f"A narrow forest road walled by dark trees, late day. {AVRAM} and {SHE} halted at center, "
-  "back-to-back-adjacent, tense. SIX armed figures in dark practical armor step out of the treeline — "
-  "some ahead, some behind, encircling. The lead figure is the weathered captain from the third reference, "
-  "relaxed, professionally menacing. No weapons drawn yet. Tense standoff composition."),
+  f"A narrow forest road walled by dark trees, late day. Camera positioned BEHIND {AVRAM} and {SHE}, so we "
+  "see the two of them from BEHIND — their backs toward the viewer — as they turn to FACE their attackers. "
+  "Ahead of them, facing back toward them (and toward the camera), a ring of SIX armed figures in dark "
+  "practical armor steps out of the treeline, encircling; the lead figure is the weathered captain from the "
+  "third reference, relaxed and professionally menacing. Avram and her are at a slight three-quarter back "
+  "angle so we just catch their profiles: Avram's profile SUBTLY, MILDLY alarmed — a small tense wary look, "
+  "brows slightly raised, NOT hugely exaggerated, NOT panicked; her profile harder and wary. No weapons "
+  "drawn yet. Tense standoff, the pair squarely facing the threat together — their backs and the attackers' "
+  "fronts both clearly visible."),
+ # ch10 floor-descent CGs: a different dungeon environment behind each flashing "Floor N" marker
+ ("cg_dungeon_a", [],
+  "Dungeon-depths establishing CG, 16:9, no named characters (at most tiny distant silhouettes): a torchlit "
+  "rough-hewn stone corridor descending underground, worn steps going down into gloom, damp mossy walls, a "
+  "few scattered old bones. Cool blue stone light with warm torch accents. Ominous, quiet, a mid-deep floor."),
+ ("cg_dungeon_b", [],
+  "Dungeon-depths establishing CG, 16:9, no named characters: a vast underground cavern with a narrow stone "
+  "bridge over a black bottomless chasm, faint cold blue glow far below, huge stalactites, immense scale. "
+  "Colder and deeper and more dangerous than a corridor — awe and menace, no action."),
+ ("cg_dungeon_c", [],
+  "Dungeon-depths establishing CG, 16:9, no named characters: a deep ancient hall of black stone, colossal "
+  "carved pillars vanishing up into darkness, faint cold arcane light, drifting dust, utter silence — the "
+  "deepest and most ominous floor so far."),
  ("cg_lance_hit", [HER, AV],
   f"The wound, on the forest road: {SHE} mid-leap in front of {AVRAM}, her body between him and the "
   "attack, arms spread — a crackling LANCE OF DARK FORCE from off-frame punching through her chest armor. "

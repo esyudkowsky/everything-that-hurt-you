@@ -547,7 +547,8 @@ if (typeof document !== "undefined") (function () {
   }
 
   function showFloor(n) {
-    $("floor-num").textContent = n;
+    // label reads "Floor 16", not a bare "16" — readers won't parse the number alone
+    $("floor-num").textContent = "Floor " + n;
     const el = $("floor");
     el.style.display = "";
     el.style.opacity = "0";
