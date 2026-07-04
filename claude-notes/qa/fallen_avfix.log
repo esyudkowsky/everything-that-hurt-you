@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspaces/everything-that-hurt-you/claude-notes/tools/contact.py", line 32, in <module>
+    main()
+  File "/workspaces/everything-that-hurt-you/claude-notes/tools/contact.py", line 13, in main
+    img = Image.open(p).convert("RGBA")
+          ^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/PIL/Image.py", line 3639, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'claude-notes/qa/wound_candidates/fallen_avfix_1.png'
+FAIL claude-notes/qa/wound_candidates/fallen_avfix_1.png :: 
+OK   claude-notes/qa/wound_candidates/fallen_avfix_2.png
+OK   claude-notes/qa/wound_candidates/fallen_avfix_3.png
+DONE

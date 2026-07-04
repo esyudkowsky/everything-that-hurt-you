@@ -661,6 +661,9 @@ Avram: I'll pay whatever it takes.
 : [cg_vigil] Dim sick-room, night: Avram in the chair by her cot, her bandaged and unconscious in the
 bed, the attendant watching from the doorway. (The CG holds through the whole attendant exchange.)
 
+: [pause] Silent beat on the sick-room — the reader clicks once before the attendant speaks. (Engine
+`@hold`; this `: [pause]` marker is how a click-to-advance pause is written in this master.)
+
 Attendant: Got attached to the slave, huh.
 
 Avram: She saved my life.

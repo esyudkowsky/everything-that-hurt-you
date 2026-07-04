@@ -850,6 +850,9 @@ Avram: I'll pay whatever it takes.
 @note holds through the whole attendant exchange — fixes ART-TODO #11 (she is
 @note visibly in the bed here, not an empty cot) and SCRIPT-TODO #16 (attendant
 @note speaks to Avram directly, no walk-off).
+@hold
+@note silent beat: hold on the sick-room, click to advance before the attendant
+@note speaks (author 2026-07-04)
 
 Attendant: Got attached to the slave, huh.
 
