@@ -569,3 +569,17 @@
   author script.md edits: "Her: You're getting frightening, Master." (dropped "It went quiet in
   there."); ch12 status overlay gained "Earth Magic: Lv 2 · Water Magic: Lv 3". Parity 217=217,
   validate 0 errors, app boots clean.
+
+- 2026-07-04 (Opus, BG/CG merged into ONE scene layer): eliminated the separate #cglayer —
+  @bg and @cg now both render to the SINGLE scene layer (#bglayer); a @cg replaces a @bg and
+  vice versa (single-layer crossfade), which kills the cross-layer flash/ghost bugs that came
+  from fading two layers at once. Refactor: setBg/showCg both swapLayer(#bglayer); clearCg now
+  clears #bglayer (used by voiceover-on to go black); showCgInstant renders to #bglayer; seek
+  replay makes st.bg/st.cg mutually exclusive (each nulls the other). The only remaining
+  @bg-vs-@cg difference is semantic: @cg clears sprites (full art) + looks up manifest.cg;
+  @bg keeps sprites (backdrop) + looks up manifest.bg. Sprites render ABOVE the scene layer, so
+  @sprite after @cg puts a dialogue figure over a CG. #cglayer left in the DOM but vestigial
+  (empty). Verified: opening bg<->cg transitions, voiceover-on clears to black / voiceover-over
+  keeps the scene, sprite-over-CG composites (slavetaker over cg_her_fallen), no page errors,
+  validate 0 errors. NOTE: this fully supersedes the informal-spec "cg covers background and
+  sprites" — CG is now just a scene image on the same layer as BG, under the sprites.

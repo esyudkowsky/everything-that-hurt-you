@@ -266,25 +266,26 @@ if (typeof document !== "undefined") (function () {
 
   /* ---------- render primitives ---------- */
 
+  // BG and CG are ONE scene layer (#bglayer). A @bg or @cg just replaces whatever's
+  // there — no second layer, no cross-fade between two layers (that was the source of
+  // the "weird flashes"). The only difference: a @cg is full art so it clears sprites;
+  // a @bg keeps them (characters stand in front of a backdrop). To put a dialogue figure
+  // over a CG, set the @sprite AFTER the @cg.
   function setBg(id, trans, instant) {
-    st.bg = id;
+    st.bg = id; st.cg = null;
     swapLayer($("bglayer"), makeLayerImg("bg", id), instant ? "cut" : trans);
-    clearCg(instant ? "cut" : trans);
     clearInscription();
   }
   function showCg(id, trans, instant) {
-    st.cg = id;
-    // Sprites now render ABOVE the CG layer, so a CG no longer covers them.
-    // Clear any active sprites when a CG appears (they were invisible under the CG
-    // before, so this preserves the "full art scene" look); to place a dialogue
-    // figure OVER a CG, set the @sprite AFTER the @cg.
-    execClear("all", true);
-    swapLayer($("cglayer"), makeLayerImg("cg", id), instant ? "cut" : trans);
+    st.cg = id; st.bg = null;
+    execClear("all", instant);
+    swapLayer($("bglayer"), makeLayerImg("cg", id), instant ? "cut" : trans);
     clearInscription();
   }
+  // clears the whole scene layer (bg OR cg) — used when the voiceover goes to on-black
   function clearCg(trans) {
-    st.cg = null;
-    const c = $("cglayer");
+    st.cg = null; st.bg = null;
+    const c = $("bglayer");
     if (!c.children.length) return;
     if (trans === "cut") {
       c.innerHTML = "";
@@ -1009,7 +1010,7 @@ if (typeof document !== "undefined") (function () {
       const c = SCRIPT.ins[j];
       switch (c.op) {
         case "bg": st.bg = c.id; st.cg = null; st.inscription = null; break;
-        case "cg": st.cg = c.id; st.inscription = null; st.sprites = { left: null, right: null }; break;
+        case "cg": st.cg = c.id; st.bg = null; st.inscription = null; st.sprites = { left: null, right: null }; break;
         case "sprite": st.sprites[c.slot] = { char: c.char, expr: c.expr }; break;
         case "clear":
           if (c.what === "all") st.sprites = { left: null, right: null };
@@ -1052,8 +1053,8 @@ if (typeof document !== "undefined") (function () {
   function showCgInstant(id) {
     const el = makeLayerImg("cg", id);
     el.style.opacity = "1";
-    $("cglayer").innerHTML = "";
-    $("cglayer").appendChild(el);
+    $("bglayer").innerHTML = "";
+    $("bglayer").appendChild(el);
   }
 
   /* ---------- title / menus / end ---------- */
