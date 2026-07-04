@@ -816,11 +816,14 @@ Another ambusher's off-hand comes up with a short black rod, leveled at Avram fr
 @cg cg_her_fallen cut
 @note her crumpled on the road in front of Avram, same scene; punched hole in
 @note her breastplate, realistic blood (author 2026-07-04: blood where blood
-@note would realistically appear — do not sanitize). The slavetaker's
-@note post-strike lines play over this panel (CG covers sprites).
+@note would realistically appear — do not sanitize).
 @hold
 
-@sprite slavetaker snarl right
+@bg bg_forest_road cut
+@note cut off the CG to a forest-road shot so the Slavetaker's AVATAR is actually visible — he
+@note slides in at right for his cruel post-strike line (author 2026-07-04). Previously his sprite
+@note was set behind cg_her_fallen and hidden, since CGs cover sprites.
+@sprite slavetaker snarl right slide
 Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going to make you regret that really fucking badly --
 
 @clear all
@@ -907,8 +910,10 @@ Avram: Let me handle this one alone.
 @clear all
 @cg cg_boss_bench fade
 @hold
-@note her on the steps outside the great doors, chin in hands, small against the
-@note architecture — anxious/on-edge, NOT smiling (ART-TODO #12)
+@note INSIDE the boss chamber now (author 2026-07-04, was her waiting OUTSIDE the doors):
+@note Haurvatat hangs back to one side by the entrance while Avram fights the floor boss —
+@note inside but deliberately NOT joining, watching, tense/on-edge. cg_boss_fight below then
+@note tightens on Avram's solo fight.
 
 @bgm bgm_dungeon
 @cg cg_boss_fight cut

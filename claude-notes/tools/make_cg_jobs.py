@@ -262,12 +262,13 @@ CGS = [
   f"the blanket), a single candle, and {AVRAM} sitting in the wooden chair beside the cot, elbows on "
   "knees, hands clasped, utterly unmoving, watching her. A temple attendant (young woman, short dark hair) "
   "stands watching quietly from the glowing doorway behind him. Long-night stillness."),
- ("cg_boss_bench", [HER],
-  f"A vast dungeon hall with enormous sealed double doors of dark stone and bronze, steps before them. "
-  f"{SHE} sits alone on the steps beside the doors, small against the colossal architecture, elbows on "
-  "knees, hands clasped tight, tail curled around her feet. Her expression is ANXIOUS and on-edge — "
-  "worried, tense, watching the doors, NOT smiling, waiting for something behind them to end. Faint cold "
-  "glow. The composition emphasizes how small she is against the doors."),
+ ("cg_boss_bench", [HER, AV_L],
+  f"INSIDE a huge boss chamber deep in the dungeon. In the CENTER/background {AVRAML} fights a massive dark "
+  "stone-and-shadow dungeon boss, his sword blazing white-gold. Off to ONE SIDE, hanging back near the wall "
+  f"by the entrance, {SHE} waits and watches — she is INSIDE the chamber but deliberately NOT joining the "
+  "fight, holding back, tense and on-edge yet patient, ready if she's needed, her eyes on Avram. She is "
+  "small, to the side; the fight dominates the frame. Cold cavernous dungeon light with warm sword-glow. "
+  "EXACTLY ONE Avram and ONE Haurvatat."),
  ("cg_boss_fight", [AV_L],
   f"Inside a huge boss chamber deep in the dungeon: {AVRAML} ALONE, mid-fight against a massive dungeon "
   "boss (a hulking dark stone-and-shadow monster looming over him), his sword blazing with white-gold "

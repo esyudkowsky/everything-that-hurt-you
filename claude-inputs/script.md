@@ -640,9 +640,10 @@ of him from the same angle she was standing — the dark lance punches through h
 shard protruding; she is hit by magic.)
 
 : [cg_her_fallen] Her, from the same complex melee, fallen to the ground and kneeling — punched hole in
-her breastplate, realistic blood. Avram has no time to kneel beside her. (Slavetaker's line plays over this.)
+her breastplate, realistic blood. Avram has no time to kneel beside her.
 
-: [slavetaker snarl R]
+: [bg_forest_road | slavetaker snarl R (slides in)] Cut off the CG to a forest-road shot so the
+Slavetaker's avatar is visible — he slides onto the right for his post-strike line.
 
 Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going to make you regret that really fucking badly --
 
@@ -704,8 +705,8 @@ face slightly harder.)
 
 Avram: Let me handle this one alone.
 
-: [cg_boss_bench] Her on the steps outside the great doors, chin in hands, small against the
-architecture — anxious/on-edge, not smiling.
+: [cg_boss_bench] Inside the boss chamber: Haurvatat hangs back to one side by the entrance, watching,
+tense/on-edge, while Avram fights the floor boss — inside but deliberately not joining the fight.
 
 : [cg_boss_fight] Inside the boss chamber: Avram alone, mid-fight against the floor boss, sword lit
 with magic, holding his own — equal-and-rising, not desperate.
