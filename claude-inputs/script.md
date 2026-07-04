@@ -202,7 +202,8 @@ smile, posing fiercely with a sword. The announcer gestures at her; no dialogue 
 
 : [cg_auction_sexy] She strikes a sexy pose, face still cheerful; the announcer now leering.
 
-: [announcer barker-grin R]
+: (No announcer sprite — cg_auction_sexy already shows him, so his line plays over the CG to avoid a
+doubled announcer.)
 
 Announcer: A *war*-slave, sers! Blooded on the low floors, sound of wind and limb — wolf-blood stock, twice as hardy as any human and worth three warriors on a campaign!
 
@@ -762,11 +763,17 @@ Her: Definitely, Master. I'm starting to worry that I'm useless to you, in the d
 
 : [avram_late eyes-narrowed L] Avram snaps into sudden, deadly-serious focus.
 
-Avram: This is a very serious question. If you lie about it, if you're pretending to be weaker than you are, to make me feel better, I could *die.* Am I strong enough to beat you easily in a real fight?
+Avram: This is a very serious question.
+
+Avram: If you lie about it, if you're pretending to be weaker than you are, to make me feel better, I could *die.*
+
+Avram: Am I strong enough to beat you easily in a real fight?
 
 : [her matter-of-fact R]
 
 Her: I don't understand.
+
+: [avram_late neutral L]
 
 Avram: That's fine. Just answer the question with the complete truth.
 
@@ -774,7 +781,8 @@ Her: You seem strong enough to defeat me easily, Master, ten times out of ten. E
 
 : [avram_late sad-distant L]
 
-Avram: Okay. I didn't want to say this - before - it seemed cruel to say it before I was ready to do it - but I always planned, as soon I was strong enough to survive without your protection, to free you.
+Avram: Okay. I didn't want to say this - before - it seemed cruel to say it before I was ready to do it.
+Avram: But I always planned, as soon I was strong enough to survive without your protection, to free you.
 
 : (Asset-level rule: she has no sad/worried expression before she is freed; her mask here is played
 with matter-of-fact and cheer exactly as specced — the flatness IS the tell.)
@@ -786,6 +794,8 @@ Her: Oh... oh.
 Her: I'm fine being your slave, Master. You don't have to -
 
 Avram: I really, really have to.
+
+: [her matter-of-fact R]
 
 Her: Master, I - like the way things have been with you. You're very mighty and wise, and I'm proud to be your slave. I would rather that things just stay as they are.
 
@@ -799,13 +809,17 @@ Avram: It's - something of a sacred rite among my own people, when somebody step
 
 Her: So just leave the collar on me, then?
 
-: [avram_late neutral L]
+: [avram_late sad-distant L]
 
 Avram: Yeah, see, the part where they step forward of their own will is important. This collar is *not* that. From my perspective it's a horrific blasphemy.
+
+: [her cheer R]
 
 Her: Take the collar off, then put it back on me again right away?
 
 Avram: I'm not sure how a magical loyalty collar works, exactly. I worry it might be influencing your thinking patterns, not just preventing overt disobedience.
+
+: [her matter-of-fact R]
 
 Avram: Even if you say it's not doing that, you might just be saying what the collar programmed you to say, or thinking what you subconsciously believe I wish you'd think.
 
@@ -815,17 +829,11 @@ Avram: You need to be free for a month, at least, before I'll trust that you've 
 
 Avram: If you still want to be my slave then, or just to kiss me, I wouldn't say no.
 
-: [her matter-of-fact R]
-
 Her: Is this... truly your desire, Master? Truly?
-
-: [avram_late sad-distant L]
 
 Avram: What I want has surprisingly little to do with any of this.
 
 Her: Was I not a good enough slave?
-
-: [avram_late neutral L]
 
 Avram: This isn't about that and I think you have enough common sense to know it.
 
@@ -836,14 +844,20 @@ Avram: Come here and stand still while I remove your collar.
 : [cg_collar_removal] His hands at her collar, the moment of removal. Her face NOT visible — turned
 away or out of frame.
 
-: [bg_camp_night | her_free still R] Freed from here on: no collar, bare throat clearly visible — the
+: [bg_camp_night | her_free_armored still R] Freed from here on: no collar, bare throat clearly visible — the
 key visual of the ending; the sprite sits unobstructed. She stands still and doesn't say anything.
 
 : [avram_late hollow L] Avram looks at her.
 
-Avram: You can take some time to think, if you need to. I'll be around if you want to talk to me. If you need to - say anything to me.
+Avram: You can take some time to think, if you need to.
+
+Avram: I'll be around if you want to talk to me.
+
+Avram: If you need to - say anything to me.
 
 : She still doesn't say anything, just standing still, as Avram walks away.
+
+: [pause]
 
 [bgm: stop]
 
@@ -866,14 +880,15 @@ Avram: Sorry for - interrupting you - but I felt you climb up here. My magical s
 
 Avram: It's a funny thing, I have all sorts of guesses about what you might say, and they all terrify me, and I need to hear it anyways.
 
-She stands still.
+...
 
 Avram: You can slap me for having the temerity to say this, if you want to. But even so, I'm sorry.
 
-: (Her expression stays "still" — expressionless, absent, NOT visibly sad — for every line on this
-cliff until the final-gentle switch marked below.)
+: [pause]
 
-Her: You weren't so bad. It's not a lie that you were the best master I've ever had. If it had only been you, I might be able to - live with it.
+Her: You weren't so bad. It's not a lie that you were the best master I've ever had.
+
+Her: If it had only ever been you, I might be able to - live with it.
 
 Her: The collar punished me. Like a centipede crawling in my brain and biting me when I thought anything it didn't like.
 
@@ -893,7 +908,9 @@ Avram: I was - afraid - it was, it was, it was something, like that...
 
 Her: And now you took off the collar and I can't. Can't stop. Can't stop thinking about it.
 
-Avram: Do you - I want to say this, but, I don't know if I have your permission to say it - do you know the reason I did it, or my excuse, for making you fight with me and protect me, instead of freeing you right after I bought you?
+Avram: Do you - I want to say this, but, I don't know if I have your permission to say it -
+
+Avram:  Do you know the reason I did it, or my excuse, for making you fight with me and protect me?  Instead of freeing you right after I bought you?
 
 Her: If it's what I think it is, I guessed the first week after you bought me. I didn't say it because it seemed like you didn't want me to, and Master's wants are absolute.
 
@@ -919,9 +936,9 @@ Avram: I couldn't trust anyone. Had to grow in secret. Needed protection while I
 
 Avram: I couldn't think of any safer way than a slave with a magical loyalty collar. So I could free all the slaves later.
 
-Avram: I, I figured, that awful slimeball would have bought you, if I didn't, and that made it, not okay, but a net benefit for you -
+Avram: I, I figured, that awful slimeball would have bought you, if I didn't, and that made it, not okay, but a net benefit for you.
 
-Avram: and I, I tried to treat you the best I possibly could. But I needed somebody to protect me, until I was strong enough, and I couldn't trust anyone -
+Avram: And I tried to treat you the best I possibly could. But I needed somebody to protect me, until I was strong enough, and I couldn't trust anyone -
 
 Her: Yeah, I get it.
 
@@ -931,9 +948,7 @@ Her: The collar, the only kind of thinking it allows, I kept worrying that I was
 
 Her: If you'd used me and I hadn't needed to worry about that part, it really would have been - as pleasant as it ever gets while you're a slave.
 
-Avram: I'm sorry, but - I don't regret that decision.
-
-Avram: Making love to you and finding out the truth afterwards would have been horrible beyond imagining. It would have scarred me forever.
+Avram: I'm sorry, but - I don't regret that decision. Making love to you and finding out the truth afterwards would have been horrible beyond imagining. It would have scarred me forever.
 
 Avram: Even worse than this is going to, I mean.
 
@@ -957,13 +972,17 @@ Avram: Never mind. I'm sorry.
 
 : [avram_late strained L]
 
+...
+
 Her: I should - I should go very soon. This is getting harder and harder.
 
 Avram: I don't suppose you'd want to stay, not to defeat the Demon Lord, but to wipe out the entire slave trade afterwards?
 
 Her: No. I can't handle it. Can't put the collar back on, even if that made me able to handle it. Not even to free all the other slaves. I'm sorry.
 
-Avram: It's not your fault. I'll free them for you. Is there - is, is there, anything else you want to say to me, or ask of me?
+Avram: It's not your fault. I'll free them for you.
+
+Avram: Is there - is, is there, anything else you want to say to me, or ask of me?
 
 ...
 
@@ -973,7 +992,9 @@ Her: You seemed so sad and guilty and I never understood why.
 
 Her: You bought me away from a bidder who would have been much worse. You gave me the kindest treatment you could. You let me go, when you were finished.
 
-Her: Most people in this world are not that nice. I'm not sure what being nicer could look like.
+Her: Most people in this world are not that nice.
+
+Her: I'm not sure what being nicer could look like.
 
 Avram: The way my people see it, you would have the right to demand that I did more. Did better.
 
@@ -988,6 +1009,8 @@ Her: But *I* believe that you - what you did, what you're going to do - stop thi
 
 Her: That's my wish to you. Grant it.
 
+: (render this "Okay." in smaller, quieter text — a defeated, barely-there assent.)
+
 Avram: Okay.
 
 Her: Goodbye, Master.
@@ -1000,23 +1023,23 @@ Her: Goodbye, Master.
 
 : [cg_cliff_alone] Same framing, Avram alone.
 
-: [cg_cliff_step] Avram approaches the edge of the cliff, about to walk off it.
+: [cg_cliff_step] (Avram approaches the edge of the cliff, about to walk off it.)
 
-: [cg_float_down] Avram floats down next to the rocky face of the cliff, arms extended and fists glowing in the air.
+: [cg_float_down] (Avram floats down next to the rocky face of the cliff, arms extended and fists glowing in the air.)
 
-: [cg_cliff_base_aftermath] The pool of blood at the bottom extends out from an outstretched furry-clawed hand. (Restraint is the direction; nothing else shown.)
+: [cg_cliff_base_aftermath] (The pool of blood at the bottom extends out from an outstretched furry-clawed hand.)
 
-: [cg_digging] Avram starts digging in the ground, with his bare hands.
+: [cg_digging] (Avram starts digging in the ground, with his bare hands.)
 
-: [cg_sick] Kneeling to one side, turned away.
+: [cg_sick] (Kneeling to one side, turned away to throw up.)
 
-: [cg_digging] Avram digs deeper with his hands.
+: [cg_digging] (Avram digs deeper with his hands.)
 
-: [cg_grave_open] The finished open dirt grave, from over his shoulder.
+: [cg_grave_open] (The finished open dirt grave, from over his shoulder.)
 
-: [cg_grave_filled] The filled grave.
+: [cg_grave_filled] (The filled grave.)
 
-: [cg_gravestone_conjure] A stone rising under his glowing hands.
+: [cg_gravestone_conjure] (A stone rising under his glowing hands.)
 
 ---
 
@@ -1030,11 +1053,15 @@ ON BLACK — Skagganauk font:
 
 \- Down and down go the stairs beyond, through level after level of dungeon, unto the very center of the World.
 
+: [cg_dragon_hoard]
+
+OVER cg_dragon_hoard:
+
 \- There upon a mountain of treasure inconceivable, lies the last boss of the last dungeon, myself, the Void Dragon, Skagganauk, who waits and watches and guards the last key.
 
 \- Many things do I know, and one of them is this:
 
-: [cg_dragon_hoard] The utterly black silhouette of a dragon, coiled on a mountain of treasure.
+ON BLACK:
 
 \- Always two they are, when they come to this place from elsewhere; when the world has stayed in its course too long, when the boundaries of countries have stayed set and there are no more great discoveries in the academies of magic.
 
@@ -1053,6 +1080,10 @@ calm "before" companion to cg_burning_walk.
 > "Haurvatat"
 > Born 7005, died 7023
 > I will unmake everything that hurt you, and maybe then I'll feel better
+
+: [cg_forest_walk]
+
+SCREEN WHITEOUT, HISS.
 
 : [cg_burning_walk] Avram walking through the scathed and burning forest, back to viewer. The final
 line renders in the Skagganauk font OVER this CG (letterboxed), not on black.

@@ -21,6 +21,7 @@ function parseScript(text) {
   const raw = text.split(/\r?\n/);
   const ins = [];
   const chapters = [];
+  let pendingSmall = false; // @small marks the NEXT say to render smaller/quieter
   let i = 0;
   while (i < raw.length) {
     const line = raw[i].trim();
@@ -90,6 +91,9 @@ function parseScript(text) {
         case "hold":
           ins.push({ op: "hold" });
           break;
+        case "small":
+          pendingSmall = true; // attaches to the next say line; no instruction
+          break;
         case "textbox":
           ins.push({ op: "textbox", show: rest !== "hide" });
           break;
@@ -117,7 +121,8 @@ function parseScript(text) {
     } else {
       const dm = line.match(/^([A-Za-z][A-Za-z0-9 ]{0,20}?):\s+(.*)$/);
       if (dm && SPEAKERS.has(dm[1])) {
-        ins.push({ op: "say", speaker: dm[1], text: dm[2] });
+        ins.push({ op: "say", speaker: dm[1], text: dm[2], small: pendingSmall });
+        pendingSmall = false;
       } else {
         ins.push({ op: "narrate", text: line });
       }
@@ -162,8 +167,10 @@ if (typeof document !== "undefined") (function () {
   let pc = 0;
   let maxPc = 0;
   let finished = false;
+  let cameFromFinale = false; // reached the title straight from the ending this session
   let waiting = false;     // waiting for click at ins[pc]
   let autoTimer = null;    // pause/floor/montage auto-advance
+  let voHideTimer = null;  // deferred voiceover-layer fade-out hide
   let typer = null;        // {tokens, count, total, node}
   let mode = "title";      // title | play | menu
   let statusShown = false; // status overlay currently waiting
@@ -426,10 +433,14 @@ if (typeof document !== "undefined") (function () {
     node.textContent = "";
   }
 
-  function startTyper(text, italicAll) {
+  function startTyper(text, italicAll, small) {
     const node = $("dialog");
     node.innerHTML = "";
     fitDialogFont(text);
+    // @small lines (e.g. the defeated "Okay.") render smaller/quieter; override
+    // the fitted size with a deliberately small one and dim slightly.
+    node.classList.toggle("small-line", !!small);
+    if (small) node.style.fontSize = "1.9cqh";
     const tokens = emphasisTokens(text);
     const total = tokens.reduce((a, t) => a + t.t.length, 0);
     typer = { tokens, count: 0, total, node, italicAll };
@@ -477,6 +488,11 @@ if (typeof document !== "undefined") (function () {
   function setVoiceover(mode2, instant) {
     st.vo = mode2;
     const layer = $("volayer");
+    // cancel any pending fade-out hide from a previous "off": otherwise, when
+    // an "off" is immediately followed by "over"/"on" in the same click-advance
+    // (as in the opening voiceover run), the old 800ms timer fires later and
+    // hides the freshly-shown line with no click. (bug fix 2026-07-04)
+    if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
     if (mode2 === "on" || mode2 === "over") {
       // "on" is meant to be pure black; clear the CG instantly so a stale
       // image can't flash through while volayer's opacity fades in over the
@@ -497,7 +513,10 @@ if (typeof document !== "undefined") (function () {
         layer.style.display = "none";
       } else {
         layer.style.opacity = "0";
-        setTimeout(() => (layer.style.display = "none"), 800);
+        voHideTimer = setTimeout(() => {
+          voHideTimer = null;
+          layer.style.display = "none";
+        }, 800);
       }
       $("volines").innerHTML = "";
       st.voLines = [];
@@ -743,7 +762,7 @@ if (typeof document !== "undefined") (function () {
         }
         showTextbox(c.op === "say" ? c.speaker : null);
         applyDim(c.op === "say" ? c.speaker : null);
-        startTyper(c.text, c.op === "narrate");
+        startTyper(c.text, c.op === "narrate", c.small);
         save();
         return true;
       }
@@ -1072,7 +1091,12 @@ if (typeof document !== "undefined") (function () {
     // Title-screen BGM: cheerful before the story is finished, somber after.
     // (Browsers may block autoplay until the first user gesture; playBgm no-ops
     // silently in that case and picks up on the next showTitle after a click.)
-    playBgm(sv && sv.fin ? "bgm_title_end" : "bgm_title");
+    // BUT if we arrived here straight from the finale this session, KEEP
+    // Skagganauk's music (bgm_void) playing — the somber second title track is
+    // reserved for a fresh reload of a finished save, not the immediate
+    // return-to-title after the ending (author 2026-07-04).
+    if (!cameFromFinale)
+      playBgm(sv && sv.fin ? "bgm_title_end" : "bgm_title");
     updateChapterIndicator();
   }
   /* ---------- prototype password gate (kid-brother security only) ----------
@@ -1133,12 +1157,57 @@ if (typeof document !== "undefined") (function () {
   function endCard() {
     clearTimers();
     finished = true;
+    cameFromFinale = true; // returning to title from here keeps Skagganauk's music
     pc = 0;
     save();
     mode = "menu";
     $("menubtn").style.display = "none";
     $("endcard").style.display = "";
     updateChapterIndicator();
+  }
+
+  const BGM_NAMES = {
+    bgm_title: "Title Theme",
+    bgm_title_end: "Title Theme — After",
+    bgm_tavern: "The Tavern",
+    bgm_montage: "Training Days",
+    bgm_campfire: "Campfire",
+    bgm_tension: "Tension",
+    bgm_wistful: "Wistful",
+    bgm_lament: "Lament",
+    bgm_dungeon: "The Deep Floors",
+    bgm_void: "Skagganauk — The Void",
+  };
+  /* jukebox: every BGM heard up to the furthest point reached, playable from the
+     chapters screen (title context only, so a sample can't leak into gameplay). */
+  function renderMusicList(maxReached, sv) {
+    const sec = $("music-section"), mlist = $("music-list");
+    const heard = [], seen = new Set();
+    const push = (id) => {
+      if (id && id !== "stop" && !seen.has(id) && assetPath("audio", id)) {
+        seen.add(id); heard.push(id);
+      }
+    };
+    push("bgm_title");
+    const limit = Math.min(maxReached, SCRIPT.ins.length - 1);
+    for (let k = 0; k <= limit; k++)
+      if (SCRIPT.ins[k].op === "bgm") push(SCRIPT.ins[k].id);
+    if (finished || (sv && sv.fin)) push("bgm_title_end");
+    mlist.innerHTML = "";
+    if (heard.length <= 1) { sec.style.display = "none"; return; }
+    sec.style.display = "";
+    for (const id of heard) {
+      const b = document.createElement("button");
+      b.className = "music-btn" + (st.bgm === id ? " playing" : "");
+      b.textContent = BGM_NAMES[id] || id;
+      b.onclick = (e) => {
+        e.stopPropagation();
+        playBgm(id);
+        for (const c of mlist.children) c.classList.remove("playing");
+        b.classList.add("playing");
+      };
+      mlist.appendChild(b);
+    }
   }
 
   function openChapters(fromTitle) {
@@ -1159,6 +1228,8 @@ if (typeof document !== "undefined") (function () {
         };
       list.appendChild(btn);
     }
+    if (fromTitle) renderMusicList(maxReached, sv);
+    else $("music-section").style.display = "none";
     $("chapters").dataset.from = fromTitle ? "title" : "pause";
     if (fromTitle) $("title").style.display = "none";
     $("chapters").style.display = "";
@@ -1197,6 +1268,7 @@ if (typeof document !== "undefined") (function () {
       btn.classList.toggle("selected", (btn.dataset.showchapter === "1") === settings.showChapter);
   }
   function openSettings(fromTitle) {
+    disarmDelete();
     renderSettingsUI();
     $("settingsmenu").dataset.from = fromTitle ? "title" : "pause";
     if (fromTitle) $("title").style.display = "none";
@@ -1205,9 +1277,35 @@ if (typeof document !== "undefined") (function () {
     if (!fromTitle) mode = "menu";
   }
   function closeSettings() {
+    disarmDelete();
     $("settingsmenu").style.display = "none";
     if ($("settingsmenu").dataset.from === "title") showTitle();
     else openPause();
+  }
+  /* red destructive action: two-click confirm, then wipe all saved progress and
+     restore the original (pre-finish) title music. */
+  let deleteArmed = false;
+  function disarmDelete() {
+    deleteArmed = false;
+    const b = $("btn-delete-progress");
+    if (b) { b.classList.remove("armed"); b.textContent = "Delete all progress"; }
+  }
+  function onDeleteProgress() {
+    const b = $("btn-delete-progress");
+    if (!deleteArmed) {
+      deleteArmed = true;
+      b.classList.add("armed");
+      b.textContent = "Click again to erase everything";
+      return;
+    }
+    // confirmed
+    try { localStorage.removeItem(SAVE_KEY); } catch (e) {}
+    document.cookie = SAVE_KEY + "=; max-age=0; path=/";
+    finished = false; cameFromFinale = false; maxPc = 0; pc = 0;
+    disarmDelete();
+    playBgm("bgm_title"); // restore the original cheerful title theme
+    $("settingsmenu").style.display = "none";
+    showTitle();
   }
 
   /* ---------- credits + original-outline viewer (title screen only) ---------- */
@@ -1348,6 +1446,7 @@ if (typeof document !== "undefined") (function () {
     };
     $("btn-settings").onclick = () => openSettings(false);
     $("btn-settings-back").onclick = closeSettings;
+    $("btn-delete-progress").onclick = (e) => { e.stopPropagation(); onDeleteProgress(); };
     $("btn-totitle").onclick = () => { showTitle(); };
     $("btn-chapters-back").onclick = closeChapters;
     $("btn-end-title").onclick = () => showTitle();

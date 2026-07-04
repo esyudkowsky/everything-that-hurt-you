@@ -71,3 +71,13 @@ have the engine cut it; the instant silence IS the effect.
 
 ≈ $0.72 of OpenRouter credit total: six songs at $0.08, plus ~$0.24 of failed SFX
 clip attempts at $0.04 each.
+
+## Needed audio asset: sfx_hiss (added 2026-07-04)
+
+The ch15 finale now has a **whiteout + hiss** transition just before the forest
+catches fire (`@flash white 1400` + `@sfx sfx_hiss`, right before `cg_burning_walk`).
+There is no `sfx_hiss` asset yet, so the whiteout currently plays **silent**. Add a
+short white-noise / tape-hiss / static-swell one-shot as `assets/audio/sfx_hiss.*`
+and register it in `assets/manifest.json` under `audio`. (Lyria is music-only and the
+foley lane is closed, so this is a human/library task.) The validator flags it as a
+non-blocking warning until then.

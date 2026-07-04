@@ -84,6 +84,7 @@
     overflow: hidden;
   }
   #dialog em { font-style: italic; }
+  #dialog.small-line { color: #cfcabf; letter-spacing: 0.01em; }
   #adv {
     position: absolute; right: 4.5%; bottom: 4.8%;
     font-size: 2.6cqh; color: var(--gold);
@@ -355,6 +356,28 @@
     font-family: var(--serif); font-size: 1.8cqh; color: #8f8878;
     max-width: 62cqh; text-align: center;
   }
+  #settingsmenu .danger-row { margin-top: 0.5cqh; }
+  #settingsmenu .danger-btn {
+    font-family: var(--serif); font-size: 2cqh;
+    padding: 0.9cqh 1.9cqh;
+    background: #3a1414dd; color: #e7a3a3;
+    border: 1px solid #b3474766; border-radius: 0.6cqh; cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  #settingsmenu .danger-btn:hover { background: #7a1f1f; border-color: #e06a6a; color: #fff; }
+  #settingsmenu .danger-btn.armed { background: #a81f1f; border-color: #ff8a8a; color: #fff; }
+
+  #music-section { margin-top: 2cqh; display: flex; flex-direction: column; align-items: center; gap: 1.2cqh; }
+  .music-head { font-family: var(--serif); font-size: 2cqh; letter-spacing: 0.2em; color: #8f8878; }
+  #music-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1cqh; max-width: 86%; }
+  #music-list .music-btn {
+    font-family: var(--serif); font-size: 2cqh; padding: 0.7cqh 1.6cqh;
+    background: #14141cdd; color: #cfc8b6;
+    border: 1px solid #c9a75a44; border-radius: 0.6cqh; cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  #music-list .music-btn:hover { border-color: var(--gold); }
+  #music-list .music-btn.playing { background: #c9a75a2e; border-color: var(--gold); color: #f0ece2; }
 
   #chapter-indicator {
     position: absolute; top: 1.6cqh; left: 1.6cqh; z-index: 30;
@@ -500,12 +523,20 @@
         </div>
       </div>
       <div class="opt-note">Hold <b>Ctrl</b> to fast-skip through text you've already read.</div>
+      <div class="opt-row danger-row">
+        <div class="opt-label">Progress</div>
+        <button id="btn-delete-progress" class="danger-btn">Delete all progress</button>
+      </div>
       <button id="btn-settings-back">Back</button>
     </div>
 
     <div id="chapters" class="menu" style="display:none">
       <h2>CHAPTERS</h2>
       <div id="chapter-list"></div>
+      <div id="music-section" style="display:none">
+        <div class="music-head">MUSIC HEARD</div>
+        <div id="music-list"></div>
+      </div>
       <button id="btn-chapters-back">Back</button>
     </div>
 

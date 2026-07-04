@@ -165,7 +165,8 @@
     "nobleman.haughty": "assets/sprites/nobleman.haughty.png",
     "nobleman.irritated": "assets/sprites/nobleman.irritated.png",
     "slavetaker.easy-menace": "assets/sprites/slavetaker.easy-menace.png",
-    "slavetaker.snarl": "assets/sprites/slavetaker.snarl.png"
+    "slavetaker.snarl": "assets/sprites/slavetaker.snarl.png",
+    "her_free_armored.still": "assets/sprites/her_free_armored.still.png"
   },
   "ui": {
     "placeholder_card": "assets/ui/placeholder_card.png",
