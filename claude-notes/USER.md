@@ -472,3 +472,29 @@
   click the button itself. Verified via Playwright with a mocked autoplay-block: default->muted-
   at-load-then-on-after-click; persisted-mute->stays muted on plain clicks, bgm_title starts only
   when the music button is clicked.
+
+- 2026-07-04 (Fable, ch. 11 combat rework): Author flagged a story-logic hole around
+  cg_lance_hit — "if Avram's valuable, why are they trying to kill him?" Author-specified
+  fix, implemented this session: additional battle CGs + narration establishing the
+  slavetakers fight to CAPTURE (Avram is merchandise); Avram takes his FIRST LIFE in a CG
+  and keeps fighting without pause; the bandit captain shouts "Code mauve!" (verbatim
+  author line — an in-world escalation/authorization code); then ANOTHER warrior (not the
+  captain) aims the short black rod at Avram from the side; then cg_lance_hit
+  (Haurvatat interposing); then a CG of her on the ground in front of Avram (same scene);
+  then the slavetaker's existing post-strike lines; then the whiteout. Gore contingency
+  the author gave (NOT needed in the end — Nano Banana drew the fallen panel clean with a
+  scorched strike-mark): (1) generate her falling without gore and have Grok or another
+  image AI modify it in; (2) failing that, show her wracked by a curse with blackly
+  bulging veins — but DON'T let the generator overdo the veins instruction (author notes
+  most image models overdo such instructions). Keep these fallbacks in mind for any
+  future gore-adjacent panel.
+
+- 2026-07-04 (Fable, follow-up on the combat rework): Author questioned where the "no gore"
+  restraint came from — it is NOT an author request and never was. Author's actual standing
+  preference: "it is fine to have blood where blood would realistically appear." Provenance
+  of the old restraint, for the record: the "No gore beyond the strike itself" note on
+  cg_lance_hit and the "dark stains, restrained" in the cg_scream_cutoff prompt were written
+  by a prior Claude session (commit 42c1ff2), and this session's prompts extended that plus
+  added its own conservatism. Do not silently sanitize violence going forward; if an image
+  model refuses or a prompt is being softened for moderation-practicality reasons, SAY SO
+  explicitly and use the author's edit-blood-in-afterwards workaround instead.

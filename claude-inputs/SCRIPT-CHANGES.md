@@ -8,6 +8,45 @@ master script and the live stage script must be kept in sync; check this file's
 
 ---
 
+## rev. 4 edit — ch. 11 combat rework, "Code mauve" (2026-07-04)
+
+**Why (author, 2026-07-04):** story logic — the slavetakers know Avram is a valuable
+prodigy, so the old staging (captain simply pulls the lethal rod mid-melee) made no
+sense. Reworked so they visibly fight to take him ALIVE; the dark rod is an
+escalation, authorized only after Avram starts killing them.
+
+**New sequence (between cg_melee_flank and the slavetaker's post-strike lines):**
+1. NEW `cg_melee_press` + narration "They fight to take him whole. Flats and hafts,
+   hands grabbing for his sword arm. A prodigy is worth nothing dead." — two
+   slavetakers grappling/roping him, no blades raised at him.
+2. NEW `cg_first_kill` + "Avram fights to kill." / "The first life he has ever
+   taken. He does not pause."
+3. Captain shouts `Slavetaker: Code mauve!` (author-specified line, verbatim).
+4. Rod line changed: no longer the captain — "Another ambusher's off-hand comes up
+   with a short black rod, leveled at Avram from the side —" (absorbs the author's
+   partial edit already sitting in script.md, which had both old and new rod lines;
+   the old captain line is deleted).
+5. `cg_lance_hit` unchanged.
+6. NEW `cg_her_fallen` — her crumpled on the road in front of Avram, same scene
+   (punched hole in her breastplate, realistic blood). The slavetaker's
+   post-strike lines play over this panel.
+
+**Blood correction (same day):** the first pass sanitized the wounds ("no gore" —
+an inherited prior-session convention plus model conservatism, NOT an author
+request). Author: "it is fine to have blood where blood would realistically
+appear." `cg_her_fallen` and `cg_first_kill` regenerated with realistic blood;
+no image-model refusals, so the author's edit-blood-in-afterwards fallbacks were
+not needed. Clean first-pass versions kept at `claude-notes/raw/*_clean.png`.
+
+**Files touched:** `script.txt` (canonical staging), `claude-inputs/script.md`
+(mirrored), `assets/manifest.json` (+3 cg), `assets/cg/cg_melee_press|cg_first_kill|
+cg_her_fallen.png` (new art; prompts in `claude-notes/jobs/wound_rework.json`).
+**Synced to:** script.txt and script.md both updated this session, in sync.
+**Verification:** validate_script.js 0 errors (dialogue 214, +1 = "Code mauve!");
+3 new warnings are just added references to the already-missing foley sfx.
+
+---
+
 ## rev. 3 → rev. 4 (2026-07-03)
 
 **Change:** `claude-inputs/script.md` fully regenerated FROM `/script.txt` (the stage script

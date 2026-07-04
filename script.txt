@@ -781,14 +781,36 @@ Avram: Then I suppose you will be the first to die by my hand. I hope you end up
 @note ...") was cut once the art existed (SCRIPT-TODO #12); silent flash panel.
 @hold
 
+@cg cg_melee_press cut
+@note story-logic fix (author 2026-07-04): the slavetakers want Avram ALIVE —
+@note they fight to capture, and the rod only comes out after he starts
+@note killing them ("Code mauve" = the captain authorizing it).
+They fight to take him whole. Flats and hafts, hands grabbing for his sword arm. A prodigy is worth nothing dead.
+
+@sfx sfx_sword
+@flash white 120
+@cg cg_first_kill cut
+Avram fights to kill.
+
+The first life he has ever taken. He does not pause.
+
+Slavetaker: Code mauve!
+
 @bg bg_forest_road cut
 @flash white 120
-The captain's off-hand comes up with a short black rod —
+Another ambusher's off-hand comes up with a short black rod, leveled at Avram from the side —
 
 @sfx sfx_impact
 @cg cg_lance_hit cut
 @note her leaping in front of him; the dark lance through her armor into her
 @note chest; sword mid-clatter. No gore beyond the strike itself.
+@hold
+
+@cg cg_her_fallen cut
+@note her crumpled on the road in front of Avram, same scene; punched hole in
+@note her breastplate, realistic blood (author 2026-07-04: blood where blood
+@note would realistically appear — do not sanitize). The slavetaker's
+@note post-strike lines play over this panel (CG covers sprites).
 @hold
 
 @sprite slavetaker snarl right

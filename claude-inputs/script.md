@@ -619,12 +619,24 @@ Avram: Then I suppose you will be the first to die by my hand. I hope you end up
 : [sfx: sfx_sword] [flash white] [cg_melee_flank] Melee, a fast silent panel: Avram holds one flank,
 genuinely good now. (The CG carries the beat; no narration.)
 
-: [bg_forest_road] [flash white] The captain's off-hand comes up with a short black rod —
+: [cg_melee_press] They fight to take him whole. Flats and hafts, hands grabbing for his sword arm.
+A prodigy is worth nothing dead. (Story logic: the slavetakers want him alive — the rod only comes
+out after he starts killing them.)
 
-Another ambusher's off-hand comes up with a short black rod —
+: [sfx: sfx_sword] [flash white] [cg_first_kill] Avram fights to kill.
+
+The first life he has ever taken. He does not pause.
+
+Slavetaker: Code mauve!
+
+: [bg_forest_road] [flash white] Another ambusher's off-hand comes up with a short black rod, leveled
+at Avram from the side —
 
 : [sfx: sfx_impact] [cg_lance_hit] Her leaping in front of him; the dark lance through her armor into
 her chest; sword mid-clatter. No gore beyond the strike itself.
+
+: [cg_her_fallen] Her crumpled on the road in front of Avram, same scene; punched hole in her
+breastplate, realistic blood. (The slavetaker's post-strike lines play over this panel.)
 
 : [slavetaker snarl R]
 
