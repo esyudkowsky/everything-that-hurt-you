@@ -256,6 +256,43 @@
     color: #ddd6c5; margin-bottom: 3cqh;
   }
 
+  /* ---- credits ---- */
+  #creditsmenu h2 { margin-bottom: 2.5cqh; }
+  #credits-list {
+    display: flex; flex-direction: column; gap: 2cqh;
+    max-width: 86%; margin-bottom: 1cqh; text-align: center;
+  }
+  #credits-list .credit-row { font-family: var(--serif); color: #ded7c4; font-size: 2.5cqh; line-height: 1.45; }
+  #credits-list .credit-role { display: block; color: #8f8878; font-size: 1.9cqh; letter-spacing: 0.05em; }
+  #credits-list .credit-link {
+    color: var(--gold); cursor: pointer; text-decoration: underline;
+    text-underline-offset: 0.35cqh; transition: color .15s;
+  }
+  #credits-list .credit-link:hover { color: #e9d189; }
+
+  /* ---- scrollable original-outline viewer ---- */
+  #scriptview {
+    justify-content: flex-start; align-items: center;
+    padding: 3cqh 4cqh; gap: 2cqh;
+  }
+  #scriptview .sv-title {
+    font-family: var(--vo); letter-spacing: 0.14em; color: #d8d2c2;
+    font-size: 2.9cqh; text-align: center;
+  }
+  #scriptview-content {
+    flex: 1 1 auto; width: 100%; overflow-y: auto; overflow-x: hidden;
+    font-family: var(--serif); color: #e6e0d0; font-size: 2.2cqh; line-height: 1.6;
+    text-align: left; padding: 2cqh 3cqh;
+    background: #0d0d13cc; border: 1px solid #ffffff1f; border-radius: 1cqh;
+  }
+  #scriptview-content h3 {
+    font-family: var(--vo); letter-spacing: 0.1em; color: #d8d2c2;
+    font-size: 2.6cqh; margin: 2cqh 0 1cqh;
+  }
+  #scriptview-content .vo-line { color: #cdc6b3; font-style: italic; margin: 0.7cqh 0; }
+  #scriptview-content .sd-line { margin: 0.7cqh 0; color: #cfcabb; }
+  #scriptview-content em { font-style: italic; color: #f0ece2; }
+
   #settingsmenu .opt-row {
     display: flex; align-items: center; justify-content: space-between;
     width: 62cqh; max-width: 90%; gap: 2cqh;
@@ -344,7 +381,30 @@
       <button id="btn-continue" style="display:none">Continue</button>
       <button id="btn-chapters-title" style="display:none">Chapters</button>
       <button id="btn-settings-title">Settings</button>
+      <button id="btn-credits-title">Credits</button>
       <div class="notice">This is a grownup story. Content may be disturbing to some viewers.</div>
+    </div>
+
+    <div id="creditsmenu" class="menu" style="display:none">
+      <h2>CREDITS</h2>
+      <div id="credits-list">
+        <div class="credit-row">
+          <span class="credit-role">Original story outline by</span>
+          <span id="credit-outline" class="credit-link">Eliezer Yudkowsky</span>
+        </div>
+        <div class="credit-row"><span class="credit-role">Story transitions by</span>Claude 5 Fable</div>
+        <div class="credit-row"><span class="credit-role">Editing by</span>Eliezer Yudkowsky</div>
+        <div class="credit-row"><span class="credit-role">Images managed by</span>Fable 5, Opus 4.8, and Yudkowsky</div>
+        <div class="credit-row"><span class="credit-role">Images drawn by</span>Nano Banana 2 and Pro</div>
+        <div class="credit-row"><span class="credit-role">Music by</span>Google Lyria 3</div>
+      </div>
+      <button id="btn-credits-back">Back</button>
+    </div>
+
+    <div id="scriptview" class="menu" style="display:none">
+      <div class="sv-title">Original Story Outline &middot; Eliezer Yudkowsky</div>
+      <div id="scriptview-content"></div>
+      <button id="btn-scriptview-back">Back</button>
     </div>
 
     <div id="gatemenu" class="menu" style="display:none">

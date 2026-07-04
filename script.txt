@@ -88,11 +88,12 @@ The world of Elhom IV has a cycle.
 From time to time, arises a Demon Lord, feared and accursed
 
 @voiceover off
-@bg bg_road_dusty fade
-@sprite avram neutral left
-@note isekai cloak and worn leather boots now (Earth sneakers removed everywhere
-@note per ART-TODO #16 — the sneaker motif is dropped from all art)
+@cg cg_forest_trek fade
 @voiceover over
+@note re-staged 2026-07-03 (author): these two lines now play over a DIRTY Avram STILL in his
+@note original Earth clothes, making his way through the forest — no cloak yet. This leads
+@note straight into the slime encounter (also Earth clothes); the cloak/armor are acquired by
+@note the time he reaches the town gate. (Was bg_road_dusty + avram neutral.)
 
 And another rises to fight them
 
@@ -190,10 +191,18 @@ Bartender: Some guy *where* saying *what?*
 
 Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.*
 
-Avram: If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
+Avram: If the Demon Lord has shown up, I'd really like to know where they are, what they're doing.
+
+Avram: Whether their forces are invading here tomorrow.
+
+Avram: That kinda thing.
 
 @sprite bartender startled right
-Bartender: Deathstorms and balefire! No, I haven't heard anything. I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know? Or the Summoned Hero either, for that matter. I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
+Bartender: Deathstorms and balefire! No, I haven't heard anything.
+
+Bartender: I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know?
+
+Bartender: Or the Summoned Hero either, for that matter. I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
 
 @sprite avram neutral left
 Avram: Yeah, I know.
@@ -218,7 +227,11 @@ Bartender: I don't think people become heroes without pride, ya know?
 @sprite avram neutral left
 Avram: One might argue that the Summoned Hero ought to take pride in carefully executing their responsibility, to everyone in the world, to defeat the Demon Lord with minimum casualties and risk of failure.
 
-Bartender: Sounds more like a villain's style to me. If you think like that, the Summoned Hero ought to buy a high-level fighting slave and get carried through dungeons, like a sheltered noble scion, right? To avoid the risk that they get killed while they're still weak? But people like that aren't *heroes.* They'd never work up the courage to face the Demon Lord in the end.
+Bartender: Sounds more like a villain's style to me.
+
+Bartender: If you think like that, the Summoned Hero ought to buy a high-level fighting slave and get carried through dungeons, like a sheltered noble scion, right? To avoid the risk that they get killed while they're still weak?
+
+Bartender: But people like that aren't *heroes.* They'd never work up the courage to face the Demon Lord in the end.
 
 @sprite avram unreadable left
 @note direction (not in rev-2 text): hold one silent beat on unreadable — the
@@ -263,7 +276,8 @@ A rich-looking, robed nobleman near the front — two heavy scarred bodyguards b
 @note first pass; do not linger with text.
 
 @bg bg_auction_plaza cut
-@sprite avram neutral left
+@note eyes-narrowed: Avram suddenly locks focus and commits to the bid.
+@sprite avram eyes-narrowed left
 Avram raises his hand.
 
 Avram: That, and the rest of it. All of it.
@@ -327,12 +341,26 @@ Her: No, Master. I was fed just yesterday.
 
 Avram exhales.
 
-Avram: God. How the hell do I say this? Do this? Um. I want you to have an experience that is... as comfortable as it can be under these circumstances. I don't mean that I'm ordering you to pretend to be happy. Just... please let me know, how we can do this, in a way that minimizes fear and uncertainty for you. On the inside. A smile on the outside isn't what I'm looking for, not unless you mean it. And the *point* of this whole concept is to make things easier on you, which means, I'm *not* going to punish you if you don't get it right.
+Avram: God. How the hell do I say this? Do this?
+
+Avram: Um. I want you to have an experience that is... as comfortable as it can be under these circumstances.
+
+Avram: I don't mean that I'm ordering you to pretend to be happy.
+
+Avram: Just... please let me know, how we can do this, in a way that minimizes fear and uncertainty for you. On the inside.
+
+Avram: A smile on the outside isn't what I'm looking for, not unless you mean it.
+
+Avram: And the *point* of this whole concept is to make things easier on you, which means, I'm *not* going to punish you if you don't get it right.
 
 Her: Master's wishes... are my command? I'm not sure I understand Master's wishes, though.
 
 @sprite avram neutral left
-Avram: That's fine. Next we're going to the finest restaurant in this town and eating a nice meal together, including any of your favorite foods that are on the menu regardless of what they cost. And, if it's okay with you, I'd rather you didn't say anything about how grateful you are for such kindly treatment from me.
+Avram: That's fine.
+
+Avram: Next we're going to the finest restaurant in this town and eating a nice meal together, including any of your favorite foods that are on the menu regardless of what they cost.
+
+Avram: And, if it's okay with you, I'd rather you didn't say anything about how grateful you are for such kindly treatment from me.
 
 Her: Why not, Master? It's sort of an obvious thing to say.
 
@@ -907,6 +935,8 @@ Avram: I think I'm stronger than you, now. Am I wrong?
 
 Her: Definitely, Master. I'm starting to worry that I'm useless to you, in the dungeons, anyway. Does this mean your people's customs finally allow you to take me now?
 
+@note eyes-narrowed: Avram snaps into sudden, deadly-serious focus.
+@sprite avram_late eyes-narrowed left
 Avram: This is a very serious question. If you lie about it, if you're pretending to be weaker than you are, to make me feel better, I could *die.* Am I strong enough to beat you easily in a real fight?
 
 @sprite her_camp matter-of-fact right
@@ -932,7 +962,11 @@ Avram: I really, really have to.
 Her: Master, I - like the way things have been with you. You're very mighty and wise, and I'm proud to be your slave. I would rather that things just stay as they are.
 
 @sprite avram_late gentle left
-Avram: If you still feel that way in a month, I wouldn't object to trying out putting a collar back on you. Not this collar, not a magical slave collar. It's - something of a sacred rite among my own people, when somebody steps forward to receive a collar from the one they love, that they name their master of their own will.
+Avram: If you still feel that way in a month, I wouldn't object to trying out putting a collar back on you.
+
+Avram: Not this collar, not a magical slave collar.
+
+Avram: It's - something of a sacred rite among my own people, when somebody steps forward to receive a collar from the one they love, that they name their master of their own will.
 
 Her: So just leave the collar on me, then?
 
@@ -960,7 +994,11 @@ Avram: What I want has surprisingly little to do with any of this.
 Her: Was I not a good enough slave?
 
 @sprite avram_late neutral left
-Avram: This isn't about that and I think you have enough common sense to know it. Look, I'm sorry, I've tried to avoid giving you explicit orders, but - this isn't optional. Come here and stand still while I remove your collar.
+Avram: This isn't about that and I think you have enough common sense to know it.
+
+Avram: Look, I'm sorry, I've tried to avoid giving you explicit orders, but - this isn't optional.
+
+Avram: Come here and stand still while I remove your collar.
 
 @clear all
 @cg cg_collar_removal fade
@@ -1039,15 +1077,45 @@ Avram: I'm the Summoned Hero.
 
 Her: No, really? You seemed like such an inhabitant of this planet.
 
-Avram: I'm the Hero and after I've defeated the Demon Lord, when I'm strong enough, I'm going to wipe every slave collar and every slave merchant off the face of this world. And then, somehow, I don't know how, arrange it so the slave trade doesn't just come back a hundred years later. That's going to be the real hard part, even if I can do the rest.
+Avram: I'm the Hero and after I've defeated the Demon Lord, when I'm strong enough, I'm going to wipe every slave collar and every slave merchant off the face of this world.
+
+Avram: And then, somehow, I don't know how, arrange it so the slave trade doesn't just come back a hundred years later.
+
+Avram: That's going to be the real hard part, even if I can do the rest.
 
 She goes on looking over the edge of the cliff.
 
-Avram: The nobles know, from what I heard. They know the Summoned Heroes sometimes don't like what they see when they get here. I suspect the nobles of encouraging Heroes to confront Demon Lords too soon, trying behind the scenes for a mutual kill. I couldn't trust anyone. Had to grow in secret. Needed protection while I learned to fight. I couldn't think of any safer way than a slave with a magical loyalty collar. So I could free all the slaves later. I, I figured, that awful slimeball would have bought you, if I didn't, and that made it, not okay, but a net benefit for you - and I, I tried to treat you the best I possibly could. But I needed somebody to protect me, until I was strong enough, and I couldn't trust anyone -
+Avram: The nobles know, from what I heard.
 
-Her: Yeah, I get it. You know, I do wish you'd used my night services. The collar, the only kind of thinking it allows, I kept worrying that I was doing something wrong. That I wasn't being good enough for you. If you'd used me and I hadn't needed to worry about that part, it really would have been - as pleasant as it ever gets while you're a slave.
+Avram: They know the Summoned Heroes sometimes don't like what they see when they get here.
 
-Avram: I'm sorry, but - I don't regret that decision. Making love to you and finding out the truth afterwards would have been horrible beyond imagining. It would have scarred me forever. Even worse than this is going to, I mean. I - I know I have some trouble with self-forgiveness, but - even I don't think I deserved that. If I had to do it all over again, I still wouldn't have sex with you.
+Avram: I suspect the nobles of encouraging Heroes to confront Demon Lords too soon, trying behind the scenes for a mutual kill.
+
+Avram: I couldn't trust anyone. Had to grow in secret. Needed protection while I learned to fight.
+
+Avram: I couldn't think of any safer way than a slave with a magical loyalty collar. So I could free all the slaves later.
+
+Avram: I, I figured, that awful slimeball would have bought you, if I didn't, and that made it, not okay, but a net benefit for you -
+
+Avram: and I, I tried to treat you the best I possibly could. But I needed somebody to protect me, until I was strong enough, and I couldn't trust anyone -
+
+Her: Yeah, I get it.
+
+Her: You know, I do wish you'd used my night services.
+
+Her: The collar, the only kind of thinking it allows, I kept worrying that I was doing something wrong. That I wasn't being good enough for you.
+
+Her: If you'd used me and I hadn't needed to worry about that part, it really would have been - as pleasant as it ever gets while you're a slave.
+
+Avram: I'm sorry, but - I don't regret that decision.
+
+Avram: Making love to you and finding out the truth afterwards would have been horrible beyond imagining. It would have scarred me forever.
+
+Avram: Even worse than this is going to, I mean.
+
+Avram: I - I know I have some trouble with self-forgiveness, but - even I don't think I deserved that.
+
+Avram: If I had to do it all over again, I still wouldn't have sex with you.
 
 Her: I see. I forgive you, then.
 
@@ -1073,14 +1141,26 @@ Avram: It's not your fault. I'll free them for you. Is there - is, is there, any
 
 ...
 
-Her: I don't understand you, Summoned Hero. I never did. You seemed so sad and guilty and I never understood why. You bought me away from a bidder who would have been much worse. You gave me the kindest treatment you could. You let me go, when you were finished. Most people in this world are not that nice. I'm not sure what being nicer could look like.
+Her: I don't understand you, Summoned Hero. I never did.
+
+Her: You seemed so sad and guilty and I never understood why.
+
+Her: You bought me away from a bidder who would have been much worse. You gave me the kindest treatment you could. You let me go, when you were finished.
+
+Her: Most people in this world are not that nice. I'm not sure what being nicer could look like.
 
 Avram: The way my people see it, you would have the right to demand that I did more. Did better.
 
 @sprite her_free final-gentle right
 @note the ONLY switch on the cliff: small, real, tired smile, from here
 @note through "Goodbye, Master."
-Her: You keep saying that the standards of behavior are different where you came from. I don't know what the laws of your world were like. I imagine they must have been very harsh, in some ways, even if they were kindly in others. But *I* believe that you - what you did, what you're going to do - stop thinking that you're a horrible person, okay, Avram? Because you're not. That's my wish to you. Grant it.
+Her: You keep saying that the standards of behavior are different where you came from.
+
+Her: I don't know what the laws of your world were like. I imagine they must have been very harsh, in some ways, even if they were kindly in others.
+
+Her: But *I* believe that you - what you did, what you're going to do - stop thinking that you're a horrible person, okay, Avram? Because you're not.
+
+Her: That's my wish to you. Grant it.
 
 Avram: Okay.
 

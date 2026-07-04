@@ -346,3 +346,58 @@
   determined" alternates. Generated 3 options in claude-notes/qa/avram_alts/
   (avram.determined_v1/v2/v3) — PENDING author's choice of whether one replaces the
   default avram.neutral globally. NOT wired in yet.
+
+- 2026-07-03 (Opus, avatars + credits batch):
+  (a) Default Avram avatar: author picked "quietly determined v3" to REPLACE avram.neutral
+  globally (old soft neutral backed up at claude-notes/raw/avram.neutral_soft_backup.png).
+  v2 became a new sprite `avram.eyes-narrowed` (for beats where Avram SUDDENLY focuses on
+  something). v1 rejected (looked at viewer). Alternates kept in claude-notes/qa/avram_alts/.
+  (b) Gaze failure mode (author): sprites that look AT THE VIEWER instead of toward
+  center-screen are wrong unless specified. Regenerated `avram.wry` (was a dopey
+  viewer-smile) and `avram.alarm` to look toward his front-right (his partner); added a
+  gaze clause to their descs in make_expression_jobs.py. Rest of the avram set audited via
+  claude-notes/qa/avram_gaze_audit.jpg — looked fine.
+  (c) `bartender.startled` regenerated subtler (good eye only mildly widened, not bugged;
+  scar-shut left eye preserved) — desc updated in make_side_jobs.py.
+  (d) Conversation breaks (split long say-lines into click beats, dialogue text unchanged):
+  bartender "...why I'm *asking.*" | "If the Demon..."; and "You know, maybe...why it's
+  stupid." | "But if Summoned..." | "...continent?" | "Like, geez...". The "It's not that
+  type of" and "You know, maybe" beats also switched off the wry sprite (not smiling moments).
+  (e) Delivered a full LIST of further dramatic-beat break suggestions across the script
+  (esp. the ch.14 cliff monologues, incl. the 725-char "The nobles know" block) + proposed
+  `eyes-narrowed` placements — PENDING author approval, NOT yet applied.
+  (f) NEW: Credits screen on the title (btn-credits-title). Lists: Original story outline
+  by Eliezer Yudkowsky (CLICKABLE -> scrollable render of claude-inputs/original-script.md),
+  Story transitions by Claude 5 Fable, Editing by Yudkowsky, Images managed by Fable 5 /
+  Opus 4.8 / Yudkowsky, Images drawn by Nano Banana 2 and Pro, Music by Google Lyria 3.
+  Engine: openCredits/openScriptView/renderOutline in engine.js; Esc + Back navigation.
+  NOTE: the outline viewer fetches claude-inputs/original-script.md at runtime, so that
+  file must be served with the app (fails gracefully with a message if absent).
+
+- 2026-07-03 (Opus, opening-clothing + breaks workflow):
+  (a) eyes-narrowed applied to TWO beats: auction bid "That, and the rest of it. All of it."
+  (avram eyes-narrowed) and cliff "This is a very serious question...I could die." (NEW
+  avram_late.eyes-narrowed generated from the late master). Both in manifest.
+  (b) "And another rises / the Summoned Hero" restaged onto NEW cg_forest_trek = dirty Avram
+  in ORIGINAL EARTH CLOTHES trekking the forest (was bg_road_dusty + avram neutral). For
+  continuity, cg_slime_backoff + cg_slime_rock REGENERATED in dirty Earth clothes (no cloak).
+  Cloak/armor first appear at the town gate (avram.back). New AVRAM_E descriptor in
+  make_cg_jobs.py. bg_road_dusty now unused.
+  (c) BREAK CONVENTION established: author marks "%" (space-percent-space) inline in
+  script.md where a line should break into a new say-beat. Workflow chosen by author:
+  I place SUGGESTED breaks as % in script.md; author deletes/moves; I FINALIZE (convert
+  surviving % -> real line breaks in BOTH files) ONLY when the author requests. Applied
+  the author's own 3 marked breaks already (bartender "Deathstorms"/"Sounds more like a
+  villain's style"; Avram "If the Demon Lord..." with the author's "...doing. Whether..."
+  polish). Then placed 32 suggested % across 10 long monologues (script.md lines ~275-914,
+  esp. the 725-char "The nobles know" -> 6 breaks) — NOT yet finalized, script.txt still
+  has those as single lines (parity intentionally diverges until finalize).
+
+- 2026-07-03 (Opus, finalize breaks + cliff hand): Author reviewed script.md and kept all
+  32 suggested % breaks. FINALIZED: converted every % to a real line break in BOTH files
+  (10 monologues; dialogue beats 178 -> 210; parity 210=210, validator 0 errors). NOTE for
+  future finalizes: the % marks live only in script.md, so after splitting script.md you must
+  RE-SPLIT script.txt to match (align md beats -> txt) — a one-file split leaves script.txt's
+  long lines intact and breaks parity. cg_cliff_base_aftermath regenerated: her outstretched
+  hand is now bare skin + dark claws, NO fur (was too furry vs her other CGs); prompt fixed in
+  make_cg_jobs.py.

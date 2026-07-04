@@ -1,0 +1,11 @@
+[
+ {
+  "out": "assets/sprites/avram_late.eyes-narrowed.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/raw/avram_late.neutral.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dense dark curly ringlet hair, same brown eyes, same worn travel-stained cloak over fitted steel-and-leather armor, slightly harder-edged leaner face, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: eyes NARROWED in sudden sharp focus \u2014 his gaze tightening and narrowing intently on something to his front-right, brows drawn slightly down in concentration, mouth a firm calm closed line; alert and suddenly focused, NOT angry, NOT glaring, NOT a hard squint, NOT looking at the viewer/camera. Keep his warm tan skin tone. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Art-book / key-visual quality anime visual-novel talking-sprite: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ }
+]

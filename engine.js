@@ -1025,6 +1025,55 @@ if (typeof document !== "undefined") (function () {
     else openPause();
   }
 
+  /* ---------- credits + original-outline viewer (title screen only) ---------- */
+  function openCredits() {
+    $("title").style.display = "none";
+    $("creditsmenu").style.display = "";
+  }
+  function closeCredits() {
+    $("creditsmenu").style.display = "none";
+    showTitle();
+  }
+  let outlineLoaded = false;
+  function renderOutline(md) {
+    const esc = (s) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const em = (s) => esc(s).replace(/\*([^*]+)\*/g, "<em>$1</em>");
+    const out = [];
+    for (const raw of md.split(/\r?\n/)) {
+      const line = raw.trim();
+      if (!line) continue;
+      if (line.startsWith("# ")) out.push("<h3>" + em(line.slice(2)) + "</h3>");
+      else if (line.startsWith("\\- "))
+        out.push('<div class="vo-line">— ' + em(line.slice(3)) + "</div>");
+      else if (line.startsWith("- "))
+        out.push('<div class="vo-line">— ' + em(line.slice(2)) + "</div>");
+      else out.push('<div class="sd-line">' + em(line) + "</div>");
+    }
+    return out.join("\n");
+  }
+  async function openScriptView() {
+    $("creditsmenu").style.display = "none";
+    $("scriptview").style.display = "";
+    const el = $("scriptview-content");
+    if (!outlineLoaded) {
+      el.textContent = "Loading…";
+      try {
+        const r = await fetch("claude-inputs/original-script.md", { cache: "no-cache" });
+        if (!r.ok) throw new Error(String(r.status));
+        el.innerHTML = renderOutline(await r.text());
+        outlineLoaded = true;
+      } catch (e) {
+        el.textContent = "Could not load the original outline.";
+      }
+    }
+    el.scrollTop = 0;
+  }
+  function closeScriptView() {
+    $("scriptview").style.display = "none";
+    openCredits();
+  }
+
   /* ---------- input ---------- */
 
   function onAdvanceInput(e) {
@@ -1054,6 +1103,8 @@ if (typeof document !== "undefined") (function () {
       if (e.key === " " || e.key === "Enter") onAdvanceInput(e);
       else if (e.key === "Escape") {
         if (mode === "play") openPause();
+        else if ($("scriptview").style.display !== "none") closeScriptView();
+        else if ($("creditsmenu").style.display !== "none") closeCredits();
         else if ($("chapters").style.display !== "none") closeChapters();
         else if ($("settingsmenu").style.display !== "none") closeSettings();
         else if ($("pausemenu").style.display !== "none") closePause();
@@ -1080,6 +1131,10 @@ if (typeof document !== "undefined") (function () {
       else if (e.key === "Escape") { e.preventDefault(); cancelGate(); }
     });
     $("btn-settings-title").onclick = () => openSettings(true);
+    $("btn-credits-title").onclick = () => openCredits();
+    $("btn-credits-back").onclick = closeCredits;
+    $("credit-outline").onclick = () => openScriptView();
+    $("btn-scriptview-back").onclick = closeScriptView;
     $("btn-resume").onclick = closePause;
     $("btn-chapters").onclick = () => {
       $("pausemenu").style.display = "none";
