@@ -671,4 +671,37 @@
   outside-OpenRouter options if intonation disappoints = ElevenLabs v3 (inline audio tags
   like [whispers]/[sobbing], voice design, best-in-class acting) and Hume Octave
   (context-conditioned acting by design); both need their own API keys.
+- 2026-07-04 (voice-acting, round 2 — ElevenLabs): User auditioned the 4 gpt-audio trial
+  samples and REJECTED them ("pretty terrible when it comes to emotionality") — gpt-audio
+  lane is effectively closed for acting quality. User added `ELEVENLABS_KEY` as a Codespace
+  secret; it synced to `/workspaces/.codespaces/shared/user-secrets-envs.json` but does NOT
+  appear in already-running shells (read it from that JSON; a codespace restart would put it
+  in env proper). Key verified: FREE tier, 10,000 chars/month — enough for trials; a full
+  pass (~18k chars of dialogue + tags) needs a paid tier, which ALSO matters because free
+  tier is non-commercial + attribution-required. Regenerated the same 4 trial passages with
+  `eleven_v3` (stability 0.0 "creative", inline audio tags like [nervous]/[flat, drained])
+  → `claude-notes/qa/voice_trial/*_11l.mp3`. Casting: Avram = "Will" (bIHbv24MWmeRgasZH58o,
+  young relaxed male), Her = "Jessica" (cgSgspJ2msm6clMCkdW9, young bright female) — preset
+  picks for the trial; voice DESIGN (text-described custom voices) is available if these
+  don't fit. AWAITING AUDITION. Caveat: ElevenLabs returns no transcript, so no automated
+  verbatim check on this lane (tags are interpreted, not spoken — but ears must confirm).
+  User also asked for a larger aggregator carrying Hume: answered NO — Hume Octave is not
+  on OpenRouter/Replicate/fal.ai/Bedrock/Azure/Vertex; direct signup at platform.hume.ai
+  only (has a free tier). Expressive-TTS models that ARE on aggregators (fal.ai/Replicate):
+  MiniMax Speech-02, Dia, Chatterbox, Orpheus — a fal.ai key would unlock several at once.
+- 2026-07-04 (voice-acting, round 3 — diagnostic): User auditioned the ElevenLabs v3 round-2
+  samples: still "a bored voice actor reading off the words without thinking about what they
+  mean"; unsure whether the limit is the model or insufficient context/direction supplied.
+  Built a disambiguation set on the hardest line (her centipede/collar speech), all in
+  `claude-notes/qa/voice_trial/`: centipede_A_bare (no direction — floor), C_maximal +
+  C_maximal_take2 (heavy mid-sentence tags + performance punctuation; two takes to show
+  take variance), D_control_sobbing (SAME WORDS, opposite emotion — if D sounds like C,
+  tags do nothing and it's the model), E_scene_dialogue (whole cliff exchange incl. Avram's
+  apology via the /v1/text-to-dialogue endpoint — ElevenLabs' real context channel; 37s,
+  target line performed mid-scene). Objective pre-signal: same words span 7.7s→17.2s across
+  directions, so pacing direction lands; emotional truth = author's ears. Interpretation
+  rules given to user: D≈C → model limit → Hume/other; D wildly ≠ C but C still hollow →
+  channel works, direction/context needs to get richer (scene-context dialogue endpoint +
+  multi-take-and-pick workflow). Take variance (13.6s vs 17.2s for identical input) means
+  a production pipeline should generate N takes per emotional line regardless.
 - 2026-07-04 (| mid-line pauses + script.md sync + ch3 expressions): (1) `|` in narration/dialogue is a mid-line PAUSE (VN click-to-continue) — symbol is fine. Engine splits a line on `|` into segments, types to the pause, shows the arrow, and a click reveals the next segment in the same box before the beat advances (rollback/review shows the full line). Verified. (2) Synced script.md edits: removed "bartender turns away"; auction bid now a "large magical core" ("takes Avram's core, gauges him"); dropped "The binding passes..."; ch3 dropped "Avram exhales." and split "Um." onto its own line; ~10 new `|` pauses. Parity 226=226. (3) Ch3 deal scene: Avram is `discomfort` THROUGHOUT (removed stray avram neutral/wry); Haurvatat's mid-scene `matter-of-fact` change now reflected in script.md.
