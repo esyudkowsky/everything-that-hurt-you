@@ -619,7 +619,7 @@ Avram: Then I suppose you will be the first to die by my hand. I hope you end up
 : [sfx: sfx_sword] [flash white] [cg_melee_flank] Melee, a fast silent panel: Avram holds one flank,
 genuinely good now. (The CG carries the beat; no narration.)
 
-: [cg_melee_press] They fight to take him whole. Flats and hafts, hands grabbing for his sword arm.
+: [cg_melee_press] They fight to take him whole. Flats and hafts, hands trying to grab.
 A prodigy is worth nothing dead. (Story logic: the slavetakers want him alive — the rod only comes
 out after he starts killing them.)
 
@@ -627,13 +627,13 @@ out after he starts killing them.)
 
 The first life he has ever taken. He does not pause.
 
-: [bg_forest_road | slavetaker easy-menace R, slides in] The captain slides onto the right to call the order.
+: [cg_first_kill | slavetaker snarl R, slides in] The captain slides onto the right to call the order.
 
 Slavetaker: Code black!
 
-: [cg_rod_raise] [flash white] An ambusher (NOT the captain, who is the one calling it) raises the dark
-rune-carved rod from the side. Another ambusher's off-hand comes up with a short black rod, leveled at
-Avram from the side —
+: [cg_rod_raise] [flash white] An ambusher (NOT the captain, who is the one calling it) LEVELS the dark
+rune-carved rod in his RIGHT hand, aiming it off-frame at Avram (not raised in the air). Another ambusher's
+right hand comes up with a short black rod, leveled at Avram from the side —
 
 : [sfx: sfx_impact] [cg_lance_hit] Avram mid-fight (having just killed a man) as Haurvatat leaps in front
 of him from the same angle she was standing — the dark lance punches through her breastplate. (No spear
@@ -642,10 +642,9 @@ shard protruding; she is hit by magic.)
 : [cg_her_fallen] Her, from the same complex melee, fallen to the ground and kneeling — punched hole in
 her breastplate, realistic blood. Avram has no time to kneel beside her.
 
-: [bg_forest_road | slavetaker snarl R (slides in)] Cut off the CG to a forest-road shot so the
-Slavetaker's avatar is visible — he slides onto the right for his post-strike line.
+: [cg_her_fallen | slavetaker snarl R (slides in)] Make Slavetaker's avatar visible — he slides onto the right for his post-strike line.
 
-Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going to make you regret that really fucking badly --
+Slavetaker: Stupid fucking bitch -- you were worth money too, you know! I'm going to make you regret that really fucking badly before you finish dying --
 
 [bgm: stop cut] · [sfx: sfx_silence-cut] · [flash white]
 
@@ -664,13 +663,17 @@ bed, the attendant watching from the doorway. (The CG holds through the whole at
 
 Attendant: Got attached to the slave, huh.
 
-: Avram, not looking up.
+Avram: She saved my life.
 
-Avram: I'd do it even if I wasn't attached. Just that kind of guy.
+Avram: I'd save hers whether I was attached to her or not.
 
-Attendant: Wow. I heard about guys like you, but never met one in real life before. That poor, poor girl.
+Attendant: Wow.
 
-: [bg_temple_cot, tint night | avram hollow L, her_temple weak R] She wakes, bandaged.
+Attendant: I'd heard about guys like you, but I'd never met one in real life before.
+
+Attendant: That poor, poor girl.
+
+: [bg_temple_cot, tint night | avram hollow L] She wakes, bandaged.
 
 Her: The slavetakers —
 
@@ -684,13 +687,7 @@ Her: I didn't want them to take you away from me, Master. It wouldn't have been 
 
 Avram: That's a little more pride in our relationship than you've shown before.
 
-: [her_temple content-fading R] She settles back, eyes closing.
-
 Her: Pride is one of the customs of my people.
-
-: [avram hollow L]
-
-Avram: ...
 
 ---
 
@@ -701,9 +698,11 @@ face slightly harder.)
 
 [bgm: bgm_dungeon]
 
-: [bg_boss_doors | avram_late neutral L]
+: [bg_boss_doors | avram_late neutral L, her matter-of-fact R] Her armored (dungeon), acknowledging his order.
 
 Avram: Let me handle this one alone.
+
+Her: Yes, master.
 
 : [cg_boss_bench] Inside the boss chamber: Haurvatat hangs back to one side by the entrance, watching,
 tense/on-edge, while Avram fights the floor boss — inside but deliberately not joining the fight.
@@ -712,12 +711,11 @@ tense/on-edge, while Avram fights the floor boss — inside but deliberately not
 with magic, holding his own — equal-and-rising, not desperate.
 
 : [sfx: sfx_impact] [flash white] [cg_boss_win] The finishing stroke: the boss falling / coming apart,
-Avram standing spent but victorious, alone in the chamber.
+Avram standing spent but victorious.
 
-: [bg_boss_doors | avram_late neutral L, her_camp cheer R] The great doors open. She is on her feet
-before he's through.
+: [bg_boss_doors | avram_late neutral L, her matter-of-fact R]
 
-Her: It went quiet in there. You're getting frightening, Master.
+Her: You're getting frightening, Master.
 
 : [avram_late wry L]
 
@@ -736,7 +734,7 @@ Avram: ...
 
 : [status overlay]
 
-> [AVRAM — Wolf School Swordsmanship: Lv 13 → Lv 17 · Air Magic: Lv 6 · Fire Magic: Lv 8 · Light Magic: Lv 7 · Dark Magic: Lv 5]
+> [AVRAM — Wolf School Swordsmanship: Lv 13 → Lv 17 · Air Magic: Lv 6 · Fire Magic: Lv 8 · Earth Magic: Lv 2 · Water Magic: Lv 3 · Light Magic: Lv 7 · Dark Magic: Lv 5]
 > [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 16 → Lv 17]
 
 : [bg_market | avram_late neutral L, her_camp cheer R] New armor, to replace what the deep floors keep

@@ -535,3 +535,37 @@
   sky shades; unified them with PRO image-EDITS ("reproduce exactly, change only sky/lighting")
   to a shared warm amber-gold dusk + slate-blue upper sky — compositions/faces/blood preserved.
   Pre-edit originals backed up at claude-notes/raw/prewarm_backup/ in case any edit degraded.
+
+- 2026-07-04 (Opus, wound polish + flash/music + sync): FLASH/MUSIC BUG — a redundant
+  "@bgm bgm_dungeon" (already playing) restarted the track right before a @flash; removed it
+  AND added a general playBgm guard (no-op when the requested track is already playing; tags
+  bgmEl.dataset.bgmId) so a duplicate @bgm / seek / chapter-fade re-applying the same track
+  never restarts it. cg_rod_raise regenerated: ambusher AIMS the rune-rod in his RIGHT hand,
+  leveled off-frame at Avram (not raised high); narration "off-hand"->"right hand". cg_lance_hit
+  regenerated (v3_3): fixed Avram LIKENESS + Haurvatat human face (no muzzle) + other slavetakers
+  still menacing in the bg. cg_her_fallen regenerated (v2_1): she's COLLAPSED all the way to the
+  ground clutching the chest wound (not kneeling) + menacing bg. Alts for both in
+  claude-notes/qa/wound_candidates/ (lance v3_1/2/3, fallen v2_1/2). SYNCED author's script.md
+  edits into script.txt: Slavetaker "you WERE worth money... before you finish dying"; cg_melee_press
+  narration "hands trying to grab"; Code black slavetaker sprite easy-menace->SNARL; attendant
+  exchange reworked ("She saved my life." / "I'd save hers whether I was attached to her or not." /
+  "Wow." / "I'd heard about guys like you, but I'd never met one in real life before." / "That poor,
+  poor girl."); removed the trailing silent "Avram: ..." at ch11 end (flagged in-file as possibly
+  unintended); added "Her: Yes, master." + an ARMORED her (matter-of-fact) sprite at the boss doors.
+  Slavetaker avatar now shown over bg_forest_road (cut off the CG) for both Code black and the
+  post-strike line, since CGs cover sprites. Parity 217=217, validator 0 errors.
+
+- 2026-07-04 (Opus, CGs-no-longer-cover-sprites + boss art + sync): MAJOR LAYER CHANGE
+  (reverses the informal-spec "cg covers sprites"): the DOM/z order is now bg -> CG -> sprites,
+  so SPRITES RENDER ABOVE CGs. To keep pure-CG scenes clean, showCg() now auto-clears sprites
+  (execClear all) and the seek replay clears st.sprites on @cg — so a bare @cg looks unchanged
+  (sprites were invisible under it before), and to place a dialogue figure OVER a CG you set the
+  @sprite AFTER the @cg. Verified: opening pure-CG beats have no stray sprites; slavetaker sprite
+  now shows over cg_first_kill (Code black) and cg_her_fallen (post-strike) — removed the old
+  bg_forest_road-cut workaround for both. cg_boss_fight + cg_boss_win regenerated (Nano Banana Pro,
+  ref = young avram_late master; boss described in text to match cg_boss_bench's stone-and-shadow
+  design) — Avram YOUNG and ALONE in both (first attempt using cg_boss_bench as a ref cloned the
+  scene incl. Haurvatat; fixed by ref-ing only the Avram master + text boss description). Synced
+  author script.md edits: "Her: You're getting frightening, Master." (dropped "It went quiet in
+  there."); ch12 status overlay gained "Earth Magic: Lv 2 · Water Magic: Lv 3". Parity 217=217,
+  validate 0 errors, app boots clean.

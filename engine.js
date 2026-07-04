@@ -274,6 +274,11 @@ if (typeof document !== "undefined") (function () {
   }
   function showCg(id, trans, instant) {
     st.cg = id;
+    // Sprites now render ABOVE the CG layer, so a CG no longer covers them.
+    // Clear any active sprites when a CG appears (they were invisible under the CG
+    // before, so this preserves the "full art scene" look); to place a dialogue
+    // figure OVER a CG, set the @sprite AFTER the @cg.
+    execClear("all", true);
     swapLayer($("cglayer"), makeLayerImg("cg", id), instant ? "cut" : trans);
     clearInscription();
   }
@@ -609,6 +614,10 @@ if (typeof document !== "undefined") (function () {
       return;
     }
     st.bgm = id;
+    // Already playing this exact track? Leave it alone — re-requesting the current
+    // BGM (a redundant @bgm, or a seek/chapter-fade re-applying the same track) must
+    // NOT restart it. (This is why a flash beat near a duplicate @bgm looked like a restart.)
+    if (bgmEl && !bgmEl.paused && bgmEl.dataset && bgmEl.dataset.bgmId === id) return;
     const path = assetPath("audio", id);
     if (!path || !musicEnabled) {
       // audio asset absent, OR music toggled off — remember st.bgm (so the
@@ -618,6 +627,7 @@ if (typeof document !== "undefined") (function () {
       return;
     }
     const el = new Audio(path);
+    el.dataset.bgmId = id;
     el.loop = true;
     el.volume = instant ? BGM_VOL : 0;
     el.play().then(() => {
@@ -999,7 +1009,7 @@ if (typeof document !== "undefined") (function () {
       const c = SCRIPT.ins[j];
       switch (c.op) {
         case "bg": st.bg = c.id; st.cg = null; st.inscription = null; break;
-        case "cg": st.cg = c.id; st.inscription = null; break;
+        case "cg": st.cg = c.id; st.inscription = null; st.sprites = { left: null, right: null }; break;
         case "sprite": st.sprites[c.slot] = { char: c.char, expr: c.expr }; break;
         case "clear":
           if (c.what === "all") st.sprites = { left: null, right: null };

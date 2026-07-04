@@ -784,8 +784,8 @@ Avram: Then I suppose you will be the first to die by my hand. I hope you end up
 @cg cg_melee_press cut
 @note story-logic fix (author 2026-07-04): the slavetakers want Avram ALIVE —
 @note they fight to capture, and the rod only comes out after he starts
-@note killing them ("Code mauve" = the captain authorizing it).
-They fight to take him whole. Flats and hafts, hands grabbing for his sword arm. A prodigy is worth nothing dead.
+@note killing them ("Code black" = the captain authorizing it).
+They fight to take him whole. Flats and hafts, hands trying to grab. A prodigy is worth nothing dead.
 
 @sfx sfx_sword
 @flash white 120
@@ -794,18 +794,16 @@ Avram fights to kill.
 
 The first life he has ever taken. He does not pause.
 
-@bg bg_forest_road cut
-@sprite slavetaker easy-menace right slide
-@note the captain slides in from the right to call the order (author 2026-07-04);
-@note "Code black" — was "Code mauve", which read as unintended humor at the wrong moment
+@sprite slavetaker snarl right slide
+@note the captain slides in on the right OVER cg_first_kill to call the order — sprites now render
+@note ABOVE CGs (author 2026-07-04). "Code black" — was "Code mauve" (unintended humor at the wrong moment).
 Slavetaker: Code black!
 
-@clear all
 @flash white 120
 @cg cg_rod_raise cut
 @note NEW cg_rod_raise: an AMBUSHER (NOT the captain — he's the one calling it) levels the dark
 @note rune-carved rod from the side. bg_forest_road alone was too empty here (author 2026-07-04).
-Another ambusher's off-hand comes up with a short black rod, leveled at Avram from the side —
+Another ambusher's right hand comes up with a short black rod, leveled at Avram from the side —
 
 @sfx sfx_impact
 @cg cg_lance_hit cut
@@ -814,17 +812,15 @@ Another ambusher's off-hand comes up with a short black rod, leveled at Avram fr
 @hold
 
 @cg cg_her_fallen cut
-@note her crumpled on the road in front of Avram, same scene; punched hole in
-@note her breastplate, realistic blood (author 2026-07-04: blood where blood
-@note would realistically appear — do not sanitize).
+@note her COLLAPSED all the way to the ground, one hand clutching the punched hole in her
+@note breastplate (realistic blood); Avram still upright, other slavetakers still menacing in the bg
+@note (author 2026-07-04). Regenerated Pro art; alts in claude-notes/qa/wound_candidates/.
 @hold
 
-@bg bg_forest_road cut
-@note cut off the CG to a forest-road shot so the Slavetaker's AVATAR is actually visible — he
-@note slides in at right for his cruel post-strike line (author 2026-07-04). Previously his sprite
-@note was set behind cg_her_fallen and hidden, since CGs cover sprites.
 @sprite slavetaker snarl right slide
-Slavetaker: Stupid fucking bitch -- you're worth money too, you know! I'm going to make you regret that really fucking badly --
+@note the slavetaker slides in on the right OVER cg_her_fallen for his cruel post-strike line —
+@note sprites now render ABOVE CGs (author 2026-07-04)
+Slavetaker: Stupid fucking bitch -- you were worth money too, you know! I'm going to make you regret that really fucking badly before you finish dying --
 
 @clear all
 @note (the cg_scream_cutoff panel was deleted here per author 2026-07-04)
@@ -858,9 +854,15 @@ Avram: Everything. Take everything.
 Attendant: Got attached to the slave, huh.
 
 @note not looking up
-Avram: I'd do it even if I wasn't attached. Just that kind of guy.
+Avram: She saved my life.
 
-Attendant: Wow. I heard about guys like you, but never met one in real life before. That poor, poor girl.
+Avram: I'd save hers whether I was attached to her or not.
+
+Attendant: Wow.
+
+Attendant: I'd heard about guys like you, but I'd never met one in real life before.
+
+Attendant: That poor, poor girl.
 
 @bg bg_temple_cot cut
 @tint night
@@ -886,9 +888,8 @@ She settles back, eyes closing.
 
 Her: Pride is one of the customs of my people.
 
-@sprite avram hollow left
-Avram: ...
-
+@note (ch11 now ends on her line — the trailing silent "Avram: ..." beat was removed in script.md;
+@note restore it if that was unintended)
 @tint off
 
 
@@ -904,8 +905,12 @@ Avram: ...
 
 @bg bg_boss_doors fade
 @sprite avram_late neutral left
+@note her ARMORED here (her, not her_camp) at the boss doors, acknowledging his order (author 2026-07-04)
+@sprite her matter-of-fact right
 
 Avram: Let me handle this one alone.
+
+Her: Yes, master.
 
 @clear all
 @cg cg_boss_bench fade
@@ -915,9 +920,10 @@ Avram: Let me handle this one alone.
 @note inside but deliberately NOT joining, watching, tense/on-edge. cg_boss_fight below then
 @note tightens on Avram's solo fight.
 
-@bgm bgm_dungeon
 @cg cg_boss_fight cut
 @hold
+@note (removed a redundant "@bgm bgm_dungeon" here — it was already playing from ch12 start and
+@note re-setting it restarted the track; the engine now also no-ops a same-track @bgm)
 @note NEW ART — inside the boss chamber: Avram ALONE mid-fight against the floor
 @note boss, sword lit with magic, holding his own; equal-and-rising, not desperate
 
@@ -933,7 +939,7 @@ Avram: Let me handle this one alone.
 @sprite her_camp cheer right
 The great doors open. She is on her feet before he's through.
 
-Her: It went quiet in there. You're getting frightening, Master.
+Her: You're getting frightening, Master.
 
 @sprite avram_late wry left
 Avram: Getting there.
@@ -955,7 +961,7 @@ Avram: ...
 
 @clear all
 @overlay status
-> [AVRAM — Wolf School Swordsmanship: Lv 13 → Lv 17 · Air Magic: Lv 6 · Fire Magic: Lv 8 · Light Magic: Lv 7 · Dark Magic: Lv 5]
+> [AVRAM — Wolf School Swordsmanship: Lv 13 → Lv 17 · Air Magic: Lv 6 · Fire Magic: Lv 8 · Earth Magic: Lv 2 · Water Magic: Lv 3 · Light Magic: Lv 7 · Dark Magic: Lv 5]
 > [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 16 → Lv 17]
 @overlay end
 
