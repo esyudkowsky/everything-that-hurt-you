@@ -223,6 +223,15 @@
   "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9, art-book / key-visual quality. Confident expressive anime lineart, refined soft cel shading with subtle gradient rendering, painterly detailed background, delicate cinematic lighting, muted earthy palette with restrained accent saturation. Appealing and distinctive, not generic. No text, no speech bubbles, no watermark, unless the description says otherwise. Dungeon-depths establishing CG, 16:9, no named characters: a deep ancient hall of black stone, colossal carved pillars vanishing up into darkness, faint cold arcane light, drifting dust, utter silence \u2014 the deepest and most ominous floor so far."
  },
  {
+  "out": "assets/cg/cg_melee_flank.png",
+  "aspect": "16:9",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png",
+   "claude-notes/raw/slavetaker.easy-menace.png"
+  ],
+  "prompt": "Event CG illustration for a kinetic novel, full-scene composition, 16:9, art-book / key-visual quality. Confident expressive anime lineart, refined soft cel shading with subtle gradient rendering, painterly detailed background, delicate cinematic lighting, muted earthy palette with restrained accent saturation. Appealing and distinctive, not generic. No text, no speech bubbles, no watermark, unless the description says otherwise. Use the character(s) shown in the attached reference image(s), keeping their faces, hair, colors, markings and outfits consistent; IGNORE the flat magenta backgrounds of the references. A fast, dynamic melee-action CG on a forest road at late day: Avram: the young man from the reference \u2014 dense dark almost-black curly ringlet hair in a short modern cut, clean-shaven youthful face, green-brown hooded traveler's cloak over tan leather armor with a plain roughspun linen undershirt, and worn leather boots in any full-body shot in the thick of the fight, holding one flank against the slavetakers \u2014 mid-swing with his sword, genuinely skilled and controlled now, one or two dark-armored slavetaker attackers pressing him. Motion, energy, dusk forest light. CRITICAL: EXACTLY ONE Avram in the frame \u2014 a SINGLE figure of Avram, NO duplicate, NO twin, NO second copy of him anywhere; the other figures are the enemy slavetakers, clearly not Avram."
+ },
+ {
   "out": "assets/cg/cg_lance_hit.png",
   "aspect": "16:9",
   "refs": [

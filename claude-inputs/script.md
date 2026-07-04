@@ -621,7 +621,7 @@ genuinely good now. (The CG carries the beat; no narration.)
 
 : [bg_forest_road] [flash white] The captain's off-hand comes up with a short black rod —
 
-The captain's off-hand comes up with a short black rod —
+Another ambusher's off-hand comes up with a short black rod —
 
 : [sfx: sfx_impact] [cg_lance_hit] Her leaping in front of him; the dark lance through her armor into
 her chest; sword mid-clatter. No gore beyond the strike itself.

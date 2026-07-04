@@ -449,3 +449,26 @@
   ("We've no wealth worth your risk") -> avram eyes-narrowed (determined facing the bandit);
   the later "first to die by my hand" line kept sad-distant (deliberate grief beat).
   All validated: 0 errors, dialogue parity 213=213, app boots clean.
+
+- 2026-07-04 (Opus, title + music-toggle batch): (a) Title byline "a kinetic novel..." and
+  the content-warning notice were hard to read on the light sunset art — gave them a dark
+  halo text-shadow + brighter cream color (like the h1) so light text separates from light
+  bg. (b) Added a MUSIC ON/OFF toggle (#musicbtn, ♪, top-LEFT corner, z-index 60 so it shows
+  above menus on EVERY screen incl. title/pause/endcard). Persists as settings.musicOn;
+  toggleMusic() resumes the current st.bgm on / fades out on; playBgm respects musicEnabled
+  (remembers st.bgm while muted so the toggle can start it). Muted state = dimmed note with a
+  diagonal slash. NOTE: the earlier "title click doesn't start music" report was a false alarm
+  (user's PC sound was off); browser AUTOPLAY POLICY is why music can't play before the first
+  user gesture — the toggle/first click is that gesture. (c) cg_melee_flank had two Avrams ->
+  regenerated via Nano Banana PRO with an EXACTLY-ONE-Avram constraint (single figure now).
+
+- 2026-07-04 (Opus, music-toggle refinement): the corner ♪ icon now reflects ACTUAL playback,
+  not just the preference. Added `audioUnlocked` (set true only when a real user gesture lets
+  audio actually start). Icon shows the slashed/muted note when `!(musicEnabled && audioUnlocked)`
+  — i.e. muted-looking on the title at load (autoplay-blocked) UNTIL the first click starts it,
+  then it flips to ♪. Distinction preserved: if the user never muted, the first click (title or
+  Begin) starts the music; if the user explicitly muted (settings.musicOn=false, persisted in
+  localStorage across loads), clicks do NOT auto-start music and the icon stays muted until they
+  click the button itself. Verified via Playwright with a mocked autoplay-block: default->muted-
+  at-load-then-on-after-click; persisted-mute->stays muted on plain clicks, bgm_title starts only
+  when the music button is clicked.

@@ -173,6 +173,25 @@
   }
   #menubtn:hover { opacity: 1; }
 
+  /* music on/off toggle — a corner control visible on EVERY screen (above menus) */
+  #musicbtn {
+    position: absolute; top: 2.2%; left: 1.6%;
+    width: 5.4cqh; height: 5.4cqh; border-radius: 0.9cqh;
+    background: #0007; color: #d7cdb6; border: 1px solid #ffffff2e;
+    font-size: 3cqh; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.55; transition: opacity .2s, color .2s;
+    z-index: 60; /* above menus (50) so it stays reachable on the title/pause/etc. */
+  }
+  #musicbtn:hover { opacity: 1; }
+  #musicbtn.off { color: #8f8878; }
+  /* a diagonal slash when muted */
+  #musicbtn.off::after {
+    content: ""; position: absolute; left: 16%; right: 16%; top: 47%;
+    height: 0.34cqh; background: #d6795f; border-radius: 1cqh;
+    transform: rotate(-45deg);
+  }
+
   .menu {
     position: absolute; inset: 0; z-index: 50;
     background: #000c;
@@ -209,15 +228,18 @@
     margin-bottom: 0.4cqh;
   }
   #title .byline {
-    font-family: var(--serif); font-size: 2.4cqh; color: #bfb7a4;
+    font-family: var(--serif); font-size: 2.4cqh; color: #ece4d0;
     margin-bottom: 0.6cqh; letter-spacing: 0.1em;
+    /* dark halo so the light text stays legible over the light sunset art */
+    text-shadow: 0 0 0.5cqh #000, 0 0 1.4cqh #000d, 0 0.2cqh 0.5cqh #000;
   }
   /* content warning: in normal flow, directly above Begin, so it can't be
      skipped past — a reader has to see it before clicking Begin */
   #title .notice {
     max-width: 82%; text-align: center;
-    font-family: var(--serif); font-size: 2cqh; color: #b6ac95;
+    font-family: var(--serif); font-size: 2cqh; color: #e6dcc6;
     margin-bottom: 2cqh;
+    text-shadow: 0 0 0.5cqh #000, 0 0 1.4cqh #000d, 0 0.2cqh 0.5cqh #000;
   }
   /* stamped PROTOTYPE placard, top-right of the title screen */
   #prototype-sign {
@@ -382,6 +404,7 @@
 
     <div id="chapter-indicator" style="display:none"></div>
     <button id="menubtn" style="display:none" title="Menu (Esc)">≡</button>
+    <button id="musicbtn" title="Music on — click to mute">♪</button>
 
     <!-- menus -->
     <div id="title" class="menu" style="display:none">

@@ -220,6 +220,12 @@ CGS = [
   "Dungeon-depths establishing CG, 16:9, no named characters: a deep ancient hall of black stone, colossal "
   "carved pillars vanishing up into darkness, faint cold arcane light, drifting dust, utter silence — the "
   "deepest and most ominous floor so far."),
+ ("cg_melee_flank", [AV, SLV],
+  f"A fast, dynamic melee-action CG on a forest road at late day: {AVRAM} in the thick of the fight, "
+  "holding one flank against the slavetakers — mid-swing with his sword, genuinely skilled and controlled "
+  "now, one or two dark-armored slavetaker attackers pressing him. Motion, energy, dusk forest light. "
+  "CRITICAL: EXACTLY ONE Avram in the frame — a SINGLE figure of Avram, NO duplicate, NO twin, NO second "
+  "copy of him anywhere; the other figures are the enemy slavetakers, clearly not Avram."),
  ("cg_lance_hit", [HER, AV],
   f"The wound, on the forest road: {SHE} mid-leap in front of {AVRAM}, her body between him and the "
   "attack, arms spread — a crackling LANCE OF DARK FORCE from off-frame punching through her chest armor. "

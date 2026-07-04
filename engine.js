@@ -148,7 +148,7 @@ if (typeof document !== "undefined") (function () {
   const $ = (id) => document.getElementById(id);
   const SAVE_KEY = "ethy_save";
   const SETTINGS_KEY = "ethy_settings";
-  const DEFAULT_SETTINGS = { typeMs: 33, autoplay: false, autoplayDelayMs: 900, showChapter: false };
+  const DEFAULT_SETTINGS = { typeMs: 33, autoplay: false, autoplayDelayMs: 900, showChapter: false, musicOn: true };
   const TINTS = {
     night: "rgba(18, 38, 88, 0.30)",
     dusk: "rgba(120, 60, 20, 0.22)",
@@ -172,6 +172,8 @@ if (typeof document !== "undefined") (function () {
   let reviewIdx = 0;       // index into history currently displayed
   let reviewing = false;   // true while showing a rolled-back (past) beat
   let uiHidden = false;    // Shift held: dialogue overlay hidden to view art
+  let musicEnabled = true; // music on/off preference (corner toggle); persisted in settings
+  let audioUnlocked = false; // has a real user gesture let audio actually start playing yet?
   let chapFading = false;  // a coordinated chapter fade is in progress
   let chapArmed = false;   // this step() run may trigger a chapter fade (forward play only)
   const CHAP_FADE_MS = 1800; // fade-to-black / fade-in duration
@@ -602,8 +604,9 @@ if (typeof document !== "undefined") (function () {
     }
     st.bgm = id;
     const path = assetPath("audio", id);
-    if (!path) {
-      // app must run silent when audio absent
+    if (!path || !musicEnabled) {
+      // audio asset absent, OR music toggled off — remember st.bgm (so the
+      // corner toggle can resume it) but play nothing
       bgmEl = null;
       fadeOutBgmEl(outgoing, instant);
       return;
@@ -611,11 +614,41 @@ if (typeof document !== "undefined") (function () {
     const el = new Audio(path);
     el.loop = true;
     el.volume = instant ? BGM_VOL : 0;
-    el.play().catch(() => {});
+    el.play().then(() => {
+      // playback actually started (post-gesture, or a browser that allows autoplay)
+      if (!audioUnlocked) { audioUnlocked = true; updateMusicBtn(); }
+    }).catch(() => {});
     bgmEl = el;
     fadeOutBgmEl(outgoing, instant);
     fadeInBgmEl(el, instant);
   }
+  /* ---------- music on/off (corner toggle, every screen) ---------- */
+  function updateMusicBtn() {
+    const btn = $("musicbtn");
+    if (!btn) return;
+    // Show the "on" note only when music is enabled AND audio has actually been
+    // unlocked by a user gesture. Before the first click (autoplay-blocked) OR
+    // when the user has muted, show the slashed/muted note.
+    btn.classList.toggle("off", !(musicEnabled && audioUnlocked));
+    btn.title = !musicEnabled
+      ? "Music off — click to play"
+      : audioUnlocked
+        ? "Music on — click to mute"
+        : "Music on (starts on your first click) — click here to keep it off";
+  }
+  function toggleMusic() {
+    musicEnabled = !musicEnabled;
+    settings.musicOn = musicEnabled;
+    saveSettings();
+    updateMusicBtn();
+    if (musicEnabled) {
+      if (st.bgm) playBgm(st.bgm, false); // resume the current intended track
+    } else {
+      fadeOutBgmEl(bgmEl, false);
+      bgmEl = null;
+    }
+  }
+
   function playSfx(id) {
     if (id === "stop" || !id) return;
     const path = assetPath("audio", id);
@@ -1212,15 +1245,21 @@ if (typeof document !== "undefined") (function () {
     // Capture phase so it runs regardless of which element was clicked (buttons,
     // backdrop, stage), before that element's own handler. Cheap and idempotent.
     const unlockAudio = () => {
-      if (bgmEl && bgmEl.paused) bgmEl.play().catch(() => {});
+      const wasLocked = !audioUnlocked;
+      audioUnlocked = true;
+      // resume the current title/scene track that was created-but-blocked at load
+      // (only if the user hasn't muted — a persisted mute must NOT auto-start)
+      if (musicEnabled && bgmEl && bgmEl.paused) bgmEl.play().catch(() => {});
+      if (wasLocked) updateMusicBtn();
     };
     window.addEventListener("pointerdown", unlockAudio, { capture: true });
     window.addEventListener("keydown", unlockAudio, { capture: true });
 
     $("stage").addEventListener("click", (e) => {
-      if (e.target.closest("#menubtn") || e.target.closest(".menu")) return;
+      if (e.target.closest("#menubtn") || e.target.closest("#musicbtn") || e.target.closest(".menu")) return;
       onAdvanceInput(e);
     });
+    $("musicbtn").onclick = (e) => { e.stopPropagation(); toggleMusic(); };
     document.addEventListener("keydown", (e) => {
       if (e.key === " " || e.key === "Enter") onAdvanceInput(e);
       else if (e.key === "Escape") {
@@ -1356,7 +1395,9 @@ if (typeof document !== "undefined") (function () {
     if (sf) $("status-frame").style.backgroundImage = "url('" + sf + "')";
     const fm = assetPath("ui", "ui_floor_marker");
     if (fm) $("floor-frame").style.backgroundImage = "url('" + fm + "')";
+    musicEnabled = settings.musicOn !== false;
     wire();
+    updateMusicBtn();
     showTitle();
   }
 
