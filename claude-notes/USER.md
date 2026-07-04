@@ -597,3 +597,25 @@
   Haurvatat watching from the door), win = raw/cg_boss_win_v3 (boss coming apart into shards,
   Avram spent, sword lowered, Haurvatat watching). Intermediates in claude-notes/raw/
   cg_boss_fight_v2–v8, cg_boss_win_v2. Validator 0 errors.
+
+- 2026-07-04 (Opus, lance/fallen/vigil likeness fixes): recurring issue was Avram's complexion
+  drifting DARK (his ref is light-olive; warm dusk backlight + ref drift darkened him, even on
+  Pro). Fixed with an explicit "skin is LIGHT olive/fair-medium, do NOT darken, keep his face lit"
+  clause. cg_lance_hit final = lit_3 (author-approved): dynamic MID-LEAP intercept (fierce, not
+  surprised) + the lance now reads as an ungrabbable dark-energy BEAM (not a physical spear she
+  grabs) + correct light Avram + menacing-bandit bg. cg_her_fallen final = lit_1 (fully collapsed
+  clutching the wound, correct light Avram). cg_vigil regenerated with HER ref added ([HER, AV])
+  + explicit two-tone russet-and-white hair w/ white fringe streak — she now looks like herself in
+  the cot (was generated from text only, wrong hair). Backups of prior versions in
+  claude-notes/raw/prewarm_backup/. Candidates in claude-notes/qa/wound_candidates/. validate 0 errors.
+
+- 2026-07-04 (staging/sync pass): User made a batch of script.md edits and asked to echo them and reconcile script.md↔script.txt. Actions taken:
+  - **cg_her_fallen** regenerated (Banana Pro): background slavetakers now ADVANCING toward Avram (were fighting each other), and she is fully COLLAPSED face-down on the ground clutching her wound (not upright). Chosen candidate = down_2. Old lit_1 backed up to claude-notes/raw/prewarm_backup/cg_her_fallen_lit1.png.
+  - **Temple wake beat**: her sprite removed (she's already in the cot via the bed art); new **bg_temple_cot_awake** (eyes-open variant of bg_temple_cot) generated and used at "She wakes, bandaged." Removed the "She settles back, eyes closing" narration + her_temple sprite to match script.md (author had dropped it). bg_temple_cot (eyes-closed) now unused but harmless.
+  - **"The great doors open. She is on her feet before he's through."** — deleted from script.txt (already gone from script.md).
+  - **"She's asleep by the fire. Avram sits awake, looking at her."** — beat deleted from script.txt (already gone from script.md).
+  - **Armor continuity**: her_camp→her (armored) for all pre-freeing ch13 beats (script.md 763/780/814 + 753 already done by author; script.txt 987/997/1012/1043). She stays armored like Avram from the dungeon through ch13; reverts to town clothes only at the ch14 cliff. NOTE: the ch12 market "New armor…" beat (script.txt 964 / script.md 740) was LEFT as her_camp — it's before the author's stated 753 boundary. → open question for user.
+  - **Floor 30/35 montage**: added a new random dungeon CG **cg_dungeon_d** (rune-hall, Avram casting light, both armored) behind the floor-35 marker, matching the ch10 "a CG behind each floor marker" pattern.
+  - **Chapter 14**: reworked to CG-only staging, NO character sprites (per user). Her ALONE at the edge first via new **cg_cliff_her** (Avram removed from the cg_cliff_two framing), then cg_cliff_two the moment Avram appears, held through the whole conversation. The former her_free "final-gentle" tired-smile sprite switch is DROPPED (the turn now plays in text). Synced in both files.
+  - **Altar line**: echoed author change "Everything. Take everything." → "I'll pay whatever it takes." into script.txt.
+  - manifest.json updated with the 3 new assets; validate = 0 errors; dialogue parity 217=217.

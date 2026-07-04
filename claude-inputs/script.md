@@ -656,7 +656,7 @@ just for speed); nothing protruding from her (she was hit by magic, not a spear)
 
 : [bg_temple_altar → cg_altar_everything] Coin pouch upended on the altar. (Sword removed — no laid-down sword.)
 
-Avram: Everything. Take everything.
+Avram: I'll pay whatever it takes.
 
 : [cg_vigil] Dim sick-room, night: Avram in the chair by her cot, her bandaged and unconscious in the
 bed, the attendant watching from the doorway. (The CG holds through the whole attendant exchange.)
@@ -673,7 +673,8 @@ Attendant: I'd heard about guys like you, but I'd never met one in real life bef
 
 Attendant: That poor, poor girl.
 
-: [bg_temple_cot, tint night | avram hollow L] She wakes, bandaged.
+: [bg_temple_cot_awake, tint night | avram hollow L] She wakes, bandaged. (Eyes-open bed art; she is
+in the cot itself, so no separate her sprite.)
 
 Her: The slavetakers —
 
@@ -737,14 +738,12 @@ Avram: ...
 > [AVRAM — Wolf School Swordsmanship: Lv 13 → Lv 17 · Air Magic: Lv 6 · Fire Magic: Lv 8 · Earth Magic: Lv 2 · Water Magic: Lv 3 · Light Magic: Lv 7 · Dark Magic: Lv 5]
 > [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 16 → Lv 17]
 
-: [bg_market | avram_late neutral L, her_camp cheer R] New armor, to replace what the deep floors keep
+: [bg_market | avram_late neutral L, her cheer R] New armor, to replace what the deep floors keep
 breaking. Fresh supplies. Then back to the dungeon, and down.
 
 New armor, to replace what the deep floors keep breaking. Fresh supplies. Then back to the dungeon, and down.
 
 : [bg_dungeon_mid → bg_dungeon_deep, floor-marker] Floor-markers falling fast: twenty-six. Thirty. Thirty-five.
-
-: [bg_camp_night | avram_late neutral L] She's asleep by the fire. Avram sits awake, looking at her.
 
 ---
 
@@ -752,7 +751,7 @@ New armor, to replace what the deep floors keep breaking. Fresh supplies. Then b
 
 [bgm: bgm_wistful]
 
-: [bg_camp_night | avram_late neutral L, her_camp cheer R]
+: [bg_camp_night | avram_late neutral L, her cheer R]
 
 Avram: I think I'm stronger than you, now. Am I wrong?
 
@@ -762,7 +761,7 @@ Her: Definitely, Master. I'm starting to worry that I'm useless to you, in the d
 
 Avram: This is a very serious question. If you lie about it, if you're pretending to be weaker than you are, to make me feel better, I could *die.* Am I strong enough to beat you easily in a real fight?
 
-: [her_camp matter-of-fact R]
+: [her matter-of-fact R]
 
 Her: I don't understand.
 
@@ -779,7 +778,7 @@ with matter-of-fact and cheer exactly as specced — the flatness IS the tell.)
 
 Her: Oh... oh.
 
-: [her_camp cheer R]
+: [her cheer R]
 
 Her: I'm fine being your slave, Master. You don't have to -
 
@@ -813,7 +812,7 @@ Avram: You need to be free for a month, at least, before I'll trust that you've 
 
 Avram: If you still want to be my slave then, or just to kiss me, I wouldn't say no.
 
-: [her_camp matter-of-fact R]
+: [her matter-of-fact R]
 
 Her: Is this... truly your desire, Master? Truly?
 
@@ -851,11 +850,12 @@ Avram: You can take some time to think, if you need to. I'll be around if you wa
 
 [bgm: bgm_lament]
 
-: [bg_cliff_wide | her_free still R] Wide cliff-edge staging, held through the whole conversation; she
+: [cg_cliff_her] CG-only staging, NO character sprites for all of ch14. Her ALONE at the edge first
+(cg_cliff_her), then cg_cliff_two the moment Avram appears, held through the whole conversation; she
 is in her nice town clothes, bare throat, at the edge. Sunset. She's standing on the edge of a cliff,
 by the end of the forest, looking out on the mountains of the world.
 
-: [avram_late strained L] Avram is suddenly standing behind her.
+: [cg_cliff_two] Avram is suddenly standing behind her.
 
 Avram: Sorry for - interrupting you - but I felt you climb up here. My magical senses extend a long ways, now.
 
@@ -974,8 +974,8 @@ Her: Most people in this world are not that nice. I'm not sure what being nicer 
 
 Avram: The way my people see it, you would have the right to demand that I did more. Did better.
 
-: [her_free final-gentle R] The only sprite switch on the cliff: a small, real, tired smile, from here
-through "Goodbye, Master."
+: (ch14 is sprite-free, so the former "final-gentle" tired-smile switch is dropped; the small, real,
+tired turn from here through "Goodbye, Master." now plays in the text alone.)
 
 Her: You keep saying that the standards of behavior are different where you came from.
 

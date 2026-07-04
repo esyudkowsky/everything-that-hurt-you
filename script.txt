@@ -842,7 +842,7 @@ Slavetaker: Stupid fucking bitch -- you were worth money too, you know! I'm goin
 @note coin pouch upended on the altar (sword REMOVED per author 2026-07-04 — the laid-down-sword
 @note gesture read as flashy/unclear; cg_altar_everything regenerated without it)
 
-Avram: Everything. Take everything.
+Avram: I'll pay whatever it takes.
 
 @cg cg_vigil fade
 @note dim sick-room, night: Avram in the chair by her cot, her bandaged and
@@ -864,10 +864,9 @@ Attendant: I'd heard about guys like you, but I'd never met one in real life bef
 
 Attendant: That poor, poor girl.
 
-@bg bg_temple_cot cut
+@bg bg_temple_cot_awake fade
 @tint night
 @sprite avram hollow left
-@sprite her_temple weak right
 She wakes, bandaged.
 
 Her: The slavetakers —
@@ -882,9 +881,6 @@ Her: I didn't want them to take you away from me, Master. It wouldn't have been 
 
 @sprite avram gentle left
 Avram: That's a little more pride in our relationship than you've shown before.
-
-@sprite her_temple content-fading right
-She settles back, eyes closing.
 
 Her: Pride is one of the customs of my people.
 
@@ -936,9 +932,7 @@ Her: Yes, master.
 
 @bg bg_boss_doors cut
 @sprite avram_late neutral left
-@sprite her_camp cheer right
-The great doors open. She is on her feet before he's through.
-
+@sprite her matter-of-fact right
 Her: You're getting frightening, Master.
 
 @sprite avram_late wry left
@@ -967,7 +961,7 @@ Avram: ...
 
 @bg bg_market fade
 @sprite avram_late neutral left
-@sprite her_camp cheer right
+@sprite her cheer right
 New armor, to replace what the deep floors keep breaking. Fresh supplies. Then back to the dungeon, and down.
 
 @clear all
@@ -975,13 +969,9 @@ New armor, to replace what the deep floors keep breaking. Fresh supplies. Then b
 @overlay floor 26
 @bg bg_dungeon_deep cut
 @overlay floor 30
+@cg cg_dungeon_d fade
 @overlay floor 35
-
-@bg bg_camp_night fade
-@sprite avram_late neutral left
-She's asleep by the fire. Avram sits awake, looking at her.
-
-@hold
+@clear all
 
 
 @note ========== 13. THE QUESTION / FREEING ==========
@@ -990,7 +980,7 @@ She's asleep by the fire. Avram sits awake, looking at her.
 @bg bg_camp_night cut
 @bgm bgm_wistful
 @sprite avram_late neutral left
-@sprite her_camp cheer right
+@sprite her cheer right
 
 Avram: I think I'm stronger than you, now. Am I wrong?
 
@@ -1000,7 +990,7 @@ Her: Definitely, Master. I'm starting to worry that I'm useless to you, in the d
 @sprite avram_late eyes-narrowed left
 Avram: This is a very serious question. If you lie about it, if you're pretending to be weaker than you are, to make me feel better, I could *die.* Am I strong enough to beat you easily in a real fight?
 
-@sprite her_camp matter-of-fact right
+@sprite her matter-of-fact right
 Her: I don't understand.
 
 Avram: That's fine. Just answer the question with the complete truth.
@@ -1015,7 +1005,7 @@ Avram: Okay. I didn't want to say this - before - it seemed cruel to say it befo
 @note with matter-of-fact and cheer exactly as specced — the flatness IS the tell.
 Her: Oh... oh.
 
-@sprite her_camp cheer right
+@sprite her cheer right
 Her: I'm fine being your slave, Master. You don't have to -
 
 Avram: I really, really have to.
@@ -1046,7 +1036,7 @@ Avram: You need to be free for a month, at least, before I'll trust that you've 
 
 Avram: If you still want to be my slave then, or just to kiss me, I wouldn't say no.
 
-@sprite her_camp matter-of-fact right
+@sprite her matter-of-fact right
 Her: Is this... truly your desire, Master? Truly?
 
 @sprite avram_late sad-distant left
@@ -1088,14 +1078,14 @@ She still doesn't say anything, just standing still, as Avram walks away.
 @note ========== 14. THE CLIFF ==========
 @chapter 14 The Cliff
 
-@bg bg_cliff_wide fade
+@cg cg_cliff_her fade
 @bgm bgm_lament
-@sprite her_free still right
-@note wide cliff-edge staging held through the whole conversation (ART-TODO #15 /
-@note SCRIPT-TODO #22); she is in her nice town clothes, bare throat, at the edge
+@note ch14 is CG-only staging, no character sprites (author 2026-07-04): her ALONE
+@note at the edge first (cg_cliff_her), then cg_cliff_two the moment Avram appears,
+@note held through the whole conversation. Nice town clothes, bare throat.
 Sunset. She's standing on the edge of a cliff, by the end of the forest, looking out on the mountains of the world.
 
-@sprite avram_late strained left
+@cg cg_cliff_two fade
 Avram is suddenly standing behind her.
 
 Avram: Sorry for - interrupting you - but I felt you climb up here. My magical senses extend a long ways, now.
@@ -1188,10 +1178,8 @@ Avram: What's your real name? Not the nickname I gave you or that slave ID code,
 @note switch her sprite here
 Her: *Stop!* Stop. Don't remind me of that. It's - that was one of the worst parts of the nightmare at the beginning, being punished, never to think of my old name -
 
-@sprite avram_late alarm left
 Avram: Never mind. I'm sorry.
 
-@sprite avram_late strained left
 Her: I should - I should go very soon. This is getting harder and harder.
 
 Avram: I don't suppose you'd want to stay, not to defeat the Demon Lord, but to wipe out the entire slave trade afterwards?
@@ -1212,9 +1200,8 @@ Her: Most people in this world are not that nice. I'm not sure what being nicer 
 
 Avram: The way my people see it, you would have the right to demand that I did more. Did better.
 
-@sprite her_free final-gentle right
-@note the ONLY switch on the cliff: small, real, tired smile, from here
-@note through "Goodbye, Master."
+@note (ch14 is sprite-free per author 2026-07-04, so the former her_free
+@note "final-gentle" tired-smile switch is dropped; the turn plays in the text)
 Her: You keep saying that the standards of behavior are different where you came from.
 
 Her: I don't know what the laws of your world were like. I imagine they must have been very harsh, in some ways, even if they were kindly in others.

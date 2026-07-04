@@ -257,11 +257,14 @@ CGS = [
   "sheathed sword already laid flat on the altar cloth. Standing BEHIND the altar, facing him, a robed "
   "temple priestess receives the payment, hands folded, grave and quiet. EXACTLY TWO figures in frame "
   "(Avram and the priestess) — no duplicate figures, no extra people, no disembodied limbs. Candlelight."),
- ("cg_vigil", [AV],
-  f"A dim temple sick-room at night: a cot with a bandaged sleeping figure (wolf ears just visible above "
-  f"the blanket), a single candle, and {AVRAM} sitting in the wooden chair beside the cot, elbows on "
-  "knees, hands clasped, utterly unmoving, watching her. A temple attendant (young woman, short dark hair) "
-  "stands watching quietly from the glowing doorway behind him. Long-night stillness."),
+ ("cg_vigil", [HER, AV],
+  f"A dim temple sick-room at night: a cot with the bandaged sleeping wolf-girl from the FIRST reference "
+  "lying in it, her head and wolf ears on the pillow — CRITICAL her hair coloration matches the reference: "
+  "TWO-TONE russet-brown-and-white hair with a distinct WHITE fringe streak and white insides of the ears "
+  "(NOT plain brown, NOT plain white); freckles, light tan skin. Beside the cot, "
+  f"{AVRAM} sits in a wooden chair, elbows on knees, hands clasped, utterly unmoving, watching her. A temple "
+  "attendant (young woman, short dark hair) stands watching quietly from the glowing doorway behind him. "
+  "Single candle, long-night stillness."),
  ("cg_boss_bench", [HER, AV_L],
   f"INSIDE a huge boss chamber deep in the dungeon. In the CENTER/background {AVRAML} fights a massive dark "
   "stone-and-shadow dungeon boss, his sword blazing white-gold. Off to ONE SIDE, hanging back near the wall "
