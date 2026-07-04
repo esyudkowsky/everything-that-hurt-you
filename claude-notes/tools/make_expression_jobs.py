@@ -9,9 +9,9 @@ STYLE = ("Art-book / key-visual quality anime visual-novel talking-sprite: confi
          "Appealing and distinctive, not generic.")
 
 AVRAM_EXPR = {
-    "wry": "a dry wry half-smile, one corner of the mouth raised, deadpan amused eyes",
+    "wry": "a dry, subtle, deadpan wry half-smile — only one corner of the mouth barely raised, closed-mouth, deadpan amused eyes; NOT a broad grin, NOT a goofy or dopey smile. His gaze directed to his front-right toward the person he is speaking with, NOT looking at the viewer/camera",
     "discomfort": "stiff discomfort — eyes averted to the side, faint blush across the cheeks, mouth a tight line, shoulders slightly raised",
-    "alarm": "alarm — eyes wide, eyebrows raised, mouth slightly open, caught off guard",
+    "alarm": "alarm — eyes widened, eyebrows raised, mouth slightly open, caught off guard, looking sharply to his front-right toward the person who just startled him; NOT bug-eyed or cartoonish, NOT looking at the viewer/camera",
     "horror-distant": "distant horror — face gone pale, unfocused eyes staring through something far away, slack mouth",
     "sad-distant": "calm, remote sadness — grieving-before-the-fact, soft distant eyes, level quiet mouth; quiet and terrible",
     "hollow": "hollow and numb — quiet, emptied-out, a little lost and tender, drained of energy behind the eyes; NOT haggard, NO heavy dark eyebags, keep his natural healthy skin tone, mouth soft and closed, gentle rather than wrecked",

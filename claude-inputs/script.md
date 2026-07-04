@@ -51,9 +51,10 @@ at a small floating tea table, featureless bright sky all around. No dialogue.
 
 \- The world of Elhom IV has a cycle.
 
-: [bg_forest_day | avram_earth shock L] Avram, in Earth clothes, arrived in a forest in the
-middle of nowhere, looking around in shock. (The "Demon Lord" line is deliberately superposed
-over his *arrival* — a hint; keep the pairing.)
+: [bg_forest_day | avram_earth neutral L] Avram, in Earth clothes, newly arrived in a forest in
+the middle of nowhere — composed, not shocked; he expected to materialize here. (The "Demon Lord"
+line is deliberately superposed over his *arrival* — a hint; keep the pairing. The truck prequel
+carries the shock beat, so this arrival stays calm.)
 
 \- From time to time, arises a Demon Lord, feared and accursed
 
@@ -64,17 +65,27 @@ dusty road. (No Earth sneakers anywhere — the sneaker motif is dropped from al
 
 \- The great, the powerful, the Summoned Hero
 
-: [bg_town_gate | avram neutral L] Avram at the gates of a faux-medieval town.
+: [cg_slime_backoff] Avram, a raw newcomer, warily backing off from his first forest acid-slime —
+subtly worried and nervous, no weapon drawn, weight on his back foot. (These two slime CGs are more
+action-y, so the picture shows first and the line fades in ON A CLICK.)
 
 \- They are not supreme when they first arrive
+
+: [cg_slime_rock] The same forest a moment later: Avram standing over the slime, which he has just
+killed by dropping a heavy rock on it — quiet, understated satisfaction, a first kill by rock not skill.
+Line fades in on a click. ("gain in strength" rides the same CG.)
 
 \- But they fight, in forests, in arenas, in dungeon labyrinths
 
 \- And they gain in strength very quickly
 
-: [bg_guild_exterior | avram neutral L] Avram passing the Adventurer's Guild building.
+: [bg_town_gate | avram back L] Avram, seen from BEHIND, proceeding toward the gates of a
+faux-medieval town. (Line appears immediately with the picture.)
 
 \- Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It's more convenient that way, perhaps. It leaves less to explain.
+
+: [bg_guild_exterior | avram back L] Avram, seen from BEHIND, before the Adventurer's Guild building.
+(Line fades in on a click.)
 
 \- There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
@@ -82,7 +93,7 @@ dusty road. (No Earth sneakers anywhere — the sneaker motif is dropped from al
 
 \- But what Avram has not as yet been told, it seems
 
-\- Is that there are always two outsiders summoned from another world, not one
+\- Is that there are always two outsiders summoned from another world, not one.
 
 [bgm: stop]
 
@@ -108,7 +119,8 @@ narration; sprite stays gruff-neutral.)
 
 Bartender: Twelve silver.
 
-: [avram wry L] 
+: [avram neutral L] (Was `avram wry`; the wry sprite read as a dopey grin, so this calm-conversation
+beat uses the neutral face.)
 
 Avram: It's not that type of - look, I'm not sure there's anything to this. Could just have been a guy messing with another guy. But have you heard anything about a rising Demon Lord?
 
@@ -122,7 +134,9 @@ Avram: I just heard some guy talking about it! That's why I'm asking whether -
 
 Bartender: Some guy *where* saying *what?*
 
-Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.* If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
+Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.*
+
+Avram: If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
 
 : [bartender startled R]
 
@@ -136,7 +150,11 @@ Avram: Yeah, I know.
 
 : [bartender gruff-neutral R | avram wry L]
 
-Avram: You know, maybe this is a stupid thought. Feel free to tell me why it's stupid. But if Summoned Heroes are supposed to learn so fast, why don't they just stay hidden and keep leveling to the point where they can take out the Demon Lord quickly and without wrecking a continent? Like, geez, have some consideration for everybody who lives there.
+Avram: You know, maybe this is a stupid thought. Feel free to tell me why it's stupid.
+
+Avram: But if Summoned Heroes are supposed to learn so fast, why don't they just stay hidden and keep leveling to the point where they can take out the Demon Lord quickly and without wrecking a continent?
+
+Avram: Like, geez, have some consideration for everybody who lives there.
 
 Bartender: Ha! Doesn't sound very *heroic*.
 

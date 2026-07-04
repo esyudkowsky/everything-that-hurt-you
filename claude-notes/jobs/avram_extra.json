@@ -1,0 +1,38 @@
+[
+ {
+  "out": "assets/sprites/avram.back.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same dense dark curly ringlet hair, same green-brown hooded traveler's cloak over light leather armor, same colors, same art style \u2014 but now shown FROM BEHIND with his BACK TURNED to the viewer, as if we are following him as he walks forward into the scene. We see the back of his curly dark head and the back of his hooded cloak and shoulders. His FACE IS NOT VISIBLE to the camera (at most the faint edge of one cheek). Natural relaxed upright walking posture, waist-up framing, centered. Do NOT turn his face toward the viewer. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Art-book / key-visual quality anime visual-novel talking-sprite: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ },
+ {
+  "out": "claude-notes/qa/avram_alts/avram.determined_v1.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dense dark curly ringlet hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: quietly determined \u2014 calm and resolute, a steady level gaze with quiet focus and resolve behind the eyes, brows relaxed but set, mouth calm and closed. SUBTLE and understated: NOT scowling, NOT glaring, NOT clenched-jaw angry, NOT frowning hard, mouth closed with no teeth \u2014 just a composed, quietly resolved young man. Keep his warm tan skin tone exactly as in the reference. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Art-book / key-visual quality anime visual-novel talking-sprite: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ },
+ {
+  "out": "claude-notes/qa/avram_alts/avram.determined_v2.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dense dark curly ringlet hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: quietly determined, faintly hardened \u2014 eyes steady and just slightly narrowed with purpose, chin very slightly lifted, mouth a calm firm line. Understated inner resolve, NOT aggressive, NOT angry, NOT a glare, NOT bug-eyed, mouth closed with no teeth. Keep his warm tan skin tone exactly as in the reference. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Art-book / key-visual quality anime visual-novel talking-sprite: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ },
+ {
+  "out": "claude-notes/qa/avram_alts/avram.determined_v3.png",
+  "sprite": true,
+  "aspect": "3:4",
+  "refs": [
+   "claude-notes/refs/avram_traveler_master.png"
+  ],
+  "prompt": "Using the reference image: the exact same young man \u2014 same face, same dense dark curly ringlet hair, same brown eyes, same green-brown traveler's cloak over light leather armor, same colors, same art style, same waist-up framing, same three-quarter body angle toward the viewer's right. Change ONLY his facial expression to: quietly determined and thoughtful \u2014 level focused eyes, the faintest firm set to the jaw, calm closed mouth, a resolved but reflective look. Subtle, resolved rather than fierce; NOT scowling, NOT exaggerated, NOT open-mouthed. Keep his warm tan skin tone exactly as in the reference. The background MUST be a single flat uniform BRIGHT NEON MAGENTA color, exactly #FF00FF at full brightness, like a greenscreen chroma key \u2014 no gradient, no vignette, no darkening. Art-book / key-visual quality anime visual-novel talking-sprite: confident expressive lineart, refined soft cel shading with subtle gradient rendering, luminous eyes, muted earthy palette. Appealing and distinctive, not generic."
+ }
+]

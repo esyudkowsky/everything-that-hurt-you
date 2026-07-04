@@ -58,6 +58,24 @@ CGS = [
   "who serenely sips tea, his face partially shadowed and turned away. All around them featureless bright "
   "luminous sky, no ground, NOTHING else floating: NO stairs, NO staircase, no other objects — only the "
   "small table and two chairs in the void. Avram looks bewildered but polite. Dreamlike divine calm."),
+ # Chapter-1 opening beats (author 2026-07-03): the "not supreme when they first arrive" / "but they
+ # fight" lines are re-staged off the town-gate bg onto this two-CG micro-scene — a first, clumsy,
+ # rock-not-skill kill. SUBTLE expressions per the author's doctrine (lesson 15): worried, not terrified.
+ ("cg_slime_backoff", [AV],
+  f"A sunlit green fantasy forest, dappled daylight. {AVRAM}, full body, taking one wary step BACKWARD "
+  "away from a knee-high translucent green acid-slime creature oozing toward him across the forest floor. "
+  "He is a raw newcomer who has never fought: he has NOT drawn a weapon, one hand raised warily, weight on "
+  "his back foot. Expression SUBTLE — only slightly worried and nervous: a small wary frown, brows a little "
+  "raised, eyes on the slime. NOT terrified, NOT screaming, mouth CLOSED with no teeth, NOT open-mouthed, "
+  "NOT bug-eyed, NOT cartoonishly panicked; keep his normal warm tan skin tone. Worn leather boots. Green "
+  "canopy light, quiet ordinary danger."),
+ ("cg_slime_rock", [AV],
+  f"The SAME sunlit green forest a moment later, same trees and lighting for continuity. {AVRAM}, full "
+  "body, standing over the now-defeated acid-slime: a big heavy rock has been dropped squarely onto it, the "
+  "slime flattened and harmlessly splattered under the stone (green goo only, no gore). He stands catching "
+  "his breath, looking down at his handiwork. Expression SUBTLE — quiet understated satisfaction and mild "
+  "relief, mouth closed or the faintest wry almost-smile; NOT a big grin, NOT a triumphant fist-pump, NOT "
+  "exaggerated. He solved it with a rock, not skill. Worn leather boots, green canopy daylight."),
  ("cg_auction_fierce", [HER, ANN],
   f"A slave auction dais under harsh midday light. {SHE}, full body on the wooden dais, striking a FIERCE "
   "pose with a sword — combat grin, teeth showing, ears forward. Beside the dais, the oily auction barker "

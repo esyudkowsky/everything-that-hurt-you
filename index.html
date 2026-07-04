@@ -91,8 +91,11 @@
     transition: opacity 0.8s ease;
     pointer-events: none;
   }
+  /* over-image voiceover: text sits directly on the picture, no darkened edges
+     (author 2026-07-03). The Skagganauk outline+shadow lettering carries
+     legibility on its own; the old letterbox-darkening gradient is removed. */
   #volayer.vo-over {
-    background: linear-gradient(#000d 0%, #0003 25%, #0003 75%, #000d 100%);
+    background: transparent;
   }
   #volines {
     max-width: 78%;
@@ -347,8 +350,8 @@
     <div id="gatemenu" class="menu" style="display:none">
       <h2>PROTOTYPE</h2>
       <div class="gate-hint">Enter the password to begin.</div>
-      <input id="gate-input" class="gate-field" type="password" autocomplete="off"
-             spellcheck="false" placeholder="password">
+      <input id="gate-input" class="gate-field" type="text" autocomplete="off"
+             autocapitalize="off" spellcheck="false" placeholder="password">
       <div id="gate-msg" class="gate-msg"></div>
       <button id="btn-gate-ok">Enter</button>
       <button id="btn-gate-cancel">Back</button>

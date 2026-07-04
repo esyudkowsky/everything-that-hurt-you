@@ -70,7 +70,6 @@ I tell you now a tale of the planet, Elhom IV.
 @voiceover off
 @flash white 300
 @cg cg_tea_flash cut
-@hold
 @note flash panel: Avram in Earth clothes beside the old white-bearded man,
 @note floating tea table, featureless bright sky. No dialogue.
 @voiceover over
@@ -79,10 +78,12 @@ The world of Elhom IV has a cycle.
 
 @voiceover off
 @bg bg_forest_day fade
-@sprite avram_earth shock left
-@hold
+@sprite avram_earth neutral left
 @voiceover over
-@note the hint: the Demon Lord line superposed on his arrival in the new world
+@note the hint: the Demon Lord line superposed on his arrival in the new world.
+@note avram_earth neutral (not shock) — he EXPECTED to materialize here; the summon
+@note is not a surprise to him (author 2026-07-03). The truck prequel carries the
+@note shock beat; this arrival is composed.
 
 From time to time, arises a Demon Lord, feared and accursed
 
@@ -91,7 +92,6 @@ From time to time, arises a Demon Lord, feared and accursed
 @sprite avram neutral left
 @note isekai cloak and worn leather boots now (Earth sneakers removed everywhere
 @note per ART-TODO #16 — the sneaker motif is dropped from all art)
-@hold
 @voiceover over
 
 And another rises to fight them
@@ -99,35 +99,54 @@ And another rises to fight them
 The great, the powerful, the Summoned Hero
 
 @voiceover off
-@bg bg_town_gate fade
-@sprite avram neutral left
+@cg cg_slime_backoff fade
 @hold
 @voiceover over
+@note re-staged 2026-07-03 (author): "not supreme when they first arrive" now plays over Avram
+@note as a raw newcomer warily backing off his first forest slime — subtly nervous, not terrified.
+@note These two slime CGs are more action-y, so the picture shows FIRST and the Skagganauk line
+@note fades in on a click (@hold before @voiceover over). Replaces the old bg_town_gate staging.
 
 They are not supreme when they first arrive
+
+@voiceover off
+@cg cg_slime_rock cut
+@hold
+@voiceover over
+@note "but they fight" over Avram standing over that same slime, having just killed it by
+@note dropping a rock on it — a clumsy first kill (rock, not skill); text fades in on a click.
+@note "gain in strength" rides the same CG. The following @bg auto-clears the CG (setBg -> clearCg).
 
 But they fight, in forests, in arenas, in dungeon labyrinths
 
 And they gain in strength very quickly
 
 @voiceover off
-@bg bg_guild_exterior fade
-@sprite avram neutral left
-@hold
+@bg bg_town_gate fade
+@sprite avram back left
 @voiceover over
+@note "Not uncommonly" over Avram (BACK TURNED — proceeding toward the town gates, not facing the
+@note viewer); text appears IMMEDIATELY with the picture (no @hold here, author 2026-07-03).
 
 Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It's more convenient that way, perhaps. It leaves less to explain.
+
+@voiceover off
+@bg bg_guild_exterior fade
+@sprite avram back left
+@hold
+@voiceover over
+@note "There is much... strangely familiar" over Avram (BACK TURNED) before the Adventurer's Guild;
+@note text fades in on a click (@hold), per author 2026-07-03.
 
 There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
 @voiceover off
 @bg bg_tavern fade
-@hold
 @voiceover over
 
 But what Avram has not as yet been told, it seems
 
-Is that there are always two outsiders summoned from another world, not one
+Is that there are always two outsiders summoned from another world, not one.
 
 @voiceover off
 @bgm stop
@@ -154,7 +173,9 @@ The bartender turns away, to the bottles on the other side of the bar.
 
 Bartender: Twelve silver.
 
-@sprite avram wry left
+@note was `avram wry` — the wry half-smile sprite read as a dopey grin here (author 2026-07-03),
+@note so this beat uses `avram neutral` (the calm-conversation face) instead.
+@sprite avram neutral left
 Avram: It's not that type of - look, I'm not sure there's anything to this. Could just have been a guy messing with another guy. But have you heard anything about a rising Demon Lord?
 
 Bartender: Aw *slimespit.*
@@ -167,7 +188,9 @@ Avram: I just heard some guy talking about it! That's why I'm asking whether -
 
 Bartender: Some guy *where* saying *what?*
 
-Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.* If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
+Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? I know practically nothing. That's why I'm *asking.*
+
+Avram: If the Demon Lord has shown up, I'd really like to know where they are, what they're doing, whether their forces are invading here tomorrow. That kinda thing.
 
 @sprite bartender startled right
 Bartender: Deathstorms and balefire! No, I haven't heard anything. I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know? Or the Summoned Hero either, for that matter. I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
@@ -178,8 +201,13 @@ Avram: Yeah, I know.
 Avram drinks from his glass again.
 
 @sprite bartender gruff-neutral right
-@sprite avram wry left
-Avram: You know, maybe this is a stupid thought. Feel free to tell me why it's stupid. But if Summoned Heroes are supposed to learn so fast, why don't they just stay hidden and keep leveling to the point where they can take out the Demon Lord quickly and without wrecking a continent? Like, geez, have some consideration for everybody who lives there.
+@note not a smiling thought — was `avram wry` (dopey viewer-smile), now the neutral face.
+@sprite avram neutral left
+Avram: You know, maybe this is a stupid thought. Feel free to tell me why it's stupid.
+
+Avram: But if Summoned Heroes are supposed to learn so fast, why don't they just stay hidden and keep leveling to the point where they can take out the Demon Lord quickly and without wrecking a continent?
+
+Avram: Like, geez, have some consideration for everybody who lives there.
 
 Bartender: Ha! Doesn't sound very *heroic*.
 

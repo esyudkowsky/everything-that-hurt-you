@@ -318,3 +318,31 @@
   noted to user: on PURE BLACK a dark body can't literally show, so there it reads
   as a bold white-outlined letter with a faint warm-dark core; over images it's
   the full dark-body engraved look.
+
+- 2026-07-03 (Opus, opening-polish batch): several author directives on Ch.1 and Ch.2:
+  (a) Over-image Skagganauk text: removed the darkened-edge gradient on `.vo-over`
+  (text now sits directly on the picture) and removed the extra click-gate so text
+  co-appears with each opening picture — THEN partially reversed per author: the two
+  action-y slime CGs show first and reveal text ON A CLICK (@hold re-added); the town
+  gate reveals text immediately; the guild reveals on a click.
+  (b) "not supreme / but they fight" beat moved OFF bg_town_gate onto two NEW forest CGs:
+  `cg_slime_backoff` (Avram subtly-nervous, backing off his first slime) + `cg_slime_rock`
+  (Avram standing over it, killed by dropping a rock — clumsy first kill). SUBTLE
+  expressions per doctrine. Author general note: "tell image models to go for subtle
+  expressions if you don't want them hugely exaggerated."
+  (c) Town gate = "Not uncommonly" (immediate); guild = "There is much...familiar" (on
+  click). Both now use a NEW back-turned Avram sprite `avram.back` (proceeding toward the
+  gate / facing the guild, not turned to viewer). Generated from the traveler master;
+  bgremove auto-key failed (corner median skewed to g=110) so keyed manually on the
+  magenta family.
+  (d) avram_earth `shock`→`neutral` on the "Demon Lord" arrival (he expected to materialize).
+  (e) Ch.1 last line gets a period: "...not one."
+  (f) Bartender line "It's not that type of" was `avram wry` — read as a dopey grin; the
+  wry sprite's INTENDED expression was "a dry wry half-smile, deadpan amused eyes" (dry
+  self-aware wit). Swapped that beat to `avram neutral`. Author mused the wry sprite may
+  not be good anywhere (5 other uses remain: script.txt lines ~200/330/422/550/566 — not
+  yet touched).
+  (g) Author dislikes the default `avram.neutral` as "dopey"; asked for "quietly
+  determined" alternates. Generated 3 options in claude-notes/qa/avram_alts/
+  (avram.determined_v1/v2/v3) — PENDING author's choice of whether one replaces the
+  default avram.neutral globally. NOT wired in yet.

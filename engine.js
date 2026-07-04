@@ -1035,6 +1035,17 @@ if (typeof document !== "undefined") (function () {
   }
 
   function wire() {
+    // Autoplay unlock: browsers block audio until the first user gesture, so the
+    // title BGM started by showTitle() at boot is created-but-paused. On the first
+    // pointer/key interaction anywhere, resume the current track if it's paused.
+    // Capture phase so it runs regardless of which element was clicked (buttons,
+    // backdrop, stage), before that element's own handler. Cheap and idempotent.
+    const unlockAudio = () => {
+      if (bgmEl && bgmEl.paused) bgmEl.play().catch(() => {});
+    };
+    window.addEventListener("pointerdown", unlockAudio, { capture: true });
+    window.addEventListener("keydown", unlockAudio, { capture: true });
+
     $("stage").addEventListener("click", (e) => {
       if (e.target.closest("#menubtn") || e.target.closest(".menu")) return;
       onAdvanceInput(e);

@@ -14,7 +14,7 @@ CHARS = {
         "master": ("gruff-neutral", "gruff neutral — level unimpressed stare while wiping a mug with a rag"),
         "extras": [
             ("menacing-lean", "leaning forward menacingly, palms planted, her one good eye boring into the viewer, jaw set"),
-            ("startled", "startled — good eye wide, eyebrows up, caught completely off guard mid-motion"),
+            ("startled", "mildly startled but composed — her one good eye only SLIGHTLY widened (NOT bulging, NOT bugged fully open, NOT cartoonish), eyebrows raised just a little, lips barely parted; a tough seen-it-all tavern-keeper caught a bit off guard, understated surprise. Her scarred LEFT eye stays fully CLOSED"),
         ],
     },
     "god": {
