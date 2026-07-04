@@ -583,3 +583,17 @@
   keeps the scene, sprite-over-CG composites (slavetaker over cg_her_fallen), no page errors,
   validate 0 errors. NOTE: this fully supersedes the informal-spec "cg covers background and
   sprites" — CG is now just a scene image on the same layer as BG, under the sprites.
+
+- 2026-07-04 (Fable, boss fight/win CG redo): author flagged cg_boss_fight + cg_boss_win as
+  off (fight: wrong cave-like chamber + drifted boss + Avram smirking; win: boss intact and
+  looming, Avram facing camera looking frightened — read as about-to-die, not victory). Both
+  regenerated via Nano Banana PRO (google/gemini-3-pro-image, gen_style.py — author says treat
+  NB Pro as the STANDARD FALLBACK whenever anything goes wrong) using cg_boss_bench as a scene
+  ref so chamber + boss design match exactly. NEW AUTHOR CANON: Haurvatat IS in the boss
+  chamber during the fight — he fights alone but is not alone in the chamber; if the entrance
+  doors are in frame she must be shown there silently watching (a closeup that crops the doors
+  may show him alone). Rule added to ART-PIPELINE.md canonical decisions. Shipped:
+  fight = raw/cg_boss_fight_v8 (Avram three-quarter back view, blazing sword + light-blast,
+  Haurvatat watching from the door), win = raw/cg_boss_win_v3 (boss coming apart into shards,
+  Avram spent, sword lowered, Haurvatat watching). Intermediates in claude-notes/raw/
+  cg_boss_fight_v2–v8, cg_boss_win_v2. Validator 0 errors.

@@ -63,6 +63,10 @@ torn cloak edges. **Bartender** — LEFT eye scarred shut. **Clerk** — young m
 spectacles, quill behind ear. **Attendant** — young woman, short dark hair. **Announcer** —
 thin mustache, burgundy vest. **Slavetaker captain** — gray-flecked hair, stubble, no insignia.
 God's tea is in a plain ceramic cup; the void table is a small round wooden one.
+**Boss-chamber CGs (author rule, 2026-07-04):** Haurvatat IS in the chamber during the ch12
+boss fight — Avram fights alone, but she watches silently from her cg_boss_bench spot by the
+iron doors. If the doors appear in frame, she must appear there too; only a composition that
+crops out the doors (e.g. a closeup on Avram) may omit her.
 
 ## Lessons learned (failure modes actually hit, with fixes)
 
