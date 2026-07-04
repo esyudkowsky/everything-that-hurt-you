@@ -55,6 +55,13 @@
 
   #tint { pointer-events: none; transition: background 1.2s ease; }
   #flash { pointer-events: none; opacity: 0; }
+  /* coordinated chapter-transition fade: black curtain that fades in (as the old
+     scene + music fade out) and back out (as the new scene + music fade in).
+     Above the scene/textbox/voiceover, below the menus (z 50). */
+  #chapfade {
+    background: #000; opacity: 0; pointer-events: none; z-index: 45;
+    transition: opacity 1800ms ease;
+  }
 
   /* ---- textbox ---- */
   #textbox { pointer-events: none; }
@@ -203,11 +210,14 @@
   }
   #title .byline {
     font-family: var(--serif); font-size: 2.4cqh; color: #bfb7a4;
-    margin-bottom: 3cqh; letter-spacing: 0.1em;
+    margin-bottom: 0.6cqh; letter-spacing: 0.1em;
   }
+  /* content warning: in normal flow, directly above Begin, so it can't be
+     skipped past — a reader has to see it before clicking Begin */
   #title .notice {
-    position: absolute; bottom: 2.2cqh; width: 100%; text-align: center;
-    font-family: var(--serif); font-size: 1.9cqh; color: #8f8878;
+    max-width: 82%; text-align: center;
+    font-family: var(--serif); font-size: 2cqh; color: #b6ac95;
+    margin-bottom: 2cqh;
   }
   /* stamped PROTOTYPE placard, top-right of the title screen */
   #prototype-sign {
@@ -368,6 +378,8 @@
       <div id="volines"></div>
     </div>
 
+    <div id="chapfade" class="fill"></div>
+
     <div id="chapter-indicator" style="display:none"></div>
     <button id="menubtn" style="display:none" title="Menu (Esc)">≡</button>
 
@@ -377,12 +389,12 @@
       <div id="prototype-sign">PROTOTYPE</div>
       <h1>EVERYTHING THAT HURT YOU</h1>
       <div class="byline">a kinetic novel &middot; Eliezer Yudkowsky</div>
+      <div class="notice">This is a grownup story. Content may be disturbing to some viewers.</div>
       <button id="btn-begin">Begin</button>
       <button id="btn-continue" style="display:none">Continue</button>
       <button id="btn-chapters-title" style="display:none">Chapters</button>
       <button id="btn-settings-title">Settings</button>
       <button id="btn-credits-title">Credits</button>
-      <div class="notice">This is a grownup story. Content may be disturbing to some viewers.</div>
     </div>
 
     <div id="creditsmenu" class="menu" style="display:none">

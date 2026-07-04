@@ -167,6 +167,15 @@ if (typeof document !== "undefined") (function () {
   let typer = null;        // {tokens, count, total, node}
   let mode = "title";      // title | play | menu
   let statusShown = false; // status overlay currently waiting
+  // rollback / scene review (standard VN backlog navigation)
+  let history = [];        // pcs of blocking stops this play session
+  let reviewIdx = 0;       // index into history currently displayed
+  let reviewing = false;   // true while showing a rolled-back (past) beat
+  let uiHidden = false;    // Shift held: dialogue overlay hidden to view art
+  let chapFading = false;  // a coordinated chapter fade is in progress
+  let chapArmed = false;   // this step() run may trigger a chapter fade (forward play only)
+  const CHAP_FADE_MS = 1800; // fade-to-black / fade-in duration
+  const CHAP_HOLD_MS = 400;  // beat of full black between the two fades
   const st = freshState();
   let settings = loadSettings();
 
@@ -652,7 +661,7 @@ if (typeof document !== "undefined") (function () {
   }
   function maybeAutoplay() {
     clearAutoplayTimer();
-    if (!settings.autoplay) return;
+    if (!settings.autoplay || reviewing || chapFading) return;
     autoplayTimer = setTimeout(() => {
       autoplayTimer = null;
       if (mode === "play" && waiting) advance();
@@ -757,6 +766,14 @@ if (typeof document !== "undefined") (function () {
     waiting = false;
     while (pc < SCRIPT.ins.length) {
       const c = SCRIPT.ins[pc];
+      // Coordinated chapter transition: when forward play reaches a @chapter marker,
+      // fade to black (old scene/music already fading), apply the new scene under the
+      // black, then fade back in. Only from advance()-driven play (chapArmed), never
+      // from a seek/resume/rollback.
+      if (c.op === "chapter" && chapArmed && !chapFading) {
+        startChapterFade();
+        return;
+      }
       const blocked = exec(c);
       if (blocked) {
         waiting = true;
@@ -767,6 +784,53 @@ if (typeof document !== "undefined") (function () {
       pc++;
     }
     endCard();
+  }
+
+  /* ---------- coordinated chapter-transition fade ---------- */
+  function startChapterFade() {
+    chapFading = true;
+    chapArmed = false;
+    clearTimers();
+    // fade the black curtain IN (the trailing @bgm of the old chapter, if any, is
+    // already fading out from this same step — the two coincide)
+    const cf = $("chapfade");
+    cf.style.transition = "opacity " + CHAP_FADE_MS + "ms ease";
+    cf.style.opacity = "1";
+    setTimeout(finishChapterFade, CHAP_FADE_MS + CHAP_HOLD_MS);
+  }
+  function finishChapterFade() {
+    // under full black: run the new chapter's setup directives (bg/sprites/bgm/…)
+    // through to its first blocking beat, all invisibly
+    waiting = false;
+    while (pc < SCRIPT.ins.length) {
+      const c = SCRIPT.ins[pc];
+      const blocked = exec(c);
+      if (blocked) { waiting = true; break; }
+      pc++;
+    }
+    if (pc >= SCRIPT.ins.length) {
+      chapFading = false;
+      $("chapfade").style.opacity = "0";
+      endCard();
+      return;
+    }
+    preloadAhead();
+    updateChapterIndicator();
+    pushHistory();
+    // reveal: fade the black curtain OUT (the new @bgm fades in over ~the same span)
+    const cf = $("chapfade");
+    requestAnimationFrame(() => {
+      cf.style.transition = "opacity " + CHAP_FADE_MS + "ms ease";
+      cf.style.opacity = "0";
+    });
+    setTimeout(() => { chapFading = false; if (waiting) maybeAutoplay(); }, CHAP_FADE_MS);
+  }
+  function cancelChapterFade() {
+    chapFading = false;
+    chapArmed = false;
+    const cf = $("chapfade");
+    cf.style.transition = "none";
+    cf.style.opacity = "0";
   }
 
   function updateChapterIndicator() {
@@ -782,14 +846,17 @@ if (typeof document !== "undefined") (function () {
   }
 
   function advance() {
-    if (mode !== "play") return;
+    if (mode !== "play" || reviewing || chapFading) return;
     if (completeTyper()) return; // first click completes the reveal
     if (!waiting) return;
     clearTimers();
     if (statusShown) hideStatus();
     hideFloor();
     pc++;
+    chapArmed = true;   // this forward step may cross a @chapter boundary
     step();
+    chapArmed = false;
+    if (waiting) pushHistory();
   }
 
   /* ---------- skip (hold Ctrl to fast-advance through already-read text) ---------- */
@@ -798,7 +865,7 @@ if (typeof document !== "undefined") (function () {
   let skipTimer = null;
   function skipTick() {
     skipTimer = null;
-    if (!skipActive || mode !== "play" || pc >= maxPc) return;
+    if (!skipActive || mode !== "play" || reviewing || chapFading || pc >= maxPc) return;
     advance();
     if (skipActive) skipTimer = setTimeout(skipTick, 40);
   }
@@ -812,10 +879,60 @@ if (typeof document !== "undefined") (function () {
     if (skipTimer) { clearTimeout(skipTimer); skipTimer = null; }
   }
 
+  /* ---------- rollback / scene review + Shift-hide (standard VN features) ----------
+     history[] records the pc of every blocking stop reached this play session.
+     Left/Up step back through them (review mode); Right/Down step forward; at the
+     leading edge Right/Down is a normal advance. End or a click while reviewing
+     jumps back to the present beat and eats the input. Shift held hides the
+     dialogue overlay so the art can be seen; releasing restores it. */
+  function pushHistory() {
+    if (history[history.length - 1] !== pc) history.push(pc);
+    if (history.length > 1000) history.shift();
+    reviewIdx = history.length - 1;
+    reviewing = false;
+  }
+  function reviewSeek(target) {
+    seek(target);      // reconstruct + render the beat (instant transitions)
+    completeTyper();   // no typewriter animation in review
+  }
+  function rollBack() {
+    if (mode !== "play" || uiHidden) return;
+    if (reviewIdx <= 0) return;           // already at the oldest recorded beat
+    reviewIdx--;
+    reviewing = true;
+    reviewSeek(history[reviewIdx]);
+  }
+  function rollForward() {
+    if (mode !== "play" || uiHidden) return;
+    if (reviewIdx >= history.length - 1) { advance(); return; } // leading edge: next
+    reviewIdx++;
+    if (reviewIdx >= history.length - 1) reviewing = false;     // caught up to present
+    reviewSeek(history[reviewIdx]);
+  }
+  function returnToPresent() {
+    if (!reviewing) return;
+    reviewIdx = history.length - 1;
+    reviewing = false;
+    reviewSeek(history[reviewIdx]);
+  }
+
+  function hideUI() {
+    if (uiHidden || mode !== "play") return;
+    uiHidden = true;
+    $("textbox").dataset.peek = $("textbox").style.display;
+    $("textbox").style.display = "none";
+  }
+  function showUI() {
+    if (!uiHidden) return;
+    uiHidden = false;
+    $("textbox").style.display = $("textbox").dataset.peek || "";
+  }
+
   /* ---------- seek: silent state replay for resume / chapter jump ---------- */
 
   function seek(target) {
     clearTimers();
+    cancelChapterFade();
     hideStatus();
     hideFloor();
     Object.assign(st, freshState());
@@ -943,7 +1060,9 @@ if (typeof document !== "undefined") (function () {
     $("chapters").style.display = "none";
     $("menubtn").style.display = "";
     mode = "play";
+    uiHidden = false;
     seek(target);
+    history = [pc]; reviewIdx = 0; reviewing = false;
   }
   function endCard() {
     clearTimers();
@@ -1077,10 +1196,12 @@ if (typeof document !== "undefined") (function () {
   /* ---------- input ---------- */
 
   function onAdvanceInput(e) {
-    if (mode === "play") {
-      e.preventDefault();
-      advance();
-    }
+    if (mode !== "play") return;
+    e.preventDefault();
+    if (chapFading) return;                  // ignore input mid chapter transition
+    if (uiHidden) return;                    // Shift-hold peek: don't advance
+    if (reviewing) { returnToPresent(); return; } // click returns to present, eats it
+    advance();
   }
 
   function wire() {
@@ -1110,11 +1231,21 @@ if (typeof document !== "undefined") (function () {
         else if ($("pausemenu").style.display !== "none") closePause();
       } else if (e.key === "Control") {
         startSkip();
+      } else if (e.key === "Shift") {
+        if (mode === "play") { e.preventDefault(); hideUI(); }
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        if (mode === "play") { e.preventDefault(); rollBack(); }
+      } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        if (mode === "play") { e.preventDefault(); rollForward(); }
+      } else if (e.key === "End") {
+        if (mode === "play" && reviewing) { e.preventDefault(); returnToPresent(); }
       }
     });
     document.addEventListener("keyup", (e) => {
       if (e.key === "Control") stopSkip();
+      else if (e.key === "Shift") showUI();
     });
+    window.addEventListener("blur", showUI);
     window.addEventListener("blur", stopSkip);
     $("menubtn").onclick = (e) => { e.stopPropagation(); openPause(); };
     $("btn-begin").onclick = () => requireGate(() => beginPlay(0));

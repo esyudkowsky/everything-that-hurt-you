@@ -1,7 +1,9 @@
 {
  "audio": {
+  "bgm_campfire": "assets/audio/bgm_campfire_loop.mp3",
   "bgm_dungeon": "assets/audio/bgm_dungeon_loop.mp3",
   "bgm_lament": "assets/audio/bgm_lament_loop.mp3",
+  "bgm_montage": "assets/audio/bgm_montage_loop.mp3",
   "bgm_tavern": "assets/audio/bgm_tavern_loop.mp3",
   "bgm_title": "assets/audio/bgm_title_loop.mp3",
   "bgm_title_end": "assets/audio/bgm_title_end_loop.mp3",
@@ -74,6 +76,7 @@
   "cg_night_practice": "assets/cg/cg_night_practice.png",
   "cg_nobleman_bid": "assets/cg/cg_nobleman_bid.png",
   "cg_one_hand_block": "assets/cg/cg_one_hand_block.png",
+  "cg_ownership_dark": "assets/cg/cg_ownership_dark.png",
   "cg_ownership_transfer": "assets/cg/cg_ownership_transfer.png",
   "cg_pamphlet_cover_english": "assets/cg/cg_pamphlet_cover_english.png",
   "cg_pamphlet_cover_runes": "assets/cg/cg_pamphlet_cover_runes.png",

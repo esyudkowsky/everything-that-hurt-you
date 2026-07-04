@@ -401,3 +401,34 @@
   long lines intact and breaks parity. cg_cliff_base_aftermath regenerated: her outstretched
   hand is now bare skin + dark claws, NO fur (was too furry vs her other CGs); prompt fixed in
   make_cg_jobs.py.
+
+- 2026-07-03/04 (Opus, large feature+art+restructure batch):
+  ENGINE: (1) VN rollback — ArrowLeft/Up step back through displayed beats, ArrowRight/Down
+  forward (advance at leading edge), End or click-while-reviewing returns to present & eats
+  the input; uses history[] of blocking-stop pcs + seek(). (2) Shift held hides the dialogue
+  overlay (#textbox), release restores. (3) Coordinated CHAPTER-TRANSITION FADE: at every
+  @chapter boundary during forward play, a black curtain (#chapfade) fades in (~1.8s, old bgm
+  fading via the trailing @bgm), holds, the new chapter's setup runs under black, then fades
+  out as the new bgm fades in. Guards: reviewing/seek/rollback never fade; startChapterFade/
+  finishChapterFade/cancelChapterFade in engine.js. Tested OK (ch1->2 black peak 1.0 -> reveal).
+  MUSIC (new tracks via Lyria pro, looped, in manifest): bgm_montage (ch5-6 training-montage
+  theme), bgm_campfire (ch8 intimate campfire theme). BGM changes now at 4->5 (montage),
+  6->7 (tavern), 7->8 (campfire) — crossfading during the chapter fades.
+  ART (several regens; Nano Banana PRO = google/gemini-3-pro-image via gen_style.py is the
+  fix for instruction-following/gaze/anatomy trouble — flash often ignores it): cg_auction_fixed
+  (same dais viewpoint + single figure), cg_ownership_transfer (hands clearly on collar + on
+  Avram) + NEW cg_ownership_dark successor (runes extinguished, for "The runes go dark"),
+  cg_knockdown (on grass, no posts), cg_slime_lecture (PRO: she looks at Avram not camera),
+  cg_pamphlet_rules (campfire, no table/cup), cg_bedroll_transparent (PRO: clear translucent
+  cutaway of BOTH of them side by side in a two-person bedroll — attempt 1 worked, tent variant
+  not needed). Pamphlet English-cover CG dropped -> title shown as a text box ("My first slave:
+  Rules for effective use."). "Master's wishes" beat -> her matter-of-fact.
+  SCRIPT RESTRUCTURE (echoed from author's saved script.md via git diff): ch3 auction rewordings;
+  ch5 now = training montage only; the pamphlet reading moved into ch6 (before the bedroll; old
+  "Frost on the grass" intro cut); the guild/clerk/status scene moved to ch7's opening; several
+  auction line edits + deletions ("That, and the rest of it. All of it." cut). All % finalized.
+  SYNC WORKFLOW CONFIRMED: author edits script.md in the IDE; once SAVED, `git diff
+  claude-inputs/script.md` shows the edits cleanly (script.md is committed), and I echo them into
+  script.txt (dialogue text verbatim). git diff shows NOTHING until the file is saved — so the
+  author must save (Ctrl+S) before I can pick edits up (enabling VSCode auto-save makes this
+  seamless). Parity 212=212, validator 0 errors after the batch.

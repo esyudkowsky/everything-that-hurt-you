@@ -195,7 +195,7 @@ Avram: ...
 [bgm: bgm_tension] · [sfx: sfx_crowd]
 
 : [bg_auction_plaza] The plaza is packed. On the dais, one lot after another is walked out, made
-to turn, appraised, and sold. Avram stands near the back with a purse of dungeon silver.
+to turn, appraised, and sold.
 
 : [cg_auction_fierce] The beastgirl on the dais: full-coverage armor, slave collar, cheerful
 smile, posing fiercely with a sword. The announcer gestures at her; no dialogue bubble.
@@ -204,22 +204,20 @@ smile, posing fiercely with a sword. The announcer gestures at her; no dialogue 
 
 : [announcer barker-grin R]
 
-Announcer: A *war*-slave, sers! Blooded on the low floors, sound of wind and limb — wolf-blood stock, trains twice as fast as any human and worth it twice over on a campaign!
+Announcer: A *war*-slave, sers! Blooded on the low floors, sound of wind and limb — wolf-blood stock, twice as hardy as any human and worth three warriors on a campaign!
 
-: [cg_nobleman_bid] A rich-looking robed nobleman near the front — two heavy scarred bodyguards
-behind him, a skeletally thin, scarred, collared girl kneeling at his side — raises his hand and
-names a price. (The entourage matters later: "that awful slimeball.")
+: [cg_nobleman_bid] A rich-looking robed nobleman near the front raises his hand and
+names a price. (Two heavy scarred bodyguards
+behind him, a skeletally thin, scarred, collared girl kneeling at his side. The entourage shows the fate of his slaves.)
 
 A rich-looking, robed nobleman near the front — two heavy scarred bodyguards behind him, a skeletally thin, scarred, collared girl kneeling at his side — raises his hand and names a price.
 
 : [cg_auction_fixed] Her smile is still there, but it looks fixed. (Must read as "cheer" on first
 pass; do not linger.)
 
-: [bg_auction_plaza | avram eyes-narrowed L] Avram suddenly locks focus and commits to the bid.
+: [bg_auction_plaza | avram eyes-narrowed L]
 
 Avram raises his hand.
-
-Avram: That, and the rest of it. All of it.
 
 : [nobleman irritated R]
 
@@ -227,20 +225,20 @@ The nobleman raises his hand and names a higher number.
 
 : [avram neutral L]
 
-Avram empties the purse across the clerk's table, and raises his hand again. It is all the money he has.
+Avram empties the purse across the clerk's table.
 
-: [nobleman irritated R] He weighs the thin girl already at his side against the boy's whole purse.
+: [nobleman irritated R]
 
-The nobleman looks at him, and lets his hand fall.
+The nobleman looks at him with disgust, and lets his hand fall.
 
-: The announcer takes Avram's coin and hands him a small printed pamphlet.
+: The announcer takes Avram's coin, guages him, and hands him a small printed pamphlet before gesturing him and the beast-girl toward the back of the auction stand.
 
 : [cg_pamphlet_cover_runes] The pamphlet cover, inscrutable runes.
 
-: [cg_pamphlet_cover_english] The same cover, now legible: MY FIRST SLAVE: SIMPLE RULES FOR EFFECTIVE USE.
+My first slave: Rules for effective use.
 
-: [bg_auction_plaza | avram horror-distant L] Pale, unfocused, slack — Avram reading the pamphlet
-in his hand.
+: [bg_auction_plaza | avram horror-distant L] (Pale, unfocused, slack — Avram reading the pamphlet
+in his hand.)
 
 : [cg_ownership_transfer] The announcer lays one hand on her collar, one on top of Avram's head;
 the collar's runes light up. The binding passes from the auction-house to Avram.
@@ -266,7 +264,9 @@ Avram: If I was wrong about that - please speak up.
 
 Her: Helping you clear dungeons is fine, Master! Is there a reason you wouldn't also have sex with me?
 
-Avram: It's - against the customs of my people. Are you hungry? Do you need a shower, or a doctor, or new underwear, or - or anything at all?
+Avram: It's - against the customs of my people.
+
+Avram: Are you hungry? Do you need a shower, or a doctor, or new underwear, or - or anything at all?
 
 Her: No, Master. I was fed just yesterday.
 
@@ -286,8 +286,6 @@ Avram: And the *point* of this whole concept is to make things easier on you, wh
 
 Her: Master's wishes... are my command? I'm not sure I understand Master's wishes, though.
 
-: [avram neutral L]
-
 Avram: That's fine.
 
 Avram: Next we're going to the finest restaurant in this town and eating a nice meal together, including any of your favorite foods that are on the menu regardless of what they cost.
@@ -295,8 +293,6 @@ Avram: Next we're going to the finest restaurant in this town and eating a nice 
 Avram: And, if it's okay with you, I'd rather you didn't say anything about how grateful you are for such kindly treatment from me.
 
 Her: Why not, Master? It's sort of an obvious thing to say.
-
-: [avram wry L]
 
 Avram: I mean, I *wish* I could say, it's okay for you to thank me if you want to. But I won't actually be able to avoid looking horribly uncomfortable if you do.
 
@@ -308,7 +304,7 @@ face is baked into the CG).
 
 ## 4. Naming
 
-: [bg_town_gate | avram neutral L, her cheer R] Walking out through the town gates, road stretching ahead.
+: [bg_town_gate | avram discomfort L, her cheer R] Walking out through the town gates, road stretching ahead.
 
 Avram: So. What do I call you? What's your —
 
@@ -331,18 +327,16 @@ Avram: ...I'll think on it.
 
 [flash black]
 
-: (The nickname he settles on is never shown in dialogue; her nametag reads "Her" throughout —
+(The nickname he settles on is never shown in dialogue; her nametag reads "Her" throughout —
 the engine-rendered tag, not her actual chosen name.)
 
 ---
 
 ## 5. She Teaches Him
 
-: [bg_training_clearing | avram neutral L, her cheer R] On the road, she sizes up what he can't
-do yet, and appoints herself his teacher. The first morning off the road, she puts a practice sword
-in his hands.
+: [bg_training_clearing | avram neutral L, her cheer R]
 
-On the road, she sizes up what he can't do yet, and appoints herself his teacher. The first morning off the road, she puts a practice sword in his hands.
+On the road, she sizes up what he can't do yet, and appoints herself his teacher.
 
 : (Montage, 4 panels:)
 : [cg_grip_correction] Training clearing, dawn: her clawed hand closed over his on the hilt.
@@ -351,7 +345,11 @@ On the road, she sizes up what he can't do yet, and appoints herself his teacher
 Avram nodding along like a student.
 : [cg_first_strike] Floor five: his first clean strike; her whooping behind him.
 
-: [bg_camp_night | avram neutral L] By the campfire, Avram flips through the pamphlet, searching.
+---
+
+## 6. Bedroll
+
+: [bg_camp_night | avram neutral L] By the campfire one night, Avram flips through the pamphlet.
 
 : [cg_pamphlet_rules] The open page, rules legible, his thumb resting next to Rule 5:
 
@@ -359,26 +357,7 @@ Avram nodding along like a student.
 > RULE 6: Be polite, and don't ask your slave about their training. Slaves with bad trainers won't want to remember it, and good trainers will request their students not to reveal the master's proprietary techniques.
 > RULE 7: Establish a routine early. A slave who knows what each day holds serves better than one who must guess.
 
-: [bg_camp_night | avram neutral L] Avram glances over at her, asleep by the fire. He closes the pamphlet.
-
-: [bg_guild_hall | avram neutral L, clerk cheerful-surprise R] Guild interior — clerk's desk, notice board.
-
-Clerk: Floor nine already?
-
-: [avram wry L]
-
-Avram: We've been lucky.
-
-: [status overlay]
-
-> [AVRAM — Wolf School Swordsmanship: Lv 1 → Lv 6 · Fire Magic: Lv 0 → Lv 2]
-> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 11 → Lv 12]
-
----
-
-## 6. Bedroll
-
-: [bg_camp_night, tint night] Frost on the grass, visible breath. Avram in his bedroll, hunched.
+: [bg_camp_night | avram neutral L] Avram closes the pamphlet, and heads to his bedroll.
 
 : [her_camp matter-of-fact R] She lifts the edge of his bedroll.
 
@@ -410,6 +389,19 @@ Avram: The answer to the rest of it is also no.
 ---
 
 ## 7. Tavern
+
+: [bg_guild_hall | avram neutral L, clerk cheerful-surprise R] Guild interior — clerk's desk, notice board.
+
+Clerk: Floor nine already?
+
+: [avram wry L]
+
+Avram: We've been lucky.
+
+: [status overlay]
+
+> [AVRAM — Wolf School Swordsmanship: Lv 1 → Lv 6 · Fire Magic: Lv 0 → Lv 2]
+> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 11 → Lv 12]
 
 [bgm: bgm_tavern]
 
@@ -463,7 +455,11 @@ night tint carry "outside"; no narration needed.)
 
 Her: Did I say something wrong, Master?
 
-Avram: No. Yes. We don't want to look anomalous.
+Avram: No.
+
+Avram: Yes.
+
+Avram: We don't want to look anomalous.
 
 Her: Yes, Master.
 
@@ -472,8 +468,6 @@ Her: Yes, Master.
 Avram: ...
 
 Her: ...
-
-: [avram wry L]
 
 Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 
@@ -485,8 +479,6 @@ Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 holds through Avram's opening line, then falls back to sprites.
 
 Avram: You can go ahead and say what you're thinking. I feel like I can still hear it.
-
-: [bg_camp_night | avram wry L, her_camp matter-of-fact R]
 
 Her: We'd look less like an anomaly if you told them you were fucking me.
 
@@ -524,24 +516,27 @@ Avram: Something like that.
 
 (Restaged as a three-beat transition — dungeon mishap → walk out → caravan at dusk.)
 
-: [bg_dungeon_mid] [sfx: sfx_sword] [flash white] A bad floor, deeper than they should have pushed
-in one day. Something catches Avram's sword arm against the wall before she kills it.
+: [bg_dungeon_mid] [sfx: sfx_sword] [flash white]
 
-A bad floor, deeper than they should have pushed in one day. Something catches Avram's sword arm against the wall before she kills it.
+A bad floor, deeper than they should have pushed in one day.
 
-: [bg_forest_road] The walk out is slow. His arm is in a sling. She walks between him and the treeline.
+A mountain troll's club bashes Avram's sword arm against the wall.
 
-The walk out is slow. His arm is in a sling. She walks between him and the treeline.
+His magic blasts its head clean off, but his wound is not as fast to heal. 
+
+: [bg_forest_road]
+
+His arm throbs as he walks the road.  Neither of them are expert healers and it's the first serious wound either of them have taken.
 
 : [bg_camp_night, tint dusk] By evening they've fallen in with a traveling caravan. Wagons, cookfires,
 hired guards. The caravan has a healer. (Dusk tint = late evening, not full night.)
 
-By evening they've fallen in with a traveling caravan. Wagons, cookfires, hired guards. The caravan has a healer.
+By evening they've found a traveling caravan. Wagons, cookfires, hired guards. A healer.
 
 : [avram neutral L, healer dry-neutral R] The healer, gray-braided, splints Avram's arm. Across the
 camp, out of earshot, she tends the fire.
 
-The healer, gray-braided, splints Avram's arm. Across the camp, out of earshot, she tends the fire.
+The gray-braided healer splints Avram's arm for a few coins, though for some reason she insists on talking to his slave in private before agreeing to treat him.
 
 Healer: Your slavegirl's not happy, young man.
 
@@ -549,7 +544,7 @@ Avram: What's wrong?
 
 : [healer pointed R]
 
-Healer: That she doesn't know where she stands with you, why you treat her the way you do, what's in store for her, what her life's going to be like, and why you won't fuck her.
+Healer: She doesn't know where she stands with you, why you treat her the way you do, what's in store for her, what her life's going to be like, and why you won't fuck her.
 
 : [avram unreadable L]
 
@@ -565,8 +560,9 @@ Avram: Private.
 
 Healer: Well if you won't tell even her, that sounds to her like you're planning to sell her off, hm? Not settling down for the long run with her?
 
-: [avram sad-distant L] Grieving-before-the-fact: he knows exactly what he's planning. Avram looks
-across at her, silhouetted against the fire.
+: [avram sad-distant L]
+
+Avram:
 
 : [healer dry-neutral R] The healer ties off the splint.
 

@@ -249,7 +249,7 @@ Avram: ...
 @sfx sfx_crowd
 @bgm bgm_tension
 
-The plaza is packed. On the dais, one lot after another is walked out, made to turn, appraised, and sold. Avram stands near the back with a purse of dungeon silver.
+The plaza is packed. On the dais, one lot after another is walked out, made to turn, appraised, and sold.
 
 @cg cg_auction_fierce fade
 @hold
@@ -261,7 +261,7 @@ The plaza is packed. On the dais, one lot after another is walked out, made to t
 @note sexy pose, face still cheerful; announcer now leering
 
 @sprite announcer barker-grin right
-Announcer: A *war*-slave, sers! Blooded on the low floors, sound of wind and limb — wolf-blood stock, trains twice as fast as any human and worth it twice over on a campaign!
+Announcer: A *war*-slave, sers! Blooded on the low floors, sound of wind and limb — wolf-blood stock, twice as hardy as any human and worth three warriors on a campaign!
 
 @clear right
 @cg cg_nobleman_bid cut
@@ -280,29 +280,27 @@ A rich-looking, robed nobleman near the front — two heavy scarred bodyguards b
 @sprite avram eyes-narrowed left
 Avram raises his hand.
 
-Avram: That, and the rest of it. All of it.
-
 @sprite nobleman irritated right
 The nobleman raises his hand and names a higher number.
 
 @sprite avram neutral left
-Avram empties the purse across the clerk's table, and raises his hand again. It is all the money he has.
+Avram empties the purse across the clerk's table.
 
 @sprite nobleman irritated right
 @note he weighs the thin girl already at his side against the boy's whole purse
-The nobleman looks at him, and lets his hand fall.
+The nobleman looks at him with disgust, and lets his hand fall.
 
 @clear right
-The announcer takes Avram's coin and hands him a small printed pamphlet.
+The announcer takes Avram's coin, guages him, and hands him a small printed pamphlet before gesturing him and the beast-girl toward the back of the auction stand.
 
 @clear all
 @cg cg_pamphlet_cover_runes fade
 @hold
 @note inscrutable runes on the cover
+@note cg_pamphlet_cover_english dropped (author 2026-07-03: it read as a different world from the
+@note runes cover). The legible title is shown as a text box over the runes cover instead.
 
-@cg cg_pamphlet_cover_english cut
-@hold
-@note the same cover, now legible: MY FIRST SLAVE: SIMPLE RULES FOR EFFECTIVE USE
+My first slave: Rules for effective use.
 
 @bg bg_auction_plaza cut
 @sprite avram horror-distant left
@@ -316,6 +314,8 @@ The announcer puts one hand on her collar, and one hand on top of Avram's head. 
 
 Announcer: [Ownership Transfer.]
 
+@cg cg_ownership_dark cut
+@note successor CG: collar runes now dark/extinguished, barker's hands lowered — matches the line
 The runes go dark. She belongs to him now.
 
 @bg bg_market fade
@@ -335,7 +335,9 @@ Avram: If I was wrong about that - please speak up.
 
 Her: Helping you clear dungeons is fine, Master! Is there a reason you wouldn't also have sex with me?
 
-Avram: It's - against the customs of my people. Are you hungry? Do you need a shower, or a doctor, or new underwear, or - or anything at all?
+Avram: It's - against the customs of my people.
+
+Avram: Are you hungry? Do you need a shower, or a doctor, or new underwear, or - or anything at all?
 
 Her: No, Master. I was fed just yesterday.
 
@@ -353,6 +355,8 @@ Avram: A smile on the outside isn't what I'm looking for, not unless you mean it
 
 Avram: And the *point* of this whole concept is to make things easier on you, which means, I'm *not* going to punish you if you don't get it right.
 
+@note steadier, less-smiling here — the bright cheer mask drops a little (author 2026-07-03)
+@sprite her matter-of-fact right
 Her: Master's wishes... are my command? I'm not sure I understand Master's wishes, though.
 
 @sprite avram neutral left
@@ -380,7 +384,7 @@ Avram: I mean, I *wish* I could say, it's okay for you to thank me if you want t
 @chapter 4 Naming
 
 @bg bg_town_gate fade
-@sprite avram neutral left
+@sprite avram discomfort left
 @sprite her cheer right
 @note walking out through the town gates, road stretching ahead
 
@@ -416,9 +420,12 @@ Avram: ...I'll think on it.
 @chapter 5 She Teaches Him
 
 @bg bg_training_clearing fade
+@bgm bgm_montage
+@note bgm_montage: distinct montage/training theme (author 2026-07-03); crossfades in during the
+@note ch4->5 fade — the start of a more montage-like stretch (runs ch5 into ch6)
 @sprite avram neutral left
 @sprite her cheer right
-On the road, she sizes up what he can't do yet, and appoints herself his teacher. The first morning off the road, she puts a practice sword in his hands.
+On the road, she sizes up what he can't do yet, and appoints herself his teacher.
 
 @clear all
 @montage begin 4
@@ -433,9 +440,15 @@ On the road, she sizes up what he can't do yet, and appoints herself his teacher
 @note floor five: his first clean strike; her whooping behind him
 @montage end
 
+
+@note ========== 6. BEDROLL ==========
+@chapter 6 Bedroll
+
 @bg bg_camp_night fade
+@clear all
+@tint night
 @sprite avram neutral left
-By the campfire, Avram flips through the pamphlet, searching.
+By the campfire one night, Avram flips through the pamphlet.
 
 @cg cg_pamphlet_rules fade
 @overlay inscription
@@ -447,32 +460,7 @@ By the campfire, Avram flips through the pamphlet, searching.
 
 @bg bg_camp_night cut
 @sprite avram neutral left
-Avram glances over at her, asleep by the fire. He closes the pamphlet.
-
-@bg bg_guild_hall fade
-@note guild interior (clerk's desk, notice board). Used again in section 12.
-@sprite avram neutral left
-@sprite clerk cheerful-surprise right
-
-Clerk: Floor nine already?
-
-@sprite avram wry left
-Avram: We've been lucky.
-
-@clear all
-@overlay status
-> [AVRAM — Wolf School Swordsmanship: Lv 1 → Lv 6 · Fire Magic: Lv 0 → Lv 2]
-> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 11 → Lv 12]
-@overlay end
-
-
-@note ========== 6. BEDROLL ==========
-@chapter 6 Bedroll
-
-@bg bg_camp_night fade
-@clear all
-@tint night
-Frost on the grass, visible breath. Avram in his bedroll, hunched.
+Avram closes the pamphlet, and heads to his bedroll.
 
 @sprite her_camp matter-of-fact right
 She lifts the edge of his bedroll.
@@ -514,8 +502,25 @@ Avram: The answer to the rest of it is also no.
 @note ========== 7. TAVERN ==========
 @chapter 7 Tavern
 
-@bg bg_tavern_tables fade
+@bg bg_guild_hall fade
 @bgm bgm_tavern
+@note bgm change at 6->7 (author 2026-07-03): montage theme -> town/tavern theme, crossfading in
+@note during the ch6->7 fade. Guild/status scene moved here from ch5.
+@sprite avram neutral left
+@sprite clerk cheerful-surprise right
+
+Clerk: Floor nine already?
+
+@sprite avram wry left
+Avram: We've been lucky.
+
+@clear all
+@overlay status
+> [AVRAM — Wolf School Swordsmanship: Lv 1 → Lv 6 · Fire Magic: Lv 0 → Lv 2]
+> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 11 → Lv 12]
+@overlay end
+
+@bg bg_tavern_tables fade
 @sprite avram neutral left
 @sprite her_camp cheer right
 The tavern is crowded. Three adventurers at the next table, deep in cups.
@@ -575,7 +580,11 @@ Her: Goodnight, sers!
 
 Her: Did I say something wrong, Master?
 
-Avram: No. Yes. We don't want to look anomalous.
+Avram: No.
+
+Avram: Yes.
+
+Avram: We don't want to look anomalous.
 
 Her: Yes, Master.
 
@@ -594,6 +603,9 @@ Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 @chapter 8 Campfire
 
 @bg bg_camp_night fade
+@bgm bgm_campfire
+@note bgm change at 7->8 (author 2026-07-03): the town/tavern theme gives way to an intimate
+@note firelit campfire theme, crossfading in during the ch7->8 fade to mark the scene change.
 @tint firelight
 @cg cg_campfire_shoulder fade
 @note the two-shot CG holds through Avram's opening line, then falls back to sprites

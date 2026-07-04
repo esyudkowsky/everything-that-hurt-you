@@ -100,16 +100,31 @@ CGS = [
   "CHEERFUL smile, fully at odds with the pose's intent; she is doing a routine, not flirting. The oily "
   "barker from the second reference leers and gestures. Crowd as dark silhouettes from behind. Fully "
   "clothed in her full-coverage armor; nothing revealing — the pose is the performance."),
- ("cg_auction_fixed", [HER],
-  f"Close crop, waist-up: {SHE} on the auction dais, harsh light. Her smile has the exact same cheerful "
-  "shape as always, but her eyes are open a fraction too wide and the smile is held a beat too long — a "
-  "fixed smile, subtle wrongness, still reading as cheer at first glance. Blurred crowd silhouettes below, "
-  "out of focus."),
+ ("cg_auction_fixed", [HER, ANN],
+  f"A slave auction dais under harsh midday light — the SAME wide viewpoint, distance, framing and staging "
+  f"as the other two dais shots (full body on the wooden dais, the oily barker from the second reference "
+  f"beside the dais, crowd below as dark silhouettes seen from behind). {SHE}, full body on the dais, now "
+  "standing still between poses. Her smile has the exact same cheerful shape as always, but her eyes are "
+  "open a fraction too wide and the smile is held a beat too long — a fixed smile, subtle wrongness, still "
+  "reading as cheer at first glance. It must read as an instance of the very same camera and stage as the "
+  "fierce and sexy poses, only her expression changed. CRITICAL: EXACTLY ONE figure of the wolf-girl on the "
+  "dais — a single her, NO duplicate, NO twin, NO second copy of her anywhere in frame."),
  ("cg_ownership_transfer", [ANN, HER, AV],
-  f"The moment of a magical ownership transfer: the oily barker stands between {SHE} and {AVRAM}. One of "
-  "the barker's hands rests on her dark-iron slave collar — at THIS moment of transfer the collar's runes "
-  "flare awake with cold blue arcane light — and his other hand rests flat on Avram's head. Avram looks "
-  "deeply uncomfortable; she smiles pleasantly. Auction dais setting, crowd silhouettes blurred below."),
+  f"A magical ownership-transfer ritual, three figures. The oily barker from the first reference stands "
+  f"BETWEEN the wolf-girl {SHE} and the young man {AVRAM}, reaching an arm toward EACH of them. CRITICAL — "
+  "both of his hands must be clearly making contact: his ONE hand laid FLAT DIRECTLY ON the wolf-girl's "
+  "dark-iron slave collar at her throat (the engraved collar runes flaring awake with cold blue arcane "
+  "light right under his palm), and his OTHER hand laid on Avram — resting on Avram's shoulder or head, "
+  "unmistakably touching him. Show the physical contact of BOTH hands plainly (one on her collar, one on "
+  "Avram). Avram looks deeply uncomfortable; she smiles pleasantly. Auction dais setting, crowd silhouettes "
+  "blurred below."),
+ # minor successor to cg_ownership_transfer for the "The runes go dark" beat — same scene, collar dark
+ ("cg_ownership_dark", ["assets/cg/cg_ownership_transfer.png"],
+  "Reproduce this EXACT scene — same three figures, same poses, same composition, same framing and camera. "
+  "Change ONLY two things: (1) the wolf-girl's dark-iron slave collar runes are now COMPLETELY DARK and "
+  "extinguished — NO blue glow, NO light of any kind on the collar, just dull black iron; (2) the barker's "
+  "hands are lowering / withdrawing away from her collar and from the young man, the ritual just finished. "
+  "Everything else identical to the reference. Quiet, done, the light gone out."),
  ("cg_pamphlet_cover_runes", [],
   "Object close-up CG: two hands (young man's hands, one visible sleeve of a green-brown cloak) holding a "
   "small cheaply-printed pamphlet. The cover shows ONLY inscrutable angular fantasy runes — an invented "
@@ -121,10 +136,12 @@ CGS = [
   "title, and beneath it the subtitle 'SIMPLE RULES FOR EFFECTIVE USE'. Same crude woodcut collar "
   "illustration. The text must be exactly as written, legible, correctly spelled."),
  ("cg_pamphlet_rules", [],
-  "Object close-up CG: an open pamphlet lying flat, lit by campfire light. The visible page shows a "
-  "numbered list layout — but all body text is rendered as soft unreadable printed-looking placeholder "
-  "lines (blurred greeked text), NO real words, so text can be overlaid by the game engine later. A thumb "
-  "rests at the margin beside the fifth entry."),
+  "Object close-up CG: an open pamphlet held in a young man's hands / resting on his knee by a campfire "
+  "outdoors at night — they are CAMPING. The visible page shows a numbered list layout, but all body text "
+  "is soft unreadable printed-looking placeholder lines (blurred greeked text), NO real words, so the "
+  "engine can overlay text later. A thumb rests at the margin beside the fifth entry. CRITICAL: NO table, "
+  "NO teacup or mug, NO indoor furniture of any kind — just the pamphlet, hands, and warm firelight over "
+  "the grass/bedroll of an outdoor camp."),
  ("cg_restaurant_plates", [AV, HER],
   f"Interior of the finest restaurant in town, candlelit, white tablecloth. {SHE} sits at the table behind "
   "a modest comical little stack of a FEW emptied plates (not a huge tower — just several), happily working "
@@ -135,21 +152,29 @@ CGS = [
   "hand, correcting his grip on a sword hilt. Focus tight on the two hands and the hilt; their bodies soft "
   "behind. Morning gold light, dew."),
  ("cg_knockdown", [AV, HER],
-  f"Training clearing at dawn. {AVRAM} flat on his back in the dirt, dust still rising, winded, worn boots "
-  "in view. Standing over him, {SHE} offers a hand down to help him up, cheerful bright smile, ears "
-  "perked, tail relaxed. Wooden practice posts around."),
+  f"An open grassy forest clearing at dawn. {AVRAM} flat on his BACK on soft GRASS (not bare dirt), winded, "
+  "worn boots in view. Standing over him, {SHE} offers a hand down to help him up, cheerful bright smile, "
+  "ears perked, tail relaxed. A natural clearing — grass, a few wildflowers, trees at the edges; CRITICAL: "
+  "NO wooden practice posts, NO upright poles, stakes, or man-made structures of any kind."),
+ ("cg_slime_lecture", [HER, AV],
+  f"A torchlit rough-stone dungeon corridor, floor three. {SHE} points at a green acid-slime creature with "
+  f"her sword and lectures. CRITICAL: she is turned toward {AVRAM} and looking DIRECTLY AT HIM, her student, "
+  "as she teaches — she is NOT looking at the viewer/camera. {AVRAM} stands beside her, nodding along "
+  "attentively, watching her and the slime. Warm torchlight, a teaching moment."),
  ("cg_first_strike", [AV, HER],
   f"A torchlit rough-stone dungeon corridor. {AVRAM} mid-swing, landing his first clean sword strike on a "
   "dissolving green acid-slime creature — the slime splitting apart with the hit. Behind him {SHE} whoops "
   "with both fists raised, delighted, ears up, tail out. Dynamic action framing, warm torchlight."),
  ("cg_bedroll_transparent", [AV, HER_C],
-  f"Night camp under cold starry sky, small fire burned low. A large two-person bedroll shown as a clear "
-  "cross-section / cutaway (a neat transparent slice through the blankets so we see inside, unmistakably a "
-  "cutaway view). Inside: {AVRAM} lies rigid as a plank, arms at his sides, eyes open staring straight up; "
-  f"{SHE_C} is curled comfortably against his side, asleep. CRITICAL ANATOMY: show her COMPLETE body "
-  "correctly — full torso, hips, and both legs present and properly connected, her tail draped over his "
-  "legs; NOTHING cut off at the waist, no missing or floating limbs, no detached boot. His discomfort vs "
-  "her perfect ease. Cold blue night, warm ember light."),
+  f"Night camp, cold starry sky, low glowing embers. A WIDE TWO-PERSON bedroll — a big double sleeping roll "
+  "on the ground, clearly sized for two people — shown in a clean transparent CUTAWAY / cross-section, as "
+  "if the top blanket layer is see-through so we can see BOTH people lying inside together, SIDE BY SIDE. "
+  f"TWO full figures plainly visible next to each other in the one bedroll: on the left {AVRAM} lies flat "
+  "on his back, rigid as a plank, arms straight at his sides, eyes open staring up at the sky, tense and "
+  f"awkward; pressed against his side on the right {SHE_C} is curled up comfortably, fast asleep, relaxed, "
+  "her wolf tail draped over his legs. Both bodies drawn complete and correct, side by side, no missing or "
+  "floating limbs. The WHOLE POINT of the picture is that there are clearly TWO people sharing ONE bedroll "
+  "— his stiff discomfort right next to her easy sleep. Cold blue night palette, warm ember light on them."),
  ("cg_bedroll_close", [AV, HER_C],
   f"Closer crop of the same night bedroll scene, cutaway view: {SHE_C} asleep against {AVRAM}'s shoulder, "
   "utterly content, breathing soft; his eyes still open, fixed on the stars, unreadable. Intimate framing, "
