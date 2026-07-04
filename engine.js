@@ -1088,6 +1088,10 @@ if (typeof document !== "undefined") (function () {
     const sv = loadSave();
     $("btn-continue").style.display = sv && sv.pc > 0 && !sv.fin ? "" : "none";
     $("btn-chapters-title").style.display = sv && sv.max > 0 ? "" : "none";
+    // After finishing, the content warning becomes a re-read / no-spoilers note.
+    $("title-notice").textContent = sv && sv.fin
+      ? "This story is meant to be read twice. Please do not spoil it for others."
+      : "This is a grownup story. Content may be disturbing to some viewers.";
     // Title-screen BGM: cheerful before the story is finished, somber after.
     // (Browsers may block autoplay until the first user gesture; playBgm no-ops
     // silently in that case and picks up on the next showTitle after a click.)

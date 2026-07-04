@@ -1,0 +1,19 @@
+try1 FAIL tes/gpt_sick.png]: HTTP 500: {"error": {"message": "Internal Server Error", "code": 500}}
+
+try2 FAIL tes/gpt_sick.png]: HTTP 500: {"error": {"message": "Internal Server Error", "code": 500}}
+
+try3 FAIL tes/gpt_sick.png]: HTTP 500: {"error": {"message": "Internal Server Error", "code": 500}}
+
+try4 FAIL tes/gpt_sick.png]: HTTP 500: {"error": {"message": "Internal Server Error", "code": 500}}
+
+GAVEUP claude-notes/qa/wound_candidates/gpt_sick.png
+try1 FAIL grave_filled.png]: HTTP 500: {"error": {"message": "Internal Server Error", "code": 500}}
+
+try2 FAIL grave_filled.png]: HTTP 500: {"error": {"message": "Internal Server Error", "code": 500}}
+
+try3 FAIL grave_filled.png]: HTTP 500: {"error": {"message": "Internal Server Error", "code": 500}}
+
+try4 FAIL grave_filled.png]: HTTP 500: {"error": {"message": "Internal Server Error", "code": 500}}
+
+GAVEUP claude-notes/qa/wound_candidates/gpt_grave_filled.png
+DONE

@@ -51,10 +51,10 @@ at a small floating tea table, featureless bright sky all around. No dialogue.
 
 \- The world of Elhom IV has a cycle.
 
-: [bg_forest_day | avram_earth neutral L] Avram, in Earth clothes, newly arrived in a forest in
-the middle of nowhere — composed, not shocked; he expected to materialize here. (The "Demon Lord"
-line is deliberately superposed over his *arrival* — a hint; keep the pairing. The truck prequel
-carries the shock beat, so this arrival stays calm.)
+: [bg_forest_day | avram_earth strained L] Avram, in Earth clothes, newly arrived in a forest in
+the middle of nowhere — strained/tense (author 2026-07-04, was neutral); he expected to materialize
+here, so not wide-eyed shock, but not composed either. (The "Demon Lord" line is deliberately
+superposed over his *arrival* — a hint; keep the pairing. The truck prequel carries the shock beat.)
 
 \- From time to time, arises a Demon Lord, feared and accursed
 
@@ -1021,7 +1021,8 @@ Her: Goodbye, Master.
 
 : [cg_cliff_two] Wide shot: Avram and her on the cliff, sunset.
 
-: [cg_cliff_alone] Same framing, Avram alone.
+: [cg_cliff_alone] Same framing, Avram alone. (CUT, not a fade — she steps off the cliff and vanishes
+abruptly, no fadeout.)
 
 : [cg_cliff_step] (Avram approaches the edge of the cliff, about to walk off it.)
 

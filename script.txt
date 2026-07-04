@@ -78,12 +78,12 @@ The world of Elhom IV has a cycle.
 
 @voiceover off
 @bg bg_forest_day fade
-@sprite avram_earth neutral left
+@sprite avram_earth strained left
 @voiceover over
 @note the hint: the Demon Lord line superposed on his arrival in the new world.
-@note avram_earth neutral (not shock) — he EXPECTED to materialize here; the summon
-@note is not a surprise to him (author 2026-07-03). The truck prequel carries the
-@note shock beat; this arrival is composed.
+@note avram_earth STRAINED (author 2026-07-04, was neutral) — he expected to
+@note materialize here, so not wide-eyed shock, but the arrival now reads tense/
+@note strung-out rather than fully composed.
 
 From time to time, arises a Demon Lord, feared and accursed
 
@@ -1251,9 +1251,10 @@ Her: Goodbye, Master.
 @hold
 @note wide shot: Avram and her on the cliff, sunset
 
-@cg cg_cliff_alone fade
+@cg cg_cliff_alone cut
 @hold
-@note same framing, Avram alone
+@note same framing, Avram alone — CUT, not fade: she steps off the cliff and
+@note vanishes ABRUPTLY, no fadeout (author 2026-07-04)
 
 @cg cg_cliff_step fade
 @hold
@@ -1348,9 +1349,10 @@ Of the two outsiders, there is one who chooses to protect the things that are, a
 @note whiteout (author 2026-07-04)
 
 @flash white 1400
-@sfx sfx_hiss
-@note SCREEN WHITEOUT + HISS: the forest goes calm → burning under the white
-@note (sfx_hiss is a needed audio asset — silent until added; see /HUMAN.md)
+@sfx sfx_silence-cut
+@note SCREEN WHITEOUT + HISS: the forest goes calm → burning under the white.
+@note Reuses sfx_silence-cut — the same hiss as the earlier big whiteout at the
+@note wound (author 2026-07-04), so no new audio asset is needed.
 @cg cg_burning_walk fade
 @hold
 @note Avram walking through the scathed and burning forest, back to viewer.

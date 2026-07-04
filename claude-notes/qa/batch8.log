@@ -1,0 +1,7 @@
+FAIL claude-notes/qa/wound_candidates/gpt_sick.png :: t", "code": 404}}
+FAILED [claude-notes/qa/wound_candidates/gpt_sick.png]: HTTP 404: {"error": {"message": "No endpoints found that support the requested output modalities: image, text", "code": 404}}
+
+FAIL claude-notes/qa/wound_candidates/gpt_grave_filled.png :: e": 404}}
+FAILED [claude-notes/qa/wound_candidates/gpt_grave_filled.png]: HTTP 404: {"error": {"message": "No endpoints found that support the requested output modalities: image, text", "code": 404}}
+
+DONE
