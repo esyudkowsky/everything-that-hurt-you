@@ -143,6 +143,13 @@
     paint-order: stroke fill;
     text-shadow: 0.36cqh 0.46cqh 0.4cqh rgba(0,0,0,.95);
     opacity: 0; transition: opacity 1.4s ease;
+    /* Own compositing layer so the stroked/shadowed glyphs are rasterized ONCE and
+       only their opacity composites during the fade. Without this, animating opacity
+       inside the rotated (mobile) #stage layer makes the GPU re-rasterize the text
+       each frame at slightly different subpixel offsets — a visible tiny "shift". */
+    transform: translateZ(0);
+    will-change: opacity;
+    backface-visibility: hidden;
   }
 
   /* ---- overlays ---- */
