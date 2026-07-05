@@ -1288,16 +1288,20 @@ Avram: Okay.
 @note to the cliff, leaving only the cg_cliff_two staging for "Goodbye, Master."
 
 @slow
-@autoplay 3000
+@autoplay 1000
 @note author 2026-07-04: "Goodbye, Master." types slowly; from here the aftermath frames
-@note AUTO-ADVANCE (~3s each) through into ch13. A click still advances and restarts the timer;
+@note AUTO-ADVANCE through into ch13. A click still advances and restarts the timer;
 @note a click landing right on an auto-advance is merged. Auto-advance ends at ch13's first line.
+@note author 2026-07-05: the FIRST timed change (into the aftermath, Avram stepping up) fires
+@note after 1s so the reader isn't left waiting long enough to get impatient and click; the
+@note @autoplay reverts to 3s below for every subsequent aftermath frame.
 Her: Goodbye, Master.
 
 @note ---- aftermath: silent CGs, slow fades, no music, NO onscreen narration ----
 @clear all
 
 @cg cg_cliff_two fade
+@autoplay 3000
 @hold
 @note wide shot: Avram and her on the cliff, sunset
 

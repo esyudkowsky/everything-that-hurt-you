@@ -29,6 +29,22 @@
     container-type: size;
   }
 
+  /* Mobile phones held in PORTRAIT: show the 16:9 stage sideways, filling the
+     phone's long edge, instead of a tiny letterboxed strip. The stage is sized
+     as a landscape box (using the viewport's height as its width) and rotated
+     90deg; container-query units resolve against the pre-transform layout box,
+     so all text/art sizing stays correct. Gated to touch devices so a narrow
+     desktop window is unaffected. When the phone is turned to real landscape,
+     (orientation: portrait) stops matching and the base rule fills the new
+     dimensions automatically — no JS, adapts live on rotate/resize. */
+  @media (orientation: portrait) and (pointer: coarse) {
+    #stage {
+      width: min(100vh, calc(100vw * 16 / 9));
+      flex-shrink: 0; /* don't let the flex parent shrink the (now wider-than-vw) box */
+      transform: rotate(90deg);
+    }
+  }
+
   /* ---- layers, back to front ---- */
   .fill { position: absolute; inset: 0; }
   #bglayer, #cglayer { pointer-events: none; }
@@ -388,6 +404,55 @@
   }
   #settingsmenu .danger-btn:hover { background: #7a1f1f; border-color: #e06a6a; color: #fff; }
   #settingsmenu .danger-btn.armed { background: #a81f1f; border-color: #ff8a8a; color: #fff; }
+  /* let a taller settings list scroll rather than clip on short screens */
+  #settingsmenu { justify-content: flex-start; padding: 4cqh 0; overflow-y: auto; }
+  /* music volume slider */
+  #settingsmenu .opt-slider {
+    -webkit-appearance: none; appearance: none; width: 26cqh; max-width: 40%; height: 0.7cqh;
+    background: #c9a75a3a; border-radius: 1cqh; outline: none; cursor: pointer;
+  }
+  #settingsmenu .opt-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 2.4cqh; height: 2.4cqh; border-radius: 50%;
+    background: var(--gold); border: none; cursor: pointer;
+  }
+  #settingsmenu .opt-slider::-moz-range-thumb {
+    width: 2.4cqh; height: 2.4cqh; border-radius: 50%; background: var(--gold); border: none; cursor: pointer;
+  }
+  /* controls reference */
+  #settingsmenu .opt-controls {
+    width: 62cqh; max-width: 90%; border: 1px solid #c9a75a33; border-radius: 0.8cqh;
+    padding: 1.4cqh 1.8cqh; background: #0f0f16aa;
+  }
+  #settingsmenu .opt-controls-title {
+    font-family: var(--serif); font-size: 2cqh; color: #cfc8b6; letter-spacing: 0.06em;
+    text-align: center; margin-bottom: 0.9cqh;
+  }
+  #settingsmenu .opt-controls-grid {
+    display: grid; grid-template-columns: max-content 1fr; column-gap: 1.6cqh; row-gap: 0.5cqh;
+    font-family: var(--serif); font-size: 1.7cqh; color: #b7b0a0; align-items: baseline;
+  }
+  #settingsmenu .opt-controls-grid .k { color: #e3c67c; white-space: nowrap; text-align: right; }
+  /* history / backlog */
+  #history-list {
+    width: 74cqh; max-width: 92%; height: 62cqh; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 1.4cqh;
+    padding: 1cqh 1.6cqh; text-align: left;
+  }
+  #history-list .hist-row { font-family: var(--serif); font-size: 2.2cqh; line-height: 1.4; color: #ded7c4; }
+  #history-list .hist-name { color: var(--gold); font-weight: 700; margin-right: 0.8cqh; }
+  #history-list .hist-text.hist-narr { color: #b3ab98; font-style: italic; }
+  #history-list .hist-empty { color: #8f8878; text-align: center; font-family: var(--serif); font-size: 2cqh; }
+  /* first-time advance hint */
+  #advance-hint {
+    position: absolute; left: 50%; bottom: 4cqh; transform: translateX(-50%);
+    z-index: 45; pointer-events: none;
+    font-family: var(--serif); font-size: 2.2cqh; color: #f0ece2;
+    background: #000000a6; border: 1px solid #ffffff33; border-radius: 5cqh;
+    padding: 1cqh 2.4cqh; white-space: nowrap;
+    opacity: 0; transition: opacity .5s ease;
+  }
+  #advance-hint.show { opacity: 1; animation: hint-pulse 1.8s ease-in-out infinite; }
+  @keyframes hint-pulse { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
 
   #music-section { margin-top: 2cqh; display: flex; flex-direction: column; align-items: center; gap: 1.2cqh; }
   .music-head { font-family: var(--serif); font-size: 2cqh; letter-spacing: 0.2em; color: #8f8878; }
@@ -458,6 +523,7 @@
     <div id="chapter-indicator" style="display:none"></div>
     <button id="menubtn" style="display:none" title="Menu (Esc)">≡</button>
     <button id="musicbtn" title="Music on — click to mute">♪</button>
+    <div id="advance-hint">Click, tap, or press <b>Space</b> to continue</div>
 
     <!-- menus -->
     <div id="title" class="menu" style="display:none">
@@ -506,6 +572,7 @@
 
     <div id="pausemenu" class="menu" style="display:none">
       <button id="btn-resume">Resume</button>
+      <button id="btn-history">History</button>
       <button id="btn-chapters">Chapters</button>
       <button id="btn-settings">Settings</button>
       <button id="btn-totitle">Title Screen</button>
@@ -546,12 +613,30 @@
           <button class="opt-btn" data-showchapter="off">Off</button>
         </div>
       </div>
-      <div class="opt-note">Hold <b>Ctrl</b> to fast-skip through text you've already read.</div>
+      <div class="opt-row">
+        <div class="opt-label">Music Volume</div>
+        <input id="volume-slider" class="opt-slider" type="range" min="0" max="100" step="1" aria-label="Music volume">
+      </div>
+      <div class="opt-controls">
+        <div class="opt-controls-title">Controls</div>
+        <div class="opt-controls-grid">
+          <span class="k">Click / Space / Enter</span><span>Advance</span>
+          <span class="k">&larr; / &uarr;</span><span>Go back to re-read (&rarr; / &darr; or a click returns)</span>
+          <span class="k">Ctrl (hold)</span><span>Skip text you&rsquo;ve already read; stops at new text</span>
+          <span class="k">Shift (hold)</span><span>Hide the interface to see the art</span>
+        </div>
+      </div>
       <div class="opt-row danger-row">
         <div class="opt-label">Progress</div>
         <button id="btn-delete-progress" class="danger-btn">Delete all progress</button>
       </div>
       <button id="btn-settings-back">Back</button>
+    </div>
+
+    <div id="historymenu" class="menu" style="display:none">
+      <h2>HISTORY</h2>
+      <div id="history-list"></div>
+      <button id="btn-history-back">Back</button>
     </div>
 
     <div id="chapters" class="menu" style="display:none">

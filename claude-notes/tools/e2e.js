@@ -51,7 +51,7 @@ fs.mkdirSync(SHOTS, { recursive: true });
   // click through everything; sample screenshots
   const sampleAt = new Set([5, 30, 60, 90, 130, 160, 200, 230, 260]);
   let clicks = 0;
-  for (; clicks < 600; clicks++) {
+  for (; clicks < 1400; clicks++) {
     const done = await page.evaluate(() => {
       const end = document.getElementById("endcard");
       return end && end.style.display !== "none";

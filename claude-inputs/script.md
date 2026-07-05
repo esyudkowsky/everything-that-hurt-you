@@ -1021,7 +1021,9 @@ Avram: Okay.
 
 Her: Goodbye, Master.
 
-: (Timing: this line types slowly, then the aftermath auto-advances ~3s per frame through into the
+: (Timing: this line types slowly; the FIRST timed change into the aftermath fires after ~1s so the
+reader isn't left waiting long enough to get impatient and click, then the aftermath auto-advances
+~3s per frame through into the
 Close, a click still advancing and restarting the timer; a click landing on a natural advance is
 merged. Implemented via @slow + @autoplay 3000 in /script.txt.)
 

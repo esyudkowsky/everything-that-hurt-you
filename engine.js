@@ -162,7 +162,7 @@ if (typeof document !== "undefined") (function () {
   const SAVE_KEY = "ethy_save";
   const SETTINGS_KEY = "ethy_settings";
   // showChapter: "full" (Ch. N/TOTAL · Title) | "number" (Ch. N/TOTAL) | "off"
-  const DEFAULT_SETTINGS = { typeMs: 33, autoplay: false, autoplayDelayMs: 900, showChapter: "number", musicOn: true };
+  const DEFAULT_SETTINGS = { typeMs: 33, autoplay: false, autoplayDelayMs: 900, showChapter: "number", musicOn: true, musicVolume: 0.7 };
   const TINTS = {
     night: "rgba(18, 38, 88, 0.30)",
     dusk: "rgba(120, 60, 20, 0.22)",
@@ -755,6 +755,11 @@ if (typeof document !== "undefined") (function () {
   let bgmEl = null;
   const BGM_VOL = 0.7;
   const BGM_FADE_MS = 1200;
+  // the live BGM target volume, driven by the Settings slider (0..1)
+  function bgmTargetVol() {
+    const v = settings.musicVolume;
+    return typeof v === "number" ? v : BGM_VOL;
+  }
 
   /* fades el's volume to 0 over BGM_FADE_MS then pauses it; instant = hard cut */
   function fadeOutBgmEl(el, instant) {
@@ -773,12 +778,12 @@ if (typeof document !== "undefined") (function () {
      Guarded by "bgmEl === el" so a superseded fade-in doesn't clobber a newer
      track's volume if @bgm changes again before this one finishes. */
   function fadeInBgmEl(el, instant) {
-    if (instant) { el.volume = BGM_VOL; return; }
+    if (instant) { el.volume = bgmTargetVol(); return; }
     const t0 = performance.now();
     (function tick() {
       if (bgmEl !== el) return;
       const t = Math.min(1, (performance.now() - t0) / BGM_FADE_MS);
-      el.volume = BGM_VOL * t;
+      el.volume = bgmTargetVol() * t;
       if (t < 1) requestAnimationFrame(tick);
     })();
   }
@@ -806,7 +811,7 @@ if (typeof document !== "undefined") (function () {
     const el = new Audio(path);
     el.dataset.bgmId = id;
     el.loop = true;
-    el.volume = instant ? BGM_VOL : 0;
+    el.volume = instant ? bgmTargetVol() : 0;
     el.play().then(() => {
       // playback actually started (post-gesture, or a browser that allows autoplay)
       if (!audioUnlocked) { audioUnlocked = true; updateMusicBtn(); }
@@ -1138,6 +1143,7 @@ if (typeof document !== "undefined") (function () {
 
   function advance(fromAuto) {
     if (mode !== "play" || reviewing || chapFading) return;
+    if (!fromAuto) dismissAdvanceHint(); // any manual advance retires the first-time hint
     // click-merge: during scoped @autoplay, a manual click landing right on top of
     // an auto-advance (within 250ms after it fired) is swallowed so the reader
     // doesn't skip a frame by double-advancing (author 2026-07-04 spec, approx).
@@ -1361,6 +1367,7 @@ if (typeof document !== "undefined") (function () {
     titleMusicPick = null; // beginning the KN / jumping to a chapter forgets the jukebox pick
     seek(target);
     history = [pc]; reviewIdx = 0; reviewing = false;
+    if (target === 0) maybeShowAdvanceHint(); // first-time "click to continue" hint at the very start
   }
   function endCard() {
     clearTimers();
@@ -1481,6 +1488,73 @@ if (typeof document !== "undefined") (function () {
     updateChapterIndicator();
   }
 
+  /* ---------- history / backlog (re-read past text) ---------- */
+  // Rebuilt on demand from the script up to the current position, so it always
+  // matches wherever the reader is (after resume, chapter-jump, or rollback).
+  function backlogHtml(text) {
+    return text
+      .replace(/\s*\|\s*/g, " ")                                   // drop mid-line pause markers
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/\*([^*]+)\*/g, "<em>$1</em>");                      // *emphasis* -> italics
+  }
+  function openHistory(fromTitle) {
+    const list = $("history-list");
+    list.innerHTML = "";
+    let vo = "off";
+    const upto = Math.min(pc, SCRIPT.ins.length - 1);
+    for (let j = 0; j <= upto; j++) {
+      const c = SCRIPT.ins[j];
+      if (c.op === "voiceover") { vo = c.mode; continue; }
+      if (c.op !== "say" && c.op !== "narrate") continue;
+      const row = document.createElement("div");
+      row.className = "hist-row";
+      const speaker = c.op === "say" ? c.speaker : (vo !== "off" ? "Skagganauk" : null);
+      if (speaker) {
+        const nm = document.createElement("span");
+        nm.className = "hist-name";
+        nm.textContent = speaker;
+        row.appendChild(nm);
+      }
+      const tx = document.createElement("span");
+      tx.className = "hist-text" + (c.op === "narrate" ? " hist-narr" : "");
+      tx.innerHTML = backlogHtml(c.text);
+      row.appendChild(tx);
+      list.appendChild(row);
+    }
+    if (!list.children.length) {
+      const empty = document.createElement("div");
+      empty.className = "hist-empty";
+      empty.textContent = "No dialogue yet.";
+      list.appendChild(empty);
+    }
+    $("historymenu").dataset.from = fromTitle ? "title" : "pause";
+    $("pausemenu").style.display = "none";
+    $("historymenu").style.display = "";
+    mode = "menu";
+    list.scrollTop = list.scrollHeight; // newest at the bottom, scrolled into view
+  }
+  function closeHistory() {
+    $("historymenu").style.display = "none";
+    openPause();
+  }
+
+  /* ---------- first-time "click to continue" hint ---------- */
+  const HINT_KEY = "ethy_hinted";
+  let hintActive = false;
+  function maybeShowAdvanceHint() {
+    let seen = false;
+    try { seen = !!localStorage.getItem(HINT_KEY); } catch (e) {}
+    if (seen) return;
+    hintActive = true;
+    $("advance-hint").classList.add("show");
+  }
+  function dismissAdvanceHint() {
+    if (!hintActive) return;
+    hintActive = false;
+    $("advance-hint").classList.remove("show");
+    try { localStorage.setItem(HINT_KEY, "1"); } catch (e) {}
+  }
+
   function renderSettingsUI() {
     for (const btn of $("speed-group").children)
       btn.classList.toggle("selected", +btn.dataset.speed === settings.typeMs);
@@ -1491,6 +1565,7 @@ if (typeof document !== "undefined") (function () {
     $("autoplay-delay-row").classList.toggle("disabled", !settings.autoplay);
     for (const btn of $("showchapter-group").children)
       btn.classList.toggle("selected", btn.dataset.showchapter === settings.showChapter);
+    $("volume-slider").value = Math.round(bgmTargetVol() * 100);
   }
   function openSettings(fromTitle) {
     disarmDelete();
@@ -1641,6 +1716,7 @@ if (typeof document !== "undefined") (function () {
         if (mode === "play") openPause();
         else if ($("scriptview").style.display !== "none") closeScriptView();
         else if ($("creditsmenu").style.display !== "none") closeCredits();
+        else if ($("historymenu").style.display !== "none") closeHistory();
         else if ($("chapters").style.display !== "none") closeChapters();
         else if ($("settingsmenu").style.display !== "none") closeSettings();
         else if ($("pausemenu").style.display !== "none") closePause();
@@ -1693,8 +1769,15 @@ if (typeof document !== "undefined") (function () {
       $("pausemenu").style.display = "none";
       openChapters(false);
     };
+    $("btn-history").onclick = () => openHistory(false);
+    $("btn-history-back").onclick = closeHistory;
     $("btn-settings").onclick = () => openSettings(false);
     $("btn-settings-back").onclick = closeSettings;
+    $("volume-slider").addEventListener("input", (e) => {
+      settings.musicVolume = Math.max(0, Math.min(1, (+e.target.value || 0) / 100));
+      saveSettings();
+      if (bgmEl && musicEnabled) bgmEl.volume = settings.musicVolume; // live, no fade
+    });
     $("btn-delete-progress").onclick = (e) => { e.stopPropagation(); onDeleteProgress(); };
     $("btn-totitle").onclick = () => { showTitle(); };
     $("btn-chapters-back").onclick = closeChapters;
