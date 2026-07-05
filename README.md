@@ -2,7 +2,7 @@
 
 A "kinetic novel" is a story / comic hybrid where you click (or press space or press Enter) to advance the writing, presented alongside images, backgrounds, character sprites, and music.  It is easier to just try it than to explain.
 
-*Everything That Hurt You* is my first work of fiction produced with significant AI involvement.  The story's key scenes were written down by me in 2021, but there was an equal amount of middle parts and transitions that I never found the gumption to write.  It did not help that, even if I had written the middle parts, turning the story into a manga or an actual kinetic novel seemed like it would be much, much more work.
+*Everything That Hurt You* is my first work of fiction produced with significant AI involvement.  (I don't consider previous use of image models for illustrations to be on nearly the same level.)  The story's key scenes were written down by me in 2021, but there was an equal amount of middle parts and transitions that I never found the gumption to write.  It did not help that, even if I had written the middle parts, turning the story into a manga or an actual kinetic novel seemed like it would be much, much more work.
 
 It's not the first year, or the first month in 2026, where I've tried to see if AI has advanced to the point of helping me to produce fictional works.  While I'd now and then try the latest frontier model on fiction-writing tasks, their outputs were never good enough even to be fixable.  Image models required too many tries to produce one good image for me to try to build a whole visual novel that way.
 
