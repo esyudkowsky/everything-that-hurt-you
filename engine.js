@@ -1100,9 +1100,26 @@ if (typeof document !== "undefined") (function () {
     const modeSet = settings.showChapter;
     if (modeSet === "off" || !modeSet) { el.style.display = "none"; return; }
     const total = SCRIPT && SCRIPT.chapters ? SCRIPT.chapters.length : 0;
-    // Title screen: show the "zeroth" chapter, "Ch. 0/TOTAL" (· Title in full mode).
+    // Title screen: show the latest COMPLETED chapter as progress ("Ch. N/TOTAL").
+    // A chapter counts as completed once the reader has passed into the next one;
+    // a finished save (fin) counts all TOTAL as complete (13/13). No progress -> 0.
     if (mode === "title" && $("title").style.display !== "none") {
-      el.textContent = "Ch. 0/" + total + (modeSet === "full" ? " · Title" : "");
+      const sv = loadSave() || {};
+      const maxReached = Math.max(sv.max || 0, maxPc);
+      let n = 0;
+      if (sv.fin || finished) {
+        n = total;
+      } else {
+        for (let i = 0; i < SCRIPT.chapters.length - 1; i++) {
+          if (maxReached >= SCRIPT.chapters[i + 1].at) n = SCRIPT.chapters[i].n;
+        }
+      }
+      let t = "Ch. " + n + "/" + total;
+      if (modeSet === "full") {
+        const done = SCRIPT.chapters.find((c) => c.n === n);
+        t += " · " + (n === 0 ? "Title" : (done ? done.title : ""));
+      }
+      el.textContent = t;
       el.style.display = "";
       return;
     }
