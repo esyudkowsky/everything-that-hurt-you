@@ -138,7 +138,7 @@ And they gain in strength very quickly
 @note "Not uncommonly" + "There is much" over Avram (BACK TURNED) before the Adventurer's Guild;
 @note text fades in on a click (@hold). (Both lines moved onto the guild image, author 2026-07-04.)
 
-Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It's more convenient that way, perhaps. It leaves less to explain.
+Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It leaves less to explain.
 
 There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
@@ -469,10 +469,13 @@ By the campfire one night, Avram flips through the pamphlet.
 @sprite avram neutral left
 Avram closes the pamphlet, and heads to his bedroll.
 
-@sprite her_camp matter-of-fact right
-She lifts the edge of his bedroll.
+@hold
+@note silent pause (author 2026-07-04)
 
-Her: Master. You're cold.
+@sprite her_camp matter-of-fact right
+She leans over the edge of his bedroll.
+
+Her: Master. You look cold.
 
 @sprite avram discomfort left
 Avram: I'll live.
@@ -503,9 +506,12 @@ Avram: No.
 
 
 @note (Guild-hall / floor-nine beat — now the tail of ch5 Teaching, author 2026-07-04)
-@bg bg_guild_hall fade
+@bg bg_guild_hall fade 2000
 @sprite avram neutral left
 @sprite clerk cheerful-surprise right
+@pause 2000
+@note SLOW ~2s dissolve from the intimate bedroll to the guild hall; the clerk's line
+@note holds until the dissolve finishes (author 2026-07-04)
 
 Clerk: Floor nine already?
 

@@ -362,9 +362,11 @@ Avram nodding along like a student.
 
 : [bg_camp_night | avram neutral L] Avram closes the pamphlet, and heads to his bedroll.
 
-: [her_camp matter-of-fact R] She lifts the edge of his bedroll.
+: [pause]
 
-Her: Master. You're cold.
+: [her_camp matter-of-fact R] She leans over the edge of his bedroll.
+
+Her: Master. You look cold.
 
 : [avram discomfort L]
 
