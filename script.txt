@@ -248,21 +248,20 @@ Avram: ...
 @note ========== 3. AUCTION / WALK-AWAY / RESTAURANT ==========
 @chapter 3 Auction
 
-@bg bg_auction_plaza fade
+@bg bg_auction_plaza_forsale fade
 @clear all
 @sfx sfx_crowd
 @bgm bgm_tension
+@note FIRST view of the plaza uses bg_auction_plaza_forsale — the auctioneer on the dais
+@note selling someone else (a small distant collared barbarian) so the auction reads as in
+@note progress (author 2026-07-04). Later plaza beats use the plain bg_auction_plaza.
 
 The plaza is packed. On the dais, one lot after another is walked out, made to turn, appraised, and sold.
 
-@cg cg_auction_fierce fade
+@cg cg_auction_sexy fade
 @hold
-@note beastgirl on the dais: full-coverage armor, collar, cheerful smile,
-@note posing fiercely with a sword; announcer gesturing, no dialogue bubble
-
-@cg cg_auction_sexy cut
-@hold
-@note sexy pose, face still cheerful; announcer now leering
+@note her on the dais — full-coverage armor, collar, cheerful smile; announcer leering.
+@note (cg_auction_fierce removed as redundant/confusing with this one — author 2026-07-04)
 
 @note no announcer sprite here — cg_auction_sexy already shows the announcer, so
 @note his line plays over the CG to avoid a doubled announcer (author 2026-07-04)
@@ -390,9 +389,12 @@ Avram: I mean, I *wish* I could say, it's okay for you to thank me if you want t
 
 
 @note (Naming scene — now part of ch4 Meeting, no separate chapter break, author 2026-07-04)
-@bg bg_town_gate fade
+@bg bg_town_gate fade 2000
 @sprite avram discomfort left
 @sprite her cheer right
+@pause 2000
+@note SLOW ~2s dissolve from the restaurant plates to the town gates (was a quick
+@note jump-cut-feeling fade); the line holds until the dissolve finishes (author 2026-07-04).
 @note walking out through the town gates, road stretching ahead
 
 Avram: So. What do I call you? What's your —

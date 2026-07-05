@@ -38,7 +38,8 @@
     "bg_town_gate": "assets/bg/bg_town_gate.png",
     "bg_training_clearing": "assets/bg/bg_training_clearing.png",
     "bg_void_tea": "assets/bg/bg_void_tea.png",
-    "bg_temple_cot_awake": "assets/bg/bg_temple_cot_awake.png"
+    "bg_temple_cot_awake": "assets/bg/bg_temple_cot_awake.png",
+    "bg_auction_plaza_forsale": "assets/bg/bg_auction_plaza_forsale.png"
   },
   "cg": {
     "cg_altar_everything": "assets/cg/cg_altar_everything.png",

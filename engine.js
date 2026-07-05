@@ -37,8 +37,8 @@ function parseScript(text) {
         case "note":
           break;
         case "bg": {
-          const [id, trans] = rest.split(/\s+/);
-          ins.push({ op: "bg", id, trans: trans || "fade" });
+          const [id, trans, ms] = rest.split(/\s+/);
+          ins.push({ op: "bg", id, trans: trans || "fade", ms: +ms || 0 });
           break;
         }
         case "cg": {
@@ -264,20 +264,22 @@ if (typeof document !== "undefined") (function () {
     return wrap;
   }
 
-  function swapLayer(container, el, trans) {
+  function swapLayer(container, el, trans, ms) {
     const old = Array.from(container.children);
     container.appendChild(el);
     if (trans === "cut") {
       el.style.opacity = "1";
       old.forEach((o) => o.remove());
     } else {
+      // optional custom fade duration (ms); default is the .layer-img CSS (600ms)
+      if (ms > 0) el.style.transition = "opacity " + ms + "ms ease";
       el.style.opacity = "0";
       requestAnimationFrame(() =>
         requestAnimationFrame(() => {
           el.style.opacity = "1";
         })
       );
-      setTimeout(() => old.forEach((o) => o.remove()), 700);
+      setTimeout(() => old.forEach((o) => o.remove()), (ms > 0 ? ms : 600) + 100);
     }
   }
 
@@ -288,9 +290,9 @@ if (typeof document !== "undefined") (function () {
   // the "weird flashes"). The only difference: a @cg is full art so it clears sprites;
   // a @bg keeps them (characters stand in front of a backdrop). To put a dialogue figure
   // over a CG, set the @sprite AFTER the @cg.
-  function setBg(id, trans, instant) {
+  function setBg(id, trans, instant, ms) {
     st.bg = id; st.cg = null;
-    swapLayer($("bglayer"), makeLayerImg("bg", id), instant ? "cut" : trans);
+    swapLayer($("bglayer"), makeLayerImg("bg", id), instant ? "cut" : trans, ms);
     clearInscription();
   }
   function showCg(id, trans, instant) {
@@ -957,7 +959,7 @@ if (typeof document !== "undefined") (function () {
         autoTimer = setTimeout(advance, c.ms);
         return true;
       case "bg":
-        setBg(c.id, c.trans);
+        setBg(c.id, c.trans, false, c.ms);
         return false;
       case "cg":
         showCg(c.id, c.trans);

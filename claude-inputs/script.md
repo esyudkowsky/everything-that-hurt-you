@@ -86,7 +86,7 @@ faux-medieval town. (Line appears immediately with the picture.)
 : [bg_guild_exterior | avram back L] Avram, seen from BEHIND, before the Adventurer's Guild building.
 (Line fades in on a click.)
 
-\- Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It's more convenient that way, perhaps. It leaves less to explain.
+\- Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It leaves less to explain.
 
 \- There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
@@ -198,13 +198,12 @@ Avram: ...
 
 [bgm: bgm_tension] · [sfx: sfx_crowd]
 
-: [bg_auction_plaza] The plaza is packed. On the dais, one lot after another is walked out, made
-to turn, appraised, and sold.
+: [bg_auction_plaza_forsale] The plaza is packed. On the dais, one lot after another is walked out,
+made to turn, appraised, and sold. (First view of the plaza shows the auctioneer selling someone else
+— a small distant collared barbarian — so the auction reads as in progress.)
 
-: [cg_auction_fierce] The beastgirl on the dais: full-coverage armor, slave collar, cheerful
-smile, posing fiercely with a sword. The announcer gestures at her; no dialogue bubble.
-
-: [cg_auction_sexy] She strikes a sexy pose, face still cheerful; the announcer now leering.
+: [cg_auction_sexy] The beastgirl on the dais: full-coverage armor, slave collar, cheerful smile; she
+strikes a sexy pose, the announcer leering. (cg_auction_fierce removed as redundant with this one.)
 
 : (No announcer sprite — cg_auction_sexy already shows him, so his line plays over the CG to avoid a
 doubled announcer.)
