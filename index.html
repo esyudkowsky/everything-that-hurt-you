@@ -125,22 +125,6 @@
   #volines {
     max-width: 78%;
     display: flex; flex-direction: column; gap: 3.4cqh;
-    position: relative; isolation: isolate;
-  }
-  /* over-image legibility scrim (author 2026-07-05): Skagganauk speaks in
-     void-black, so the glyphs stay untouched — the help goes BEHIND them.
-     A soft-edged frosted darkening of the art under the text block only;
-     pure-black "on" mode is scoped out and gets no scrim. It fades in/out
-     with #volayer's own opacity transition at the group's prerendered size. */
-  #volayer.vo-over #volines::before {
-    content: "";
-    position: absolute; inset: -9cqh -16cqh;
-    z-index: -1;
-    background: rgba(0, 0, 0, 0.26); /* also the no-backdrop-filter fallback */
-    -webkit-backdrop-filter: blur(1.1cqh) brightness(0.68);
-    backdrop-filter: blur(1.1cqh) brightness(0.68);
-    -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent 98%);
-    mask-image: radial-gradient(closest-side, #000 35%, transparent 98%);
   }
   .voline {
     font-family: var(--vo);
@@ -153,11 +137,12 @@
        rather than eating into the glyph. (The previous centered-stroke version
        left a thin dark hairline in a mostly-white letter — hard to read.)
        Reads on black AND over letterboxed art. Keep if a real skagganauk.woff2
-       ever lands. */
+       ever lands. Rev. 3 (author 2026-07-05): outline ONLY — the drop shadow
+       and the frosted backdrop scrim both rejected ("blerg"); the void-black
+       fill + white outline carry legibility alone. */
     color: #000000;
     -webkit-text-stroke: 0.3cqh #f4efe1;
     paint-order: stroke fill;
-    text-shadow: 0.36cqh 0.46cqh 0.4cqh rgba(0,0,0,.95);
     opacity: 0; transition: opacity 1.4s ease;
     /* Own compositing layer so the stroked/shadowed glyphs are rasterized ONCE and
        only their opacity composites during the fade. Without this, animating opacity
