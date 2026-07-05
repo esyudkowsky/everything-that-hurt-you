@@ -704,4 +704,91 @@
   channel works, direction/context needs to get richer (scene-context dialogue endpoint +
   multi-take-and-pick workflow). Take variance (13.6s vs 17.2s for identical input) means
   a production pipeline should generate N takes per emotional line regardless.
+- 2026-07-04 (voice-acting, round 4 — Hume Octave): User added `HUME_KEY` Codespace secret
+  (found key page at app.hume.ai/keys after browsing trouble). API gotchas: Cloudflare
+  blocks python-urllib's default User-Agent with 403 error 1010 — send a browser UA;
+  auth header is `X-Hume-Api-Key`; acting `description` requires `"version": "1"`
+  (Octave 1; not yet on Octave 2 per docs). Ran the same 4-passage trial →
+  `claude-notes/qa/voice_trial/*_hume.mp3`. Voices DESIGNED from text prompts and SAVED
+  to the Hume account as reusable custom voices "Avram" (early-20s light baritone,
+  somber, understated) and "Haurvatat" (young woman, bright practiced cheer over
+  something guarded) — design-audition files hume_avram_voice_design.mp3 /
+  hume_her_voice_design.mp3. Each trial line got: saved voice + ≤100-char acting
+  description + `context.utterances` = the actual preceding scene lines (unsynthesized
+  context the model reads for meaning) — the context channel the user suspected was
+  missing from earlier attempts. AWAITING AUDITION vs the gpt-audio and ElevenLabs sets.
+- 2026-07-04 (voice-acting, round 5 — Hume facts-context + recast): User's verdict on
+  round 4: "could maaaybe end up working." Directions given: (a) give Hume MORE context —
+  specifically FACTS about what's happening rather than emotion-keyword direction ("Hume
+  might know more about which situations sound like what than your own guess"); (b) recast:
+  wolfgirl came out Scottish (funny, wrong) — wants a burr/purr in her voice, American;
+  Avram sounded too old — a little (not tons) younger and higher, "21, not 14"; (c) try
+  additional lines and additional voices. ALSO: user confirmed the earlier ElevenLabs
+  centipede A/C/D diagnostic — C vs D sounded much different (so tags DO steer that model)
+  but both "just not well-voiced in context". Done this round, all in
+  claude-notes/qa/voice_trial/: 6 new voice designs saved to the Hume account
+  (Avram_v2a/b/c — 21yo light tenor variants; Haurvatat_v2a/b/c — husky burr/purr
+  variants, explicitly NOT Scottish/British) with audition files hume_avram2_*_design.mp3 /
+  hume_her2_*_design.mp3; 5 NEW lines generated with candidate-A voices + facts-based
+  context (narrator utterance of plain scene facts + preceding dialogue in
+  context.utterances; description field also factual): avram_altar_pay_hume2 ("I'll pay
+  whatever it takes."), avram_okay_final_hume2 (the single-word cliff "Okay."),
+  her_wake_wanted_hume2, her_frightening_hume2, her_anomaly_hume2. Voices are swappable
+  to v2b/v2c without regenerating context work. API note: free tier rate-limits (~a
+  dozen requests/min → 429; backoff works). AWAITING AUDITION.
+- 2026-07-04 (voice-acting, round 6 — directed "Okay."): User confirmed the one-word
+  "Okay." was the right pure-context test AND that it failed — "didn't come out remotely
+  correct for the context of a tiny voice in a very sad situation." So facts-only context
+  is insufficient on Hume; user directed adding explicit stage directions. Generated 5
+  directed variants in claude-notes/qa/voice_trial/ (voice Avram_v2a, cliff-scene facts
+  kept as context except v1): v1_dironly (direction only, no context), v2_facts_dir
+  (facts + "tiny defeated voice barely above a whisper... the word almost fails him"),
+  v3_slow (same + speed 0.6 + trailing_silence 2.5s), v4_whisper ("breath more than
+  voice; total surrender"), v5_ellipsis (text "... Okay." + speed 0.7). Durations spread
+  0.7s→3.7s, so direction+knobs strongly move pacing. CONFIRMED: Octave 2 API-rejects
+  the description parameter (400) — acting instructions are Octave-1-only for now.
+  AWAITING AUDITION: the author's target read = "a tiny voice in a very sad situation."
+- 2026-07-04 (voice-acting, round 7 — recipe validation): User's audition of the directed
+  "Okay." variants: **v5 (ellipsis text-nudge + facts + direction) strongest/most emotional;
+  v2 (facts+direction) full of tension, matched the scene; v1 (direction-only) followed
+  direction and would suit the @small tiny-text rendering; v3 speed-knob NOT audible vs v2;
+  v4 whisper = wrong emotion.** → Production recipe: facts-narration context + preceding
+  dialogue + explicit stage direction + performance punctuation (ellipses/commas) in the
+  text, words kept verbatim; speed knob unreliable, whisper-direction overshoots. Applied
+  the recipe to the 4 original passages → *_hume3.mp3 in claude-notes/qa/voice_trial/
+  (richer ~2-sentence narrator facts incl. character interiority, e.g. "cheerfulness is a
+  skill she learned the way soldiers learn to march"). AWAITING AUDITION — if these
+  generalize, next steps are the production questions: N-takes-per-line curation workflow,
+  where direction lives (script.txt directives vs sidecar job file), and engine wiring.
+- 2026-07-04 (voice-acting, round 8 — recipe refinements from hume3 audition): Two author
+  corrections to the recipe: (1) added ellipsis pauses made "Then I suppose" WORSE —
+  "Avram is sad about that, not slow about it" — performance punctuation is NOT a
+  universal ingredient, only for literal hesitation (the "Okay." case); pauses read as
+  tempo, not grief. (2) The number-joke narrator facts were "waaaay too fancy for some
+  poor Hume LLM" (the soldiers-learn-to-march interiority line) — write context PLAIN and
+  literal for the model, not literary. Regenerated both lines, 2 takes each (variance is
+  large): avram_first_kill_promise_hume4_t1/t2 (script punctuation restored, direction
+  "Sad, not slow. Normal speaking pace."), her_name_number_cheer_hume4_t1/t2 (facts
+  reduced to 3 plain sentences; direction "Cheerful, quick, teasing. She is joking. She
+  sounds happy."). AWAITING AUDITION. Recipe so far: plain-facts narration + preceding
+  line + simple direction; text-nudges only where hesitation is literally in-character;
+  2+ takes per emotional line.
+- 2026-07-04 (voice-acting, round 8 audition results): number-joke takes t1/t2 came out
+  NEARLY IDENTICAL (simple direction + plain facts → low take variance; no explicit
+  quality verdict from author). First-kill: BOTH acceptable — first acceptable Avram
+  emotional reads of the whole trial — with t2 preferred; t1 "needlessly slower and more
+  dramatic". Pattern: Hume errs toward over-drama, so house direction style should
+  default to understatement ("normal pace, understated") and takes-curation is mainly
+  needed on emotionally heavy lines (plain lines barely vary; one take suffices).
+  Production go/no-go and remaining design questions (direction authoring for all ~226
+  beats, paid tier, engine wiring, curation workflow) NOT yet decided — awaiting author.
 - 2026-07-04 (| mid-line pauses + script.md sync + ch3 expressions): (1) `|` in narration/dialogue is a mid-line PAUSE (VN click-to-continue) — symbol is fine. Engine splits a line on `|` into segments, types to the pause, shows the arrow, and a click reveals the next segment in the same box before the beat advances (rollback/review shows the full line). Verified. (2) Synced script.md edits: removed "bartender turns away"; auction bid now a "large magical core" ("takes Avram's core, gauges him"); dropped "The binding passes..."; ch3 dropped "Avram exhales." and split "Um." onto its own line; ~10 new `|` pauses. Parity 226=226. (3) Ch3 deal scene: Avram is `discomfort` THROUGHOUT (removed stray avram neutral/wry); Haurvatat's mid-scene `matter-of-fact` change now reflected in script.md.
+
+- 2026-07-04 (BIG rev.4→rev.5 sync + engine features): processed a large batch of author script.md changes.
+  - **Chapters restructured 15→13**: renames (Opening→Arrival, The Bartender→Bartender, The Auction→Auction, She Teaches Him→Teaching, The Healer→Healer, Parity→Together, The Wound→Ambush, Inversion→Rising, The Freeing→Stronger, The Cliff→Truth); NEW ch4 **Meeting** split from the auction; ch4 Naming / ch6 Bedroll / ch8 Campfire headings removed (merged into neighbors); Tavern boundary moved so the guild-hall floor-nine beat ends ch5. validate_script.js chapter check updated to 13.
+  - **Content**: ~40 dialogue rewords + `|` mid-line pauses; ch1 voiceover reorder; ch2 new bartender "unusual drop / Guild buyers" exchange; auction bid is now a "large magical core"; ch7 Healer gets the **cg_mountain_troll** beat (Avram's arm crushed; Haurvatat fighting her own troll in the bg) + healer rewords; ch10 **adventurer gossip expanded** (new **Adventurer 3** speaker added to engine; lady-Hero rumor) with the 3 adventurers staged on-screen (adventurer1/2 existing + new **adventurer3** sprite, awed+laughing); status overlay moved to after the floor-markers; "You're getting frightening"→"Your strength has risen"; altar "I'll pay whatever it takes" removed; ch12 final-gentle smile now put up (author retry); parity 232=232.
+  - **Engine — auto-advance**: new `@autoplay <ms>`/`@autoplay off` (scoped auto-advance, honored even with global Autoplay off) + `@slow` (per-line slow typing). The ch12 "Goodbye, Master." types slowly, then the aftermath CGs **auto-advance ~3s each** into ch13 (a click still advances + restarts the timer; a click landing on an auto-advance is merged ~250ms). Browser-verified: auto-advanced cliff_two→…→sick with no clicks.
+  - **Engine — status screens redesigned**: skills listed vertically, levels right-aligned; the engine now TRACKS the last level shown per skill and shows a **prior→new arrow (bold) only where a prior was shown**, animating the numbers up **on a click**; brand-new skills just show their level. Verified on the ch8 and ch10 status screens (fits, correct arrows).
+  - **Art**: cg_mountain_troll (young Avram, dungeon), cg_tombstone regenerated with the corrected epitaph "died 7028" + trailing period, adventurer3 sprite. Backups in claude-notes/raw/prewarm_backup/.
+
+- 2026-07-04 (follow-up art/sprite fixes): cg_mountain_troll — trolls now wield ONLY clubs (no sword); Haurvatat keeps her sword in the bg. cg_nobleman_bid — the kneeling woman now has her own runed slave collar. **Ch10 gossip adventurers made DIFFERENT people** from the ch6 tavern pair: retagged speakers to Adventurer 4/5/6 (added to engine SPEAKERS) with NEW sprites — adventurer4 (bald, mustache, plate), adventurer5 (dark-skinned, locs), adventurer6 (auburn woman, formerly adventurer3), each with neutral + awed + jeering/laughing so the plain lines use a neutral face. script.md gossip speakers retagged too; parity 232=232, validate 0 errors.

@@ -103,7 +103,8 @@
     "cg_vigil": "assets/cg/cg_vigil.png",
     "cg_whiteout": "assets/cg/cg_whiteout.png",
     "cg_cliff_her": "assets/cg/cg_cliff_her.png",
-    "cg_dungeon_d": "assets/cg/cg_dungeon_d.png"
+    "cg_dungeon_d": "assets/cg/cg_dungeon_d.png",
+    "cg_mountain_troll": "assets/cg/cg_mountain_troll.png"
   },
   "sprites": {
     "adventurer1.awed": "assets/sprites/adventurer1.awed.png",
@@ -167,7 +168,16 @@
     "slavetaker.easy-menace": "assets/sprites/slavetaker.easy-menace.png",
     "slavetaker.snarl": "assets/sprites/slavetaker.snarl.png",
     "her_free_armored.still": "assets/sprites/her_free_armored.still.png",
-    "avram_earth.strained": "assets/sprites/avram_earth.strained.png"
+    "avram_earth.strained": "assets/sprites/avram_earth.strained.png",
+    "adventurer6.awed": "assets/sprites/adventurer6.awed.png",
+    "adventurer6.laughing": "assets/sprites/adventurer6.laughing.png",
+    "adventurer4.jeering": "assets/sprites/adventurer4.jeering.png",
+    "adventurer4.awed": "assets/sprites/adventurer4.awed.png",
+    "adventurer5.awed": "assets/sprites/adventurer5.awed.png",
+    "adventurer5.laughing": "assets/sprites/adventurer5.laughing.png",
+    "adventurer4.neutral": "assets/sprites/adventurer4.neutral.png",
+    "adventurer5.neutral": "assets/sprites/adventurer5.neutral.png",
+    "adventurer6.neutral": "assets/sprites/adventurer6.neutral.png"
   },
   "ui": {
     "placeholder_card": "assets/ui/placeholder_card.png",

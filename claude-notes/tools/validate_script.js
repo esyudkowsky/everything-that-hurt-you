@@ -46,9 +46,9 @@ for (const sect of ["bg", "cg", "sprites", "ui", "audio"])
     if (!fs.existsSync(path.join(root, p))) err(`manifest ${sect}/${id} -> ${p} file missing`);
 
 /* --- structure checks --- */
-if (chapters.length !== 15) err(`expected 15 chapters, got ${chapters.length}`);
+if (chapters.length !== 13) err(`expected 13 chapters, got ${chapters.length}`);
 const chNums = chapters.map((c) => c.n).join(",");
-if (chNums !== "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15")
+if (chNums !== "1,2,3,4,5,6,7,8,9,10,11,12,13")
   err("chapter numbering off: " + chNums);
 
 /* voiceover balance */

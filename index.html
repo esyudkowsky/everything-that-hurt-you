@@ -137,11 +137,25 @@
   #status { transform: translateY(4cqh); opacity: 0; transition: transform .5s ease, opacity .5s ease; }
   #status.slide-in { transform: translateY(0); opacity: 1; }
   #status-lines {
-    position: absolute; left: 21%; right: 21%; top: 35%; height: 30%;
-    display: flex; flex-direction: column; justify-content: center; gap: 2.6cqh;
-    font-family: var(--mono); font-size: 2.35cqh; line-height: 1.5;
-    color: #e3c67c; text-align: center;
+    position: absolute; left: 22%; right: 22%; top: 30%; height: 40%;
+    display: flex; flex-direction: column; justify-content: center; gap: 1.6cqh;
+    font-family: var(--mono); font-size: 1.95cqh; line-height: 1.35;
+    color: #e3c67c;
   }
+  #status-lines .status-block { display: flex; flex-direction: column; gap: 0.25cqh; }
+  #status-lines .status-head {
+    font-weight: 700; letter-spacing: 0.14em; text-align: center;
+    color: #f0d98f; margin-bottom: 0.4cqh;
+  }
+  #status-lines .status-skill {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 3cqh;
+  }
+  #status-lines .skill-name { text-align: left; }
+  #status-lines .skill-val {
+    text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums;
+    transition: color .2s ease;
+  }
+  #status-lines .skill-val.leveled { font-weight: 700; color: #fff0bf; }
   #floor { pointer-events: none; transition: opacity .25s ease; }
   #floor-frame {
     position: absolute; inset: 0;

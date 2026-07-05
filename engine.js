@@ -13,7 +13,7 @@
 
 const SPEAKERS = new Set([
   "Avram", "Her", "Bartender", "Announcer", "Clerk",
-  "Adventurer 1", "Adventurer 2", "Healer", "Slavetaker", "Bandit",
+  "Adventurer 1", "Adventurer 2", "Adventurer 3", "Adventurer 4", "Adventurer 5", "Adventurer 6", "Healer", "Slavetaker", "Bandit",
   "Attendant", "Nobleman", "God",
 ]);
 
@@ -22,6 +22,7 @@ function parseScript(text) {
   const ins = [];
   const chapters = [];
   let pendingSmall = false; // @small marks the NEXT say to render smaller/quieter
+  let pendingSlow = false; // @slow marks the NEXT say to type slower
   let i = 0;
   while (i < raw.length) {
     const line = raw[i].trim();
@@ -94,6 +95,13 @@ function parseScript(text) {
         case "small":
           pendingSmall = true; // attaches to the next say line; no instruction
           break;
+        case "slow":
+          pendingSlow = true; // next say line types slower (no instruction)
+          break;
+        case "autoplay":
+          // @autoplay <ms> turns on scoped auto-advance; @autoplay off turns it off
+          ins.push({ op: "autoplay", ms: rest === "off" ? null : (+rest || 3000) });
+          break;
         case "textbox":
           ins.push({ op: "textbox", show: rest !== "hide" });
           break;
@@ -121,8 +129,8 @@ function parseScript(text) {
     } else {
       const dm = line.match(/^([A-Za-z][A-Za-z0-9 ]{0,20}?):\s+(.*)$/);
       if (dm && SPEAKERS.has(dm[1])) {
-        ins.push({ op: "say", speaker: dm[1], text: dm[2], small: pendingSmall });
-        pendingSmall = false;
+        ins.push({ op: "say", speaker: dm[1], text: dm[2], small: pendingSmall, slow: pendingSlow });
+        pendingSmall = false; pendingSlow = false;
       } else {
         ins.push({ op: "narrate", text: line });
       }
@@ -204,6 +212,7 @@ if (typeof document !== "undefined") (function () {
       tint: "off",
       vo: "off", voLines: [],
       voGroup: [], voShown: 0, // full voiceover group (pre-laid-out) + reveal count
+      autoAdvanceMs: null, // scoped @autoplay: auto-advance each beat after this many ms
       montage: null, // {secs}
       bgm: null,
       inscription: null,
@@ -434,7 +443,7 @@ if (typeof document !== "undefined") (function () {
     node.textContent = "";
   }
 
-  function startTyper(text, italicAll, small) {
+  function startTyper(text, italicAll, small, slow) {
     const node = $("dialog");
     node.innerHTML = "";
     // a "|" in the text is a mid-line pause: type up to it, wait for a click,
@@ -446,7 +455,7 @@ if (typeof document !== "undefined") (function () {
       const tokens = emphasisTokens(s.trim());
       return { tokens, total: tokens.reduce((a, t) => a + t.t.length, 0) };
     });
-    typer = { segments, segIdx: 0, count: 0, node, italicAll, atPause: false };
+    typer = { segments, segIdx: 0, count: 0, node, italicAll, atPause: false, slow: !!slow };
     tickTyper();
   }
   function renderTyper() {
@@ -471,11 +480,15 @@ if (typeof document !== "undefined") (function () {
   function tickTyper() {
     if (!typer) return;
     const seg = typer.segments[typer.segIdx];
-    const step = settings.typeMs <= 0 ? seg.total : 1;
+    // @slow lines always type one char at a time at a deliberate pace, even if
+    // the reader's Text Speed is Instant (for the "Goodbye, Master." beat).
+    const slow = typer.slow;
+    const step = (!slow && settings.typeMs <= 0) ? seg.total : 1;
+    const delay = slow ? 95 : settings.typeMs;
     typer.count = Math.min(typer.count + step, seg.total);
     renderTyper();
     if (typer.count < seg.total) {
-      typer.timer = setTimeout(tickTyper, settings.typeMs);
+      typer.timer = setTimeout(tickTyper, delay);
     } else {
       typer.atPause = typer.segIdx < typer.segments.length - 1;
       maybeAutoplay();
@@ -600,14 +613,64 @@ if (typeof document !== "undefined") (function () {
 
   /* ---------- overlays ---------- */
 
+  /* Status screens (author 2026-07-04): skills listed vertically with the levels
+     right-aligned. The engine tracks the last level SHOWN for each skill across
+     status screens; when a skill has risen since it was last shown, it displays
+     the prior level and a click animates it up to the new level (arrow + bold).
+     Skills never shown before just display their current level. */
+  let statusShownLevels = {}; // header -> { skillName -> lastShownLevel }
+  let statusRevealed = true;  // false while a status screen still has level-ups to reveal
+  function parseStatusLine(raw) {
+    const inner = raw.replace(/^\s*\[/, "").replace(/\]\s*$/, "");
+    const dash = inner.indexOf("—"); // em-dash between header and skills
+    const header = (dash >= 0 ? inner.slice(0, dash) : "").trim();
+    const rest = (dash >= 0 ? inner.slice(dash + 1) : inner).trim();
+    const skills = rest.split("·").map((s) => s.trim()).filter(Boolean).map((part) => {
+      const ci = part.indexOf(":");
+      const name = (ci >= 0 ? part.slice(0, ci) : part).trim();
+      const nums = ((ci >= 0 ? part.slice(ci + 1) : "").match(/-?\d+/g) || []).map(Number);
+      return { name, level: nums.length ? nums[nums.length - 1] : null };
+    });
+    return { header, skills };
+  }
+  // fold a status line's levels into the shown-levels map without rendering (for seek)
+  function recordStatusLevels(lines) {
+    for (const raw of lines) {
+      const b = parseStatusLine(raw);
+      const m = statusShownLevels[b.header] || (statusShownLevels[b.header] = {});
+      for (const sk of b.skills) if (sk.level != null) m[sk.name] = sk.level;
+    }
+  }
   function showStatus(lines) {
     const box = $("status-lines");
     box.innerHTML = "";
-    for (const l of lines) {
-      const div = document.createElement("div");
-      div.textContent = l;
-      box.appendChild(div);
+    let hasIncrease = false;
+    for (const raw of lines) {
+      const b = parseStatusLine(raw);
+      const prevMap = statusShownLevels[b.header] || (statusShownLevels[b.header] = {});
+      const block = document.createElement("div"); block.className = "status-block";
+      const head = document.createElement("div"); head.className = "status-head";
+      head.textContent = b.header;
+      block.appendChild(head);
+      for (const sk of b.skills) {
+        const prior = prevMap[sk.name];
+        const inc = prior != null && sk.level != null && sk.level > prior;
+        if (inc) hasIncrease = true;
+        const row = document.createElement("div"); row.className = "status-skill";
+        const nm = document.createElement("span"); nm.className = "skill-name";
+        nm.textContent = sk.name;
+        const val = document.createElement("span"); val.className = "skill-val";
+        val.dataset.from = inc ? prior : (sk.level == null ? "" : sk.level);
+        val.dataset.to = sk.level == null ? "" : sk.level;
+        val.dataset.inc = inc ? "1" : "";
+        val.textContent = "Lv " + (inc ? prior : (sk.level == null ? "—" : sk.level));
+        row.appendChild(nm); row.appendChild(val);
+        block.appendChild(row);
+        if (sk.level != null) prevMap[sk.name] = sk.level; // now shown
+      }
+      box.appendChild(block);
     }
+    statusRevealed = !hasIncrease;
     const panel = $("status");
     panel.style.display = "";
     panel.classList.remove("slide-in");
@@ -616,10 +679,30 @@ if (typeof document !== "undefined") (function () {
     );
     statusShown = true;
   }
+  // click: count each risen level up to its new value, revealing arrow + bold
+  function revealStatusIncreases() {
+    statusRevealed = true;
+    const vals = $("status-lines").querySelectorAll(".skill-val");
+    const DUR = 650;
+    vals.forEach((val) => {
+      if (val.dataset.inc !== "1") return;
+      val.classList.add("leveled");
+      const from = +val.dataset.from, to = +val.dataset.to;
+      const start = performance.now();
+      (function frame(now) {
+        const t = Math.min(1, (now - start) / DUR);
+        const cur = Math.round(from + (to - from) * t);
+        val.textContent = "Lv " + from + " → Lv " + cur;
+        if (t < 1) requestAnimationFrame(frame);
+        else val.textContent = "Lv " + from + " → Lv " + to;
+      })(start);
+    });
+  }
   function hideStatus() {
     $("status").style.display = "none";
     $("status").classList.remove("slide-in");
     statusShown = false;
+    statusRevealed = true;
   }
 
   function showInscription(lines) {
@@ -796,16 +879,22 @@ if (typeof document !== "undefined") (function () {
   }
 
   let autoplayTimer = null;
+  let lastAutoAdvance = 0; // timestamp of the last auto-fired advance (click-merge window)
   function clearAutoplayTimer() {
     if (autoplayTimer) { clearTimeout(autoplayTimer); autoplayTimer = null; }
   }
   function maybeAutoplay() {
     clearAutoplayTimer();
-    if (!settings.autoplay || reviewing || chapFading) return;
+    if (reviewing || chapFading) return;
+    // scoped @autoplay (st.autoAdvanceMs) forces auto-advance even with the global
+    // Autoplay setting off; otherwise fall back to the setting.
+    const ms = st.autoAdvanceMs != null ? st.autoAdvanceMs
+             : (settings.autoplay ? settings.autoplayDelayMs : null);
+    if (ms == null) return;
     autoplayTimer = setTimeout(() => {
       autoplayTimer = null;
-      if (mode === "play" && waiting) advance();
-    }, settings.autoplayDelayMs);
+      if (mode === "play" && waiting) { lastAutoAdvance = Date.now(); advance(true); }
+    }, ms);
   }
 
   /* returns true if execution must wait for input/timer */
@@ -821,7 +910,7 @@ if (typeof document !== "undefined") (function () {
         }
         showTextbox(c.op === "say" ? c.speaker : null);
         applyDim(c.op === "say" ? c.speaker : null);
-        startTyper(c.text, c.op === "narrate", c.small);
+        startTyper(c.text, c.op === "narrate", c.small, c.slow);
         save();
         return true;
       }
@@ -857,6 +946,9 @@ if (typeof document !== "undefined") (function () {
         setVoiceover(c.mode);
         // pre-lay-out the whole upcoming group so lines reveal in place
         if (c.mode === "on" || c.mode === "over") prerenderVoGroup(pc + 1);
+        return false;
+      case "autoplay":
+        st.autoAdvanceMs = c.ms;
         return false;
       case "flash":
         flash(c.color, c.ms);
@@ -987,10 +1079,17 @@ if (typeof document !== "undefined") (function () {
     el.style.display = current ? "" : "none";
   }
 
-  function advance() {
+  function advance(fromAuto) {
     if (mode !== "play" || reviewing || chapFading) return;
+    // click-merge: during scoped @autoplay, a manual click landing right on top of
+    // an auto-advance (within 250ms after it fired) is swallowed so the reader
+    // doesn't skip a frame by double-advancing (author 2026-07-04 spec, approx).
+    if (!fromAuto && st.autoAdvanceMs != null && Date.now() - lastAutoAdvance < 250) return;
+    // status level-ups: the first click animates the numbers up, the next advances
+    if (statusShown && !statusRevealed) { revealStatusIncreases(); return; }
     if (completeTyper()) return; // first click completes the reveal
     if (!waiting) return;
+    if (!fromAuto) lastAutoAdvance = Date.now(); // a manual advance restarts the cadence
     clearTimers();
     if (statusShown) hideStatus();
     hideFloor();
@@ -1077,6 +1176,7 @@ if (typeof document !== "undefined") (function () {
     cancelChapterFade();
     hideStatus();
     hideFloor();
+    statusShownLevels = {}; // rebuilt by recordStatusLevels during the replay below
     Object.assign(st, freshState());
     // wipe visual layers
     $("bglayer").innerHTML = "";
@@ -1099,11 +1199,15 @@ if (typeof document !== "undefined") (function () {
           break;
         case "voiceover": st.vo = c.mode; if (c.mode !== "off") { st.voLines = []; voGroupStart = j + 1; } break;
         case "narrate": if (st.vo === "on" || st.vo === "over") st.voLines.push(c.text); break;
+        case "autoplay": st.autoAdvanceMs = c.ms; break;
         case "tint": st.tint = c.mode; break;
         case "montage": st.montage = { secs: c.secs }; break;
         case "montage_end": st.montage = null; break;
         case "bgm": st.bgm = c.id === "stop" ? null : c.id; break;
-        case "overlay": if (c.kind === "inscription") st.inscription = c.lines; break;
+        case "overlay":
+          if (c.kind === "inscription") st.inscription = c.lines;
+          else recordStatusLevels(c.lines); // fold status levels into shown-map
+          break;
         case "chapter": st.chapter = c.n; break;
       }
     }
