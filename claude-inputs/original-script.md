@@ -1,4 +1,4 @@
-# v0 incomplete script first seen by Fable.  not authoritative, but universally in author's first voice.
+# v0 incomplete script first seen by Fable.
 
 voiceover to scenes of an obvious Earthling wandering elhom iv, text inside black boxes that is a white outline over black lettering. (because this will later be revealed to be the voice of a shadow dragon.)
 

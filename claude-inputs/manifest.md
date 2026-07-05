@@ -1,4 +1,5 @@
 - script.md -- current version of script.  may have been edited by user since last session; check at start of each new session.
 - informal-spec.md -- current non-detailed plan for the kinetic novel, especially artwork and direction.  check for edits at start of each new session.
 - original-script.md -- first incomplete script shown to Claude Fable.  not authoritative.  but primary source for author's voice.
-- fable-conversation.md -- conversation with Claude Fable on web
+- fable-conversation.md -- raw, complete Chrome-extension export of the Fable 5 conversation (source of truth; all 9 exchanges with full reasoning as blockquotes).
+- fable5-conversation-full.html -- rendered/cleaned version of the above, built from fable-conversation.md: labeled Eliezer/Fable turns, formatting preserved, and each Fable turn's full reasoning behind an expandable "Full reasoning" toggle. Linked from the in-app Credits ("Story transitions drafted with").

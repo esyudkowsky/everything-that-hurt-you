@@ -46,7 +46,8 @@ to nothing, disconnected from the tea table and clouds. This is the CG shown
 in `script.txt`'s opening flash panel (`@cg cg_tea_flash cut`, line ~45) —
 Avram in Earth clothes at a tea table with the old white-bearded man (the God
 who sent him to Elhom IV; see `claude-inputs/informal-spec.md` §Backgrounds
-and `claude-inputs/fable-conversation.md` line 33/47). This CG is reused
+and `claude-inputs/fable5-conversation-full.html`, Eliezer's "guy drinking
+tea in the middle of nowhere … is meant to be the god" note). This CG is reused
 throughout the opening narration under `@voiceover over` (superimposed text),
 so the stairs are on screen for several beats, not just one flash.
 

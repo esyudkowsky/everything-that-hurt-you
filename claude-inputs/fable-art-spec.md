@@ -1,6 +1,4 @@
-# Revision 2.0.  May not yet be consistent with later revisions of script.md.
-
-# EVERYTHING THAT HURT YOU — Phase 2: art catalog + informal kinetic-novel spec
+# EVERYTHING THAT HURT YOU — Phase 2: Fable's art catalog + informal kinetic-novel spec
 
 ## Part I. Global art style
 

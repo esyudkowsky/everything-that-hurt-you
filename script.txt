@@ -621,7 +621,7 @@ Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 Avram: You can go ahead and say what you were thinking. I feel like I can still hear it.
 
 @bg bg_camp_night cut
-@sprite avram wry left
+@sprite avram neutral left
 @sprite her_camp matter-of-fact right
 Her: We'd look less like an anomaly if you told them you were fucking me.
 
@@ -1030,7 +1030,7 @@ Then back to the dungeon, and down.
 
 Avram: I think I'm stronger than you, now. Am I correct?
 
-Her: Definitely, Master. I haven't been helping you much inside of dungeons. | Does this mean your people's customs finally allow you to take me now?
+Her: Definitely, Master. I haven't been helping you much, or not inside of dungeons. | Does this mean your people's customs finally allow you to take me now?
 
 Avram: This is a very serious question.
 

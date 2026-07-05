@@ -131,7 +131,7 @@ about a Demon Lord!" (Avram's line, bartender scene, 1 occurrence).
 **Why:** User-directed. "Drinking tea" foreshadows the prologue-flash reveal (the
 God is the one drinking tea) too specifically for a throwaway Avram line — removing
 it keeps the later "guy drinking tea in the middle of nowhere" payoff (see
-`claude-inputs/fable-conversation.md` line 33/47, the prologue tea-flash panel)
+`claude-inputs/fable5-conversation-full.html`, Eliezer's "guy drinking tea" note — the prologue tea-flash panel)
 from being spoiled early.
 
 **Synced to:**

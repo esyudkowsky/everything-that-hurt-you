@@ -770,7 +770,7 @@ Then back to the dungeon, and down.
 
 Avram: I think I'm stronger than you, now. Am I correct?
 
-Her: Definitely, Master. I haven't been helping you much inside of dungeons. | Does this mean your people's customs finally allow you to take me now?
+Her: Definitely, Master. I haven't been helping you much, or not inside of dungeons. | Does this mean your people's customs finally allow you to take me now?
 
 Avram: This is a very serious question.
 

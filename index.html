@@ -333,6 +333,15 @@
     text-underline-offset: 0.35cqh; transition: color .15s;
   }
   #credits-list .credit-link:hover { color: #e9d189; }
+  #credits-foot {
+    text-align: center; font-family: var(--serif); color: #8f8878;
+    font-size: 1.9cqh; line-height: 1.6; margin-bottom: 2cqh;
+  }
+  #credits-foot .credit-link {
+    color: var(--gold); cursor: pointer; text-decoration: underline;
+    text-underline-offset: 0.35cqh; transition: color .15s;
+  }
+  #credits-foot .credit-link:hover { color: #e9d189; }
 
   /* ---- scrollable original-outline viewer ---- */
   #scriptview {
@@ -482,15 +491,22 @@
       <h2>CREDITS</h2>
       <div id="credits-list">
         <div class="credit-row">
-          <span class="credit-role">Original story outline by</span>
-          <span id="credit-outline" class="credit-link">Eliezer Yudkowsky</span>
+          <span class="credit-role"><span id="credit-outline" class="credit-link">Original story outline</span> by</span>
+          Eliezer Yudkowsky
         </div>
-        <div class="credit-row"><span class="credit-role">Story transitions drafted by</span>Claude 5 Fable</div>
+        <div class="credit-row">
+          <span class="credit-role"><a class="credit-link" href="claude-inputs/fable5-conversation-full.html" target="_blank" rel="noopener">Story transitions drafted with</a></span>
+          Claude 5 Fable
+        </div>
         <div class="credit-row"><span class="credit-role">Extensive editing by</span>Eliezer Yudkowsky</div>
         <div class="credit-row"><span class="credit-role">Code by</span>Opus 4.8</div>
         <div class="credit-row"><span class="credit-role">Images managed by</span>Fable 5, Opus 4.8, and Yudkowsky</div>
         <div class="credit-row"><span class="credit-role">Images drawn by</span>Nano Banana 2 and Pro, and Riverflow</div>
         <div class="credit-row"><span class="credit-role">Music by</span>Google Lyria 3</div>
+      </div>
+      <div id="credits-foot">
+        <div>&copy; 2026 by Eliezer Yudkowsky</div>
+        <div><a class="credit-link" href="https://github.com/esyudkowsky/everything-that-hurt-you" target="_blank" rel="noopener">Github</a> &middot; v1.0.1</div>
       </div>
       <button id="btn-credits-back">Back</button>
     </div>
