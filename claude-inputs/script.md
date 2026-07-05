@@ -1054,7 +1054,7 @@ abruptly, no fadeout.)
 
 ---
 
-## 13. Close
+## 13. Change
 
 [bgm: bgm_void]
 

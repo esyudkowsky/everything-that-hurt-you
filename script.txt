@@ -1401,12 +1401,13 @@ Of the two outsiders, there is one who chooses to protect the things that are, a
 @note the calm green forest again — same as the arrival, held quiet before the
 @note whiteout (author 2026-07-04)
 
-@flash white 1400 4640
+@flash white 1400 3300
 @sfx sfx_silence-cut
 @note SCREEN WHITEOUT + HISS: the forest goes calm → burning under the white.
-@note The whiteout HOLDS at full white for ~4.64s and fades over 1.4s, so it does
-@note not stop until the ~4.84s hiss (sfx_silence-cut) has finished (author 2026-07-04;
-@note hiss lead-in trimmed 2026-07-05, hold retuned to match the shorter clip).
+@note The whiteout HOLDS at full white for ~3.3s then fades over 1.4s, so the burning
+@note forest is fully revealed at ~4.7s — just BEFORE the ~4.84s hiss (sfx_silence-cut)
+@note cuts to silence, so the reveal and the hiss end together rather than the hiss
+@note stopping ~0.5s early (author 2026-07-04; hiss lead-in trimmed + reveal retimed 2026-07-05).
 @note The sfx is preloaded at boot so the hiss starts immediately.
 @cg cg_burning_walk fade
 @hold
