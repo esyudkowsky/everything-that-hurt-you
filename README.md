@@ -16,4 +16,4 @@ If you want to see the half-story I wrote in 2021, and the Fable conversation th
 
 Being able to work with Fable and Opus 4.8 was enlightening to me about my difficulties in working with humans.  It's not that I was by my own lights rude or insulting, but that I was always getting things and sending them back with lists of errors and additional required features.  A human programmer would have shot me.  And to make this not happen would've required so much more painful effort on my end that I would not have tried -- even leaving aside the much, much longer loops to get a human's work back.
 
-I have put up the Github repository publicly in case anyone wants to trace Github history or look through Claude's notes to itself.
+I have put up the Github repository publicly in case anyone wants to trace Github history or look through Claude's notes to itself.  claude-notes/LESSONS.md contains everything Fable would want to pass on to a Claude trying a new visual novel.  There are SKILL.md files in the art pipeline and the audio pipeline.
