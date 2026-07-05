@@ -1333,41 +1333,6 @@ if (typeof document !== "undefined") (function () {
       playBgm(sv && sv.fin ? "bgm_title_end" : "bgm_title");
     updateChapterIndicator();
   }
-  /* ---------- prototype password gate (kid-brother security only) ----------
-     The plaintext ("red flower rocket") is not stored; only this djb2-xor
-     hash of the normalized phrase is. Case/whitespace-insensitive. Once
-     entered correctly it stays unlocked for the rest of the page session. */
-  const GATE_HASH = "cf67cb57";
-  let gateUnlocked = false;
-  let gatePending = null; // fn to run once the gate is passed
-  function gateHash(s) {
-    const norm = s.trim().toLowerCase().replace(/\s+/g, " ");
-    let x = 5381;
-    for (let i = 0; i < norm.length; i++) x = ((x * 33) ^ norm.charCodeAt(i)) >>> 0;
-    return x.toString(16);
-  }
-  function requireGate(fn) {
-    // Prototype password gate removed (author 2026-07-04) — always proceed.
-    fn();
-  }
-  function submitGate() {
-    if (gateHash($("gate-input").value) === GATE_HASH) {
-      gateUnlocked = true;
-      $("gatemenu").style.display = "none";
-      const fn = gatePending; gatePending = null;
-      if (fn) fn();
-    } else {
-      $("gate-msg").textContent = "Not quite. Try again.";
-      $("gate-input").value = "";
-      $("gate-input").focus();
-    }
-  }
-  function cancelGate() {
-    gatePending = null;
-    $("gatemenu").style.display = "none";
-    showTitle();
-  }
-
   function beginPlay(target) {
     $("title").style.display = "none";
     $("endcard").style.display = "none";
@@ -1692,19 +1657,13 @@ if (typeof document !== "undefined") (function () {
       // on the title the hamburger opens Settings; in play it opens the pause menu
       if (mode === "title") openSettings(true); else openPause();
     };
-    $("btn-begin").onclick = () => requireGate(() => beginPlay(0));
-    $("btn-continue").onclick = () => requireGate(() => {
+    $("btn-begin").onclick = () => beginPlay(0);
+    $("btn-continue").onclick = () => {
       const sv = loadSave();
       maxPc = (sv && sv.max) || 0;
       beginPlay((sv && sv.pc) || 0);
-    });
-    $("btn-chapters-title").onclick = () => requireGate(() => openChapters(true));
-    $("btn-gate-ok").onclick = submitGate;
-    $("btn-gate-cancel").onclick = cancelGate;
-    $("gate-input").addEventListener("keydown", (e) => {
-      if (e.key === "Enter") { e.preventDefault(); submitGate(); }
-      else if (e.key === "Escape") { e.preventDefault(); cancelGate(); }
-    });
+    };
+    $("btn-chapters-title").onclick = () => openChapters(true);
     $("btn-settings-title").onclick = () => openSettings(true);
     $("btn-credits-title").onclick = () => openCredits();
     $("btn-credits-back").onclick = closeCredits;

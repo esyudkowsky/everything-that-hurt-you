@@ -1,0 +1,15 @@
+# Keep development-only files out of the public deployment.
+# The app itself needs only: index.html, engine.js, assets/, script.txt,
+# and the two files under claude-inputs/ that the Credits screen links.
+# Everything below is dev-only and should NOT be world-served.
+
+node_modules/
+claude-notes/
+CLAUDE.md
+HUMAN.md
+
+# claude-inputs is dev-only EXCEPT the two files the app links
+# (original-script.md via the outline viewer, and the Fable conversation).
+claude-inputs/*
+!claude-inputs/original-script.md
+!claude-inputs/fable5-conversation-full.html

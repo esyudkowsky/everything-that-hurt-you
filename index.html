@@ -287,23 +287,6 @@
     opacity: 0.9; pointer-events: none;
   }
 
-  /* password gate */
-  #gatemenu .gate-field {
-    font-family: var(--serif); font-size: 2.8cqh;
-    padding: 1.1cqh 2cqh; width: 46cqh; max-width: 84%;
-    background: #0d0d13; color: #f0ece2; text-align: center;
-    border: 1px solid #c9a75a66; border-radius: 0.7cqh; outline: none;
-    letter-spacing: 0.06em;
-  }
-  #gatemenu .gate-field:focus { border-color: var(--gold); }
-  #gatemenu .gate-msg {
-    font-family: var(--serif); font-size: 2cqh; color: #d98a6a;
-    min-height: 2.4cqh; letter-spacing: 0.04em;
-  }
-  #gatemenu .gate-hint {
-    font-family: var(--serif); font-size: 1.8cqh; color: #8f8878;
-    max-width: 60cqh; text-align: center;
-  }
 
   #chapter-list {
     display: grid; grid-template-columns: 1fr 1fr 1fr;
@@ -498,7 +481,7 @@
           <span class="credit-role"><a class="credit-link" href="claude-inputs/fable5-conversation-full.html" target="_blank" rel="noopener">Story transitions drafted with</a></span>
           Claude 5 Fable
         </div>
-        <div class="credit-row"><span class="credit-role">Extensive editing by</span>Eliezer Yudkowsky</div>
+        <div class="credit-row"><span class="credit-role">Extensive revision by</span>Eliezer Yudkowsky</div>
         <div class="credit-row"><span class="credit-role">Code by</span>Opus 4.8</div>
         <div class="credit-row"><span class="credit-role">Images managed by</span>Fable 5, Opus 4.8, and Yudkowsky</div>
         <div class="credit-row"><span class="credit-role">Images drawn by</span>Nano Banana 2 and Pro, and Riverflow</div>
@@ -515,16 +498,6 @@
       <div class="sv-title">Original Story Outline &middot; Eliezer Yudkowsky</div>
       <div id="scriptview-content"></div>
       <button id="btn-scriptview-back">Back</button>
-    </div>
-
-    <div id="gatemenu" class="menu" style="display:none">
-      <h2>PROTOTYPE</h2>
-      <div class="gate-hint">Enter the password to begin.</div>
-      <input id="gate-input" class="gate-field" type="text" autocomplete="off"
-             autocapitalize="off" spellcheck="false" placeholder="password">
-      <div id="gate-msg" class="gate-msg"></div>
-      <button id="btn-gate-ok">Enter</button>
-      <button id="btn-gate-cancel">Back</button>
     </div>
 
     <div id="pausemenu" class="menu" style="display:none">
