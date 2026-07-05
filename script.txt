@@ -520,8 +520,7 @@ Avram: We've been lucky.
 
 @clear all
 @overlay status
-> [AVRAM — Wolf School Swordsmanship: Lv 1 → Lv 6 · Fire Magic: Lv 0 → Lv 2]
-> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 11 → Lv 12]
+> [AVRAM — Wolf School Swordsmanship: → Lv 6 · Fire Magic: → Lv 2]
 @overlay end
 
 
@@ -533,7 +532,7 @@ Avram: We've been lucky.
 @note montage theme -> tavern theme, crossfading in at the ch5->6 fade
 @sprite avram neutral left
 @sprite her_camp cheer right
-The tavern is crowded. Three adventurers at the next table, deep in cups.
+The tavern is crowded. Two adventurers at the next table, deep in cups.
 
 @sprite adventurer1 jeering right
 Adventurer 1: Oi. That your slave?
@@ -584,8 +583,8 @@ Her: Goodnight, sers!
 @bg bg_town_gate fade
 @tint night
 @bgm bgm_wistful
-@sprite avram discomfort left
-@sprite her_camp cheer right
+@sprite avram unreadable left
+@sprite her_camp matter-of-fact right
 @note the bg change + night tint carry "outside"; no narration needed
 @pause 700
 @note hold on the fade to the city gate (~0.6s bg fade) before her line starts
@@ -606,7 +605,6 @@ Avram: ...
 
 Her: ...
 
-@sprite avram wry left
 Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 
 @tint off
@@ -639,7 +637,6 @@ Avram: It's -- the customs of my people.
 @sprite her_camp cheer right
 Her: Their customs obviously allow people to fuck under some circumstances or you wouldn't be here, Master.
 
-@sprite avram unreadable left
 Avram: ...It's a subject we could revisit later under different circumstances.
 
 Her: When, Master?
@@ -689,14 +686,16 @@ By evening they've found a traveling caravan. Wagons, cookfires, hired guards. A
 
 @sprite avram neutral left
 @sprite healer dry-neutral right
-For some reason the healer insists on talking to Avram's slave in private before agreeing to treat him.  |  Afterward she does, though, in exchange for a few silver.
+For some reason the healer insists on talking to Avram's slave in private before agreeing to treat him.  |  Afterward the healer seems willing, though, in exchange for a few silver.
 
-Healer: Your slavegirl's not happy, young man. | She's trying to hide it, but not to the point where an old woman's social Skills won't pick it up.
+Healer: Your slavegirl's not happy, young man. | She's trying to hide it, but not well enough to fool my level of social Skills.
 
 Avram: What's wrong?
 
 @sprite healer pointed right
-Healer: At a guess? | She doesn't know where she stands with you, why you treat her the way you do, what's in store for her, what her life's going to be like, and why you won't fuck her.
+Healer: On my Skill's read? | She doesn't know where she stands with you, or why you treat her the way you do. | Or what's in store for her, or what her life's going to be like, or why you won't fuck her.
+
+Healer: I'm telling you this much, because my Skill judges it'll do her more good than harm for you to know.  Don't prove me wrong.
 
 @sprite avram unreadable left
 Avram: It isn't about her. There's a reason and it's a good one.
@@ -707,7 +706,7 @@ Healer: Like what?
 Avram: Private.
 
 @sprite healer pointed right
-Healer: Well if you won't tell even her, that sounds to her like you're planning to sell her off, hm? Not settling down for the long run with her?
+Healer: Well if you won't tell even her, that sounds to her like you're planning to sell her off, hm? Not settling down for the long run with her.
 
 @sprite avram sad-distant left
 @note author left "Avram:" blank in script.md here — rendered as a silent beat; replace with a line if intended
@@ -715,8 +714,6 @@ Avram: ...
 
 @sprite healer dry-neutral right
 The healer ties off the splint.
-
-Healer: Your coin, your slave.
 
 @tint off
 
@@ -743,7 +740,7 @@ Healer: Your coin, your slave.
 
 @overlay status
 > [AVRAM — Wolf School Swordsmanship: Lv 6 → Lv 13 · Air Magic: Lv 3 · Fire Magic: Lv 5 · Light Magic: Lv 4 · Dark Magic: Lv 2]
-> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 12 → Lv 16]
+> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 14 → Lv 16]
 @overlay end
 
 @note descent: a different dungeon CG behind each flashing "Floor N" marker (author 2026-07-03)
@@ -875,13 +872,9 @@ Slavetaker: Stupid fucking bitch -- you were worth money too, you know! I'm goin
 Attendant: Got attached to the slave, huh.
 
 @note not looking up
-Avram: She saved my life.
+Avram: She saved my life. | I'd save hers whether I was attached to her or not.
 
-Avram: I'd save hers whether I was attached to her or not.
-
-Attendant: Wow.
-
-Attendant: I'd heard about guys like you, but I'd never met one in real life before.
+Attendant: Wow. | I'd heard about guys like you, but I'd never met one in real life before.
 
 Attendant: That poor, poor girl.
 
@@ -1032,12 +1025,12 @@ Then back to the dungeon, and down.
 
 @bg bg_camp_night cut
 @bgm bgm_wistful
-@sprite avram_late neutral left
+@sprite avram_late hollow left
 @sprite her cheer right
 
-Avram: I think I'm stronger than you, now. Am I wrong?
+Avram: I think I'm stronger than you, now. Am I correct?
 
-Her: Definitely, Master. I'm starting to worry that I'm useless to you, in the dungeons, anyway. | Does this mean your people's customs finally allow you to take me now?
+Her: Definitely, Master. I haven't been helping you much inside of dungeons. | Does this mean your people's customs finally allow you to take me now?
 
 Avram: This is a very serious question.
 
@@ -1120,10 +1113,8 @@ Avram: Come here and stand still while I remove your collar.
 @note her armor (author 2026-07-04 — her_free_armored, not the town-clothes
 @note her_free); she changes to town clothes only by the ch14 cliff. The bare
 @note throat is the key visual of the ending; let the sprite sit unobstructed.
-She stands still and doesn't say anything.
 
 @sprite avram_late hollow left
-Avram looks at her.
 
 @hold
 
@@ -1148,11 +1139,11 @@ Avram: If you need to - say anything to me.
 @note ch14 is CG-only staging, no character sprites (author 2026-07-04): her ALONE
 @note at the edge first (cg_cliff_her), then cg_cliff_two the moment Avram appears,
 @note held through the whole conversation. Nice town clothes, bare throat.
-Sunset. She's standing on the edge of a cliff, by the end of the forest, looking out on the mountains of the world.
+@hold
+@note silent beat: she is alone at the cliff edge; click brings Avram (author 2026-07-05)
 
 @cg cg_cliff_two cut
 @note SUDDEN CUT (not fade): Avram appears behind her abruptly (author 2026-07-04)
-Avram is suddenly standing behind her.
 
 Avram: Sorry for - interrupting you - but I felt you climb up here. My magical senses extend a long ways, now.
 
@@ -1164,11 +1155,11 @@ Avram: It's a funny thing, I have all sorts of guesses about what you might say,
 @hold
 @note silent pause (was "...", no text on screen — author 2026-07-04)
 
-Avram: You can slap me for having the temerity to say this, if you want to. But even so, I'm sorry.
+Avram: You can slap me for having the temerity to say this, if you want to. | But even so, I'm sorry.
 
 @hold
 
-Her: You weren't so bad. It's not a lie that you were the best master I've ever had.
+Her: You weren't so bad. | It's not a lie that you were the best master I've ever had.
 
 Her: If it had only ever been you, I might be able to - live with it.
 
@@ -1186,6 +1177,8 @@ Her: I managed to stop thinking the bad thoughts, and then things were better.
 
 Her: I just kept going and never had to think at all about how much I hated it.
 
+@hold
+
 Avram: I was... afraid... it was, it was, it was something like that...
 
 Her: And now you took off the collar and I can't. Can't stop. Can't stop thinking about it.
@@ -1202,7 +1195,7 @@ Her: No, really? You seemed like such an inhabitant of this planet.
 
 Avram: I'm the Hero and after I've defeated the Demon Lord, when I'm strong enough, I'm going to wipe every slave collar and every slave merchant off the face of this world.
 
-Avram: And then, somehow, I don't know how, arrange it so the slave trade doesn't just come back a hundred years later. | That's going to be the real hard part, even if I can do the rest.
+Avram: And then, somehow, I don't know how, arrange it so the slave trade doesn't just come back a hundred years later. | That's going to be the hard part, even if I can do the rest.
 
 @hold
 
@@ -1271,9 +1264,10 @@ Her: Most people in this world are not that nice. | I'm not sure what being nice
 
 Avram: The way my people see it, you would have the right to demand that I did more. Did better.
 
-@sprite her_free final-gentle right
-@note author 2026-07-04: put up her_free final-gentle here (a small, real, tired smile) even with
-@note her still in the cg_cliff_two background facing off the cliff — trying it, per the author.
+@sprite her_free final-gentle center
+@note author 2026-07-04: put up her_free final-gentle here (a small, real, tired smile).
+@note center slot (author 2026-07-05): the sprite overlays her cliff-self in cg_cliff_two,
+@note so it reads as her turning to face us — NOT a second figure blocking Avram on the right.
 Her: You keep saying that the standards of behavior are different where you came from.
 
 Her: I don't know what the laws of your world were like. | I imagine they must have been very harsh, in some ways, even if they were kindly in others.
@@ -1288,6 +1282,10 @@ Her: That's my wish to you. Grant it.
 @note author 2026-07-04: render this "Okay." in smaller, quieter text — a defeated,
 @note barely-there assent.
 Avram: Okay.
+
+@clear center
+@note disappear final-gentle before her last line (author 2026-07-05): she turns back
+@note to the cliff, leaving only the cg_cliff_two staging for "Goodbye, Master."
 
 @slow
 @autoplay 3000
@@ -1403,11 +1401,12 @@ Of the two outsiders, there is one who chooses to protect the things that are, a
 @note the calm green forest again — same as the arrival, held quiet before the
 @note whiteout (author 2026-07-04)
 
-@flash white 1400 6800
+@flash white 1400 4640
 @sfx sfx_silence-cut
 @note SCREEN WHITEOUT + HISS: the forest goes calm → burning under the white.
-@note The whiteout HOLDS at full white for ~6.8s and fades over 1.4s, so it does
-@note not stop until the 7s hiss (sfx_silence-cut) has finished (author 2026-07-04).
+@note The whiteout HOLDS at full white for ~4.64s and fades over 1.4s, so it does
+@note not stop until the ~4.84s hiss (sfx_silence-cut) has finished (author 2026-07-04;
+@note hiss lead-in trimmed 2026-07-05, hold retuned to match the shorter clip).
 @note The sfx is preloaded at boot so the hiss starts immediately.
 @cg cg_burning_walk fade
 @hold

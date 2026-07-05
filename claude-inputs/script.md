@@ -397,8 +397,7 @@ Avram: We've been lucky.
 
 : [status overlay]
 
-> [AVRAM — Wolf School Swordsmanship: Lv 1 → Lv 6 · Fire Magic: Lv 0 → Lv 2]
-> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 11 → Lv 12]
+> [AVRAM — Wolf School Swordsmanship: → Lv 6 · Fire Magic: → Lv 2]
 
 ---
 
@@ -406,7 +405,7 @@ Avram: We've been lucky.
 
 [bgm: bgm_tavern]
 
-: [bg_tavern_tables | avram neutral L, her_camp cheer R] The tavern is crowded. Three adventurers
+: [bg_tavern_tables | avram neutral L, her_camp cheer R] The tavern is crowded. Two adventurers
 at the next table, deep in cups.
 
 : [adventurer1 jeering R]
@@ -449,7 +448,7 @@ Avram: We're done.
 
 Her: Goodnight, sers!
 
-: [bg_town_gate, tint night | avram discomfort L, her_camp cheer R] Outside. (The bg change +
+: [bg_town_gate, tint night | avram unreadable L, her_camp matter-of-fact R] Outside. (The bg change +
 night tint carry "outside"; no narration needed.)
 
 [bgm: bgm_wistful]
@@ -492,8 +491,6 @@ Avram: It's -- the customs of my people.
 : [her_camp cheer R]
 
 Her: Their customs obviously allow people to fuck under some circumstances or you wouldn't be here, Master.
-
-: [avram unreadable L]
 
 Avram: ...It's a subject we could revisit later under different circumstances.
 
@@ -539,15 +536,17 @@ By evening they've found a traveling caravan. Wagons, cookfires, hired guards. A
 : [avram neutral L, healer dry-neutral R] The healer, gray-braided, splints Avram's arm. Across the
 camp, out of earshot, she tends the fire.
 
-For some reason the healer insists on talking to Avram's slave in private before agreeing to treat him.  |  Afterward she does, though, in exchange for a few silver.
+For some reason the healer insists on talking to Avram's slave in private before agreeing to treat him.  |  Afterward the healer seems willing, though, in exchange for a few silver.
 
-Healer: Your slavegirl's not happy, young man. | She's trying to hide it, but not to the point where an old woman's social Skills won't pick it up.
+Healer: Your slavegirl's not happy, young man. | She's trying to hide it, but not well enough to fool my level of social Skills.
 
 Avram: What's wrong?
 
 : [healer pointed R]
 
-Healer: At a guess? | She doesn't know where she stands with you, why you treat her the way you do, what's in store for her, what her life's going to be like, and why you won't fuck her.
+Healer: On my Skill's read? | She doesn't know where she stands with you, or why you treat her the way you do. | Or what's in store for her, or what her life's going to be like, or why you won't fuck her.
+
+Healer: I'm telling you this much, because my Skill judges it'll do her more good than harm for you to know.  Don't prove me wrong.
 
 : [avram unreadable L]
 
@@ -561,15 +560,13 @@ Avram: Private.
 
 : [healer pointed R]
 
-Healer: Well if you won't tell even her, that sounds to her like you're planning to sell her off, hm? Not settling down for the long run with her?
+Healer: Well if you won't tell even her, that sounds to her like you're planning to sell her off, hm? Not settling down for the long run with her.
 
 : [avram sad-distant L]
 
 Avram: ...
 
 : [healer dry-neutral R] The healer ties off the splint.
-
-Healer: Your coin, your slave.
 
 ---
 
@@ -585,7 +582,7 @@ small and uncentered: another master's raised hand, his slave flinching. Neither
 : [status overlay]
 
 > [AVRAM — Wolf School Swordsmanship: Lv 6 → Lv 13 · Air Magic: Lv 3 · Fire Magic: Lv 5 · Light Magic: Lv 4 · Dark Magic: Lv 2]
-> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 12 → Lv 16]
+> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 14 → Lv 16]
 
 : [bg_dungeon_mid → bg_dungeon_deep, floor-marker] Floor-markers ticking past: sixteen. Eighteen. Twenty.
 
@@ -667,13 +664,9 @@ bed, the attendant watching from the doorway. (The CG holds through the whole at
 
 Attendant: Got attached to the slave, huh.
 
-Avram: She saved my life.
+Avram: She saved my life. | I'd save hers whether I was attached to her or not.
 
-Avram: I'd save hers whether I was attached to her or not.
-
-Attendant: Wow.
-
-Attendant: I'd heard about guys like you, but I'd never met one in real life before.
+Attendant: Wow. | I'd heard about guys like you, but I'd never met one in real life before.
 
 Attendant: That poor, poor girl.
 
@@ -773,11 +766,11 @@ Then back to the dungeon, and down.
 
 [bgm: bgm_wistful]
 
-: [bg_camp_night | avram_late neutral L, her cheer R]
+: [bg_camp_night | avram_late hollow L, her cheer R]
 
-Avram: I think I'm stronger than you, now. Am I wrong?
+Avram: I think I'm stronger than you, now. Am I correct?
 
-Her: Definitely, Master. I'm starting to worry that I'm useless to you, in the dungeons, anyway. | Does this mean your people's customs finally allow you to take me now?
+Her: Definitely, Master. I haven't been helping you much inside of dungeons. | Does this mean your people's customs finally allow you to take me now?
 
 Avram: This is a very serious question.
 
@@ -859,10 +852,10 @@ Avram: Come here and stand still while I remove your collar.
 : [cg_collar_removal] His hands at her collar, the moment of removal. Her face NOT visible — turned
 away or out of frame.
 
-: [bg_camp_night | her_free_armored still R] Freed from here on: no collar, bare throat clearly visible — the
-key visual of the ending; the sprite sits unobstructed. She stands still and doesn't say anything.
+: [bg_camp_night | her_free_armored still R] (Freed from here on: no collar, bare throat clearly visible — the
+key visual of the ending; the sprite sits unobstructed.)
 
-: [avram_late hollow L] Avram looks at her.
+: [avram_late hollow L]
 
 : [pause]
 
@@ -886,10 +879,9 @@ Avram: If you need to - say anything to me.
 
 : [cg_cliff_her] CG-only staging, NO character sprites for all of ch12. Her ALONE at the edge first
 (cg_cliff_her), then cg_cliff_two the moment Avram appears, held through the whole conversation; she
-is in her nice town clothes, bare throat, at the edge. Sunset. She's standing on the edge of a cliff,
-by the end of the forest, looking out on the mountains of the world.
+is in her nice town clothes, bare throat, at the edge.
 
-: [cg_cliff_two] Avram is suddenly standing behind her.
+: [cg_cliff_two]
 
 Avram: Sorry for - interrupting you - but I felt you climb up here. My magical senses extend a long ways, now.
 
@@ -899,11 +891,11 @@ Avram: It's a funny thing, I have all sorts of guesses about what you might say,
 
 : [pause]
 
-Avram: You can slap me for having the temerity to say this, if you want to. But even so, I'm sorry.
+Avram: You can slap me for having the temerity to say this, if you want to. | But even so, I'm sorry.
 
 : [pause]
 
-Her: You weren't so bad. It's not a lie that you were the best master I've ever had.
+Her: You weren't so bad. | It's not a lie that you were the best master I've ever had.
 
 Her: If it had only ever been you, I might be able to - live with it.
 
@@ -921,6 +913,8 @@ Her: I managed to stop thinking the bad thoughts, and then things were better.
 
 Her: I just kept going and never had to think at all about how much I hated it.
 
+: [pause]
+
 Avram: I was... afraid... it was, it was, it was something like that...
 
 Her: And now you took off the collar and I can't. Can't stop. Can't stop thinking about it.
@@ -937,7 +931,7 @@ Her: No, really? You seemed like such an inhabitant of this planet.
 
 Avram: I'm the Hero and after I've defeated the Demon Lord, when I'm strong enough, I'm going to wipe every slave collar and every slave merchant off the face of this world.
 
-Avram: And then, somehow, I don't know how, arrange it so the slave trade doesn't just come back a hundred years later. | That's going to be the real hard part, even if I can do the rest.
+Avram: And then, somehow, I don't know how, arrange it so the slave trade doesn't just come back a hundred years later. | That's going to be the hard part, even if I can do the rest.
 
 : [pause]
 
@@ -1007,7 +1001,7 @@ Her: Most people in this world are not that nice. | I'm not sure what being nice
 
 Avram: The way my people see it, you would have the right to demand that I did more. Did better.
 
-: Let's try putting up final-gentle here, even with her still in the background facing off the cliff.
+: [her_free final-gentle, center] Put up final-gentle here, positioned to OVERLAY her cliff-self in the cg_cliff_two background (so it reads as her turning to face us), NOT off to one side blocking Avram.
 
 Her: You keep saying that the standards of behavior are different where you came from.
 
@@ -1022,6 +1016,8 @@ Her: That's my wish to you. Grant it.
 : (render this "Okay." in smaller, quieter text — a defeated, barely-there assent.)
 
 Avram: Okay.
+
+: (disappear final-gentle)
 
 Her: Goodbye, Master.
 

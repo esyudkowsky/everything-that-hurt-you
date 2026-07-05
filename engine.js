@@ -161,7 +161,8 @@ if (typeof document !== "undefined") (function () {
   const $ = (id) => document.getElementById(id);
   const SAVE_KEY = "ethy_save";
   const SETTINGS_KEY = "ethy_settings";
-  const DEFAULT_SETTINGS = { typeMs: 33, autoplay: false, autoplayDelayMs: 900, showChapter: false, musicOn: true };
+  // showChapter: "full" (Ch. N/TOTAL · Title) | "number" (Ch. N/TOTAL) | "off"
+  const DEFAULT_SETTINGS = { typeMs: 33, autoplay: false, autoplayDelayMs: 900, showChapter: "number", musicOn: true };
   const TINTS = {
     night: "rgba(18, 38, 88, 0.30)",
     dusk: "rgba(120, 60, 20, 0.22)",
@@ -186,7 +187,9 @@ if (typeof document !== "undefined") (function () {
   let history = [];        // pcs of blocking stops this play session
   let reviewIdx = 0;       // index into history currently displayed
   let reviewing = false;   // true while showing a rolled-back (past) beat
-  let uiHidden = false;    // Shift held: dialogue overlay hidden to view art
+  let uiHidden = false;    // effective: all overlay UI hidden to view/screenshot art
+  let shiftPeek = false;   // Shift currently held (momentary peek)
+  let capsSticky = false;  // Caps Lock toggled ON mid-scene (sticky until advance)
   let musicEnabled = true; // music on/off preference (corner toggle); persisted in settings
   let audioUnlocked = false; // has a real user gesture let audio actually start playing yet?
   let chapFading = false;  // a coordinated chapter fade is in progress
@@ -199,7 +202,11 @@ if (typeof document !== "undefined") (function () {
   function loadSettings() {
     let s = null;
     try { s = JSON.parse(localStorage.getItem(SETTINGS_KEY)); } catch (e) {}
-    return Object.assign({}, DEFAULT_SETTINGS, s || {});
+    const merged = Object.assign({}, DEFAULT_SETTINGS, s || {});
+    // migrate the old boolean showChapter (true=full title, false=off) to the tri-state
+    if (merged.showChapter === true) merged.showChapter = "full";
+    else if (merged.showChapter === false) merged.showChapter = "off";
+    return merged;
   }
   function saveSettings() {
     try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {}
@@ -208,7 +215,7 @@ if (typeof document !== "undefined") (function () {
   function freshState() {
     return {
       bg: null, cg: null,
-      sprites: { left: null, right: null }, // {char, expr}
+      sprites: { left: null, center: null, right: null }, // {char, expr}
       tint: "off",
       vo: "off", voLines: [],
       voGroup: [], voShown: 0, // full voiceover group (pre-laid-out) + reveal count
@@ -371,6 +378,7 @@ if (typeof document !== "undefined") (function () {
   function execClear(what, instant) {
     if (what === "all") {
       clearSlot("left", instant);
+      clearSlot("center", instant);
       clearSlot("right", instant);
     } else clearSlot(what, instant);
   }
@@ -390,7 +398,7 @@ if (typeof document !== "undefined") (function () {
   }
   function applyDim(speaker) {
     const pref = speakerPrefix(speaker);
-    for (const slot of ["left", "right"]) {
+    for (const slot of ["left", "center", "right"]) {
       const holder = $("spr-" + slot);
       const s = st.sprites[slot];
       if (!s) continue;
@@ -413,7 +421,7 @@ if (typeof document !== "undefined") (function () {
     f.style.background = color === "black" ? "#000" : "#fff";
     f.style.opacity = "1";
     // holdMs: keep the screen at full colour for this long BEFORE the fade begins
-    // (used so the finale whiteout stays until the 7s hiss finishes).
+    // (used so the finale whiteout stays until the ~4.84s hiss finishes).
     const startFade = () =>
       requestAnimationFrame(() =>
         requestAnimationFrame(() => {
@@ -652,14 +660,17 @@ if (typeof document !== "undefined") (function () {
   function showStatus(lines) {
     const box = $("status-lines");
     box.innerHTML = "";
+    // 3-column grid (see CSS): [skill name (right) | old "Lv M" (right) | "→ Lv N" (left)].
+    // The prior level sits in a fixed column; the "→ Lv N" lives in its own aligned
+    // column that fades in on the click, so nothing already shown moves. A skill
+    // never shown before has NO old value — it just fades in "→ Lv N".
+    // Special case: the FIRST status screen (nothing recorded yet) shows ONLY Avram,
+    // with his numbers straight away (no reveal click), and no SLAVE at all.
+    const isFirstScreen = Object.keys(statusShownLevels).length === 0;
     let hasReveal = false;
-    // 3-column grid (see CSS): [skill name | old "Lv M" | "→ Lv N"], headers span.
-    // The prior level sits in a fixed right-aligned column; the arrow + new level
-    // live in their own left-aligned column that fades in on the click, so nothing
-    // already on screen shifts. Skills NEVER shown before are hidden until the
-    // click, then appear as name + "Lv 0 → Lv N" (author 2026-07-04).
     for (const raw of lines) {
       const b = parseStatusLine(raw);
+      if (isFirstScreen && !/^avram\b/i.test(b.header)) continue; // no SLAVE on the first screen
       const prevMap = statusShownLevels[b.header] || (statusShownLevels[b.header] = {});
       const head = document.createElement("div"); head.className = "status-head";
       head.textContent = b.header;
@@ -667,32 +678,26 @@ if (typeof document !== "undefined") (function () {
       for (const sk of b.skills) {
         const prior = prevMap[sk.name];
         const lvl = sk.level;
-        const isNew = prior == null && lvl != null;      // never shown before
-        const isInc = prior != null && lvl != null && lvl > prior;
-        const kind = isNew ? "new" : isInc ? "inc" : "same";
-        if (isNew || isInc) hasReveal = true;
-        const from = isNew ? 0 : (prior == null ? 0 : prior);
+        const isNew = prior == null && lvl != null;                 // first appearance -> "→ Lv N", no old value
+        const isInc = prior != null && lvl != null && lvl > prior;  // rose since last shown
+        const arrow = isNew || isInc;
+        if (arrow && !isFirstScreen) hasReveal = true;
 
-        const nm = document.createElement("div");
-        nm.className = "skill-name" + (isNew ? " pending" : "");
+        const nm = document.createElement("div"); nm.className = "skill-name";
         nm.textContent = sk.name;
-        const oldv = document.createElement("div");
-        oldv.className = "skill-old" + (isNew ? " pending" : "");
-        oldv.textContent = "Lv " + (kind === "same" ? lvl : from);
-        const newv = document.createElement("div");
-        newv.className = "skill-new";
-        newv.dataset.from = from;
-        newv.dataset.to = lvl == null ? "" : lvl;
-        newv.dataset.reveal = (isNew || isInc) ? "1" : "";
-        // the reveal column starts blank/hidden; filled in on the click
-        newv.textContent = (isNew || isInc) ? "→ Lv " + from : "";
-        if (isNew || isInc) newv.classList.add("pending");
+        const oldv = document.createElement("div"); oldv.className = "skill-old";
+        oldv.textContent = isNew ? "" : ("Lv " + (lvl == null ? "—" : (isInc ? prior : lvl)));
+        const newv = document.createElement("div"); newv.className = "skill-new";
+        newv.textContent = arrow ? ("→ Lv " + lvl) : "";
+        // on later screens the "→ Lv N" is hidden until the click; the first screen
+        // shows everything straight away.
+        if (arrow && !isFirstScreen) newv.classList.add("pending");
 
         box.appendChild(nm); box.appendChild(oldv); box.appendChild(newv);
         if (lvl != null) prevMap[sk.name] = lvl; // now shown
       }
     }
-    statusRevealed = !hasReveal;
+    statusRevealed = isFirstScreen ? true : !hasReveal;
     const panel = $("status");
     panel.style.display = "";
     panel.classList.remove("slide-in");
@@ -701,25 +706,10 @@ if (typeof document !== "undefined") (function () {
     );
     statusShown = true;
   }
-  // click: fade in the pending cells (new-skill names + the "→ Lv N" column) and
-  // count each rising number up to its new value — without moving anything already shown.
+  // click: fade the pending "→ Lv N" cells in (nothing already shown moves)
   function revealStatusIncreases() {
     statusRevealed = true;
-    const box = $("status-lines");
-    box.querySelectorAll(".pending").forEach((el) => el.classList.remove("pending"));
-    const DUR = 650;
-    box.querySelectorAll(".skill-new").forEach((newv) => {
-      if (newv.dataset.reveal !== "1") return;
-      newv.classList.add("leveled");
-      const from = +newv.dataset.from, to = +newv.dataset.to;
-      const start = performance.now();
-      (function frame(now) {
-        const t = Math.min(1, (now - start) / DUR);
-        const cur = Math.round(from + (to - from) * t);
-        newv.textContent = "→ Lv " + (t < 1 ? cur : to);
-        if (t < 1) requestAnimationFrame(frame);
-      })(start);
-    });
+    $("status-lines").querySelectorAll(".skill-new.pending").forEach((el) => el.classList.remove("pending"));
   }
   function hideStatus() {
     $("status").style.display = "none";
@@ -1105,14 +1095,19 @@ if (typeof document !== "undefined") (function () {
 
   function updateChapterIndicator() {
     const el = $("chapter-indicator");
-    if (!settings.showChapter || mode !== "play") { el.style.display = "none"; return; }
+    const modeSet = settings.showChapter;
+    if (modeSet === "off" || !modeSet || mode !== "play") { el.style.display = "none"; return; }
     let current = null;
     for (const ch of SCRIPT.chapters) {
       if (ch.at > pc) break;
       current = ch;
     }
-    el.textContent = current ? "Ch. " + current.n + " · " + current.title : "";
-    el.style.display = current ? "" : "none";
+    if (!current) { el.style.display = "none"; return; }
+    const total = SCRIPT.chapters.length;
+    let text = "Ch. " + current.n + "/" + total;
+    if (modeSet === "full") text += " · " + current.title;
+    el.textContent = text;
+    el.style.display = "";
   }
 
   function advance(fromAuto) {
@@ -1126,6 +1121,7 @@ if (typeof document !== "undefined") (function () {
     if (completeTyper()) return; // first click completes the reveal
     if (!waiting) return;
     if (!fromAuto) lastAutoAdvance = Date.now(); // a manual advance restarts the cadence
+    if (capsSticky) { capsSticky = false; refreshUiHidden(); } // committed advance clears screenshot-hide
     clearTimers();
     if (statusShown) hideStatus();
     hideFloor();
@@ -1193,17 +1189,31 @@ if (typeof document !== "undefined") (function () {
     reviewSeek(history[reviewIdx]);
   }
 
-  function hideUI() {
-    if (uiHidden || mode !== "play") return;
-    uiHidden = true;
-    $("textbox").dataset.peek = $("textbox").style.display;
-    $("textbox").style.display = "none";
+  // every corner/overlay control that should get out of the way for a clean look
+  // at the art (dialogue box, music toggle, menu button, chapter indicator)
+  const HIDEABLE = ["textbox", "volines", "musicbtn", "menubtn", "chapter-indicator"];
+  function applyUiHidden(hide) {
+    for (const id of HIDEABLE) {
+      const el = $(id);
+      if (!el) continue;
+      if (hide) {
+        if (el.dataset.peek === undefined) el.dataset.peek = el.style.display;
+        el.style.display = "none";
+      } else if (el.dataset.peek !== undefined) {
+        el.style.display = el.dataset.peek;
+        delete el.dataset.peek;
+      }
+    }
   }
-  function showUI() {
-    if (!uiHidden) return;
-    uiHidden = false;
-    $("textbox").style.display = $("textbox").dataset.peek || "";
+  // Shift-peek and Caps-sticky both hide; recompute the effective state.
+  function refreshUiHidden() {
+    const shouldHide = mode === "play" && (shiftPeek || capsSticky);
+    if (shouldHide === uiHidden) return;
+    uiHidden = shouldHide;
+    applyUiHidden(shouldHide);
   }
+  function hideUI() { shiftPeek = true; refreshUiHidden(); }
+  function showUI() { shiftPeek = false; refreshUiHidden(); }
 
   /* ---------- seek: silent state replay for resume / chapter jump ---------- */
 
@@ -1227,10 +1237,10 @@ if (typeof document !== "undefined") (function () {
       const c = SCRIPT.ins[j];
       switch (c.op) {
         case "bg": st.bg = c.id; st.cg = null; st.inscription = null; break;
-        case "cg": st.cg = c.id; st.bg = null; st.inscription = null; st.sprites = { left: null, right: null }; break;
+        case "cg": st.cg = c.id; st.bg = null; st.inscription = null; st.sprites = { left: null, center: null, right: null }; break;
         case "sprite": st.sprites[c.slot] = { char: c.char, expr: c.expr }; break;
         case "clear":
-          if (c.what === "all") st.sprites = { left: null, right: null };
+          if (c.what === "all") st.sprites = { left: null, center: null, right: null };
           else st.sprites[c.what] = null;
           break;
         case "voiceover": st.vo = c.mode; if (c.mode !== "off") { st.voLines = []; voGroupStart = j + 1; } break;
@@ -1251,7 +1261,7 @@ if (typeof document !== "undefined") (function () {
     // render reconstructed state instantly
     if (st.bg) setBgInstant(st.bg);
     if (st.cg) showCgInstant(st.cg);
-    for (const slot of ["left", "right"])
+    for (const slot of ["left", "center", "right"])
       if (st.sprites[slot]) setSprite(st.sprites[slot].char, st.sprites[slot].expr, slot, true);
     setTint(st.tint);
     if (st.vo === "on" || st.vo === "over") {
@@ -1354,7 +1364,7 @@ if (typeof document !== "undefined") (function () {
     $("chapters").style.display = "none";
     $("menubtn").style.display = "";
     mode = "play";
-    uiHidden = false;
+    uiHidden = false; shiftPeek = false; capsSticky = false;
     seek(target);
     history = [pc]; reviewIdx = 0; reviewing = false;
   }
@@ -1470,7 +1480,7 @@ if (typeof document !== "undefined") (function () {
       btn.classList.toggle("selected", +btn.dataset.delay === settings.autoplayDelayMs);
     $("autoplay-delay-row").classList.toggle("disabled", !settings.autoplay);
     for (const btn of $("showchapter-group").children)
-      btn.classList.toggle("selected", (btn.dataset.showchapter === "1") === settings.showChapter);
+      btn.classList.toggle("selected", btn.dataset.showchapter === settings.showChapter);
   }
   function openSettings(fromTitle) {
     disarmDelete();
@@ -1572,7 +1582,10 @@ if (typeof document !== "undefined") (function () {
     if (mode !== "play") return;
     e.preventDefault();
     if (chapFading) return;                  // ignore input mid chapter transition
-    if (uiHidden) return;                    // Shift-hold peek: don't advance
+    if (shiftPeek) return;                   // Shift-hold peek: don't advance
+    // Caps-Lock screenshot hide is sticky until the reader advances — this input
+    // both clears the hide and advances the scene.
+    if (capsSticky) { capsSticky = false; refreshUiHidden(); }
     if (reviewing) { returnToPresent(); return; } // click returns to present, eats it
     advance();
   }
@@ -1598,10 +1611,16 @@ if (typeof document !== "undefined") (function () {
     window.addEventListener("keydown", unlockAudio, { capture: true });
 
     $("stage").addEventListener("click", (e) => {
-      if (e.target.closest("#menubtn") || e.target.closest("#musicbtn") || e.target.closest(".menu")) return;
+      if (e.target.closest("#menubtn") || e.target.closest("#musicbtn") ||
+          e.target.closest("#chapter-indicator") || e.target.closest(".menu")) return;
       onAdvanceInput(e);
     });
     $("musicbtn").onclick = (e) => { e.stopPropagation(); toggleMusic(); };
+    // clicking the chapter indicator opens the chapter list (progress + jump)
+    $("chapter-indicator").onclick = (e) => {
+      e.stopPropagation();
+      if (mode === "play") openChapters(false);
+    };
     document.addEventListener("keydown", (e) => {
       if (e.key === " " || e.key === "Enter") onAdvanceInput(e);
       else if (e.key === "Escape") {
@@ -1615,6 +1634,15 @@ if (typeof document !== "undefined") (function () {
         startSkip();
       } else if (e.key === "Shift") {
         if (mode === "play") { e.preventDefault(); hideUI(); }
+      } else if (e.key === "CapsLock") {
+        // Toggling Caps Lock ON while a scene is shown hides all UI (sticky) so the
+        // reader can screenshot without holding a key; toggling it OFF restores.
+        // If Caps was ALREADY on when the scene began there is no keydown, so nothing
+        // hides — that's intentional (avoids inscrutable always-hidden UI).
+        if (mode === "play") {
+          capsSticky = !!(e.getModifierState && e.getModifierState("CapsLock"));
+          refreshUiHidden();
+        }
       } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
         if (mode === "play") { e.preventDefault(); rollBack(); }
       } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
@@ -1627,7 +1655,7 @@ if (typeof document !== "undefined") (function () {
       if (e.key === "Control") stopSkip();
       else if (e.key === "Shift") showUI();
     });
-    window.addEventListener("blur", showUI);
+    window.addEventListener("blur", () => { capsSticky = false; showUI(); });
     window.addEventListener("blur", stopSkip);
     $("menubtn").onclick = (e) => {
       e.stopPropagation();
@@ -1690,7 +1718,7 @@ if (typeof document !== "undefined") (function () {
     $("showchapter-group").addEventListener("click", (e) => {
       const btn = e.target.closest(".opt-btn");
       if (!btn) return;
-      settings.showChapter = btn.dataset.showchapter === "1";
+      settings.showChapter = btn.dataset.showchapter;
       saveSettings();
       renderSettingsUI();
       updateChapterIndicator();

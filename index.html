@@ -49,8 +49,9 @@
     transition: opacity 0.35s ease, filter 0.3s ease, transform 0.45s ease;
     pointer-events: none;
   }
-  #spr-left  { left: 2%; }
-  #spr-right { right: 2%; }
+  #spr-left   { left: 2%; }
+  #spr-center { left: 42%; }
+  #spr-right  { right: 2%; }
   .spr img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
   #tint { pointer-events: none; transition: background 1.2s ease; }
@@ -201,7 +202,7 @@
 
   /* music on/off toggle — a corner control visible on EVERY screen (above menus) */
   #musicbtn {
-    position: absolute; top: 2.2%; left: 1.6%;
+    position: absolute; top: 6.2cqh; left: 1.6%;
     width: 5.4cqh; height: 5.4cqh; border-radius: 0.9cqh;
     background: #0007; color: #d7cdb6; border: 1px solid #ffffff2e;
     font-size: 3cqh; line-height: 1; cursor: pointer;
@@ -405,11 +406,13 @@
   #music-list .music-btn.playing { background: #c9a75a2e; border-color: var(--gold); color: #f0ece2; }
 
   #chapter-indicator {
-    position: absolute; top: 1.6cqh; left: 1.6cqh; z-index: 30;
+    position: absolute; top: 1.6cqh; left: 1.6cqh; z-index: 61;
     font-family: var(--mono); font-size: 1.7cqh; color: #d8d2c2;
     background: #000a; border: 1px solid #c9a75a44; border-radius: 0.5cqh;
-    padding: 0.5cqh 1.2cqh; pointer-events: none;
+    padding: 0.5cqh 1.2cqh; cursor: pointer;
+    opacity: 0.82; transition: opacity .2s;
   }
+  #chapter-indicator:hover { opacity: 1; border-color: #c9a75a99; }
 
   #boot-error {
     position: absolute; inset: auto 8% 8% 8%; z-index: 60;
@@ -425,8 +428,9 @@
          an active CG covers background AND sprites, so it sits above them -->
     <div id="bglayer" class="fill"></div>
     <div id="cglayer" class="fill"></div>
-    <div id="spr-left"  class="spr" style="display:none"></div>
-    <div id="spr-right" class="spr" style="display:none"></div>
+    <div id="spr-left"   class="spr" style="display:none"></div>
+    <div id="spr-center" class="spr" style="display:none"></div>
+    <div id="spr-right"  class="spr" style="display:none"></div>
     <div id="tint" class="fill"></div>
     <div id="flash" class="fill"></div>
 
@@ -542,8 +546,9 @@
       <div class="opt-row">
         <div class="opt-label">Show Chapter</div>
         <div class="opt-group" id="showchapter-group">
-          <button class="opt-btn" data-showchapter="0">Off</button>
-          <button class="opt-btn" data-showchapter="1">On</button>
+          <button class="opt-btn" data-showchapter="full">Full</button>
+          <button class="opt-btn" data-showchapter="number">Number</button>
+          <button class="opt-btn" data-showchapter="off">Off</button>
         </div>
       </div>
       <div class="opt-note">Hold <b>Ctrl</b> to fast-skip through text you've already read.</div>
