@@ -121,11 +121,12 @@ They are not supreme when they first arrive
 But they fight, in forests, in arenas, in dungeon labyrinths
 
 @voiceover off
-@bg bg_town_gate fade
+@bg bg_town_gate cut
 @sprite avram back left
 @voiceover over
 @note "And they gain in strength very quickly" over Avram (BACK TURNED — proceeding toward the town
-@note gates); text appears IMMEDIATELY with the picture (no @hold), reorder per author 2026-07-04.
+@note gates); text appears IMMEDIATELY with the picture. CUT (not fade) so the line is clearly over
+@note the town gate, not the previous slime lingering through a crossfade (author 2026-07-04).
 
 And they gain in strength very quickly
 
@@ -578,6 +579,9 @@ Her: Goodnight, sers!
 @sprite avram discomfort left
 @sprite her_camp cheer right
 @note the bg change + night tint carry "outside"; no narration needed
+@pause 700
+@note hold on the fade to the city gate (~0.6s bg fade) before her line starts
+@note typing, so her text doesn't scroll over the transition (author 2026-07-04)
 
 Her: Did I say something wrong, Master?
 
@@ -992,7 +996,12 @@ Avram: ...
 @bg bg_market fade
 @sprite avram_late neutral left
 @sprite her cheer right
-New armor, to replace what the deep floors keep breaking. Fresh supplies. Then back to the dungeon, and down.
+@pause 700
+@note hold on the guild->market fade (~0.6s) before the line types, so the crossfade
+@note reads clearly and doesn't feel like an abrupt cut (author 2026-07-04)
+New armor, to replace what the deep floors keep breaking. Fresh supplies.
+
+Then back to the dungeon, and down.
 
 @clear all
 @bg bg_dungeon_mid fade
@@ -1054,7 +1063,7 @@ Avram: I really, really have to.
 Her: Master, I - like the way things have been with you. You're very mighty and wise, and I'm proud to be your slave. | I would rather that things just stay as they are.
 
 @sprite avram_late gentle left
-Avram: If you still feel that way in a month, I wouldn't object to trying out putting a collar back on you.
+Avram: If you still feel that way in a month, I wouldn't object to putting a collar back on you.
 
 Avram: Not this collar, not a magical slave collar.
 
@@ -1133,16 +1142,19 @@ Avram: If you need to - say anything to me.
 @note held through the whole conversation. Nice town clothes, bare throat.
 Sunset. She's standing on the edge of a cliff, by the end of the forest, looking out on the mountains of the world.
 
-@cg cg_cliff_two fade
+@cg cg_cliff_two cut
+@note SUDDEN CUT (not fade): Avram appears behind her abruptly (author 2026-07-04)
 Avram is suddenly standing behind her.
 
 Avram: Sorry for - interrupting you - but I felt you climb up here. My magical senses extend a long ways, now.
 
-...
+@hold
+@note silent pause (was "...", no text on screen — author 2026-07-04)
 
 Avram: It's a funny thing, I have all sorts of guesses about what you might say, and they all terrify me, and I need to hear it anyways.
 
-...
+@hold
+@note silent pause (was "...", no text on screen — author 2026-07-04)
 
 Avram: You can slap me for having the temerity to say this, if you want to. But even so, I'm sorry.
 
@@ -1214,7 +1226,8 @@ Avram: I - I know I have some trouble with self-forgiveness, but - even I don't 
 
 Her: I see. | I forgive you, then.
 
-...
+@hold
+@note silent pause (was "...", no text on screen — author 2026-07-04)
 
 Avram: What's your real name? Not the nickname I gave you or that slave ID code, your name from -
 
@@ -1224,7 +1237,8 @@ Her: *Stop!* | Stop. | Don't remind me of that. | It's - that was one of the wor
 
 Avram: Never mind. I'm sorry.
 
-...
+@hold
+@note silent pause (was "...", no text on screen — author 2026-07-04)
 
 Her: I should - I should go very soon. This is getting harder and harder.
 
@@ -1236,7 +1250,8 @@ Avram: It's not your fault. I'll free them for you.
 
 Avram: Is there - is, is there, anything else you want to say to me, or ask of me?
 
-...
+@hold
+@note silent pause (was "...", no text on screen — author 2026-07-04)
 
 Her: I don't understand you, Summoned Hero. I never did.
 
@@ -1380,11 +1395,12 @@ Of the two outsiders, there is one who chooses to protect the things that are, a
 @note the calm green forest again — same as the arrival, held quiet before the
 @note whiteout (author 2026-07-04)
 
-@flash white 1400
+@flash white 1400 6800
 @sfx sfx_silence-cut
 @note SCREEN WHITEOUT + HISS: the forest goes calm → burning under the white.
-@note Reuses sfx_silence-cut — the same hiss as the earlier big whiteout at the
-@note wound (author 2026-07-04), so no new audio asset is needed.
+@note The whiteout HOLDS at full white for ~6.8s and fades over 1.4s, so it does
+@note not stop until the 7s hiss (sfx_silence-cut) has finished (author 2026-07-04).
+@note The sfx is preloaded at boot so the hiss starts immediately.
 @cg cg_burning_walk fade
 @hold
 @note Avram walking through the scathed and burning forest, back to viewer.
@@ -1395,6 +1411,7 @@ Of the two outsiders, there is one who chooses to protect the things that are, a
 I wish you the best of luck, Demon Lord. May the change you bring, be at last the truth that this world is forever seeking.
 
 @voiceover off
-@hold
+@note no trailing @hold: one click on the final line goes straight to the FIN end
+@note card (endCard clears the Skagganauk line as FIN appears — author 2026-07-04)
 
 @note ========== END — end card, back to title ==========

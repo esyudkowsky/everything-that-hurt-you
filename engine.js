@@ -58,8 +58,8 @@ function parseScript(text) {
           ins.push({ op: "voiceover", mode: rest }); // on | off | over
           break;
         case "flash": {
-          const [color, ms] = rest.split(/\s+/);
-          ins.push({ op: "flash", color: color || "white", ms: +ms || 300 });
+          const [color, ms, hold] = rest.split(/\s+/);
+          ins.push({ op: "flash", color: color || "white", ms: +ms || 300, hold: +hold || 0 });
           break;
         }
         case "overlay": {
@@ -380,6 +380,7 @@ if (typeof document !== "undefined") (function () {
       Avram: "avram", Her: "her", Bartender: "bartender",
       Announcer: "announcer", Clerk: "clerk", Healer: "healer",
       "Adventurer 1": "adventurer1", "Adventurer 2": "adventurer2",
+      "Adventurer 4": "adventurer4", "Adventurer 5": "adventurer5", "Adventurer 6": "adventurer6",
       Slavetaker: "slavetaker", Bandit: "slavetaker", Attendant: "attendant",
       Nobleman: "nobleman", God: "god",
     };
@@ -404,17 +405,22 @@ if (typeof document !== "undefined") (function () {
     $("tint").style.background = TINTS[mode2] || TINTS.off;
   }
 
-  function flash(color, ms) {
+  function flash(color, ms, holdMs) {
     const f = $("flash");
     f.style.transition = "none";
     f.style.background = color === "black" ? "#000" : "#fff";
     f.style.opacity = "1";
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => {
-        f.style.transition = "opacity " + ms + "ms ease-out";
-        f.style.opacity = "0";
-      })
-    );
+    // holdMs: keep the screen at full colour for this long BEFORE the fade begins
+    // (used so the finale whiteout stays until the 7s hiss finishes).
+    const startFade = () =>
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          f.style.transition = "opacity " + ms + "ms ease-out";
+          f.style.opacity = "0";
+        })
+      );
+    if (holdMs > 0) setTimeout(startFade, holdMs);
+    else startFade();
   }
 
   /* ---------- textbox / dialogue ---------- */
@@ -644,33 +650,47 @@ if (typeof document !== "undefined") (function () {
   function showStatus(lines) {
     const box = $("status-lines");
     box.innerHTML = "";
-    let hasIncrease = false;
+    let hasReveal = false;
+    // 3-column grid (see CSS): [skill name | old "Lv M" | "→ Lv N"], headers span.
+    // The prior level sits in a fixed right-aligned column; the arrow + new level
+    // live in their own left-aligned column that fades in on the click, so nothing
+    // already on screen shifts. Skills NEVER shown before are hidden until the
+    // click, then appear as name + "Lv 0 → Lv N" (author 2026-07-04).
     for (const raw of lines) {
       const b = parseStatusLine(raw);
       const prevMap = statusShownLevels[b.header] || (statusShownLevels[b.header] = {});
-      const block = document.createElement("div"); block.className = "status-block";
       const head = document.createElement("div"); head.className = "status-head";
       head.textContent = b.header;
-      block.appendChild(head);
+      box.appendChild(head);
       for (const sk of b.skills) {
         const prior = prevMap[sk.name];
-        const inc = prior != null && sk.level != null && sk.level > prior;
-        if (inc) hasIncrease = true;
-        const row = document.createElement("div"); row.className = "status-skill";
-        const nm = document.createElement("span"); nm.className = "skill-name";
+        const lvl = sk.level;
+        const isNew = prior == null && lvl != null;      // never shown before
+        const isInc = prior != null && lvl != null && lvl > prior;
+        const kind = isNew ? "new" : isInc ? "inc" : "same";
+        if (isNew || isInc) hasReveal = true;
+        const from = isNew ? 0 : (prior == null ? 0 : prior);
+
+        const nm = document.createElement("div");
+        nm.className = "skill-name" + (isNew ? " pending" : "");
         nm.textContent = sk.name;
-        const val = document.createElement("span"); val.className = "skill-val";
-        val.dataset.from = inc ? prior : (sk.level == null ? "" : sk.level);
-        val.dataset.to = sk.level == null ? "" : sk.level;
-        val.dataset.inc = inc ? "1" : "";
-        val.textContent = "Lv " + (inc ? prior : (sk.level == null ? "—" : sk.level));
-        row.appendChild(nm); row.appendChild(val);
-        block.appendChild(row);
-        if (sk.level != null) prevMap[sk.name] = sk.level; // now shown
+        const oldv = document.createElement("div");
+        oldv.className = "skill-old" + (isNew ? " pending" : "");
+        oldv.textContent = "Lv " + (kind === "same" ? lvl : from);
+        const newv = document.createElement("div");
+        newv.className = "skill-new";
+        newv.dataset.from = from;
+        newv.dataset.to = lvl == null ? "" : lvl;
+        newv.dataset.reveal = (isNew || isInc) ? "1" : "";
+        // the reveal column starts blank/hidden; filled in on the click
+        newv.textContent = (isNew || isInc) ? "→ Lv " + from : "";
+        if (isNew || isInc) newv.classList.add("pending");
+
+        box.appendChild(nm); box.appendChild(oldv); box.appendChild(newv);
+        if (lvl != null) prevMap[sk.name] = lvl; // now shown
       }
-      box.appendChild(block);
     }
-    statusRevealed = !hasIncrease;
+    statusRevealed = !hasReveal;
     const panel = $("status");
     panel.style.display = "";
     panel.classList.remove("slide-in");
@@ -679,22 +699,23 @@ if (typeof document !== "undefined") (function () {
     );
     statusShown = true;
   }
-  // click: count each risen level up to its new value, revealing arrow + bold
+  // click: fade in the pending cells (new-skill names + the "→ Lv N" column) and
+  // count each rising number up to its new value — without moving anything already shown.
   function revealStatusIncreases() {
     statusRevealed = true;
-    const vals = $("status-lines").querySelectorAll(".skill-val");
+    const box = $("status-lines");
+    box.querySelectorAll(".pending").forEach((el) => el.classList.remove("pending"));
     const DUR = 650;
-    vals.forEach((val) => {
-      if (val.dataset.inc !== "1") return;
-      val.classList.add("leveled");
-      const from = +val.dataset.from, to = +val.dataset.to;
+    box.querySelectorAll(".skill-new").forEach((newv) => {
+      if (newv.dataset.reveal !== "1") return;
+      newv.classList.add("leveled");
+      const from = +newv.dataset.from, to = +newv.dataset.to;
       const start = performance.now();
       (function frame(now) {
         const t = Math.min(1, (now - start) / DUR);
         const cur = Math.round(from + (to - from) * t);
-        val.textContent = "Lv " + from + " → Lv " + cur;
+        newv.textContent = "→ Lv " + (t < 1 ? cur : to);
         if (t < 1) requestAnimationFrame(frame);
-        else val.textContent = "Lv " + from + " → Lv " + to;
       })(start);
     });
   }
@@ -838,12 +859,25 @@ if (typeof document !== "undefined") (function () {
     }
   }
 
+  const sfxCache = {};
+  function preloadSfx(id) {
+    const path = assetPath("audio", id);
+    if (!path || sfxCache[id]) return;
+    const a = new Audio(path);
+    a.volume = 0.8;
+    a.preload = "auto";
+    try { a.load(); } catch (e) {}
+    sfxCache[id] = a;
+  }
   function playSfx(id) {
     if (id === "stop" || !id) return;
     const path = assetPath("audio", id);
     if (!path) return;
-    const a = new Audio(path);
-    a.volume = 0.8;
+    // reuse a preloaded/decoded element so playback starts immediately (no
+    // first-play decode latency — matters for the finale hiss)
+    let a = sfxCache[id];
+    if (!a) { a = new Audio(path); a.volume = 0.8; sfxCache[id] = a; }
+    try { a.currentTime = 0; } catch (e) {}
     a.play().catch(() => {});
   }
 
@@ -951,7 +985,7 @@ if (typeof document !== "undefined") (function () {
         st.autoAdvanceMs = c.ms;
         return false;
       case "flash":
-        flash(c.color, c.ms);
+        flash(c.color, c.ms, c.hold);
         return false;
       case "overlay":
         if (c.kind === "status") {
@@ -1253,14 +1287,18 @@ if (typeof document !== "undefined") (function () {
     $("pausemenu").style.display = "none";
     $("chapters").style.display = "none";
     $("endcard").style.display = "none";
-    $("menubtn").style.display = "none";
+    $("menubtn").style.display = ""; // hamburger stays in its usual upper-right spot on the title
     const sv = loadSave();
     $("btn-continue").style.display = sv && sv.pc > 0 && !sv.fin ? "" : "none";
     $("btn-chapters-title").style.display = sv && sv.max > 0 ? "" : "none";
-    // After finishing, the content warning becomes a re-read / no-spoilers note.
-    $("title-notice").textContent = sv && sv.fin
-      ? "This story is meant to be read twice. Please do not spoil it for others."
-      : "This is a grownup story. Content may be disturbing to some viewers.";
+    // After finishing, the content warning becomes a re-read / no-spoilers note
+    // (two centered lines).
+    if (sv && sv.fin)
+      $("title-notice").innerHTML =
+        "This story benefits from being read twice.<br>Please do not spoil it for others.";
+    else
+      $("title-notice").textContent =
+        "This is a grownup story. Content may be disturbing to some viewers.";
     // Title-screen BGM: cheerful before the story is finished, somber after.
     // (Browsers may block autoplay until the first user gesture; playBgm no-ops
     // silently in that case and picks up on the next showTitle after a click.)
@@ -1286,17 +1324,8 @@ if (typeof document !== "undefined") (function () {
     return x.toString(16);
   }
   function requireGate(fn) {
-    if (gateUnlocked) { fn(); return; }
-    // A returning player who already has a save cookie (progress reached, or finished)
-    // has passed the gate before — don't make them re-enter the password.
-    const sv = loadSave();
-    if (sv && (sv.pc > 0 || sv.max > 0 || sv.fin)) { gateUnlocked = true; fn(); return; }
-    gatePending = fn;
-    $("title").style.display = "none";
-    $("gate-msg").textContent = "";
-    $("gate-input").value = "";
-    $("gatemenu").style.display = "";
-    setTimeout(() => $("gate-input").focus(), 30);
+    // Prototype password gate removed (author 2026-07-04) — always proceed.
+    fn();
   }
   function submitGate() {
     if (gateHash($("gate-input").value) === GATE_HASH) {
@@ -1329,6 +1358,7 @@ if (typeof document !== "undefined") (function () {
   }
   function endCard() {
     clearTimers();
+    setVoiceover("off", true); // clear Skagganauk's last line instantly as FIN appears
     finished = true;
     cameFromFinale = true; // returning to title from here keeps Skagganauk's music
     pc = 0;
@@ -1404,7 +1434,7 @@ if (typeof document !== "undefined") (function () {
     if (fromTitle) renderMusicList(maxReached, sv);
     else $("music-section").style.display = "none";
     $("chapters").dataset.from = fromTitle ? "title" : "pause";
-    if (fromTitle) $("title").style.display = "none";
+    if (fromTitle) { $("title").style.display = "none"; $("menubtn").style.display = "none"; }
     $("chapters").style.display = "";
     if (!fromTitle) mode = "menu";
     updateChapterIndicator();
@@ -1444,7 +1474,7 @@ if (typeof document !== "undefined") (function () {
     disarmDelete();
     renderSettingsUI();
     $("settingsmenu").dataset.from = fromTitle ? "title" : "pause";
-    if (fromTitle) $("title").style.display = "none";
+    if (fromTitle) { $("title").style.display = "none"; $("menubtn").style.display = "none"; }
     else $("pausemenu").style.display = "none";
     $("settingsmenu").style.display = "";
     if (!fromTitle) mode = "menu";
@@ -1471,9 +1501,12 @@ if (typeof document !== "undefined") (function () {
       b.textContent = "Click again to erase everything";
       return;
     }
-    // confirmed
+    // confirmed: wipe the save AND reset settings to defaults, so e.g. Show
+    // Chapter returns to off (author 2026-07-04)
     try { localStorage.removeItem(SAVE_KEY); } catch (e) {}
+    try { localStorage.removeItem(SETTINGS_KEY); } catch (e) {}
     document.cookie = SAVE_KEY + "=; max-age=0; path=/";
+    settings = Object.assign({}, DEFAULT_SETTINGS);
     finished = false; cameFromFinale = false; maxPc = 0; pc = 0;
     disarmDelete();
     playBgm("bgm_title"); // restore the original cheerful title theme
@@ -1484,6 +1517,7 @@ if (typeof document !== "undefined") (function () {
   /* ---------- credits + original-outline viewer (title screen only) ---------- */
   function openCredits() {
     $("title").style.display = "none";
+    $("menubtn").style.display = "none";
     $("creditsmenu").style.display = "";
   }
   function closeCredits() {
@@ -1593,7 +1627,11 @@ if (typeof document !== "undefined") (function () {
     });
     window.addEventListener("blur", showUI);
     window.addEventListener("blur", stopSkip);
-    $("menubtn").onclick = (e) => { e.stopPropagation(); openPause(); };
+    $("menubtn").onclick = (e) => {
+      e.stopPropagation();
+      // on the title the hamburger opens Settings; in play it opens the pause menu
+      if (mode === "title") openSettings(true); else openPause();
+    };
     $("btn-begin").onclick = () => requireGate(() => beginPlay(0));
     $("btn-continue").onclick = () => requireGate(() => {
       const sv = loadSave();
@@ -1682,6 +1720,10 @@ if (typeof document !== "undefined") (function () {
     }
     const sv = loadSave();
     if (sv) { maxPc = sv.max || 0; finished = !!sv.fin; }
+    // preload/decode sound effects so they start instantly (the finale hiss is
+    // a long 7s clip and was audibly late to start on first play)
+    for (const id of Object.keys(MANIFEST.audio || {}))
+      if (id.startsWith("sfx")) preloadSfx(id);
     // optional real Skagganauk font; silent no-op when the file is absent
     try {
       const fr = await fetch("assets/fonts/skagganauk.woff2", { method: "HEAD" });

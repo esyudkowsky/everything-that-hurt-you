@@ -755,7 +755,9 @@ Avram: ...
 : [bg_market | avram_late neutral L, her cheer R] New armor, to replace what the deep floors keep
 breaking. Fresh supplies. Then back to the dungeon, and down.
 
-New armor, to replace what the deep floors keep breaking. Fresh supplies. Then back to the dungeon, and down.
+New armor, to replace what the deep floors keep breaking. Fresh supplies.
+
+Then back to the dungeon, and down.
 
 : [bg_dungeon_mid → bg_dungeon_deep, floor-marker] Floor-markers falling fast: twenty-six. Thirty. Thirty-five.
 
@@ -813,7 +815,7 @@ Her: Master, I - like the way things have been with you. You're very mighty and 
 
 : [avram_late gentle L]
 
-Avram: If you still feel that way in a month, I wouldn't object to trying out putting a collar back on you.
+Avram: If you still feel that way in a month, I wouldn't object to putting a collar back on you.
 
 Avram: Not this collar, not a magical slave collar.
 
@@ -890,11 +892,11 @@ by the end of the forest, looking out on the mountains of the world.
 
 Avram: Sorry for - interrupting you - but I felt you climb up here. My magical senses extend a long ways, now.
 
-...
+: [pause]
 
 Avram: It's a funny thing, I have all sorts of guesses about what you might say, and they all terrify me, and I need to hear it anyways.
 
-...
+: [pause]
 
 Avram: You can slap me for having the temerity to say this, if you want to. But even so, I'm sorry.
 
@@ -966,7 +968,7 @@ Avram: I - I know I have some trouble with self-forgiveness, but - even I don't 
 
 Her: I see. | I forgive you, then.
 
-...
+: [pause]
 
 Avram: What's your real name? Not the nickname I gave you or that slave ID code, your name from -
 
@@ -980,7 +982,7 @@ Avram: Never mind. I'm sorry.
 
 : [avram_late strained L]
 
-...
+: [pause]
 
 Her: I should - I should go very soon. This is getting harder and harder.
 
@@ -992,7 +994,7 @@ Avram: It's not your fault. I'll free them for you.
 
 Avram: Is there - is, is there, anything else you want to say to me, or ask of me?
 
-...
+: [pause]
 
 Her: I don't understand you, Summoned Hero. I never did.
 

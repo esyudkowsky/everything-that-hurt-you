@@ -137,25 +137,36 @@
   #status { transform: translateY(4cqh); opacity: 0; transition: transform .5s ease, opacity .5s ease; }
   #status.slide-in { transform: translateY(0); opacity: 1; }
   #status-lines {
-    position: absolute; left: 22%; right: 22%; top: 30%; height: 40%;
-    display: flex; flex-direction: column; justify-content: center; gap: 1.6cqh;
+    position: absolute; left: 8%; right: 8%; top: 30%; height: 40%;
+    /* three content-sized columns [name | old level | -> new level], centered.
+       The old-level column is fixed; the new-level column fades in on the click
+       so nothing already shown moves. */
+    display: grid; grid-template-columns: max-content max-content max-content;
+    justify-content: center; align-content: center;
+    column-gap: 1.2cqh; row-gap: 0.35cqh;
     font-family: var(--mono); font-size: 1.95cqh; line-height: 1.35;
     color: #e3c67c;
   }
-  #status-lines .status-block { display: flex; flex-direction: column; gap: 0.25cqh; }
   #status-lines .status-head {
-    font-weight: 700; letter-spacing: 0.14em; text-align: center;
-    color: #f0d98f; margin-bottom: 0.4cqh;
+    grid-column: 1 / -1; text-align: center;
+    font-weight: 700; letter-spacing: 0.14em; color: #f0d98f;
+    margin-top: 1.4cqh; margin-bottom: 0.3cqh;
   }
-  #status-lines .status-skill {
-    display: flex; justify-content: space-between; align-items: baseline; gap: 3cqh;
+  #status-lines .status-head:first-child { margin-top: 0; }
+  #status-lines .skill-name { text-align: right; white-space: nowrap; font-weight: 400; }
+  #status-lines .skill-old {
+    text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 400;
   }
-  #status-lines .skill-name { text-align: left; }
-  #status-lines .skill-val {
-    text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums;
-    transition: color .2s ease;
+  /* only the new level + its arrow are bold (not the name or the old level) */
+  #status-lines .skill-new {
+    text-align: left; white-space: nowrap; font-variant-numeric: tabular-nums;
+    font-weight: 700; color: #fff0bf; padding-left: 0.6cqh;
   }
-  #status-lines .skill-val.leveled { font-weight: 700; color: #fff0bf; }
+  /* cells that only appear on the reveal click */
+  #status-lines .pending { opacity: 0; }
+  #status-lines .skill-name, #status-lines .skill-old, #status-lines .skill-new {
+    transition: opacity .35s ease;
+  }
   #floor { pointer-events: none; transition: opacity .25s ease; }
   #floor-frame {
     position: absolute; inset: 0;
@@ -184,7 +195,7 @@
     background: #0007; color: #cfc7b4; border: 1px solid #ffffff2e;
     font-size: 3cqh; line-height: 1; cursor: pointer;
     opacity: 0.35; transition: opacity .2s;
-    z-index: 40;
+    z-index: 60; /* above menus (50) so it's reachable on the title, like #musicbtn */
   }
   #menubtn:hover { opacity: 1; }
 
@@ -451,7 +462,6 @@
     <!-- menus -->
     <div id="title" class="menu" style="display:none">
       <div id="title-art"></div>
-      <div id="prototype-sign">PROTOTYPE</div>
       <div id="title-head">
         <h1>EVERYTHING THAT HURT YOU</h1>
         <div class="byline">a kinetic novel &middot; Eliezer Yudkowsky</div>
