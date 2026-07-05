@@ -191,6 +191,8 @@ if (typeof document !== "undefined") (function () {
   let shiftPeek = false;   // Shift currently held (momentary peek)
   let capsSticky = false;  // Caps Lock toggled ON mid-scene (sticky until advance)
   let musicEnabled = true; // music on/off preference (corner toggle); persisted in settings
+  let titleMusicPick = null; // jukebox pick from the title Chapters screen: temporarily
+                             // overrides the title BGM, forgotten once play begins
   let audioUnlocked = false; // has a real user gesture let audio actually start playing yet?
   let chapFading = false;  // a coordinated chapter fade is in progress
   let chapArmed = false;   // this step() run may trigger a chapter fade (forward play only)
@@ -1096,14 +1098,21 @@ if (typeof document !== "undefined") (function () {
   function updateChapterIndicator() {
     const el = $("chapter-indicator");
     const modeSet = settings.showChapter;
-    if (modeSet === "off" || !modeSet || mode !== "play") { el.style.display = "none"; return; }
+    if (modeSet === "off" || !modeSet) { el.style.display = "none"; return; }
+    const total = SCRIPT && SCRIPT.chapters ? SCRIPT.chapters.length : 0;
+    // Title screen: show the "zeroth" chapter, "Ch. 0/TOTAL" (· Title in full mode).
+    if (mode === "title" && $("title").style.display !== "none") {
+      el.textContent = "Ch. 0/" + total + (modeSet === "full" ? " · Title" : "");
+      el.style.display = "";
+      return;
+    }
+    if (mode !== "play") { el.style.display = "none"; return; }
     let current = null;
     for (const ch of SCRIPT.chapters) {
       if (ch.at > pc) break;
       current = ch;
     }
     if (!current) { el.style.display = "none"; return; }
-    const total = SCRIPT.chapters.length;
     let text = "Ch. " + current.n + "/" + total;
     if (modeSet === "full") text += " · " + current.title;
     el.textContent = text;
@@ -1318,7 +1327,9 @@ if (typeof document !== "undefined") (function () {
     // Skagganauk's music (bgm_void) playing — the somber second title track is
     // reserved for a fresh reload of a finished save, not the immediate
     // return-to-title after the ending (author 2026-07-04).
-    if (!cameFromFinale)
+    if (titleMusicPick)
+      playBgm(titleMusicPick); // a jukebox pick keeps playing on the title (until play begins)
+    else if (!cameFromFinale)
       playBgm(sv && sv.fin ? "bgm_title_end" : "bgm_title");
     updateChapterIndicator();
   }
@@ -1365,6 +1376,7 @@ if (typeof document !== "undefined") (function () {
     $("menubtn").style.display = "";
     mode = "play";
     uiHidden = false; shiftPeek = false; capsSticky = false;
+    titleMusicPick = null; // beginning the KN / jumping to a chapter forgets the jukebox pick
     seek(target);
     history = [pc]; reviewIdx = 0; reviewing = false;
   }
@@ -1418,6 +1430,9 @@ if (typeof document !== "undefined") (function () {
       b.onclick = (e) => {
         e.stopPropagation();
         playBgm(id);
+        // remember this pick so it keeps playing when we return to the title screen
+        // (the music list is title-context only; cleared again once play begins)
+        titleMusicPick = id;
         for (const c of mlist.children) c.classList.remove("playing");
         b.classList.add("playing");
       };
@@ -1430,6 +1445,16 @@ if (typeof document !== "undefined") (function () {
     const maxReached = Math.max(sv.max || 0, maxPc);
     const list = $("chapter-list");
     list.innerHTML = "";
+    // "0 · Title" — the zeroth chapter is the title screen; always available.
+    const titleBtn = document.createElement("button");
+    titleBtn.className = "chapter-btn";
+    titleBtn.textContent = "0 · Title";
+    titleBtn.onclick = (e) => {
+      e.stopPropagation();
+      $("chapters").style.display = "none";
+      showTitle();
+    };
+    list.appendChild(titleBtn);
     for (const ch of SCRIPT.chapters) {
       const reached = ch.at <= maxReached || (sv.fin && finishedAll(sv));
       const btn = document.createElement("button");
@@ -1447,6 +1472,7 @@ if (typeof document !== "undefined") (function () {
     else $("music-section").style.display = "none";
     $("chapters").dataset.from = fromTitle ? "title" : "pause";
     if (fromTitle) { $("title").style.display = "none"; $("menubtn").style.display = "none"; }
+    $("endcard").style.display = "none"; // FIN overlay must not sit on top of the chapter list
     $("chapters").style.display = "";
     if (!fromTitle) mode = "menu";
     updateChapterIndicator();
@@ -1490,6 +1516,7 @@ if (typeof document !== "undefined") (function () {
     else $("pausemenu").style.display = "none";
     $("settingsmenu").style.display = "";
     if (!fromTitle) mode = "menu";
+    updateChapterIndicator();
   }
   function closeSettings() {
     disarmDelete();
@@ -1521,6 +1548,7 @@ if (typeof document !== "undefined") (function () {
     settings = Object.assign({}, DEFAULT_SETTINGS);
     finished = false; cameFromFinale = false; maxPc = 0; pc = 0;
     disarmDelete();
+    titleMusicPick = null; // wiping progress also clears any jukebox pick
     playBgm("bgm_title"); // restore the original cheerful title theme
     $("settingsmenu").style.display = "none";
     showTitle();
@@ -1531,6 +1559,7 @@ if (typeof document !== "undefined") (function () {
     $("title").style.display = "none";
     $("menubtn").style.display = "none";
     $("creditsmenu").style.display = "";
+    updateChapterIndicator();
   }
   function closeCredits() {
     $("creditsmenu").style.display = "none";
@@ -1620,6 +1649,7 @@ if (typeof document !== "undefined") (function () {
     $("chapter-indicator").onclick = (e) => {
       e.stopPropagation();
       if (mode === "play") openChapters(false);
+      else if (mode === "title" && $("title").style.display !== "none") openChapters(true);
     };
     document.addEventListener("keydown", (e) => {
       if (e.key === " " || e.key === "Enter") onAdvanceInput(e);

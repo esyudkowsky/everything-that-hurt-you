@@ -1345,7 +1345,7 @@ Her: Goodbye, Master.
 
 
 @note ========== 15. CLOSE ==========
-@chapter 13 Close
+@chapter 13 Change
 
 @bgm bgm_void
 @autoplay off
