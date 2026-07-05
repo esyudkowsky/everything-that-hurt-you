@@ -233,6 +233,10 @@
     transition: background .15s, border-color .15s;
   }
   .menu button:hover { background: #23232fdd; border-color: var(--gold); }
+  .menu-note {
+    font-family: var(--serif); font-size: 1.9cqh; color: #9a9280;
+    max-width: 50cqh; text-align: center; line-height: 1.4; margin-top: 0.8cqh;
+  }
   .menu h2 {
     font-family: var(--vo); letter-spacing: 0.18em; font-weight: 600;
     color: #d8d2c2; font-size: 4cqh; margin-bottom: 1.5cqh;
@@ -505,6 +509,7 @@
       <button id="btn-chapters">Chapters</button>
       <button id="btn-settings">Settings</button>
       <button id="btn-totitle">Title Screen</button>
+      <div id="pause-save-note" class="menu-note">Your progress is saved automatically &mdash; &ldquo;Continue&rdquo; on the title screen picks up right where you left off.</div>
     </div>
 
     <div id="settingsmenu" class="menu" style="display:none">

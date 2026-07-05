@@ -1471,6 +1471,8 @@ if (typeof document !== "undefined") (function () {
   function openPause() {
     mode = "menu";
     $("pausemenu").style.display = "";
+    // reassure mid-story readers that leaving for the title won't lose their place
+    $("pause-save-note").style.display = finished ? "none" : "";
     updateChapterIndicator();
   }
   function closePause() {
