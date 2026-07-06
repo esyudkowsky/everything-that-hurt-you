@@ -1950,7 +1950,8 @@ if (typeof document !== "undefined") (function () {
     $("btn-credits-back").onclick = closeCredits;
     $("credit-outline").onclick = () =>
       openDocView("claude-inputs/original-script.md", "Original Story Outline · Eliezer Yudkowsky");
-    $("credit-notes").onclick = () => openDocView("README.md", "Author's Notes");
+    // Author's Notes is a plain external link to the GitHub README (see index.html) —
+    // the in-app doc viewer failed to load it.
     $("btn-scriptview-back").onclick = closeScriptView;
     $("btn-resume").onclick = closePause;
     $("btn-chapters").onclick = () => {
