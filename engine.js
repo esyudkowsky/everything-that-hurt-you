@@ -573,19 +573,20 @@ if (typeof document !== "undefined") (function () {
       $("volines").innerHTML = "";
       showVoLayer(mode2, instant);
     } else {
+      // Clear the box content immediately; the `#volines:empty` CSS rule drops all
+      // box chrome (grey fill, jagged clip-path, violet glow) so an emptied box
+      // never shows as a stray "mini text box" during the layer's fade-out — and,
+      // because we clear now rather than on a timer, a deferred voiceover that
+      // pre-renders into #volines right after (e.g. off -> CG -> bubble in one
+      // step) is not wiped by a late timer (author 2026-07-06).
+      $("volines").innerHTML = "";
       if (instant) {
         layer.style.display = "none";
-        $("volines").innerHTML = "";
       } else {
         layer.style.opacity = "0";
-        // Keep the text+box in place through the fade-out, then clear. Clearing
-        // #volines immediately would collapse it to an empty padding-sized jagged
-        // box (its grey fill + clip-path + violet glow) that lingers, visible, for
-        // the whole 800ms fade — a tiny floating "mini text box" (author 2026-07-06).
         voHideTimer = setTimeout(() => {
           voHideTimer = null;
           layer.style.display = "none";
-          $("volines").innerHTML = "";
         }, 800);
       }
       st.voLines = [];
@@ -1069,6 +1070,13 @@ if (typeof document !== "undefined") (function () {
         // the next click, when the first line reveals — so the reader always sees
         // the underlying CG first (author 2026-07-06).
         st.vo = c.mode;
+        // Enforce the deferral invariant: the layer must be HIDDEN until the reveal
+        // click. An immediately-preceding @voiceover off (e.g. off -> CG -> bubble in
+        // one step) leaves the layer mid-fade-out and visible; without this its
+        // pre-laid-out box would flash over the CG. Cancel that pending hide too.
+        if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
+        $("volayer").style.display = "none";
+        $("volayer").style.opacity = "0";
         prerenderVoGroup(pc + 1);
         st.voDeferred = true;
         return true;
