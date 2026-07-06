@@ -228,7 +228,7 @@ The nobleman raises his hand and names a higher number.
 
 : [avram neutral L]
 
-Avram holds up a large magical core.  The sort you'd need to be anomalously lucky to find, fighting the class of monsters he looks strong enough to fight.
+Avram holds up a large magical core.  One you'd need to be anomalously lucky to find, fighting the class of monsters he looks strong enough to fight.
 
 : [nobleman irritated R]
 
@@ -386,11 +386,9 @@ Avram: No.
 
 : [cg_bedroll_close, tint off] Closer crop: her asleep against his shoulder, content. His eyes still open.
 
-: [bg_guild_hall | avram neutral L, clerk cheerful-surprise R] Guild interior — clerk's desk, notice board.
+: [bg_guild_hall | avram wry L, clerk cheerful-surprise R] Guild interior — clerk's desk, notice board.
 
 Clerk: Floor nine already?
-
-: [avram wry L]
 
 Avram: We've been lucky.
 
@@ -470,7 +468,7 @@ Her: ...
 
 Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 
-: [bg_camp_night, tint firelight → cg_campfire_shoulder] The two-shot CG (her head on his shoulder)
+: [bg_camp_night, tint firelight → cg_campfire_shoulder | avram wry L, her camp matter-of-fact R] The two-shot CG (her head on his shoulder)
 holds through Avram's opening line, then falls back to sprites.
 
 Avram: You can go ahead and say what you were thinking. I feel like I can still hear it.
@@ -511,6 +509,10 @@ Avram: Something like that.
 
 (Restaged as a three-beat transition — dungeon mishap → walk out → caravan at dusk.)
 
+[bgm: bgm_dungeon]
+
+(The campfire theme gives way to the dungeon theme for the troll-fight open, crossfading in during the ch6→7 fade. It plays only briefly — the dungeon portion is a few beats — then the campfire theme returns at the caravan/healer's camp below.)
+
 : [bg_dungeon_mid] [sfx: sfx_sword] [flash white]
 
 A bad floor, deeper than they should have pushed in one day.
@@ -527,8 +529,8 @@ His magic blasts its head clean off, but his wound is not as fast to heal.
 
 His arm throbs as he walks the road.  Neither of them are expert healers and it's the first serious wound either of them have taken.
 
-: [bg_camp_night, tint dusk] By evening they've fallen in with a traveling caravan. Wagons, cookfires,
-hired guards. The caravan has a healer. (Dusk tint = late evening, not full night.)
+: [bg_camp_night, tint dusk] [bgm: bgm_campfire] By evening they've fallen in with a traveling caravan. Wagons, cookfires,
+hired guards. The caravan has a healer. (Dusk tint = late evening, not full night. The brief dungeon theme gives way back to the warm campfire theme as they reach the caravan.)
 
 By evening they've found a traveling caravan. Wagons, cookfires, hired guards. A healer.
 
@@ -710,11 +712,9 @@ with magic, holding his own — equal-and-rising, not desperate.
 : [sfx: sfx_impact] [flash white] [cg_boss_win] The finishing stroke: the boss falling / coming apart,
 Avram standing spent but victorious.
 
-: [bg_boss_doors | avram_late neutral L, her matter-of-fact R]
+: [bg_boss_doors | avram_late wry L, her matter-of-fact R]
 
 Her: Your strength has risen, Master.
-
-: [avram_late wry L]
 
 Avram: Getting there.
 

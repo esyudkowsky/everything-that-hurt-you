@@ -753,6 +753,11 @@ if (typeof document !== "undefined") (function () {
 
         const nm = document.createElement("div"); nm.className = "skill-name";
         nm.textContent = sk.name;
+        // A brand-new skill (never shown before) fades its TITLE in on the reveal click
+        // TOGETHER with its "→ Lv N", and the title shows bold to mark it as newly
+        // acquired — e.g. "Air Magic" stays hidden in ch8 until the click (author 2026-07-06).
+        // (An already-known skill that merely rose keeps its title visible; only "→ Lv N" fades.)
+        if (isNew && !isFirstScreen) nm.classList.add("pending", "skill-name-new");
         const oldv = document.createElement("div"); oldv.className = "skill-old";
         oldv.textContent = isNew ? "" : ("Lv " + (lvl == null ? "—" : (isInc ? prior : lvl)));
         const newv = document.createElement("div"); newv.className = "skill-new";
@@ -777,7 +782,7 @@ if (typeof document !== "undefined") (function () {
   // click: fade the pending "→ Lv N" cells in (nothing already shown moves)
   function revealStatusIncreases() {
     statusRevealed = true;
-    $("status-lines").querySelectorAll(".skill-new.pending").forEach((el) => el.classList.remove("pending"));
+    $("status-lines").querySelectorAll(".pending").forEach((el) => el.classList.remove("pending"));
   }
   function hideStatus() {
     $("status").style.display = "none";

@@ -288,7 +288,7 @@ Avram raises his hand.
 The nobleman raises his hand and names a higher number.
 
 @sprite avram neutral left
-Avram holds up a large magical core.  The sort you'd need to be anomalously lucky to find, fighting the class of monsters he looks strong enough to fight.
+Avram holds up a large magical core.  One you'd need to be anomalously lucky to find, fighting the class of monsters he looks strong enough to fight.
 
 @sprite nobleman irritated right
 @note he weighs the thin girl already at his side against the boy's whole purse
@@ -508,7 +508,7 @@ Avram: No.
 
 @note (Guild-hall / floor-nine beat — now the tail of ch5 Teaching, author 2026-07-04)
 @bg bg_guild_hall fade 2000
-@sprite avram neutral left
+@sprite avram wry left
 @sprite clerk cheerful-surprise right
 @pause 2000
 @note SLOW ~2s dissolve from the intimate bedroll to the guild hall; the clerk's line
@@ -516,7 +516,6 @@ Avram: No.
 
 Clerk: Floor nine already?
 
-@sprite avram wry left
 Avram: We've been lucky.
 
 @clear all
@@ -622,7 +621,7 @@ Avram: I wonder if it's my imagination that I can almost hear you thinking it.
 Avram: You can go ahead and say what you were thinking. I feel like I can still hear it.
 
 @bg bg_camp_night cut
-@sprite avram neutral left
+@sprite avram wry left
 @sprite her_camp matter-of-fact right
 Her: We'd look less like an anomaly if you told them you were fucking me.
 
@@ -662,6 +661,11 @@ Avram: Something like that.
 @note optional cg_healer_splint is filed in ART-REQUESTS.md if a dedicated
 @note panel is ever wanted here.
 
+@bgm bgm_dungeon
+@note bgm change at ch7 start (author 2026-07-06): the campfire theme gives way to
+@note the dungeon theme for the troll-fight open, crossfading in during the ch6->7 fade.
+@note It plays only briefly — the dungeon portion is a few beats before they walk out —
+@note then the campfire theme returns at the caravan/healer's camp below.
 @clear all
 @bg bg_dungeon_mid fade
 A bad floor, deeper than they should have pushed in one day.
@@ -683,6 +687,9 @@ His arm throbs as he walks the road. Neither of them are expert healers and it's
 
 @bg bg_camp_night fade
 @tint dusk
+@bgm bgm_campfire
+@note bgm change at the healer's camp (author 2026-07-06): the brief dungeon theme
+@note gives way back to the warm campfire theme as they reach the caravan at dusk.
 By evening they've found a traveling caravan. Wagons, cookfires, hired guards. A healer.
 
 @sprite avram neutral left
@@ -946,11 +953,10 @@ Her: Yes, master.
 @note standing spent but victorious, alone in the chamber
 
 @bg bg_boss_doors cut
-@sprite avram_late neutral left
+@sprite avram_late wry left
 @sprite her matter-of-fact right
 Her: Your strength has risen, Master.
 
-@sprite avram_late wry left
 Avram: Getting there.
 
 @clear all

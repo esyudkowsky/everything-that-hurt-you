@@ -26,6 +26,7 @@ def main():
     ap.add_argument("--ref", action="append", default=[])
     ap.add_argument("--aspect", default=None)
     ap.add_argument("--retries", type=int, default=3)
+    ap.add_argument("--model", default=MODEL, help="OpenRouter image model id (default: %(default)s)")
     a = ap.parse_args()
 
     key = os.environ["OPENROUTER_KEY"].strip()
@@ -35,7 +36,7 @@ def main():
     content.append({"type": "text", "text": a.prompt})
 
     body = {
-        "model": MODEL,
+        "model": a.model,
         "messages": [{"role": "user", "content": content}],
         "modalities": ["image", "text"],
     }
