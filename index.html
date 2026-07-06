@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Everything That Hurt You</title>
 <style>
-  /* Skagganauk display face — drop assets/fonts/skagganauk.woff2 in to use a
-     real font (loaded conditionally by engine.js boot to avoid a guaranteed
-     404); the stack below is the fallback approximation. */
+  /* Skagganauk display face: Cinzel (self-hosted, OFL) — a classical inscriptional
+     caps face, rendered small-caps for the void-dragon's voice. */
+  @font-face {
+    font-family: "Cinzel";
+    src: url("assets/fonts/cinzel.woff2") format("woff2");
+    font-weight: 400 700;
+    font-display: swap;
+  }
   :root {
     --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
-    --vo: "Skagganauk", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    --vo: "Cinzel", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
     --mono: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace;
     --gold: #c9a75a;
   }
@@ -110,45 +115,50 @@
   @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(0.5cqh);} }
 
   /* ---- voiceover (Skagganauk) ----
-     Rev. 4 (author 2026-07-06): the outline-on-image lettering was hard to read,
-     so Skagganauk's narration now WHITEWASHES the whole scene (a near-white wash
-     fades in over it) and the text is large, bold, dark serif — maximum contrast.
-     Exception: the "bubble" mode keeps the CG fully visible and puts the text in a
-     white rounded speech-bubble on the lower part of the image (used to speak the
-     "I myself, the Void Dragon" lines from beneath the dragon). */
+     Rev. 5 (author 2026-07-06): Cinzel small-caps in a jagged, eldritch dialogue
+     box — light-grey fill, void-black jagged edge that blends into the pure-black
+     general background, demarcated by a wide deep-violet glow. General narration
+     ("on"/"over") sits on PURE BLACK; the "bubble" mode keeps the final CG visible
+     and floats the same box low over it. */
   #volayer {
-    background: rgba(245, 241, 233, 0.5); /* "over": ~half wash — the scene stays visible behind the dark text */
+    background: #000; /* general narration: pure black behind the box */
     display: flex; align-items: center; justify-content: center;
     transition: opacity 0.8s ease;
     pointer-events: none;
   }
   #volayer.vo-bubble {
-    background: transparent;           /* keep the CG (dragon) fully visible */
-    align-items: flex-end;            /* text bubble sits low, "from beneath" */
+    background: transparent;  /* keep the final CG (dragon / burning forest) visible */
+    align-items: flex-end;    /* box sits low, "from beneath" */
   }
-  #volayer.vo-solid { background: rgba(245, 241, 233, 0.92); } /* "on": clean near-white panel on black */
   #volines {
-    position: relative; /* anchors the story-end box to the bubble */
-    max-width: 80%;
-    display: flex; flex-direction: column; gap: 2.4cqh;
+    position: relative;
+    max-width: 78%;
+    display: flex; flex-direction: column; gap: 2cqh;
+    /* the eldritch box */
+    background: #c6c3bd;                 /* light grey fill */
+    padding: 4.6cqh 5.2cqh;
+    /* rectangle with small torn jags on every edge (subtle, not a ribbon) */
+    clip-path: polygon(
+      0.6% 8%, 3% 3%, 10% 5%, 18% 2%, 27% 5%, 37% 2%, 47% 4%, 57% 2%, 66% 5%, 75% 2%, 84% 5%, 92% 2%, 97% 5%, 99.4% 9%,
+      98.6% 30%, 99.6% 50%, 98.6% 70%, 99.4% 91%,
+      97% 96%, 92% 98%, 84% 95%, 75% 98%, 66% 95%, 57% 98%, 47% 96%, 37% 98%, 27% 95%, 18% 98%, 10% 95%, 3% 97%, 0.6% 92%,
+      1.4% 70%, 0.4% 50%, 1.4% 30%
+    );
+    /* faint black edge + wide deep-violet glow to demarcate the box (esp. on black) */
+    filter: drop-shadow(0 0 0.4cqh #000)
+            drop-shadow(0 0 1.8cqh rgba(140, 62, 214, 0.9))
+            drop-shadow(0 0 5cqh rgba(108, 40, 176, 0.6));
   }
-  #volayer.vo-bubble #volines {
-    max-width: 86%;
-    background: rgba(246, 242, 234, 0.97);
-    border: 0.2cqh solid #00000022;
-    border-radius: 2.6cqh;
-    padding: 3cqh 4cqh;
-    margin-bottom: 6cqh;
-    box-shadow: 0 0.6cqh 3.2cqh rgba(0,0,0,0.55);
-    gap: 2cqh;
-  }
+  #volayer.vo-bubble #volines { max-width: 84%; margin-bottom: 6cqh; }
   .voline {
     font-family: var(--vo);
-    font-size: 4.4cqh; line-height: 1.45; letter-spacing: 0.05em;
-    font-weight: 700; text-align: center;
-    color: #16130d; /* dark warm near-black on the whitewash / bubble */
+    font-variant: small-caps; font-feature-settings: "smcp";
+    font-size: 4.2cqh; line-height: 1.5; letter-spacing: 0.06em;
+    font-weight: 600; text-align: center;
+    color: #100c08; /* void-black lettering */
+    text-shadow: 0 0.15cqh 0.3cqh #4a0e6b; /* tight deep-violet shadow under the black */
   }
-  #volayer.vo-bubble .voline { font-size: 3.8cqh; }
+  #volayer.vo-bubble .voline { font-size: 3.7cqh; }
   /* each "|" segment fades in on its own click */
   .voseg { opacity: 0; transition: opacity 1.4s ease; }
   /* story-end marker box: bottom-right of the bubble, on the last line's level,

@@ -554,9 +554,6 @@ if (typeof document !== "undefined") (function () {
     if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
     if (mode2 === "on") clearCg("cut"); // "on" narration sits on black under the wash
     layer.classList.toggle("vo-bubble", mode2 === "bubble");
-    // "on" has no scene to preserve, so use a near-solid white panel (clean, high
-    // contrast); "over" uses the soft ~half wash so the CG shows through.
-    layer.classList.toggle("vo-solid", mode2 === "on");
     layer.style.display = "";
     layer.style.opacity = instant ? "1" : "0";
     if (!instant)
@@ -1973,15 +1970,7 @@ if (typeof document !== "undefined") (function () {
     // a long 7s clip and was audibly late to start on first play)
     for (const id of Object.keys(MANIFEST.audio || {}))
       if (id.startsWith("sfx")) preloadSfx(id);
-    // optional real Skagganauk font; silent no-op when the file is absent
-    try {
-      const fr = await fetch("assets/fonts/skagganauk.woff2", { method: "HEAD" });
-      if (fr.ok) {
-        const face = new FontFace("Skagganauk", "url('assets/fonts/skagganauk.woff2')");
-        await face.load();
-        document.fonts.add(face);
-      }
-    } catch (e) {}
+    // (Skagganauk's face is now Cinzel, self-hosted via a static @font-face.)
     // title art
     const t = assetPath("ui", "ui_title");
     if (t) $("title-art").style.backgroundImage = "url('" + t + "')";
