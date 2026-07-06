@@ -62,8 +62,9 @@
 @hold
 @note closer: he stops, head turning, the first instant of noticing
 @cg cg_truck_see cut
+@hold
 @note the oncoming truck, headlights flaring; the moment BEFORE — no impact
-@note (deferred @voiceover shows this CG and waits for the click, so no @hold needed)
+@note ("on" narration clears the CG, so @hold first to let the reader see the truck)
 
 @voiceover on
 
@@ -87,7 +88,7 @@ The world of Elhom IV has a cycle.
 @note materialize here, so not wide-eyed shock, but the arrival now reads tense/
 @note strung-out rather than fully composed.
 
-From time to time, arises a Demon Lord, feared and accursed
+From time to time, arises a Demon Lord, feared and accursed.
 
 @voiceover off
 @cg cg_forest_trek fade
@@ -97,9 +98,9 @@ From time to time, arises a Demon Lord, feared and accursed
 @note straight into the slime encounter (also Earth clothes); the cloak/armor are acquired by
 @note the time he reaches the town gate. (Was bg_road_dusty + avram neutral.)
 
-And another rises to fight them
+And another rises to fight them.
 
-The great, the powerful, the Summoned Hero
+The great, the powerful, the Summoned Hero.
 
 @voiceover off
 @cg cg_slime_backoff fade
@@ -109,7 +110,7 @@ The great, the powerful, the Summoned Hero
 @note These two slime CGs are more action-y, so the picture shows FIRST and the Skagganauk line
 @note fades in on a click (@hold before @voiceover over). Replaces the old bg_town_gate staging.
 
-They are not supreme when they first arrive
+They are not supreme when they first arrive.
 
 @voiceover off
 @cg cg_slime_rock cut
@@ -118,7 +119,7 @@ They are not supreme when they first arrive
 @note dropping a rock on it — a clumsy first kill (rock, not skill); text fades in on a click.
 @note "gain in strength" rides the same CG. The following @bg auto-clears the CG (setBg -> clearCg).
 
-But they fight, in forests, in arenas, in dungeon labyrinths
+But they fight, in forests, in arenas, in dungeon labyrinths.
 
 @voiceover off
 @bg bg_town_gate cut
@@ -128,7 +129,7 @@ But they fight, in forests, in arenas, in dungeon labyrinths
 @note gates); text appears IMMEDIATELY with the picture. CUT (not fade) so the line is clearly over
 @note the town gate, not the previous slime lingering through a crossfade (author 2026-07-04).
 
-And they gain in strength very quickly
+And they gain in strength very quickly.
 
 @voiceover off
 @bg bg_guild_exterior fade
@@ -142,15 +143,13 @@ Sometimes, the outsiders are summoned from lands that tell stories of places lik
 There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
 @voiceover off
-@hold
-@note fade the guild scene (Avram's back) back in briefly after the whitewash, before
-@note pushing into the tavern (author 2026-07-06).
 @bg bg_tavern fade
+@note straight from "strangely familiar" into the tavern — no guild pause (author 2026-07-06)
 @voiceover over
 
 But what Avram has not been told, it seems,
 
-Is that always two outsiders are Summoned, not one.
+Is that there are always two outsiders Summoned, not one.
 
 @voiceover off
 @bgm stop
@@ -1389,6 +1388,8 @@ And the dance of Summoned Hero and Demon Lord begins.
 @cg cg_forest_walk fade
 @note Avram's back, walking a green forest path — the same forest as the arrival;
 @note the calm "before" companion to cg_burning_walk (ART-TODO #18)
+@hold
+@note "on" narration clears the CG, so @hold first to let the reader see this forest
 @voiceover on
 
 By whatever machinery brings the two here, it is somehow assured:

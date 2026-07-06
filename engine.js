@@ -643,8 +643,28 @@ if (typeof document !== "undefined") (function () {
       st.voPartEls.push(els);
     }
   }
+  // Place the story-end box: its RIGHT edge aligned with the text block's right edge
+  // (the widest wrapped line), vertically centered on the LAST line of text.
+  function positionEndbox(el) {
+    const vol = $("volines");
+    if (!vol || !el) return;
+    const rects = [];
+    vol.querySelectorAll(".voline .voseg").forEach((s) => {
+      for (const r of s.getClientRects()) if (r.width) rects.push(r);
+    });
+    if (!rects.length) return;
+    const vr = vol.getBoundingClientRect();
+    const rightEdge = Math.max.apply(null, rects.map((r) => r.right));
+    const lastLine = rects.reduce((a, b) => (b.bottom > a.bottom ? b : a));
+    const bw = el.offsetWidth, bh = el.offsetHeight;
+    el.style.right = "auto";
+    el.style.bottom = "auto";
+    el.style.left = (rightEdge - (vr.left + vol.clientLeft) - bw) + "px";
+    el.style.top = (lastLine.top - (vr.top + vol.clientTop) + (lastLine.height - bh) / 2) + "px";
+  }
   function revealPart(el) {
     if (!el) return;
+    if (el.classList.contains("vo-endbox")) positionEndbox(el);
     requestAnimationFrame(() => requestAnimationFrame(() => (el.style.opacity = "1")));
   }
   // Start the next line: reveal its first part (or, when instant/replaying, all parts).
@@ -656,7 +676,10 @@ if (typeof document !== "undefined") (function () {
     st.voShown++;
     st.voSeg = 1;
     if (instant) {
-      for (const el of els) if (el) el.style.opacity = "1";
+      for (const el of els) if (el) {
+        if (el.classList.contains("vo-endbox")) positionEndbox(el);
+        el.style.opacity = "1";
+      }
       st.voSeg = els.length;
     } else {
       revealPart(els[0]);
@@ -1025,10 +1048,18 @@ if (typeof document !== "undefined") (function () {
         return false;
       case "voiceover":
         if (c.mode === "off") { setVoiceover("off"); return false; }
-        // DEFER the overlay: set the mode + pre-lay-out the group, but keep the
-        // scene visible and BLOCK here. The overlay (whitewash / bubble) fades in
-        // only on the next click, when the first line reveals — so the reader
-        // always sees the underlying CG first (author 2026-07-06).
+        if (c.mode === "on") {
+          // "on" is black narration — no scene to preserve. Show the whitewash
+          // immediately (clears any lingering CG, e.g. a chapter-jump reconstruct),
+          // then fall through to reveal the first line. NOT deferred.
+          setVoiceover("on");
+          prerenderVoGroup(pc + 1);
+          return false;
+        }
+        // "over"/"bubble" DEFER the overlay: set the mode + pre-lay-out the group,
+        // but keep the scene visible and BLOCK here. The overlay fades in only on
+        // the next click, when the first line reveals — so the reader always sees
+        // the underlying CG first (author 2026-07-06).
         st.vo = c.mode;
         prerenderVoGroup(pc + 1);
         st.voDeferred = true;

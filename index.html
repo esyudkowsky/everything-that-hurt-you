@@ -154,9 +154,9 @@
   /* story-end marker box: bottom-right of the bubble, on the last line's level,
      fades in over ~1s after a pause so the reader notices the story is ending */
   .vo-endbox {
-    position: absolute; right: 0.2cqh; bottom: 0.2cqh;
-    width: 2.8cqh; height: 2.8cqh;
-    border: 0.32cqh solid #16130d; background: transparent;
+    position: absolute; left: 0; top: 0; /* exact left/top set in JS at reveal */
+    width: 2.4cqh; height: 2.4cqh;
+    background: #16130d; /* filled dark square */
     opacity: 0; transition: opacity 1s ease;
   }
 

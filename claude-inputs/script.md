@@ -56,32 +56,31 @@ the middle of nowhere — strained/tense (author 2026-07-04, was neutral); he ex
 here, so not wide-eyed shock, but not composed either. (The "Demon Lord" line is deliberately
 superposed over his *arrival* — a hint; keep the pairing. The truck prequel carries the shock beat.)
 
-\- From time to time, arises a Demon Lord, feared and accursed
+\- From time to time, arises a Demon Lord, feared and accursed.
 
 : [cg_forest_trek] A dirty Avram, still in his original Earth clothes (no cloak yet), making his
 way through a green forest — weary and disheveled after days lost in the wild. (Was bg_road_dusty +
 avram neutral; he stays in Earth clothes through the forest and only acquires the cloak by the town gate.)
 
-\- And another rises to fight them
+\- And another rises to fight them.
 
-\- The great, the powerful, the Summoned Hero
+\- The great, the powerful, the Summoned Hero.
 
 : [cg_slime_backoff] Avram — still the dirty Earth-clothes newcomer — warily backing off from his first
 forest acid-slime, subtly worried, no weapon (he has none), weight on his back foot. (These two slime CGs
 are more action-y, so the picture shows first and the line fades in ON A CLICK.)
 
-\- They are not supreme when they first arrive
+\- They are not supreme when they first arrive.
 
 : [cg_slime_rock] The same forest a moment later: Avram (Earth clothes) standing over the slime, which he
-has just killed by dropping a heavy rock on it — quiet, understated satisfaction, a first kill by rock not
-skill. Line fades in on a click. ("gain in strength" rides the same CG.)
+has just killed by dropping a heavy rock on it.
 
-\- But they fight, in forests, in arenas, in dungeon labyrinths
+\- But they fight, in forests, in arenas, in dungeon labyrinths.
 
 : [bg_town_gate | avram back L] Avram, seen from BEHIND, proceeding toward the gates of a
-faux-medieval town. (Line appears immediately with the picture.)
+faux-medieval town.
 
-\- And they gain in strength very quickly
+\- And they gain in strength very quickly.
 
 : [bg_guild_exterior | avram back L] Avram, seen from BEHIND, before the Adventurer's Guild building.
 (Line fades in on a click.)
@@ -90,13 +89,11 @@ faux-medieval town. (Line appears immediately with the picture.)
 
 \- There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
-: [bg_guild_exterior | avram back L] (fade this part back in)
-
 : [bg_tavern] Avram pushing into a tavern.
 
 \- But what Avram has not been told, it seems,
 
-\- Is that always two outsiders are Summoned, not one.
+\- Is that there are always two outsiders Summoned, not one.
 
 [bgm: stop]
 
