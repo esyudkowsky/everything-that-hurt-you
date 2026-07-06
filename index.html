@@ -167,6 +167,11 @@
     color: #100c08; /* void-black lettering */
   }
   #volayer.vo-bubble .voline { font-size: 3.7cqh; }
+  /* washed scenes have no box, so lift the black text off the faded image with a
+     soft white glow strictly beneath the glyphs (blur ~4px), not an outline. */
+  #volayer.vo-wash .voline {
+    text-shadow: 0 0 0.55cqh #fff, 0 0 0.55cqh #fff, 0 0 0.55cqh #fff;
+  }
   /* each "|" segment fades in on its own click */
   .voseg { opacity: 0; transition: opacity 1.4s ease; }
   /* story-end marker box: bottom-right of the bubble, on the last line's level,

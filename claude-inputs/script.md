@@ -1024,13 +1024,15 @@ Her: Goodbye, Master.
 reader isn't left waiting long enough to get impatient and click, then the aftermath auto-advances
 ~3s per frame through into the
 Close, a click still advancing and restarting the timer; a click landing on a natural advance is
-merged. Implemented via @slow + @autoplay 3000 in /script.txt.)
+merged. Implemented via @slow + @autoplay 1000 in /script.txt.)
 
 : (Aftermath — CGs with narration only, slow fades, no music.)
 
 : [cg_cliff_two] Wide shot: Avram and her on the cliff, sunset.
 
 [bgm: stop]
+
+: [cg_cliff_edge] Her standing on the very edge of the cliff.  (@autoplay 3000 after here.)
 
 : [cg_cliff_alone] Same framing, Avram alone. (CUT, not a fade — she steps off the cliff and vanishes
 abruptly, no fadeout.)
@@ -1077,7 +1079,7 @@ ON BLACK:
 
 \- Always two they are, when they come to this place from elsewhere.
 
-\- When the world has stayed in its course too long, when the boundaries of countries have stayed set, when there are no more great discoveries in the academies of magic, they come.
+\- When the world has stayed in its course too long, |when the boundaries of countries have stayed set, |when there are no more great discoveries in the academies of magic, |they come.
 
 \- And the dance of Summoned Hero and Demon Lord begins.
 

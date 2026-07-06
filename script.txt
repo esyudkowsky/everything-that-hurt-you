@@ -1302,9 +1302,16 @@ Her: Goodbye, Master.
 @clear all
 
 @cg cg_cliff_two fade
+@hold
+@note wide shot: Avram and her on the cliff, sunset. Still at @autoplay 1000 — the
+@note aftermath advances 1s at a time UP TO cg_cliff_edge (author 2026-07-06).
+
+@cg cg_cliff_edge fade
 @autoplay 3000
 @hold
-@note wide shot: Avram and her on the cliff, sunset
+@note Haurvatat now standing on the very edge, Avram still in place. From here the
+@note pace slows to 3s: this frame holds 3s before she vanishes, so the reader
+@note registers she's poised on the brink and then that she jumped (author 2026-07-06).
 
 @bgm stop
 @cg cg_cliff_alone cut
@@ -1379,7 +1386,7 @@ Many things do I know, and one of them is this:
 
 Always two they are, when they come to this place from elsewhere.
 
-When the world has stayed in its course too long, when the boundaries of countries have stayed set, when there are no more great discoveries in the academies of magic, they come.
+When the world has stayed in its course too long, |when the boundaries of countries have stayed set, |when there are no more great discoveries in the academies of magic, |they come.
 
 And the dance of Summoned Hero and Demon Lord begins.
 
