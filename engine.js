@@ -219,7 +219,7 @@ if (typeof document !== "undefined") (function () {
       bg: null, cg: null,
       sprites: { left: null, center: null, right: null }, // {char, expr}
       tint: "off",
-      vo: "off", voLines: [], voDeferred: false,
+      vo: "off", voLines: [], voDeferred: false, voDeferredPc: null,
       voGroup: [], voShown: 0, voSeg: 0, voPartEls: [], // pre-laid-out group + reveal counts
       autoAdvanceMs: null, // scoped @autoplay: auto-advance each beat after this many ms
       montage: null, // {secs}
@@ -1013,9 +1013,14 @@ if (typeof document !== "undefined") (function () {
       case "say":
       case "narrate": {
         if ((st.vo === "on" || st.vo === "over" || st.vo === "bubble") && c.op === "narrate") {
-          // first line of a deferred group: bring the overlay up now (the click that
-          // reached this line reveals it, so the CG was seen un-washed beforehand)
-          if (st.voDeferred) showVoLayer(st.vo, false);
+          // first line of a deferred group: lay the group out (deferred from the
+          // @voiceover beat so the preceding off-fade could finish uncut) and bring
+          // the overlay up now — the click that reached this line reveals it, so the
+          // CG was seen un-washed beforehand.
+          if (st.voDeferred) {
+            if (st.voDeferredPc != null) { prerenderVoGroup(st.voDeferredPc); st.voDeferredPc = null; }
+            showVoLayer(st.vo, false);
+          }
           revealVoLine(false);
           save();
           maybeAutoplay();
@@ -1070,15 +1075,15 @@ if (typeof document !== "undefined") (function () {
         // the next click, when the first line reveals — so the reader always sees
         // the underlying CG first (author 2026-07-06).
         st.vo = c.mode;
-        // Enforce the deferral invariant: the layer must be HIDDEN until the reveal
-        // click. An immediately-preceding @voiceover off (e.g. off -> CG -> bubble in
-        // one step) leaves the layer mid-fade-out and visible; without this its
-        // pre-laid-out box would flash over the CG. Cancel that pending hide too.
-        if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
-        $("volayer").style.display = "none";
-        $("volayer").style.opacity = "0";
-        prerenderVoGroup(pc + 1);
+        // Defer BOTH the layer-show AND the pre-render until the first line reveals.
+        // Crucially we do NOT touch the layer here: if an @voiceover off immediately
+        // precedes this (on -> CG -> bubble in one step), we let its fade-out run to
+        // completion so the OUTGOING caption + backdrop fade out in UNISON with the
+        // incoming CG rather than being cut. Pre-rendering here instead would swap the
+        // box content mid-fade (flash) — so we remember the group and lay it out lazily
+        // when its first line reveals (author 2026-07-06).
         st.voDeferred = true;
+        st.voDeferredPc = pc + 1;
         return true;
       case "autoplay":
         st.autoAdvanceMs = c.ms;
