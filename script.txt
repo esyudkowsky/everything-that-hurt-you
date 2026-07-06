@@ -1388,8 +1388,12 @@ There upon a mountain of treasure inconceivable, lies the last boss of the last 
 
 Many things do I know, and one of them is this:
 
+@voiceover off
+@pause 850
 @voiceover on
-@note back to the whitewash + Skagganauk narration
+@note fade the bubble OUT, a beat of black, then fade the whitewash narration IN,
+@note rather than cutting straight to the black "on" box — otherwise the box looks
+@note like it jumped from the low bubble to the centred position (author 2026-07-06).
 
 Always two they are, when they come to this place from elsewhere.
 

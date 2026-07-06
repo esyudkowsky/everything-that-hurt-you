@@ -573,20 +573,20 @@ if (typeof document !== "undefined") (function () {
       $("volines").innerHTML = "";
       showVoLayer(mode2, instant);
     } else {
-      // Clear the box content immediately; the `#volines:empty` CSS rule drops all
-      // box chrome (grey fill, jagged clip-path, violet glow) so an emptied box
-      // never shows as a stray "mini text box" during the layer's fade-out — and,
-      // because we clear now rather than on a timer, a deferred voiceover that
-      // pre-renders into #volines right after (e.g. off -> CG -> bubble in one
-      // step) is not wiped by a late timer (author 2026-07-06).
-      $("volines").innerHTML = "";
       if (instant) {
+        $("volines").innerHTML = "";
         layer.style.display = "none";
       } else {
+        // Fade the layer out with its box + text still in place, then clear after,
+        // so an "on"/bubble box visibly FADES OUT rather than popping. Two guards
+        // keep an emptied/superseded box from ever flashing: the `#volines:empty`
+        // CSS rule (no chrome when empty), and the deferred over/bubble path, which
+        // cancels this timer + hides the layer before it pre-renders new content.
         layer.style.opacity = "0";
         voHideTimer = setTimeout(() => {
           voHideTimer = null;
           layer.style.display = "none";
+          $("volines").innerHTML = "";
         }, 800);
       }
       st.voLines = [];
