@@ -575,14 +575,19 @@ if (typeof document !== "undefined") (function () {
     } else {
       if (instant) {
         layer.style.display = "none";
+        $("volines").innerHTML = "";
       } else {
         layer.style.opacity = "0";
+        // Keep the text+box in place through the fade-out, then clear. Clearing
+        // #volines immediately would collapse it to an empty padding-sized jagged
+        // box (its grey fill + clip-path + violet glow) that lingers, visible, for
+        // the whole 800ms fade — a tiny floating "mini text box" (author 2026-07-06).
         voHideTimer = setTimeout(() => {
           voHideTimer = null;
           layer.style.display = "none";
+          $("volines").innerHTML = "";
         }, 800);
       }
-      $("volines").innerHTML = "";
       st.voLines = [];
       st.voDeferred = false;
     }

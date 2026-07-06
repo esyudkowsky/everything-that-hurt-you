@@ -475,6 +475,8 @@ Avram: You can go ahead and say what you were thinking. I feel like I can still 
 
 Her: We'd look less like an anomaly if you told them you were fucking me.
 
+: [avram neutral L]
+
 Avram: I hate lying and somebody with superior Social Skills might catch me at it.
 
 Her: And there's an obvious solution to that too, so why don't you?
@@ -745,7 +747,7 @@ expression unreadable (carried by the sprite + a silence beat).
 
 Avram: ...
 
-: [bg_market | avram_late neutral L, her cheer R] New armor, to replace what the deep floors keep
+: [bg_market | avram_late unreadable L, her cheer R] New armor, to replace what the deep floors keep
 breaking. Fresh supplies. Then back to the dungeon, and down.
 
 New armor, to replace what the deep floors keep breaking. Fresh supplies.
@@ -808,7 +810,7 @@ Her: Master, I - like the way things have been with you. You're very mighty and 
 
 : [avram_late gentle L]
 
-Avram: If you still feel that way in a month, I wouldn't object to putting a collar back on you.
+Avram: If you still feel that way in a month, I wouldn't object to putting a collar on you.
 
 Avram: Not this collar, not a magical slave collar.
 

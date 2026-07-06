@@ -625,6 +625,7 @@ Avram: You can go ahead and say what you were thinking. I feel like I can still 
 @sprite her_camp matter-of-fact right
 Her: We'd look less like an anomaly if you told them you were fucking me.
 
+@sprite avram neutral left
 Avram: I hate lying and somebody with superior Social Skills might catch me at it.
 
 Her: And there's an obvious solution to that too, so why don't you?
@@ -1002,7 +1003,7 @@ Avram: ...
 
 @clear all
 @bg bg_market fade
-@sprite avram_late neutral left
+@sprite avram_late unreadable left
 @sprite her cheer right
 @pause 700
 @note hold on the guild->market fade (~0.6s) before the line types, so the crossfade
@@ -1071,7 +1072,7 @@ Avram: I really, really have to.
 Her: Master, I - like the way things have been with you. You're very mighty and wise, and I'm proud to be your slave. | I would rather that things just stay as they are.
 
 @sprite avram_late gentle left
-Avram: If you still feel that way in a month, I wouldn't object to putting a collar back on you.
+Avram: If you still feel that way in a month, I wouldn't object to putting a collar on you.
 
 Avram: Not this collar, not a magical slave collar.
 
