@@ -109,48 +109,54 @@
   }
   @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(0.5cqh);} }
 
-  /* ---- voiceover ---- */
+  /* ---- voiceover (Skagganauk) ----
+     Rev. 4 (author 2026-07-06): the outline-on-image lettering was hard to read,
+     so Skagganauk's narration now WHITEWASHES the whole scene (a near-white wash
+     fades in over it) and the text is large, bold, dark serif — maximum contrast.
+     Exception: the "bubble" mode keeps the CG fully visible and puts the text in a
+     white rounded speech-bubble on the lower part of the image (used to speak the
+     "I myself, the Void Dragon" lines from beneath the dragon). */
   #volayer {
-    background: #000;
+    background: rgba(245, 241, 233, 0.93); /* whitewash: image barely visible behind */
     display: flex; align-items: center; justify-content: center;
     transition: opacity 0.8s ease;
     pointer-events: none;
   }
-  /* over-image voiceover: text sits directly on the picture, no darkened edges
-     (author 2026-07-03). The Skagganauk outline+shadow lettering carries
-     legibility on its own; the old letterbox-darkening gradient is removed. */
-  #volayer.vo-over {
-    background: transparent;
+  #volayer.vo-bubble {
+    background: transparent;           /* keep the CG (dragon) fully visible */
+    align-items: flex-end;            /* text bubble sits low, "from beneath" */
   }
   #volines {
-    max-width: 78%;
-    display: flex; flex-direction: column; gap: 3.4cqh;
+    position: relative; /* anchors the story-end box to the bubble */
+    max-width: 80%;
+    display: flex; flex-direction: column; gap: 2.4cqh;
+  }
+  #volayer.vo-bubble #volines {
+    max-width: 86%;
+    background: rgba(246, 242, 234, 0.97);
+    border: 0.2cqh solid #00000022;
+    border-radius: 2.6cqh;
+    padding: 3cqh 4cqh;
+    margin-bottom: 6cqh;
+    box-shadow: 0 0.6cqh 3.2cqh rgba(0,0,0,0.55);
+    gap: 2cqh;
   }
   .voline {
     font-family: var(--vo);
-    font-size: 3.6cqh; line-height: 1.6; letter-spacing: 0.13em;
+    font-size: 4.4cqh; line-height: 1.45; letter-spacing: 0.05em;
     font-weight: 700; text-align: center;
-    /* Skagganauk lettering (author 2026-07-03, rev. 2): the classic MacOS
-       "Outline + Shadow" font-variant look — a solid DARK glyph body, a white
-       outline around it, and a dark drop shadow behind. paint-order draws the
-       white stroke UNDER the dark fill, so the stroke reads as an OUTER outline
-       rather than eating into the glyph. (The previous centered-stroke version
-       left a thin dark hairline in a mostly-white letter — hard to read.)
-       Reads on black AND over letterboxed art. Keep if a real skagganauk.woff2
-       ever lands. Rev. 3 (author 2026-07-05): outline ONLY — the drop shadow
-       and the frosted backdrop scrim both rejected ("blerg"); the void-black
-       fill + white outline carry legibility alone. */
-    color: #000000;
-    -webkit-text-stroke: 0.3cqh #f4efe1;
-    paint-order: stroke fill;
-    opacity: 0; transition: opacity 1.4s ease;
-    /* Own compositing layer so the stroked/shadowed glyphs are rasterized ONCE and
-       only their opacity composites during the fade. Without this, animating opacity
-       inside the rotated (mobile) #stage layer makes the GPU re-rasterize the text
-       each frame at slightly different subpixel offsets — a visible tiny "shift". */
-    transform: translateZ(0);
-    will-change: opacity;
-    backface-visibility: hidden;
+    color: #16130d; /* dark warm near-black on the whitewash / bubble */
+  }
+  #volayer.vo-bubble .voline { font-size: 3.8cqh; }
+  /* each "|" segment fades in on its own click */
+  .voseg { opacity: 0; transition: opacity 1.4s ease; }
+  /* story-end marker box: bottom-right of the bubble, on the last line's level,
+     fades in over ~1s after a pause so the reader notices the story is ending */
+  .vo-endbox {
+    position: absolute; right: 0.2cqh; bottom: 0.2cqh;
+    width: 2.8cqh; height: 2.8cqh;
+    border: 0.32cqh solid #16130d; background: transparent;
+    opacity: 0; transition: opacity 1s ease;
   }
 
   /* ---- overlays ---- */

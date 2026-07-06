@@ -15,12 +15,14 @@
 @note                           text over baked text)
 @note   @chapter <n> <title>  — chapter marker; the engine's chapter menu lets
 @note                           the reader rejoin any chapter already reached
-@note   @voiceover over       — Skagganauk-font line over the CURRENT scene
-@note                           (letterboxed), not on black; used for the
-@note                           opening narration after its first beat (once a
-@note                           scene is on screen, later lines float over it
-@note                           instead of cutting to black) and for the final
-@note                           line over cg_burning_walk
+@note   @voiceover on|over    — Skagganauk narration. Rev.4 (2026-07-06): both now
+@note                           WHITEWASH the scene (a near-white wash fades in over
+@note                           it) with large bold dark serif text — readability fix,
+@note                           replacing the old outline-on-image lettering. "on"
+@note                           clears the CG first; "over" washes the current scene.
+@note   @voiceover bubble     — keeps the CG fully visible and puts the text in a
+@note                           white rounded speech-bubble low on the image (used for
+@note                           the "I myself, the Void Dragon" lines beneath the dragon)
 @note   @bgm <id|stop> [cut]  — BGM changes crossfade (1.2s fade out old / in
 @note                           new) by default; "cut" forces an instant hard
 @note                           cut, used ONLY at the whiteout ("@bgm stop cut"
@@ -138,17 +140,20 @@ And they gain in strength very quickly
 @note "Not uncommonly" + "There is much" over Avram (BACK TURNED) before the Adventurer's Guild;
 @note text fades in on a click (@hold). (Both lines moved onto the guild image, author 2026-07-04.)
 
-Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It leaves less to explain.
+Sometimes, the outsiders are summoned from lands that tell stories of places like Elhom IV. It leaves less to explain.
 
 There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
 @voiceover off
+@hold
+@note fade the guild scene (Avram's back) back in briefly after the whitewash, before
+@note pushing into the tavern (author 2026-07-06).
 @bg bg_tavern fade
 @voiceover over
 
-But what Avram has not as yet been told, it seems
+But what Avram has not been told, it seems,
 
-Is that there are always two outsiders summoned from another world, not one.
+Is that always two outsiders are Summoned, not one.
 
 @voiceover off
 @bgm stop
@@ -1361,23 +1366,26 @@ At the poles of the world, there are two dungeon entrances that never fade, no m
 Down and down go the stairs beyond, through level after level of dungeon, unto the very center of the World.
 
 @voiceover off
-@cg cg_dragon_hoard fade
-@note COLOSSAL void dragon (skyscraper-huge) coiled on a vast hoard in an enormous
-@note cavern. Hoard appearance moved up to here (author 2026-07-04).
-@voiceover over
-@note the Skagganauk letters appear OVER the hoard for the next two lines, then
-@note black out again for "Always two they are..." below.
+@cg cg_skagganauk_dragon fade
+@note COLOSSAL void dragon (skyscraper-huge) silhouette coiled on a vast golden hoard
+@note (new CG skagganauk-3, author 2026-07-06 — replaces cg_dragon_hoard here). These
+@note "I myself" lines are spoken from a white speech-BUBBLE low on the hoard beneath
+@note the dragon (@voiceover bubble), so the dragon stays fully visible above the text.
 
-There upon a mountain of treasure inconceivable, lies the last boss of the last dungeon, myself, the Void Dragon, Skagganauk, who waits and watches and guards the last key.
+@voiceover bubble
+
+There upon a mountain of treasure inconceivable, lies the last boss of the last dungeon, |I, |myself, |the Void Dragon Skagganauk, |where I wait and watch and guard the last key.
 
 Many things do I know, and one of them is this:
 
 @voiceover on
-@note black out the hoard again — back to Skagganauk font on solid black
+@note back to the whitewash + Skagganauk narration
 
-Always two they are, when they come to this place from elsewhere; when the world has stayed in its course too long, when the boundaries of countries have stayed set and there are no more great discoveries in the academies of magic.
+Always two they are, when they come to this place from elsewhere.
 
-When the dance of Summoned Hero and Demon Lord begins.
+When the world has stayed in its course too long, when the boundaries of countries have stayed set, when there are no more great discoveries in the academies of magic, they come.
+
+And the dance of Summoned Hero and Demon Lord begins.
 
 @voiceover off
 @clear all
@@ -1389,16 +1397,17 @@ When the dance of Summoned Hero and Demon Lord begins.
 
 By whatever machinery brings the two here, it is somehow assured:
 
-Of the two outsiders, there is one who chooses to protect the things that are, and one who desires to change them.
+Of the two outsiders, there is one who chooses to protect the things that are, | and one who desires to change them.
 
 @voiceover off
 @clear all
 @cg cg_tombstone fade
 @hold
 @note ART-TODO #19 tier-1 SUCCESS: the epitaph ("Slave #3,907,825 / Haurvatat /
-@note Born 7005, died 7028 / I will unmake everything that hurt you, and maybe
-@note then I'll feel better.") is now CARVED INTO the tombstone art itself. The
-@note former @overlay inscription block was removed to avoid doubling the text.
+@note Born 7005, died 7028 / I will unmake everything that hurt you, and hope
+@note that's what you would have wanted.") is now CARVED INTO the tombstone art
+@note itself. The former @overlay inscription block was removed to avoid doubling
+@note the text. (epitaph last line reworded 2026-07-05 — art regenerated to match.)
 
 @cg cg_forest_walk fade
 @hold
@@ -1416,11 +1425,12 @@ Of the two outsiders, there is one who chooses to protect the things that are, a
 @cg cg_burning_walk fade
 @hold
 @note Avram walking through the scathed and burning forest, back to viewer.
-@note The final line renders in the Skagganauk font OVER this CG (letterbox /
-@note voiceover-over-CG mode), not on black.
-@voiceover over
+@note The final line renders in a white speech-BUBBLE low on the screen (author
+@note 2026-07-06), NOT whitewashed — so the burning forest and Avram stay visible
+@note above the bubble; the burning scene must not fade out behind the text.
+@voiceover bubble
 
-I wish you the best of luck, Demon Lord. May the change you bring, be at last the truth that this world is forever seeking.
+I wish you the best of luck, Demon Lord. May the change you bring, be at last the truth that this world is forever seeking. |[]
 
 @voiceover off
 @note no trailing @hold: one click on the final line goes straight to the FIN end

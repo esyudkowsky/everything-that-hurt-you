@@ -162,7 +162,7 @@ if (typeof document !== "undefined") (function () {
   const SAVE_KEY = "ethy_save";
   const SETTINGS_KEY = "ethy_settings";
   // showChapter: "full" (Ch. N/TOTAL · Title) | "number" (Ch. N/TOTAL) | "off"
-  const DEFAULT_SETTINGS = { typeMs: 33, autoplay: false, autoplayDelayMs: 900, showChapter: "number", musicOn: true, musicVolume: 0.7 };
+  const DEFAULT_SETTINGS = { typeMs: 14, autoplay: false, autoplayDelayMs: 900, showChapter: "number", musicOn: true, musicVolume: 0.7 };
   const TINTS = {
     night: "rgba(18, 38, 88, 0.30)",
     dusk: "rgba(120, 60, 20, 0.22)",
@@ -220,7 +220,7 @@ if (typeof document !== "undefined") (function () {
       sprites: { left: null, center: null, right: null }, // {char, expr}
       tint: "off",
       vo: "off", voLines: [],
-      voGroup: [], voShown: 0, // full voiceover group (pre-laid-out) + reveal count
+      voGroup: [], voShown: 0, voSeg: 0, voPartEls: [], // pre-laid-out group + reveal counts
       autoAdvanceMs: null, // scoped @autoplay: auto-advance each beat after this many ms
       montage: null, // {secs}
       bgm: null,
@@ -554,14 +554,14 @@ if (typeof document !== "undefined") (function () {
     // (as in the opening voiceover run), the old 800ms timer fires later and
     // hides the freshly-shown line with no click. (bug fix 2026-07-04)
     if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
-    if (mode2 === "on" || mode2 === "over") {
-      // "on" is meant to be pure black; clear the CG instantly so a stale
-      // image can't flash through while volayer's opacity fades in over the
-      // scene below it. "over" deliberately keeps the scene visible, skip it.
+    if (mode2 === "on" || mode2 === "over" || mode2 === "bubble") {
+      // "on" clears the CG so the whitewash sits on black; "over" whitewashes the
+      // current scene; "bubble" keeps the CG (dragon) visible and shows a low
+      // white speech-bubble instead of washing the image out.
       if (mode2 === "on") clearCg("cut");
       st.voLines = [];
       $("volines").innerHTML = "";
-      layer.classList.toggle("vo-over", mode2 === "over");
+      layer.classList.toggle("vo-bubble", mode2 === "bubble");
       layer.style.display = "";
       layer.style.opacity = instant ? "1" : "0";
       if (!instant)
@@ -583,50 +583,89 @@ if (typeof document !== "undefined") (function () {
       st.voLines = [];
     }
   }
-  function voLineDiv(text) {
-    const div = document.createElement("div");
-    div.className = "voline";
-    for (const tk of emphasisTokens(text)) {
-      const span = document.createElement(tk.em ? "em" : "span");
-      span.textContent = tk.t;
-      div.appendChild(span);
-    }
-    return div;
+  // A voiceover line splits on "|" into reveal PARTS (the reader clicks to read on
+  // from each pause). A part that is exactly "[]" is the story-end marker box.
+  function parseVoLine(text) {
+    return text.split("|").map((s) => s.trim()).filter((s) => s.length)
+      .map((seg) => (seg === "[]" ? { endbox: true } : { text: seg }));
   }
-  // Collect every voiceover line of the current group (from the instruction after
-  // the @voiceover on/over, up to the next @voiceover directive).
-  function voGroupTexts(fromIdx) {
-    const texts = [];
+  // Lay out the WHOLE group up front (all parts present, hidden at opacity 0) so the
+  // block's final height/position is fixed — revealing a part never nudges what's
+  // already shown (author 2026-07-04). st.voPartEls[line] = the DOM element per part,
+  // in reveal order.
+  function prerenderVoGroup(fromIdx) {
+    const lines = [];
     for (let j = fromIdx; j < SCRIPT.ins.length; j++) {
       const c = SCRIPT.ins[j];
       if (c.op === "voiceover") break;
-      if (c.op === "narrate") texts.push(c.text);
+      if (c.op === "narrate") lines.push(parseVoLine(c.text));
     }
-    return texts;
-  }
-  // Lay out the WHOLE group up front as hidden (opacity 0) lines so the block's
-  // final height/position is fixed. Revealing a line then never nudges the
-  // already-visible lines above it (author 2026-07-04).
-  function prerenderVoGroup(fromIdx) {
-    st.voGroup = voGroupTexts(fromIdx);
+    st.voGroup = lines;
     st.voShown = 0;
+    st.voSeg = 0;
     st.voLines = [];
+    st.voPartEls = [];
     const box = $("volines");
     box.innerHTML = "";
-    for (const text of st.voGroup) box.appendChild(voLineDiv(text));
+    let endboxEl = null;
+    for (const parts of lines) {
+      const div = document.createElement("div");
+      div.className = "voline";
+      const els = [];
+      parts.forEach((p, i) => {
+        if (p.endbox) {
+          if (!endboxEl) {
+            endboxEl = document.createElement("span");
+            endboxEl.className = "vo-endbox";
+            box.appendChild(endboxEl); // absolute, anchored to the bubble's bottom-right
+          }
+          els.push(endboxEl);
+        } else {
+          const span = document.createElement("span");
+          span.className = "voseg";
+          if (i > 0 && !parts[i - 1].endbox) span.appendChild(document.createTextNode(" "));
+          for (const tk of emphasisTokens(p.text)) {
+            const t = document.createElement(tk.em ? "em" : "span");
+            t.textContent = tk.t;
+            span.appendChild(t);
+          }
+          div.appendChild(span);
+          els.push(span);
+        }
+      });
+      box.appendChild(div);
+      st.voPartEls.push(els);
+    }
   }
-  // Reveal the next pre-laid-out line (or, as a fallback, append one).
+  function revealPart(el) {
+    if (!el) return;
+    requestAnimationFrame(() => requestAnimationFrame(() => (el.style.opacity = "1")));
+  }
+  // Start the next line: reveal its first part (or, when instant/replaying, all parts).
   function revealVoLine(instant) {
-    const box = $("volines");
-    let div = box.children[st.voShown];
-    if (!div) { div = voLineDiv(st.voGroup[st.voShown] || ""); box.appendChild(div); }
-    st.voLines.push(st.voGroup[st.voShown]);
+    const li = st.voShown;
+    const parts = st.voGroup[li] || [];
+    const els = st.voPartEls[li] || [];
+    st.voLines.push(parts.map((p) => (p.endbox ? "" : p.text)).join(" ").trim());
     st.voShown++;
-    if (instant) div.style.opacity = "1";
-    else
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => (div.style.opacity = "1"))
-      );
+    st.voSeg = 1;
+    if (instant) {
+      for (const el of els) if (el) el.style.opacity = "1";
+      st.voSeg = els.length;
+    } else {
+      revealPart(els[0]);
+    }
+  }
+  // Reveal the next "|" part of the current line; true if there was one (eat the click).
+  function revealNextVoSegment() {
+    if (st.vo === "off") return false;
+    const li = st.voShown - 1;
+    if (li < 0) return false;
+    const els = st.voPartEls[li] || [];
+    if (st.voSeg >= els.length) return false;
+    revealPart(els[st.voSeg]);
+    st.voSeg++;
+    return true;
   }
 
   /* ---------- overlays ---------- */
@@ -935,7 +974,7 @@ if (typeof document !== "undefined") (function () {
     switch (c.op) {
       case "say":
       case "narrate": {
-        if ((st.vo === "on" || st.vo === "over") && c.op === "narrate") {
+        if ((st.vo === "on" || st.vo === "over" || st.vo === "bubble") && c.op === "narrate") {
           revealVoLine(false);
           save();
           maybeAutoplay();
@@ -978,7 +1017,7 @@ if (typeof document !== "undefined") (function () {
       case "voiceover":
         setVoiceover(c.mode);
         // pre-lay-out the whole upcoming group so lines reveal in place
-        if (c.mode === "on" || c.mode === "over") prerenderVoGroup(pc + 1);
+        if (c.mode !== "off") prerenderVoGroup(pc + 1);
         return false;
       case "autoplay":
         st.autoAdvanceMs = c.ms;
@@ -1151,6 +1190,7 @@ if (typeof document !== "undefined") (function () {
     // status level-ups: the first click animates the numbers up, the next advances
     if (statusShown && !statusRevealed) { revealStatusIncreases(); return; }
     if (completeTyper()) return; // first click completes the reveal
+    if (revealNextVoSegment()) return; // "|" pause in a Skagganauk line: reveal the next part
     if (!waiting) return;
     if (!fromAuto) lastAutoAdvance = Date.now(); // a manual advance restarts the cadence
     if (capsSticky) { capsSticky = false; refreshUiHidden(); } // committed advance clears screenshot-hide
@@ -1276,7 +1316,7 @@ if (typeof document !== "undefined") (function () {
           else st.sprites[c.what] = null;
           break;
         case "voiceover": st.vo = c.mode; if (c.mode !== "off") { st.voLines = []; voGroupStart = j + 1; } break;
-        case "narrate": if (st.vo === "on" || st.vo === "over") st.voLines.push(c.text); break;
+        case "narrate": if (st.vo === "on" || st.vo === "over" || st.vo === "bubble") st.voLines.push(c.text); break;
         case "autoplay": st.autoAdvanceMs = c.ms; break;
         case "tint": st.tint = c.mode; break;
         case "montage": st.montage = { secs: c.secs }; break;
@@ -1296,7 +1336,7 @@ if (typeof document !== "undefined") (function () {
     for (const slot of ["left", "center", "right"])
       if (st.sprites[slot]) setSprite(st.sprites[slot].char, st.sprites[slot].expr, slot, true);
     setTint(st.tint);
-    if (st.vo === "on" || st.vo === "over") {
+    if (st.vo === "on" || st.vo === "over" || st.vo === "bubble") {
       const shown = st.voLines.length;
       setVoiceover(st.vo, true);
       // rebuild the FULL group laid out (so continuing play won't shift lines),
@@ -1494,6 +1534,7 @@ if (typeof document !== "undefined") (function () {
   // matches wherever the reader is (after resume, chapter-jump, or rollback).
   function backlogHtml(text) {
     return text
+      .replace(/\s*\|\s*\[\]\s*$/, "").replace(/\s*\[\]\s*$/, "")   // drop the story-end marker
       .replace(/\s*\|\s*/g, " ")                                   // drop mid-line pause markers
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/\*([^*]+)\*/g, "<em>$1</em>");                      // *emphasis* -> italics

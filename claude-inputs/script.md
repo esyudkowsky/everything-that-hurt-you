@@ -86,15 +86,17 @@ faux-medieval town. (Line appears immediately with the picture.)
 : [bg_guild_exterior | avram back L] Avram, seen from BEHIND, before the Adventurer's Guild building.
 (Line fades in on a click.)
 
-\- Not uncommonly, the outsiders are summoned from higher worlds that have invented their own stories, of places not unlike Elhom IV. It leaves less to explain.
+\- Sometimes, the outsiders are summoned from lands that tell stories of places like Elhom IV. It leaves less to explain.
 
 \- There is much about Elhom IV that Avram Detwiler finds strangely familiar.
 
+: [bg_guild_exterior | avram back L] (fade this part back in)
+
 : [bg_tavern] Avram pushing into a tavern.
 
-\- But what Avram has not as yet been told, it seems
+\- But what Avram has not been told, it seems,
 
-\- Is that there are always two outsiders summoned from another world, not one.
+\- Is that always two outsiders are Summoned, not one.
 
 [bgm: stop]
 
@@ -1070,29 +1072,31 @@ ON BLACK — Skagganauk font:
 
 OVER cg_dragon_hoard:
 
-\- There upon a mountain of treasure inconceivable, lies the last boss of the last dungeon, myself, the Void Dragon, Skagganauk, who waits and watches and guards the last key.
+\- There upon a mountain of treasure inconceivable, lies the last boss of the last dungeon, |I, |myself, |the Void Dragon Skagganauk, |where I wait and watch and guard the last key.
 
 \- Many things do I know, and one of them is this:
 
 ON BLACK:
 
-\- Always two they are, when they come to this place from elsewhere; when the world has stayed in its course too long, when the boundaries of countries have stayed set and there are no more great discoveries in the academies of magic.
+\- Always two they are, when they come to this place from elsewhere.
 
-\- When the dance of Summoned Hero and Demon Lord begins.
+\- When the world has stayed in its course too long, when the boundaries of countries have stayed set, when there are no more great discoveries in the academies of magic, they come.
+
+\- And the dance of Summoned Hero and Demon Lord begins.
 
 : [cg_forest_walk] Avram's back, walking a green forest path — the same forest as the arrival; the
 calm "before" companion to cg_burning_walk.
 
 \- By whatever machinery brings the two here, it is somehow assured:
 
-\- Of the two outsiders, there is one who chooses to protect the things that are, and one who desires to change them.
+\- Of the two outsiders, there is one who chooses to protect the things that are, | and one who desires to change them.
 
 : [cg_tombstone] The epitaph is carved into the tombstone art itself:
 
 > Slave #3,907,825
 > "Haurvatat"
 > Born 7005, died 7028
-> I will unmake everything that hurt you, and maybe then I'll feel better.
+> I will unmake everything that hurt you, and hope that's what you would have wanted.
 
 : [cg_forest_walk]
 
@@ -1103,7 +1107,7 @@ line renders in the Skagganauk font OVER this CG (letterboxed), not on black.
 
 OVER cg_burning_walk:
 
-\- I wish you the best of luck, Demon Lord. May the change you bring, be at last the truth that this world is forever seeking.
+\- I wish you the best of luck, Demon Lord. May the change you bring, be at last the truth that this world is forever seeking. |[]
 
 ---
 
