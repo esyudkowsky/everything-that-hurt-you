@@ -121,10 +121,13 @@
      ("on"/"over") sits on PURE BLACK; the "bubble" mode keeps the final CG visible
      and floats the same box low over it. */
   #volayer {
-    background: #000; /* general narration: pure black behind the box */
+    background: #000; /* "on" narration (was on solid black): pure black behind the box */
     display: flex; align-items: center; justify-content: center;
     transition: opacity 0.8s ease;
     pointer-events: none;
+  }
+  #volayer.vo-wash {
+    background: rgba(245, 241, 233, 0.5); /* "over" (was over a CG/bg): half-white-faded scene */
   }
   #volayer.vo-bubble {
     background: transparent;  /* keep the final CG (dragon / burning forest) visible */
@@ -154,9 +157,8 @@
     font-family: var(--vo);
     font-variant: small-caps; font-feature-settings: "smcp";
     font-size: 4.2cqh; line-height: 1.5; letter-spacing: 0.06em;
-    font-weight: 600; text-align: center;
+    font-weight: 700; text-align: center; /* Cinzel is thin — render bold */
     color: #100c08; /* void-black lettering */
-    text-shadow: 0 0.15cqh 0.3cqh #4a0e6b; /* tight deep-violet shadow under the black */
   }
   #volayer.vo-bubble .voline { font-size: 3.7cqh; }
   /* each "|" segment fades in on its own click */

@@ -554,6 +554,7 @@ if (typeof document !== "undefined") (function () {
     if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
     if (mode2 === "on") clearCg("cut"); // "on" narration sits on black under the wash
     layer.classList.toggle("vo-bubble", mode2 === "bubble");
+    layer.classList.toggle("vo-wash", mode2 === "over"); // "over" = half-white-faded scene; "on" = pure black
     layer.style.display = "";
     layer.style.opacity = instant ? "1" : "0";
     if (!instant)
