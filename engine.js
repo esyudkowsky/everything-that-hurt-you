@@ -89,6 +89,11 @@ function parseScript(text) {
         case "pause":
           ins.push({ op: "pause", ms: +rest || 800 });
           break;
+        case "fadeout":
+          // fade the whole current scene (caption overlay + CG/BG + sprites)
+          // out to black together; the next scene then fades in from black
+          ins.push({ op: "fadeout", ms: +rest || 800 });
+          break;
         case "hold":
           ins.push({ op: "hold" });
           break;
@@ -544,17 +549,31 @@ if (typeof document !== "undefined") (function () {
     return false;
   }
 
-  /* ---------- voiceover ---------- */
-
-  // Fade the voiceover overlay IN (whitewash, or the transparent bubble layer).
-  // Deferred from the @voiceover beat to the first line's reveal, so the reader
-  // sees the underlying CG first and a click brings the overlay up (author 2026-07-06).
+  /* ---------- voiceover ----------
+     Lifecycle rule (refactor 2026-07-06): the overlay — #volayer's backdrop
+     (black / whitewash / transparent bubble) plus the #volines box and its
+     revealed text — always fades AS ONE UNIT, and its content is cleared only
+     once the layer is fully hidden. Every ACTIVE @voiceover beat defers its
+     layer-show and group layout to the first line's reveal (for "on" that
+     reveal runs in the same step-loop tick, so its black backdrop still fades
+     in immediately; for "over"/"bubble" it runs on the NEXT click, so the
+     reader sees the underlying CG first). A preceding fade-out therefore always
+     runs to completion untouched. fadeSceneOut() extends the same unit rule to
+     the whole stage: caption + scene imagery + sprites leave together. */
+  function cancelVoHide() {
+    if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
+  }
+  // Fade the voiceover overlay IN. Called from the first line's reveal (live)
+  // or from seek (instant).
   function showVoLayer(mode2, instant) {
     const layer = $("volayer");
-    if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
-    if (mode2 === "on") clearCg("cut"); // "on" narration sits on black under the wash
+    cancelVoHide();
+    // "on" narration sits on black: the scene fades out under the incoming
+    // black backdrop (cut only for instant reconstruction, e.g. chapter jump)
+    if (mode2 === "on") clearCg(instant ? "cut" : "fade");
     layer.classList.toggle("vo-bubble", mode2 === "bubble");
-    layer.classList.toggle("vo-wash", mode2 === "over"); // "over" = half-white-faded scene; "on" = pure black
+    layer.classList.toggle("vo-wash", mode2 === "over"); // "over" = half-white-faded scene
+    layer.style.transitionDuration = ""; // drop any @fadeout override
     layer.style.display = "";
     layer.style.opacity = instant ? "1" : "0";
     if (!instant)
@@ -564,34 +583,61 @@ if (typeof document !== "undefined") (function () {
     hideTextbox();
     st.voDeferred = false;
   }
+  function hideVoLayer(instant) {
+    const layer = $("volayer");
+    cancelVoHide();
+    if (instant) {
+      layer.style.display = "none";
+      layer.style.transitionDuration = "";
+      $("volines").innerHTML = "";
+    } else {
+      // fade out with box + text in place; clear only once hidden
+      layer.style.opacity = "0";
+      voHideTimer = setTimeout(() => {
+        voHideTimer = null;
+        layer.style.display = "none";
+        layer.style.transitionDuration = "";
+        $("volines").innerHTML = "";
+      }, 800);
+    }
+  }
   function setVoiceover(mode2, instant) {
     st.vo = mode2;
-    const layer = $("volayer");
-    if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
     if (mode2 === "on" || mode2 === "over" || mode2 === "bubble") {
       st.voLines = [];
       $("volines").innerHTML = "";
       showVoLayer(mode2, instant);
     } else {
-      if (instant) {
-        $("volines").innerHTML = "";
-        layer.style.display = "none";
-      } else {
-        // Fade the layer out with its box + text still in place, then clear after,
-        // so an "on"/bubble box visibly FADES OUT rather than popping. Two guards
-        // keep an emptied/superseded box from ever flashing: the `#volines:empty`
-        // CSS rule (no chrome when empty), and the deferred over/bubble path, which
-        // cancels this timer + hides the layer before it pre-renders new content.
-        layer.style.opacity = "0";
-        voHideTimer = setTimeout(() => {
-          voHideTimer = null;
-          layer.style.display = "none";
-          $("volines").innerHTML = "";
-        }, 800);
-      }
+      hideVoLayer(instant);
       st.voLines = [];
       st.voDeferred = false;
+      st.voDeferredPc = null;
     }
+  }
+  // "@fadeout [ms]": fade the WHOLE visible scene to black as one unit — the
+  // caption overlay together with the scene imagery and sprites — then clear
+  // them all once dark. Used where a Skagganauk caption and its backdrop must
+  // leave together (the dragon-hoard bubble -> black "Always two they are...").
+  function fadeSceneOut(ms) {
+    const layer = $("volayer");
+    cancelVoHide();
+    hideTextbox();
+    layer.style.transitionDuration = ms + "ms";
+    layer.style.opacity = "0";
+    const kids = Array.from($("bglayer").children);
+    for (const o of kids) { o.style.transitionDuration = ms + "ms"; o.style.opacity = "0"; }
+    // scene cleanup is deliberately NOT on voHideTimer: a following @voiceover
+    // may cancel that timer, but these already-invisible images must still go
+    setTimeout(() => kids.forEach((k) => k.remove()), ms + 60);
+    execClear("all"); // sprites fade out on their own (shorter) transition
+    st.vo = "off"; st.voLines = []; st.voDeferred = false; st.voDeferredPc = null;
+    st.cg = null; st.bg = null;
+    voHideTimer = setTimeout(() => {
+      voHideTimer = null;
+      layer.style.display = "none";
+      layer.style.transitionDuration = "";
+      $("volines").innerHTML = "";
+    }, ms);
   }
   // A voiceover line splits on "|" into reveal PARTS (the reader clicks to read on
   // from each pause). A part that is exactly "[]" is the story-end marker box.
@@ -607,7 +653,7 @@ if (typeof document !== "undefined") (function () {
     const lines = [];
     for (let j = fromIdx; j < SCRIPT.ins.length; j++) {
       const c = SCRIPT.ins[j];
-      if (c.op === "voiceover") break;
+      if (c.op === "voiceover" || c.op === "fadeout") break; // both end a group
       if (c.op === "narrate") lines.push(parseVoLine(c.text));
     }
     st.voGroup = lines;
@@ -1062,29 +1108,18 @@ if (typeof document !== "undefined") (function () {
         return false;
       case "voiceover":
         if (c.mode === "off") { setVoiceover("off"); return false; }
-        if (c.mode === "on") {
-          // "on" is black narration — no scene to preserve. Show the whitewash
-          // immediately (clears any lingering CG, e.g. a chapter-jump reconstruct),
-          // then fall through to reveal the first line. NOT deferred.
-          setVoiceover("on");
-          prerenderVoGroup(pc + 1);
-          return false;
-        }
-        // "over"/"bubble" DEFER the overlay: set the mode + pre-lay-out the group,
-        // but keep the scene visible and BLOCK here. The overlay fades in only on
-        // the next click, when the first line reveals — so the reader always sees
-        // the underlying CG first (author 2026-07-06).
+        // ALL active modes defer the layer-show + group layout to the first
+        // line's reveal (see the voiceover lifecycle comment). "on" falls
+        // straight through — its first narrate runs in this same step-loop
+        // tick, so the black backdrop fades in now; "over"/"bubble" BLOCK, so
+        // the reader sees the underlying CG un-washed until the next click.
         st.vo = c.mode;
-        // Defer BOTH the layer-show AND the pre-render until the first line reveals.
-        // Crucially we do NOT touch the layer here: if an @voiceover off immediately
-        // precedes this (on -> CG -> bubble in one step), we let its fade-out run to
-        // completion so the OUTGOING caption + backdrop fade out in UNISON with the
-        // incoming CG rather than being cut. Pre-rendering here instead would swap the
-        // box content mid-fade (flash) — so we remember the group and lay it out lazily
-        // when its first line reveals (author 2026-07-06).
         st.voDeferred = true;
         st.voDeferredPc = pc + 1;
-        return true;
+        return c.mode !== "on";
+      case "fadeout":
+        fadeSceneOut(c.ms);
+        return false;
       case "autoplay":
         st.autoAdvanceMs = c.ms;
         return false;
@@ -1382,6 +1417,11 @@ if (typeof document !== "undefined") (function () {
           else st.sprites[c.what] = null;
           break;
         case "voiceover": st.vo = c.mode; if (c.mode !== "off") { st.voLines = []; voGroupStart = j + 1; } break;
+        case "fadeout":
+          st.vo = "off"; st.voLines = [];
+          st.cg = null; st.bg = null; st.inscription = null;
+          st.sprites = { left: null, center: null, right: null };
+          break;
         case "narrate": if (st.vo === "on" || st.vo === "over" || st.vo === "bubble") st.voLines.push(c.text); break;
         case "autoplay": st.autoAdvanceMs = c.ms; break;
         case "tint": st.tint = c.mode; break;

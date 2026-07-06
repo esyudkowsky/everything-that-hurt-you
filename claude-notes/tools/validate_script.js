@@ -55,6 +55,7 @@ if (chNums !== "1,2,3,4,5,6,7,8,9,10,11,12,13")
 let vo = "off";
 for (const c of ins) {
   if (c.op === "voiceover") vo = c.mode;
+  if (c.op === "fadeout") vo = "off"; // @fadeout dismisses the voiceover with the scene
   if ((c.op === "say") && vo !== "off")
     err(`tagged dialogue inside voiceover mode: ${c.speaker}: ${c.text.slice(0, 40)}`);
 }
@@ -90,6 +91,7 @@ let clicks = 0, montage = false, dialogueLines = 0, narration = 0, voLines = 0;
 vo = "off";
 for (const c of ins) {
   if (c.op === "voiceover") vo = c.mode;
+  if (c.op === "fadeout") vo = "off";
   if (c.op === "montage") montage = true;
   if (c.op === "montage_end") montage = false;
   if (BLOCKING.has(c.op) || (c.op === "cg" && montage)) clicks++;

@@ -88,9 +88,9 @@ fs.mkdirSync(SHOTS, { recursive: true });
   const lockedCount = await page.$$eval("#chapter-list .locked", (els) => els.length);
   console.log("locked chapters after full read:", lockedCount);
 
-  // jump to The Cliff (ch 14) and check the scene reconstructs
+  // jump to Truth (ch 12, the cliff chapter) and check the scene reconstructs
   await page.$$eval("#chapter-list .chapter-btn", (els) => {
-    els.find((e) => e.textContent.includes("The Cliff")).click();
+    els.find((e) => e.textContent.includes("Truth")).click();
   });
   await page.waitForTimeout(1500);
   await page.keyboard.press("Enter");

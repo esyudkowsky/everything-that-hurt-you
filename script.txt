@@ -23,6 +23,9 @@
 @note   @voiceover bubble     — keeps the CG fully visible and puts the text in a
 @note                           white rounded speech-bubble low on the image (used for
 @note                           the "I myself, the Void Dragon" lines beneath the dragon)
+@note   @fadeout [ms]         — fade the WHOLE current scene out to black together
+@note                           (caption overlay + CG/BG + sprites as one unit,
+@note                           default 800ms); the next scene fades in from black
 @note   @bgm <id|stop> [cut]  — BGM changes crossfade (1.2s fade out old / in
 @note                           new) by default; "cut" forces an instant hard
 @note                           cut, used ONLY at the whiteout ("@bgm stop cut"
@@ -1388,12 +1391,13 @@ There upon a mountain of treasure inconceivable, lies the last boss of the last 
 
 Many things do I know, and one of them is this:
 
-@voiceover off
+@fadeout
 @pause 850
 @voiceover on
-@note fade the bubble OUT, a beat of black, then fade the whitewash narration IN,
-@note rather than cutting straight to the black "on" box — otherwise the box looks
-@note like it jumped from the low bubble to the centred position (author 2026-07-06).
+@note @fadeout: the bubble caption AND the dragon hoard sink to black TOGETHER
+@note (one unit), a beat of black, then the black "on" narration fades in centred —
+@note the caption must not vanish ahead of the hoard, and the box must not look
+@note like it jumped from the low bubble position (author 2026-07-06).
 
 Always two they are, when they come to this place from elsewhere.
 

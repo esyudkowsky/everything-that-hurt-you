@@ -1079,6 +1079,10 @@ OVER cg_dragon_hoard:
 
 ON BLACK:
 
+: (Transition: the bubble caption and the dragon hoard fade out to black TOGETHER, as one
+unit — not the caption first — then a beat of black, then the on-black narration fades in.
+Implemented via @fadeout + @pause 850 in /script.txt.)
+
 \- Always two they are, when they come to this place from elsewhere.
 
 \- When the world has stayed in its course too long, |when the boundaries of countries have stayed set, |when there are no more great discoveries in the academies of magic, |they come.
