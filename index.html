@@ -420,6 +420,8 @@
   }
   #settingsmenu .danger-btn:hover { background: #7a1f1f; border-color: #e06a6a; color: #fff; }
   #settingsmenu .danger-btn.armed { background: #a81f1f; border-color: #ff8a8a; color: #fff; }
+  #settingsmenu .danger-stack { flex-direction: column; align-items: stretch; gap: 0.8cqh; }
+  #settingsmenu .danger-stack .danger-btn { width: 100%; text-align: center; }
   /* let a taller settings list scroll rather than clip on short screens */
   #settingsmenu { justify-content: flex-start; padding: 4cqh 0; overflow-y: auto; }
   /* music volume slider */
@@ -644,7 +646,7 @@
       </div>
       <div class="opt-row danger-row">
         <div class="opt-label">Progress</div>
-        <div class="opt-group">
+        <div class="opt-group danger-stack">
           <button id="btn-unlock-chapters" class="danger-btn">Unlock all chapters</button>
           <button id="btn-delete-progress" class="danger-btn">Delete all progress</button>
         </div>
