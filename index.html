@@ -128,6 +128,7 @@
   }
   #volayer.vo-wash {
     background: rgba(245, 241, 233, 0.5); /* "over" (was over a CG/bg): half-white-faded scene */
+    align-items: flex-end;               /* boxless text sits low, obscuring less of the scene */
   }
   #volayer.vo-bubble {
     background: transparent;  /* keep the final CG (dragon / burning forest) visible */
@@ -153,6 +154,11 @@
             drop-shadow(0 0 5cqh rgba(108, 40, 176, 0.6));
   }
   #volayer.vo-bubble #volines { max-width: 84%; margin-bottom: 6cqh; }
+  /* washed-out "over" scenes need no box — the whitewash IS the backdrop; just text */
+  #volayer.vo-wash #volines {
+    background: none; clip-path: none; filter: none;
+    max-width: 82%; padding: 2cqh 4cqh; margin-bottom: 15cqh;
+  }
   .voline {
     font-family: var(--vo);
     font-variant: small-caps; font-feature-settings: "smcp";
