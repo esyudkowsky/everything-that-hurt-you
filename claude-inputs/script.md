@@ -148,7 +148,7 @@ Bartender: Deathstorms and balefire! No, I haven't heard anything.
 
 Bartender: I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know?
 
-Bartender: Or the Summoned Hero either, for that matter. | I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
+Bartender: Or the Summoned Hero either, for that matter. | I'd wish the Hero the best of luck fighting, but not to the point where I'd want to die for gawking at it, ya know?
 
 : [avram neutral L]
 

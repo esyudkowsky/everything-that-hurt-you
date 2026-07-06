@@ -219,7 +219,7 @@ if (typeof document !== "undefined") (function () {
       bg: null, cg: null,
       sprites: { left: null, center: null, right: null }, // {char, expr}
       tint: "off",
-      vo: "off", voLines: [],
+      vo: "off", voLines: [], voDeferred: false,
       voGroup: [], voShown: 0, voSeg: 0, voPartEls: [], // pre-laid-out group + reveal counts
       autoAdvanceMs: null, // scoped @autoplay: auto-advance each beat after this many ms
       montage: null, // {secs}
@@ -546,29 +546,34 @@ if (typeof document !== "undefined") (function () {
 
   /* ---------- voiceover ---------- */
 
+  // Fade the voiceover overlay IN (whitewash, or the transparent bubble layer).
+  // Deferred from the @voiceover beat to the first line's reveal, so the reader
+  // sees the underlying CG first and a click brings the overlay up (author 2026-07-06).
+  function showVoLayer(mode2, instant) {
+    const layer = $("volayer");
+    if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
+    if (mode2 === "on") clearCg("cut"); // "on" narration sits on black under the wash
+    layer.classList.toggle("vo-bubble", mode2 === "bubble");
+    // "on" has no scene to preserve, so use a near-solid white panel (clean, high
+    // contrast); "over" uses the soft ~half wash so the CG shows through.
+    layer.classList.toggle("vo-solid", mode2 === "on");
+    layer.style.display = "";
+    layer.style.opacity = instant ? "1" : "0";
+    if (!instant)
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => (layer.style.opacity = "1"))
+      );
+    hideTextbox();
+    st.voDeferred = false;
+  }
   function setVoiceover(mode2, instant) {
     st.vo = mode2;
     const layer = $("volayer");
-    // cancel any pending fade-out hide from a previous "off": otherwise, when
-    // an "off" is immediately followed by "over"/"on" in the same click-advance
-    // (as in the opening voiceover run), the old 800ms timer fires later and
-    // hides the freshly-shown line with no click. (bug fix 2026-07-04)
     if (voHideTimer) { clearTimeout(voHideTimer); voHideTimer = null; }
     if (mode2 === "on" || mode2 === "over" || mode2 === "bubble") {
-      // "on" clears the CG so the whitewash sits on black; "over" whitewashes the
-      // current scene; "bubble" keeps the CG (dragon) visible and shows a low
-      // white speech-bubble instead of washing the image out.
-      if (mode2 === "on") clearCg("cut");
       st.voLines = [];
       $("volines").innerHTML = "";
-      layer.classList.toggle("vo-bubble", mode2 === "bubble");
-      layer.style.display = "";
-      layer.style.opacity = instant ? "1" : "0";
-      if (!instant)
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => (layer.style.opacity = "1"))
-        );
-      hideTextbox();
+      showVoLayer(mode2, instant);
     } else {
       if (instant) {
         layer.style.display = "none";
@@ -581,6 +586,7 @@ if (typeof document !== "undefined") (function () {
       }
       $("volines").innerHTML = "";
       st.voLines = [];
+      st.voDeferred = false;
     }
   }
   // A voiceover line splits on "|" into reveal PARTS (the reader clicks to read on
@@ -975,6 +981,9 @@ if (typeof document !== "undefined") (function () {
       case "say":
       case "narrate": {
         if ((st.vo === "on" || st.vo === "over" || st.vo === "bubble") && c.op === "narrate") {
+          // first line of a deferred group: bring the overlay up now (the click that
+          // reached this line reveals it, so the CG was seen un-washed beforehand)
+          if (st.voDeferred) showVoLayer(st.vo, false);
           revealVoLine(false);
           save();
           maybeAutoplay();
@@ -1015,10 +1024,15 @@ if (typeof document !== "undefined") (function () {
         execClear(c.what);
         return false;
       case "voiceover":
-        setVoiceover(c.mode);
-        // pre-lay-out the whole upcoming group so lines reveal in place
-        if (c.mode !== "off") prerenderVoGroup(pc + 1);
-        return false;
+        if (c.mode === "off") { setVoiceover("off"); return false; }
+        // DEFER the overlay: set the mode + pre-lay-out the group, but keep the
+        // scene visible and BLOCK here. The overlay (whitewash / bubble) fades in
+        // only on the next click, when the first line reveals — so the reader
+        // always sees the underlying CG first (author 2026-07-06).
+        st.vo = c.mode;
+        prerenderVoGroup(pc + 1);
+        st.voDeferred = true;
+        return true;
       case "autoplay":
         st.autoAdvanceMs = c.ms;
         return false;
@@ -1338,11 +1352,16 @@ if (typeof document !== "undefined") (function () {
     setTint(st.tint);
     if (st.vo === "on" || st.vo === "over" || st.vo === "bubble") {
       const shown = st.voLines.length;
-      setVoiceover(st.vo, true);
-      // rebuild the FULL group laid out (so continuing play won't shift lines),
-      // then instantly reveal the ones already read
-      prerenderVoGroup(voGroupStart);
-      for (let k = 0; k < shown; k++) revealVoLine(true);
+      prerenderVoGroup(voGroupStart); // rebuild the group laid out (hidden)
+      if (shown > 0) {
+        setVoiceover(st.vo, true);              // overlay already up; reveal read lines
+        prerenderVoGroup(voGroupStart);
+        for (let k = 0; k < shown; k++) revealVoLine(true);
+      } else {
+        // seek landed exactly on the (deferred) @voiceover beat: scene stays visible,
+        // overlay hidden, waiting for the click that reveals the first line
+        st.voDeferred = true;
+      }
     }
     if (st.inscription) showInscription(st.inscription);
     playBgm(st.bgm || "stop", true);
@@ -1611,6 +1630,7 @@ if (typeof document !== "undefined") (function () {
   }
   function openSettings(fromTitle) {
     disarmDelete();
+    disarmUnlock();
     renderSettingsUI();
     $("settingsmenu").dataset.from = fromTitle ? "title" : "pause";
     if (fromTitle) { $("title").style.display = "none"; $("menubtn").style.display = "none"; }
@@ -1621,6 +1641,7 @@ if (typeof document !== "undefined") (function () {
   }
   function closeSettings() {
     disarmDelete();
+    disarmUnlock();
     $("settingsmenu").style.display = "none";
     if ($("settingsmenu").dataset.from === "title") showTitle();
     else openPause();
@@ -1654,6 +1675,36 @@ if (typeof document !== "undefined") (function () {
     $("settingsmenu").style.display = "none";
     showTitle();
   }
+  /* converse of delete: unlock every chapter (set the furthest-reached marker past
+     the last chapter) so any chapter is jumpable — a spoiler-y convenience, so it
+     uses the same two-click confirm and red styling. */
+  let unlockArmed = false;
+  function disarmUnlock() {
+    unlockArmed = false;
+    const b = $("btn-unlock-chapters");
+    if (b) { b.classList.remove("armed"); b.textContent = "Unlock all chapters"; }
+  }
+  function onUnlockChapters() {
+    const b = $("btn-unlock-chapters");
+    if (!unlockArmed) {
+      unlockArmed = true;
+      b.classList.add("armed");
+      b.textContent = "Click again — spoils the story";
+      return;
+    }
+    // furthest pc past every chapter -> the chapter menu shows all as reached
+    const all = SCRIPT && SCRIPT.ins ? SCRIPT.ins.length : 999999;
+    maxPc = Math.max(maxPc, all);
+    const sv = loadSave() || { pc: 0, ts: 0 };
+    sv.max = maxPc;
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(sv)); } catch (e) {}
+    try {
+      document.cookie = SAVE_KEY + "=" + encodeURIComponent(JSON.stringify(sv)) +
+        "; max-age=31536000; path=/; SameSite=Lax";
+    } catch (e) {}
+    disarmUnlock();
+    b.textContent = "All chapters unlocked ✓";
+  }
 
   /* ---------- credits + original-outline viewer (title screen only) ---------- */
   function openCredits() {
@@ -1666,7 +1717,6 @@ if (typeof document !== "undefined") (function () {
     $("creditsmenu").style.display = "none";
     showTitle();
   }
-  let outlineLoaded = false;
   function renderOutline(md) {
     const esc = (s) =>
       s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -1684,19 +1734,21 @@ if (typeof document !== "undefined") (function () {
     }
     return out.join("\n");
   }
-  async function openScriptView() {
+  let docLoaded = null; // path of the doc currently rendered in the viewer
+  async function openDocView(path, title) {
     $("creditsmenu").style.display = "none";
+    $("sv-title").textContent = title;
     $("scriptview").style.display = "";
     const el = $("scriptview-content");
-    if (!outlineLoaded) {
+    if (docLoaded !== path) {
       el.textContent = "Loading…";
       try {
-        const r = await fetch("claude-inputs/original-script.md", { cache: "no-cache" });
+        const r = await fetch(path, { cache: "no-cache" });
         if (!r.ok) throw new Error(String(r.status));
         el.innerHTML = renderOutline(await r.text());
-        outlineLoaded = true;
+        docLoaded = path;
       } catch (e) {
-        el.textContent = "Could not load the original outline.";
+        el.textContent = "Could not load this document.";
       }
     }
     el.scrollTop = 0;
@@ -1804,7 +1856,9 @@ if (typeof document !== "undefined") (function () {
     $("btn-settings-title").onclick = () => openSettings(true);
     $("btn-credits-title").onclick = () => openCredits();
     $("btn-credits-back").onclick = closeCredits;
-    $("credit-outline").onclick = () => openScriptView();
+    $("credit-outline").onclick = () =>
+      openDocView("claude-inputs/original-script.md", "Original Story Outline · Eliezer Yudkowsky");
+    $("credit-notes").onclick = () => openDocView("README.md", "Author's Notes");
     $("btn-scriptview-back").onclick = closeScriptView;
     $("btn-resume").onclick = closePause;
     $("btn-chapters").onclick = () => {
@@ -1821,6 +1875,7 @@ if (typeof document !== "undefined") (function () {
       if (bgmEl && musicEnabled) bgmEl.volume = settings.musicVolume; // live, no fade
     });
     $("btn-delete-progress").onclick = (e) => { e.stopPropagation(); onDeleteProgress(); };
+    $("btn-unlock-chapters").onclick = (e) => { e.stopPropagation(); onUnlockChapters(); };
     $("btn-totitle").onclick = () => { showTitle(); };
     $("btn-chapters-back").onclick = closeChapters;
     $("btn-end-title").onclick = () => showTitle();

@@ -117,7 +117,7 @@
      white rounded speech-bubble on the lower part of the image (used to speak the
      "I myself, the Void Dragon" lines from beneath the dragon). */
   #volayer {
-    background: rgba(245, 241, 233, 0.93); /* whitewash: image barely visible behind */
+    background: rgba(245, 241, 233, 0.5); /* "over": ~half wash — the scene stays visible behind the dark text */
     display: flex; align-items: center; justify-content: center;
     transition: opacity 0.8s ease;
     pointer-events: none;
@@ -126,6 +126,7 @@
     background: transparent;           /* keep the CG (dragon) fully visible */
     align-items: flex-end;            /* text bubble sits low, "from beneath" */
   }
+  #volayer.vo-solid { background: rgba(245, 241, 233, 0.92); } /* "on": clean near-white panel on black */
   #volines {
     position: relative; /* anchors the story-end box to the bubble */
     max-width: 80%;
@@ -574,13 +575,13 @@
       </div>
       <div id="credits-foot">
         <div>&copy; 2026 by Eliezer Yudkowsky</div>
-        <div><a class="credit-link" href="https://github.com/esyudkowsky/everything-that-hurt-you" target="_blank" rel="noopener">Github</a> &middot; v1.0.3</div>
+        <div><span id="credit-notes" class="credit-link">Author's Notes</span> &middot; <a class="credit-link" href="https://github.com/esyudkowsky/everything-that-hurt-you" target="_blank" rel="noopener">Github</a> &middot; v1.0.3</div>
       </div>
       <button id="btn-credits-back">Back</button>
     </div>
 
     <div id="scriptview" class="menu" style="display:none">
-      <div class="sv-title">Original Story Outline &middot; Eliezer Yudkowsky</div>
+      <div id="sv-title" class="sv-title">Original Story Outline &middot; Eliezer Yudkowsky</div>
       <div id="scriptview-content"></div>
       <button id="btn-scriptview-back">Back</button>
     </div>
@@ -643,7 +644,10 @@
       </div>
       <div class="opt-row danger-row">
         <div class="opt-label">Progress</div>
-        <button id="btn-delete-progress" class="danger-btn">Delete all progress</button>
+        <div class="opt-group">
+          <button id="btn-unlock-chapters" class="danger-btn">Unlock all chapters</button>
+          <button id="btn-delete-progress" class="danger-btn">Delete all progress</button>
+        </div>
       </div>
       <button id="btn-settings-back">Back</button>
     </div>

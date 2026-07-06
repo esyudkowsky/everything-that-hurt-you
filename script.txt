@@ -62,8 +62,8 @@
 @hold
 @note closer: he stops, head turning, the first instant of noticing
 @cg cg_truck_see cut
-@hold
 @note the oncoming truck, headlights flaring; the moment BEFORE — no impact
+@note (deferred @voiceover shows this CG and waits for the click, so no @hold needed)
 
 @voiceover on
 
@@ -103,7 +103,6 @@ The great, the powerful, the Summoned Hero
 
 @voiceover off
 @cg cg_slime_backoff fade
-@hold
 @voiceover over
 @note re-staged 2026-07-03 (author): "not supreme when they first arrive" now plays over Avram
 @note as a raw newcomer warily backing off his first forest slime — subtly nervous, not terrified.
@@ -114,7 +113,6 @@ They are not supreme when they first arrive
 
 @voiceover off
 @cg cg_slime_rock cut
-@hold
 @voiceover over
 @note "but they fight" over Avram standing over that same slime, having just killed it by
 @note dropping a rock on it — a clumsy first kill (rock, not skill); text fades in on a click.
@@ -135,7 +133,6 @@ And they gain in strength very quickly
 @voiceover off
 @bg bg_guild_exterior fade
 @sprite avram back left
-@hold
 @voiceover over
 @note "Not uncommonly" + "There is much" over Avram (BACK TURNED) before the Adventurer's Guild;
 @note text fades in on a click (@hold). (Both lines moved onto the guild image, author 2026-07-04.)
@@ -204,7 +201,7 @@ Bartender: Deathstorms and balefire! No, I haven't heard anything.
 
 Bartender: I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know?
 
-Bartender: Or the Summoned Hero either, for that matter. | I'd wish the Hero the best of luck fighting, but not the point where I'd want to die for gawking at it, ya know?
+Bartender: Or the Summoned Hero either, for that matter. | I'd wish the Hero the best of luck fighting, but not to the point where I'd want to die for gawking at it, ya know?
 
 @sprite avram neutral left
 Avram: Yeah, I know.
@@ -1392,7 +1389,6 @@ And the dance of Summoned Hero and Demon Lord begins.
 @cg cg_forest_walk fade
 @note Avram's back, walking a green forest path — the same forest as the arrival;
 @note the calm "before" companion to cg_burning_walk (ART-TODO #18)
-@hold
 @voiceover on
 
 By whatever machinery brings the two here, it is somehow assured:
@@ -1423,7 +1419,6 @@ Of the two outsiders, there is one who chooses to protect the things that are, |
 @note stopping ~0.5s early (author 2026-07-04; hiss lead-in trimmed + reveal retimed 2026-07-05).
 @note The sfx is preloaded at boot so the hiss starts immediately.
 @cg cg_burning_walk fade
-@hold
 @note Avram walking through the scathed and burning forest, back to viewer.
 @note The final line renders in a white speech-BUBBLE low on the screen (author
 @note 2026-07-06), NOT whitewashed — so the burning forest and Avram stay visible
