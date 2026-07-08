@@ -865,3 +865,7 @@
     all clever phrasings / eyeball kicks (e.g. "the speed IS the scar"). Direction must be plain,
     literal emotion words and concrete physical/vocal states only; the small model will not
     understand or appreciate literary flourishes. voice-script.md rewritten accordingly.
+  - Follow-up 2 (same day): NO voice DIRECTION at all — only DESCRIBE what the character is
+    feeling internally and how they want to look to others. Removed all delivery/performance
+    instructions (pacing, volume, "say it...", "play it...", vocal-tone words). Fields are now
+    "feeling" (internal state) and "wants to appear" (intended outward appearance).
