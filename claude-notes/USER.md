@@ -861,3 +861,7 @@
   present as feeling*, with physical/vocal qualities ("tense") where applicable. Purpose: a LATER
   (not immediate) test of whether inner-state emotional direction works better for voice acting
   than explicit intonation/delivery instructions. Do not start voice generation until asked.
+  - Follow-up (same day): the annotations will be consumed by a TINY voice model — filter out
+    all clever phrasings / eyeball kicks (e.g. "the speed IS the scar"). Direction must be plain,
+    literal emotion words and concrete physical/vocal states only; the small model will not
+    understand or appreciate literary flourishes. voice-script.md rewritten accordingly.
