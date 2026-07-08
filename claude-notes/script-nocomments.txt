@@ -1,0 +1,1120 @@
+@chapter 1 Arrival
+
+@bgm bgm_void
+@cg cg_truck_cross fade
+@hold
+@cg cg_truck_turn cut
+@hold
+@cg cg_truck_see cut
+@hold
+
+@voiceover on
+
+I tell you now a tale of the planet, Elhom IV.
+
+@voiceover off
+@flash white 300
+@cg cg_tea_flash cut
+@voiceover over
+
+The world of Elhom IV has a cycle.
+
+@voiceover off
+@bg bg_forest_day fade
+@sprite avram_earth strained left
+@voiceover over
+
+From time to time, arises a Demon Lord, feared and accursed.
+
+@voiceover off
+@cg cg_forest_trek fade
+@voiceover over
+
+And another rises to fight them.
+
+The great, the powerful, the Summoned Hero.
+
+@voiceover off
+@cg cg_slime_backoff fade
+@voiceover over
+
+They are not supreme when they first arrive.
+
+@voiceover off
+@cg cg_slime_rock cut
+@voiceover over
+
+But they fight, in forests, in arenas, in dungeon labyrinths.
+
+@voiceover off
+@bg bg_town_gate cut
+@sprite avram back left
+@voiceover over
+
+And they gain in strength very quickly.
+
+@voiceover off
+@bg bg_guild_exterior fade
+@sprite avram back left
+@voiceover over
+
+Sometimes, the outsiders are summoned from lands that tell stories of places like Elhom IV. It leaves less to explain.
+
+There is much about Elhom IV that Avram Detwiler finds strangely familiar.
+
+@voiceover off
+@bg bg_tavern fade
+@voiceover over
+
+But what Avram has not been told, it seems,
+
+Is that there are always two outsiders Summoned, not one.
+
+@voiceover off
+@bgm stop
+
+
+@chapter 2 Bartender
+
+@bgm bgm_tavern
+@sprite avram neutral left
+@sprite bartender gruff-neutral right
+
+Avram: Glass of traveler's mead.
+
+Bartender: Eight copper.
+
+Avram slides coins across the counter. The bartender slides back a glass.
+
+Avram: Got a rumor I'd like to check on.
+
+Bartender: Twelve silver.
+
+@sprite avram neutral left
+Avram: Not that kind of rumor - look, I'm not sure there's anything to this. Could just have been a guy messing with another guy. | But have you heard anything about a rising Demon Lord?
+
+Bartender: Aw *slimespit.*
+
+@sprite bartender menacing-lean right
+@sprite avram alarm left
+Bartender: What'd you hear, kid? Tell me everything. Now.
+
+Avram: I just heard some guy talking about it! That's why I'm asking whether -
+
+Bartender: Some guy *where* saying *what?*
+
+Avram: Some guy in the middle of nowhere who I heard say something about a Demon Lord! That's all I heard, okay? | I know practically nothing. That's why I'm *asking.*
+
+Avram: If the Demon Lord has shown up, I'd really like to know where they are, what they're doing.
+
+Avram: Whether their forces are invading here tomorrow.
+
+Avram: That kinda thing.
+
+@sprite bartender startled right
+Bartender: Deathstorms and balefire! No, I haven't heard anything.
+
+Bartender: I wouldn't be staying on the same continent if I'd heard the next Demon Lord had shown up here, ya know?
+
+Bartender: Or the Summoned Hero either, for that matter. | I'd wish the Hero the best of luck fighting, but not to the point where I'd want to die for gawking at it, ya know?
+
+@sprite avram neutral left
+Avram: Yeah, I know.
+
+Avram drinks from his glass again.
+
+@sprite bartender gruff-neutral right
+@sprite avram neutral left
+Avram: Probably a dumb question, but if a guy runs across an unusual drop, is there any more profitable and sophisticated thing to do with it than flipping it to the Guild buyers?
+
+Bartender: Guess what, kid? | You're right. | That is a dumb question.
+
+Bartender: Better hope nobody overheard it.
+
+Avram finishes off his glass.
+
+Avram: You know, maybe this is another stupid thought. Feel free to tell me why it's stupid.
+
+Avram: But if Summoned Heroes are supposed to learn so fast, why don't they just stay hidden and keep leveling to the point where they can take out the Demon Lord quickly and without wrecking a continent?
+
+Avram: Like, geez, have some consideration for everybody who lives there.
+
+Bartender: Ha! Doesn't sound very *heroic*.
+
+Avram: That's the only reason you can think of for why the Summoned Hero doesn't do that? It's not heroic enough?
+
+Bartender: I don't think people become heroes without pride, ya know?
+
+@sprite avram neutral left
+Avram: One might argue that the Summoned Hero ought to take pride in carefully executing their responsibility, to everyone in the world, to defeat the Demon Lord with minimum casualties and risk of failure.
+
+Bartender: Sounds more like a villain's style to me.
+
+Bartender: If you think like that, the Summoned Hero ought to buy a high-level fighting slave and get carried through dungeons, like a sheltered noble scion, right? To avoid the risk that they get killed while they're still weak?
+
+Bartender: But people like that aren't *heroes.* They'd never work up the courage to face the Demon Lord in the end.
+
+@sprite avram unreadable left
+Avram: ...
+
+@bgm stop
+
+
+@chapter 3 Auction
+
+@bg bg_auction_plaza_forsale fade
+@clear all
+@sfx sfx_crowd
+@bgm bgm_tension
+
+The plaza is packed. On the dais, one lot after another is walked out, made to turn, appraised, and sold.
+
+@cg cg_auction_sexy fade
+@hold
+
+Announcer: A *war*-slave, sers! Blooded on the low floors, sound of wind and limb — wolf-blood stock, twice as hardy as any human and worth three warriors on a campaign!
+
+@cg cg_nobleman_bid cut
+A rich-looking, robed nobleman near the front raises his hand and names a price.
+
+@cg cg_auction_fixed cut
+@hold
+
+@bg bg_auction_plaza cut
+@sprite avram eyes-narrowed left
+Avram raises his hand.
+
+@sprite nobleman irritated right
+The nobleman raises his hand and names a higher number.
+
+@sprite avram neutral left
+Avram holds up a large magical core.  One you'd need to be anomalously lucky to find, fighting the class of monsters he looks strong enough to fight.
+
+@sprite nobleman irritated right
+The nobleman looks at him with disgust, and lets his hand fall.
+
+@clear right
+The announcer takes Avram's core, gauges him, and hands him a small printed pamphlet before gesturing him and the beast-girl toward the back of the auction stand.
+
+@clear all
+@cg cg_pamphlet_cover_runes fade
+@hold
+
+My first slave: Rules for effective use.
+
+@bg bg_auction_plaza cut
+@sprite avram horror-distant left
+@hold
+
+@cg cg_ownership_transfer fade
+The announcer puts one hand on her collar, and one hand on top of Avram's head. The collar's runes light up.
+
+Announcer: [Ownership Transfer.]
+
+@cg cg_ownership_dark cut
+The runes go dark. She belongs to him now.
+
+@sfx stop
+
+
+@chapter 4 Meeting
+
+@bg bg_market fade
+@bgm bgm_wistful
+@sprite avram discomfort left
+@sprite her cheer right
+
+Avram: So. Um. I bought you to help me clear dungeons. And help teach me to fight. | I'm not planning to sexually assault you.
+
+Avram: You didn't *look* like the prospect of risking your life in a dungeon would horrify you to the point where you'd rather have gone with the other guy instead.
+
+Avram: It *looked* like you'd be better off with me. Like your life would be - better for my buying you, than my not buying you, if those were your only two options.
+
+Avram: If I was wrong about that - please speak up.
+
+Her: Helping you clear dungeons is fine, Master! | Is there a reason you wouldn't also have sex with me?
+
+Avram: It's - against the customs of my people.
+
+Avram: Are you hungry? Do you need a shower, or a doctor, or new underwear, or - or anything at all?
+
+Her: No, Master. | I was fed just yesterday.
+
+Avram: God. | How the hell do I say this? Do this?
+
+Avram: Um.
+
+Avram: I want you to have an experience that is... as comfortable as it can be under these circumstances.
+
+Avram: I don't mean that I'm ordering you to pretend to be happy.
+
+Avram: Just... please let me know, how we can do this, in a way that minimizes fear and uncertainty for you. | On the inside.
+
+Avram: A smile on the outside isn't what I'm looking for, not unless you mean it.
+
+Avram: And the *point* of this whole concept is to make things easier on you, which means, I'm *not* going to punish you if you don't get it right.
+
+@sprite her matter-of-fact right
+Her: Master's wishes... are my command? | I'm not sure I understand Master's wishes, though.
+
+Avram: That's fine.
+
+Avram: Next we're going to the finest restaurant in this town and eating a nice meal together, including any of your favorite foods that are on the menu regardless of what they cost.
+
+Avram: And, if it's okay with you, I'd rather you didn't say anything about how grateful you are for such kindly treatment from me.
+
+Her: Why not, Master? It's sort of an obvious thing to say.
+
+Avram: I mean, I *wish* I could say, it's okay for you to thank me if you want to. | But I won't actually be able to avoid looking horribly uncomfortable if you do.
+
+@clear all
+@bg bg_restaurant fade
+@cg cg_restaurant_plates fade
+@hold
+
+
+@bg bg_town_gate fade 2000
+@sprite avram discomfort left
+@sprite her cheer right
+@pause 2000
+
+Avram: So. What do I call you? What's your —
+
+Her: Whatever Master likes! A slave's name is her master's to give.
+
+Avram: No, I meant, the name you had before you —
+
+She taps a clawed finger on her collar, bright.
+
+Her: This says my name is #3,907,825. That's a lot of syllables for a dungeon, Master. You should pick something shorter.
+
+@sprite avram unreadable left
+Avram: ...
+
+@pause 1200
+
+Avram: ...I'll think on it.
+
+@flash black 1000
+@clear all
+
+
+@chapter 5 Teaching
+
+@bg bg_training_clearing fade
+@bgm bgm_montage
+@sprite avram neutral left
+@sprite her cheer right
+Even as they travel from the town to the local dungeon, his training begins.
+
+@clear all
+@montage begin 4
+@cg cg_grip_correction
+@cg cg_knockdown
+@cg cg_slime_lecture
+@cg cg_first_strike
+@montage end
+
+
+@bg bg_camp_night fade
+@clear all
+@tint night
+@sprite avram neutral left
+By the campfire one night, Avram flips through the pamphlet.
+
+@cg cg_pamphlet_rules fade
+@overlay inscription
+> RULE 5: Feed and equip a fighting slave as you would a soldier. Skimping on her meat is skimping on your own shield, and her armor is your investment.
+> RULE 6: Be polite, and don't ask your slave about their training. Slaves with bad trainers won't want to remember it, and good trainers will request their students not to reveal the master's proprietary techniques.
+> RULE 7: Establish a routine early. A slave who knows what each day holds serves better than one who must guess.
+@overlay end
+
+@bg bg_camp_night cut
+@sprite avram neutral left
+Avram closes the pamphlet, and heads to his bedroll.
+
+@hold
+
+@sprite her_camp matter-of-fact right
+She leans over the edge of his bedroll.
+
+Her: Master. You look cold.
+
+@sprite avram discomfort left
+Avram: I'll live.
+
+Her: Master, part of the reason your bedroll is cold is that it was made to hold two people. It's not meant for you to be alone.
+
+Avram: ...
+
+@pause 900
+
+Avram: ...Fine. Warmth only.
+
+@clear all
+@cg cg_bedroll_transparent fade
+@hold
+
+Her: Master, since we're sharing warmth anyway...?
+
+Avram: No.
+
+@cg cg_bedroll_close fade
+@hold
+@tint off
+
+
+@bg bg_guild_hall fade 2000
+@sprite avram wry left
+@sprite clerk cheerful-surprise right
+@pause 2000
+
+Clerk: Floor nine already?
+
+Avram: We've been lucky.
+
+@clear all
+@overlay status
+> [AVRAM — Wolf School Swordsmanship: → Lv 6 · Fire Magic: → Lv 2]
+@overlay end
+
+
+@chapter 6 Tavern
+
+@bg bg_tavern_tables fade
+@bgm bgm_tavern
+@sprite avram neutral left
+@sprite her_camp cheer right
+The tavern is crowded. Two adventurers at the next table, deep in cups.
+
+@sprite adventurer1 jeering right
+Adventurer 1: Oi. That your slave?
+
+Avram: She's with me.
+
+Adventurer 1: Heard about you two. The boy who buys a beauty like that and bunks like a monk.
+
+@sprite adventurer2 laughing right
+Adventurer 2: Maybe his sword arm's the only arm that works!
+
+Laughter.
+
+@sprite her_camp cheer right
+She works through a plate of her favorite food, unbothered.
+
+@sprite adventurer1 jeering right
+Adventurer 1: It's cruelty is what it is. Girl like that, and he makes her sleep *cold*.
+
+@sprite her_camp cheer right
+Her: I don't sleep cold. Master shares the bedroll.
+
+@sprite adventurer2 awed right
+Dead silence at the next table.
+
+@pause 900
+
+@sprite adventurer2 awed right
+Adventurer 2: Shares the bedroll. And *nothing?*
+
+@sprite adventurer1 awed right
+Adventurer 1: That's not a monk, that's a *saint*. Or a corpse.
+
+@sprite avram discomfort left
+Avram stands, putting coins on the table.
+
+Avram: We're done.
+
+@sprite her_camp cheer right
+She follows, grabbing one last skewer.
+
+Her: Goodnight, sers!
+
+@bg bg_town_gate fade
+@tint night
+@bgm bgm_wistful
+@sprite avram unreadable left
+@sprite her_camp matter-of-fact right
+@pause 700
+
+Her: Did I say something wrong, Master?
+
+Avram: No.
+
+Avram: Yes.
+
+Avram: We don't want to look anomalous.
+
+Her: Yes, Master.
+
+@sprite avram unreadable left
+Avram: ...
+
+Her: ...
+
+Avram: I wonder if it's my imagination that I can almost hear you thinking it.
+
+@tint off
+
+
+@bg bg_camp_night fade
+@bgm bgm_campfire
+@tint firelight
+@cg cg_campfire_shoulder fade
+Avram: You can go ahead and say what you were thinking. I feel like I can still hear it.
+
+@bg bg_camp_night cut
+@sprite avram wry left
+@sprite her_camp matter-of-fact right
+Her: We'd look less like an anomaly if you told them you were fucking me.
+
+@sprite avram neutral left
+Avram: I hate lying and somebody with superior Social Skills might catch me at it.
+
+Her: And there's an obvious solution to that too, so why don't you?
+
+Her: I don't understand. You have the rights to my body and I'd be happier too.
+
+@sprite avram discomfort left
+Avram: It's -- the customs of my people.
+
+@sprite her_camp cheer right
+Her: Their customs obviously allow people to fuck under some circumstances or you wouldn't be here, Master.
+
+Avram: ...It's a subject we could revisit later under different circumstances.
+
+Her: When, Master?
+
+@sprite avram neutral left
+Avram: When I've become strong enough to defeat you in a duel, easily, ten times out of ten.
+
+Her: Your mysterious people's customs say you have to conquer me fairly to have the right to take me?
+
+@sprite avram unreadable left
+Avram: Something like that.
+
+@tint off
+
+
+@chapter 7 Healer
+
+@bgm bgm_dungeon
+@clear all
+@bg bg_dungeon_mid fade
+A bad floor, deeper than they should have pushed in one day.
+
+@sfx sfx_sword
+@flash white 120
+@cg cg_mountain_troll fade
+A mountain troll's club bashes Avram's sword arm against the wall.
+
+@bg bg_dungeon_mid fade
+@sprite avram eyes-narrowed left
+@sprite her combat-flat right
+His magic blasts its head clean off, but his wound is not as fast to heal.
+
+@bg bg_forest_road fade
+His arm throbs as he walks the road. Neither of them are expert healers and it's the first serious wound either of them have taken.
+
+@bg bg_camp_night fade
+@tint dusk
+@bgm bgm_campfire
+By evening they've found a traveling caravan. Wagons, cookfires, hired guards. A healer.
+
+@sprite avram neutral left
+@sprite healer dry-neutral right
+For some reason the healer insists on talking to Avram's slave in private before agreeing to treat him.  |  Afterward the healer seems willing, though, in exchange for a few silver.
+
+Healer: Your slavegirl's not happy, young man. | She's trying to hide it, but not well enough to fool my level of social Skills.
+
+Avram: What's wrong?
+
+@sprite healer pointed right
+Healer: On my Skill's read? | She doesn't know where she stands with you, or why you treat her the way you do. | Or what's in store for her, or what her life's going to be like, or why you won't fuck her.
+
+Healer: I'm telling you this much, because my Skill judges it'll do her more good than harm for you to know.  Don't prove me wrong.
+
+@sprite avram unreadable left
+Avram: It isn't about her. There's a reason and it's a good one.
+
+@sprite healer dry-neutral right
+Healer: Like what?
+
+Avram: Private.
+
+@sprite healer pointed right
+Healer: Well if you won't tell even her, that sounds to her like you're planning to sell her off, hm? Not settling down for the long run with her.
+
+@sprite avram sad-distant left
+Avram: ...
+
+@sprite healer dry-neutral right
+The healer ties off the splint.
+
+@tint off
+
+
+@chapter 8 Together
+
+@bgm bgm_montage
+@clear all
+@montage begin 4
+@cg cg_back_to_back
+@cg cg_market_flinch
+@cg cg_night_practice
+@cg cg_stew_ritual
+@montage end
+
+@overlay status
+> [AVRAM — Wolf School Swordsmanship: Lv 6 → Lv 13 · Air Magic: Lv 3 · Fire Magic: Lv 5 · Light Magic: Lv 4 · Dark Magic: Lv 2]
+> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 14 → Lv 16]
+@overlay end
+
+@cg cg_dungeon_a fade
+@overlay floor 16
+@cg cg_dungeon_b fade
+@overlay floor 18
+@cg cg_dungeon_c fade
+@overlay floor 20
+@clear all
+
+
+@chapter 9 Ambush
+
+@bg bg_forest_road fade
+@bgm bgm_tension
+
+@cg cg_ambush_ring fade
+@hold
+
+@bg bg_forest_road cut
+@sprite avram eyes-narrowed left
+@sprite slavetaker easy-menace right
+
+Bandit: Easy now. Lay down weapons. | No need for anyone to die today.
+
+Avram: We've no wealth worth your risk.
+
+Bandit: We'll be the judge of that.
+
+@sprite her matter-of-fact right
+Her: Master. I don't think you should. | They have the air of slavetakers about them.
+
+@sprite slavetaker easy-menace right
+Slavetaker: Clever one, isn't she? | That's right. Our guild source says you're a prodigy with no backing, boy. | An easy, valuable drop.
+
+@sprite her combat-flat right
+@sprite avram sad-distant left
+Avram: Then I suppose you will be the first to die by my hand. | I hope you end up somewhere else, but not anywhere you'll be important.
+
+@clear all
+@sfx sfx_sword
+@flash white 120
+@cg cg_melee_flank cut
+@hold
+
+@cg cg_melee_press cut
+They fight to take him whole. Flats and hafts, hands trying to grab. A prodigy is worth nothing dead.
+
+@sfx sfx_sword
+@flash white 120
+@cg cg_first_kill cut
+Avram fights to kill.
+
+The first life he has ever taken. He does not pause.
+
+@sprite slavetaker snarl right slide
+Slavetaker: Code black!
+
+@flash white 120
+@cg cg_rod_raise cut
+Another ambusher's right hand comes up with a short black rod, leveled at Avram from the side —
+
+@sfx sfx_impact
+@cg cg_lance_hit cut
+@hold
+
+@cg cg_her_fallen cut
+@hold
+
+@sprite slavetaker snarl right slide
+Slavetaker: Stupid fucking bitch -- you were worth money too, you know! I'm going to make you regret that really fucking badly, before you finish dying --
+
+@clear all
+
+@bgm stop cut
+@sfx sfx_silence-cut
+@flash white 2000
+@cg cg_whiteout fade
+@hold
+
+@cg cg_carry_road fade
+@hold
+
+@bg bg_temple_altar fade
+@cg cg_altar_everything fade
+@hold
+
+@cg cg_vigil fade
+@hold
+
+Attendant: Got attached to the slave, huh.
+
+Avram: She saved my life. | I'd save hers whether I was attached to her or not.
+
+Attendant: Wow. | I'd heard about guys like you, but I'd never met one in real life before.
+
+Attendant: That poor, poor girl.
+
+@bg bg_temple_cot_awake fade
+@tint night
+@sprite avram hollow left
+She wakes, bandaged.
+
+Her: The slavetakers —
+
+Avram: Gone. Don't move.
+
+@pause 900
+
+Avram: I ordered you not to just fling yourself in front of me any time there's danger.
+
+Her: I didn't want them to take you away from me, Master. It wouldn't have been good for you.
+
+@sprite avram gentle left
+Avram: That's a little more pride in our relationship than you've shown before.
+
+Her: Pride is one of the customs of my people.
+
+@tint off
+
+
+@chapter 10 Rising
+
+@clear all
+@bgm bgm_dungeon
+
+@bg bg_boss_doors fade
+@sprite avram_late neutral left
+@sprite her matter-of-fact right
+
+Avram: Let me handle this one alone.
+
+Her: Yes, master.
+
+@clear all
+@cg cg_boss_bench fade
+@hold
+
+@cg cg_boss_fight cut
+@hold
+
+@sfx sfx_impact
+@flash white 200
+@cg cg_boss_win cut
+@hold
+
+@bg bg_boss_doors cut
+@sprite avram_late wry left
+@sprite her matter-of-fact right
+Her: Your strength has risen, Master.
+
+Avram: Getting there.
+
+@clear all
+@bg bg_guild_hall fade
+@bgm stop
+@sprite adventurer4 neutral left
+@sprite adventurer5 neutral right
+
+Adventurer 4: They say a Demon Lord may be rising, somewhere. Heard it from a bartender.
+
+Adventurer 5: I heard a Summoned Hero's been seen already. Over on the western continent.
+
+Adventurer 4: So very glad it's not here.
+
+@sprite adventurer5 awed right
+Adventurer 5: A *lady* Hero.
+
+@sprite adventurer6 awed left
+Adventurer 6: A pretty one?
+
+@sprite adventurer5 laughing right
+Adventurer 5: Aren't they always?
+
+@sprite adventurer4 neutral left
+Adventurer 4: That's not on any list of Hero signs I've heard about.
+
+@sprite adventurer5 laughing right
+Adventurer 5: And she's got a whole court of interesting men around herself, says the rumor, and she's not fucking any of them.
+
+@sprite adventurer4 jeering left
+Adventurer 4: That one was on the list.
+
+@sprite adventurer6 laughing left
+Adventurer 6: That's got to be the most frustrating thing in the world, ain't it?  The literal actual legendary Hero right there in camp with you and you're not getting it on.
+
+@clear all
+@sprite avram_late unreadable left
+Avram: ...
+
+@clear all
+@bg bg_market fade
+@sprite avram_late unreadable left
+@sprite her cheer right
+@pause 700
+New armor, to replace what the deep floors keep breaking. Fresh supplies.
+
+Then back to the dungeon, and down.
+
+@clear all
+@bg bg_dungeon_mid fade
+@overlay floor 26
+@bg bg_dungeon_deep cut
+@overlay floor 30
+@cg cg_dungeon_d fade
+@overlay floor 35
+
+@overlay status
+> [AVRAM — Wolf School Swordsmanship: Lv 13 → Lv 17 · Air Magic: Lv 6 · Fire Magic: Lv 8 · Earth Magic: Lv 2 · Water Magic: Lv 3 · Light Magic: Lv 7 · Dark Magic: Lv 5]
+> [SLAVE #3,907,825 — Wolf School Swordsmanship: Lv 16 → Lv 17]
+@overlay end
+@clear all
+
+
+@chapter 11 Stronger
+
+@bg bg_camp_night cut
+@bgm bgm_wistful
+@sprite avram_late hollow left
+@sprite her cheer right
+
+Avram: I think I'm stronger than you, now. Am I correct?
+
+Her: Definitely, Master. I haven't been helping you much, or not inside of dungeons. | Does this mean your people's customs finally allow you to take me now?
+
+Avram: This is a very serious question.
+
+Avram: If you lie about it, if you're pretending to be weaker than you are, to make me feel better, I could *die.*
+
+Avram: Am I strong enough to beat you easily in a real fight?
+
+@sprite her matter-of-fact right
+Her: I don't understand.
+
+Avram: That's fine. Just answer the question with the complete truth.
+
+Her: You seem strong enough to defeat me easily, Master, ten times out of ten. | Even taking into account that you'd be using your magic to make up for having less life-or-death combat experience.
+
+@sprite avram_late sad-distant left
+Avram: Okay. I didn't want to say this - before - it seemed cruel to say it before I was ready to do it.
+
+Avram: But I always planned, as soon I was strong enough to survive without your protection, to free you.
+
+Her: Oh... oh.
+
+@sprite her cheer right
+Her: I'm fine being your slave, Master. You don't have to -
+
+Avram: I really, really have to.
+
+@sprite her matter-of-fact right
+Her: Master, I - like the way things have been with you. You're very mighty and wise, and I'm proud to be your slave. | I would rather that things just stay as they are.
+
+@sprite avram_late gentle left
+Avram: If you still feel that way in a month, I wouldn't object to putting a collar on you.
+
+Avram: Not this collar, not a magical slave collar.
+
+Avram: It's - something of a sacred rite among my own people, when somebody steps forward to receive a collar from the one they love, that they name their master of their own will.
+
+Her: So just leave the collar on me, then?
+
+@sprite avram_late sad-distant left
+Avram: Yeah, see, the part where they step forward of their own will is important. This collar is *not that.* From my perspective it's a horrific blasphemy.
+
+@sprite her cheer right
+Her: Take the collar off, then put it back on me again right away?
+
+Avram: I'm not sure how a magical loyalty collar works, exactly. | I worry it might be influencing your thinking patterns, not just preventing overt disobedience.
+
+@sprite her matter-of-fact right
+Avram: Even if you say it's not doing that, you might just be saying what the collar programmed you to say. | Or thinking what you subconsciously believe I wish you'd think.
+
+Avram: Or for all I know, you could be saying these things to me now, because I haven't freed you *yet* and you're scared this is all a trap.
+
+Avram: Once you've been free for a month, I'll trust that you've had time to get used to freedom, and making your own decisions.
+
+Avram: If you still want to be my slave then, or just to kiss me, I won't say no.
+
+Her: Is this... truly your desire, Master? Truly?
+
+Avram: What I want has surprisingly little to do with any of this.
+
+Her: Was I not a good enough slave?
+
+Avram: This isn't about that and I think you have enough common sense to know it.
+
+Avram: Look, I'm sorry, I've tried to avoid giving you explicit orders, but - this isn't optional.
+
+Avram: Come here and stand still while I remove your collar.
+
+@clear all
+@cg cg_collar_removal fade
+@hold
+
+@bg bg_camp_night cut
+@sprite her_free_armored still right
+
+@sprite avram_late hollow left
+
+@hold
+
+Avram: You can take some time to think, if you need to.
+
+@hold
+
+Avram: I'll be around if you want to talk to me.
+
+Avram: If you need to - say anything to me.
+
+@clear left
+@hold
+@bgm stop
+
+
+@chapter 12 Truth
+
+@cg cg_cliff_her fade
+@bgm bgm_lament
+@hold
+
+@cg cg_cliff_two cut
+
+Avram: Sorry for - interrupting you - but I felt you climb up here. My magical senses extend a long ways, now.
+
+@hold
+
+Avram: It's a funny thing, I have all sorts of guesses about what you might say, and they all terrify me, and I need to hear it anyways.
+
+@hold
+
+Avram: You can slap me for having the temerity to say this, if you want to. | But even so, I'm sorry.
+
+@hold
+
+Her: You weren't so bad. | It's not a lie that you were the best master I've ever had.
+
+Her: If it had only ever been you, I might be able to - live with it.
+
+Her: The collar punished me. Like a centipede crawling in my brain and biting me when I thought anything it didn't like.
+
+Her: Every time I thought how much I hated it.
+
+Her: Every time I thought how much I didn't want to keep living.
+
+Her: Every time I resented being punished.
+
+Her: They left me in a cell to scream for weeks while that part worked itself out. Some people in the cells just died that way.
+
+Her: I managed to stop thinking the bad thoughts, and then things were better.
+
+Her: I just kept going and never had to think at all about how much I hated it.
+
+@hold
+
+Avram: I was... afraid... it was, it was, it was something like that...
+
+Her: And now you took off the collar and I can't. Can't stop. Can't stop thinking about it.
+
+Avram: Do you - I want to say this, but, I don't know if I have your permission to say it -
+
+Avram:  Do you know the reason I did it, or my excuse, for making you fight with me and protect me?  Instead of freeing you right after I bought you?
+
+Her: If it's what I think it is, I guessed the first week after you bought me. | I didn't say it because it seemed like you didn't want me to, and Master's wants are absolute.
+
+Avram: I'm the Summoned Hero.
+
+Her: No, really? You seemed like such an inhabitant of this planet.
+
+Avram: I'm the Hero and after I've defeated the Demon Lord, when I'm strong enough, I'm going to wipe every slave collar and every slave merchant off the face of this world.
+
+Avram: And then, somehow, I don't know how, arrange it so the slave trade doesn't just come back a hundred years later. | That's going to be the hard part, even if I can do the rest.
+
+@hold
+
+Avram: The nobles know, from what I heard. | They know the Summoned Heroes sometimes don't like what they see when they get here.
+
+Avram: I suspect the nobles of encouraging Heroes to confront Demon Lords too soon, trying behind the scenes for a mutual kill.
+
+Avram: I couldn't trust anyone. | Had to grow in secret. | Needed protection while I learned to fight.
+
+Avram: I couldn't think of any safer way than a slave with a magical loyalty collar. So I could free all the slaves later.
+
+Avram: I, I figured, that awful slimeball would have bought you, if I didn't, and that made it, not okay, but a net benefit for you.
+
+Avram: And I tried to treat you the best I possibly could. But I needed somebody to protect me, until I was strong enough, and I couldn't trust anyone -
+
+Her: Yeah, I get it.
+
+Her: You know, I do wish you'd used my night services.
+
+Her: The collar, the only kind of thinking it allows, I kept worrying that I was doing something wrong. | That I wasn't good enough for you.
+
+Her: If you'd used me and I hadn't needed to worry about that part, it really would have been - as pleasant as it ever gets while you're a slave.
+
+Avram: I'm sorry, but - I don't regret that decision. | Making love to you and finding out the truth afterwards would have been horrible beyond imagining. It would have scarred me forever.
+
+Avram: Even worse than this is going to, I mean.
+
+Avram: I - I know I have some trouble with self-forgiveness, but - even I don't think I deserved that. | If I had to do it all over again, I still wouldn't have sex with you.
+
+Her: I see. | I forgive you, then.
+
+@hold
+
+Avram: What's your real name? Not the nickname I gave you or that slave ID code, your name from -
+
+Her: *Stop!* | Stop. | Don't remind me of that. | It's - that was one of the worst parts of the nightmare at the beginning, being punished, never to think of my old name -
+
+Avram: Never mind. I'm sorry.
+
+@hold
+
+Her: I should - I should go very soon. This is getting harder and harder.
+
+Avram: I don't suppose you'd want to stay, not to defeat the Demon Lord, but to wipe out the entire slave trade afterwards?
+
+Her: No. | I can't handle it. Can't put the collar back on, even if that made me able to handle it. | Not even to free all the other slaves. I'm sorry.
+
+Avram: It's not your fault. I'll free them for you.
+
+Avram: Is there - is, is there, anything else you want to say to me, or ask of me?
+
+@hold
+
+Her: I don't understand you, Summoned Hero. I never did.
+
+Her: You seemed so sad and guilty and I never understood why.
+
+Her: You bought me away from a bidder who would have been much worse. | You gave me the kindest treatment you could. | You let me go, when you were finished.
+
+Her: Most people in this world are not that nice. | I'm not sure what being nicer could look like.
+
+Avram: The way my people see it, you would have the right to demand that I did more. Did better.
+
+@sprite her_free final-gentle center
+Her: You keep saying that the standards of behavior are different where you came from.
+
+Her: I don't know what the laws of your world were like. | I imagine they must have been very harsh, in some ways, even if they were kindly in others.
+
+Her: But *I* believe that you - | what you did, what you're going to do -
+
+Her: Stop thinking that you're a horrible person, okay, Avram? Because you're not.
+
+Her: That's my wish to you. Grant it.
+
+@small
+Avram: Okay.
+
+@clear center
+
+@slow
+@autoplay 1000
+Her: Goodbye, Master.
+
+@clear all
+
+@cg cg_cliff_two fade
+@hold
+
+@cg cg_cliff_edge fade
+@autoplay 3000
+@hold
+
+@bgm stop
+@cg cg_cliff_alone cut
+@hold
+
+@cg cg_cliff_step fade
+@hold
+
+@cg cg_float_down fade
+@hold
+
+@cg cg_cliff_base_aftermath fade
+@hold
+
+@cg cg_digging fade
+@hold
+
+@cg cg_sick fade
+@hold
+
+@cg cg_digging fade
+@hold
+
+@cg cg_grave_open fade
+@hold
+
+@cg cg_grave_filled fade
+@hold
+
+@cg cg_gravestone_conjure fade
+@hold
+
+
+@chapter 13 Change
+
+@bgm bgm_void
+@autoplay off
+@voiceover on
+
+At the poles of the world, there are two dungeon entrances that never fade, no matter how much time passes without challengers.
+
+Down and down go the stairs beyond, through level after level of dungeon, unto the very center of the World.
+
+@voiceover off
+@cg cg_skagganauk_dragon fade
+
+@voiceover bubble
+
+There upon a mountain of treasure inconceivable, lies the last boss of the last dungeon, |I, |myself, |the Void Dragon Skagganauk, |where I wait and watch and guard the last key.
+
+Many things do I know, and one of them is this:
+
+@fadeout
+@pause 850
+@voiceover on
+
+Always two they are, when they come to this place from elsewhere.
+
+When the world has stayed in its course too long, |when the boundaries of countries have stayed set, |when there are no more great discoveries in the academies of magic, |they come.
+
+And the dance of Summoned Hero and Demon Lord begins.
+
+@voiceover off
+@clear all
+@cg cg_forest_walk fade
+@hold
+@voiceover on
+
+By whatever machinery brings the two here, it is somehow assured:
+
+Of the two outsiders, there is one who chooses to protect the things that are, | and one who desires to change them.
+
+@voiceover off
+@clear all
+@cg cg_tombstone fade
+@hold
+
+@cg cg_forest_walk fade
+@hold
+
+@flash white 1400 3300
+@sfx sfx_silence-cut
+@cg cg_burning_walk fade
+@voiceover bubble
+
+I wish you the best of luck, Demon Lord. May the change you bring, be at last the truth that this world is forever seeking. |[]
+
+@voiceover off
