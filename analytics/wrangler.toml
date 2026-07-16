@@ -1,0 +1,13 @@
+name = "ethy-analytics"
+main = "worker.js"
+
+# Bump this to a recent date if you redeploy; it pins the Workers runtime
+# behavior so future runtime changes don't silently alter this Worker.
+compatibility_date = "2026-07-01"
+
+# Workers Analytics Engine dataset. The binding name (READER_EVENTS) is what
+# the Worker code references as env.READER_EVENTS. The `dataset` string is the
+# table name you SELECT ... FROM in the SQL API (see queries.md).
+[[analytics_engine_datasets]]
+binding = "READER_EVENTS"
+dataset = "reader_events"

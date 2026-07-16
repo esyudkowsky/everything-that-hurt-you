@@ -1,0 +1,4 @@
+{
+  "_comment": "Media CDN base for the production manifest. Set base to the R2 public bucket URL (r2.dev) or a future custom domain, WITH a trailing slash. While base is empty, build_media.js copies/hashes media into /dist-media but does NOT emit assets/manifest.prod.json (so a broken, base-less prod manifest can never ship). See HUMAN.md.",
+  "base": "https://pub-fd4147a14d9c47f9859b2c2f1b0bc8b3.r2.dev/"
+}

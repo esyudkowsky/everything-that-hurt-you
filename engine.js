@@ -178,6 +178,20 @@ if (typeof document !== "undefined") (function () {
   let MANIFEST = null;
   let SCRIPT = null;
 
+  /* ===== Asset base (media CDN) =====================================
+     Set at boot from the loaded manifest's "base" field. The production
+     manifest (assets/manifest.prod.json, emitted by build_media.js) points it
+     at the R2 bucket URL; the dev manifest has no base. Empty string = plain
+     relative paths = current/local-dev behavior (see assetPath). */
+  let ASSET_BASE = "";
+
+  /* ===== Analytics endpoint ========================================
+     Paste the deployed Cloudflare Worker URL (WITH /beacon) here after
+     deploying the Worker — see HUMAN.md and analytics/CLIENT-SPEC.md. While
+     this is the empty string, ALL analytics is disabled and the site behaves
+     exactly as it does today. */
+  const ANALYTICS_URL = "https://ethy-analytics.everything-that-hurt-you.workers.dev/beacon";
+
   let pc = 0;
   let maxPc = 0;
   let finished = false;
@@ -238,7 +252,10 @@ if (typeof document !== "undefined") (function () {
 
   function assetPath(kind, id) {
     const sect = MANIFEST[kind];
-    return (sect && sect[id]) || null;
+    const p = (sect && sect[id]) || null;
+    if (!p) return null;
+    // Prefix the CDN base when one is set (production); plain relative otherwise.
+    return ASSET_BASE ? ASSET_BASE + p : p;
   }
   function spritePath(char, expr) {
     return assetPath("sprites", char + "." + expr);
@@ -445,25 +462,45 @@ if (typeof document !== "undefined") (function () {
   function showTextbox(speaker) {
     $("textbox").style.display = "";
     const tagged = !!speaker;
-    $("plate").style.display = tagged ? "" : "none";
+    // #plate (PNG tab) is retired — the nameplate is now the CSS-styled #namelabel
     $("namelabel").style.display = tagged ? "" : "none";
     $("namelabel").textContent = tagged ? speaker : "";
   }
   function hideTextbox() {
     $("textbox").style.display = "none";
+    curDialog = null; // nothing to re-fit while the box is hidden
+    if (quickbarOpen) closeQuickbar();
   }
 
   /* long paragraphs must fit the box: pre-measure at full text and step the
      font size down until nothing clips */
   const DIALOG_SIZES = ["3.4cqh", "3.0cqh", "2.7cqh", "2.4cqh", "2.15cqh", "1.95cqh"];
+  // The line currently in #dialog, kept so the font can be re-fitted if the stage
+  // resizes (mobile URL-bar show/hide, rotation, window resize). {text, small}
+  // where text is the FULL line (mid-line "|" pauses collapsed to spaces): the fit
+  // is always measured against the whole line, never the partially-typed prefix.
+  let curDialog = null;
   function fitDialogFont(text) {
     const node = $("dialog");
+    // measure against a plain copy of the full text without disturbing whatever is
+    // currently rendered (the typewriter may be mid-line); restore it afterwards.
+    const saved = node.innerHTML;
     node.textContent = text;
+    let chosen = DIALOG_SIZES[DIALOG_SIZES.length - 1];
     for (const size of DIALOG_SIZES) {
       node.style.fontSize = size;
-      if (node.scrollHeight <= node.clientHeight + 2) break;
+      if (node.scrollHeight <= node.clientHeight + 2) { chosen = size; break; }
     }
-    node.textContent = "";
+    node.innerHTML = saved;
+    node.style.fontSize = chosen;
+  }
+  // Re-fit the current line's font to the stage's current size. Called by the
+  // stage ResizeObserver so a line committed at one viewport size never ends up
+  // over- or under-sized (and clipping below the box) after a resize/rotation.
+  function refitDialog() {
+    if (!curDialog || $("textbox").style.display === "none") return;
+    if (curDialog.small) { $("dialog").style.fontSize = "1.9cqh"; return; }
+    fitDialogFont(curDialog.text);
   }
 
   function startTyper(text, italicAll, small, slow) {
@@ -471,7 +508,9 @@ if (typeof document !== "undefined") (function () {
     node.innerHTML = "";
     // a "|" in the text is a mid-line pause: type up to it, wait for a click,
     // then continue. Split into segments; the box is fitted to the full text.
-    fitDialogFont(text.replace(/\s*\|\s*/g, " "));
+    const fullText = text.replace(/\s*\|\s*/g, " ");
+    curDialog = { text: fullText, small: !!small }; // remembered for resize re-fits
+    fitDialogFont(fullText);
     node.classList.toggle("small-line", !!small);
     if (small) node.style.fontSize = "1.9cqh";
     const segments = text.split("|").map((s) => {
@@ -1014,6 +1053,7 @@ if (typeof document !== "undefined") (function () {
         SAVE_KEY + "=" + encodeURIComponent(data) +
         "; max-age=31536000; path=/; SameSite=Lax";
     } catch (e) {}
+    analyticsProgress(); // start / chapter beacons (deduped, fail-silent, gated)
   }
   function loadSave() {
     let a = null, b = null;
@@ -1024,6 +1064,104 @@ if (typeof document !== "undefined") (function () {
     } catch (e) {}
     if (a && b) return (a.ts || 0) >= (b.ts || 0) ? a : b;
     return a || b;
+  }
+
+  /* ---------- analytics (reader-progress beacon) ----------
+     Implements analytics/CLIENT-SPEC.md verbatim. Anonymous per-browser UUID,
+     a five-field payload, fully fail-silent, and OFF unless ANALYTICS_URL is
+     set — and never on localhost/127.0.0.1 unless a debug flag is present.
+     The localStorage keys below (ethy_rid / ethy_started / ethy_ch_sent /
+     ethy_finished / ethy_exit_pc / ethy_debug) do NOT collide with the engine's
+     save/settings/hint keys (ethy_save / ethy_settings / ethy_hinted). */
+  let _rid = null;
+  function analyticsDebug() {
+    try {
+      if (/[?&]ethy_debug=1(?:&|$)/.test(location.search)) {
+        try { localStorage.setItem("ethy_debug", "1"); } catch (e) {}
+        return true;
+      }
+      return localStorage.getItem("ethy_debug") === "1";
+    } catch (e) { return false; }
+  }
+  function analyticsEnabled() {
+    if (!ANALYTICS_URL) return false;
+    const h = location.hostname;
+    if ((h === "localhost" || h === "127.0.0.1") && !analyticsDebug()) return false;
+    return true;
+  }
+  function analyticsRid() {
+    if (_rid) return _rid;
+    try {
+      _rid = localStorage.getItem("ethy_rid");
+      if (!_rid) { _rid = crypto.randomUUID(); localStorage.setItem("ethy_rid", _rid); }
+    } catch (e) { if (!_rid) _rid = "anon"; }
+    return _rid;
+  }
+  function analyticsBody(ev, pcVal) {
+    return JSON.stringify({
+      rid: analyticsRid(),
+      ev: ev,
+      ch: st.chapter | 0,
+      pc: pcVal | 0,
+      fin: finished ? 1 : 0,
+    });
+  }
+  // start / chapter / finish: fire-and-forget fetch, keepalive, fail-silent.
+  function analyticsFetch(ev, pcVal) {
+    if (!analyticsEnabled()) return;
+    try {
+      fetch(ANALYTICS_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: analyticsBody(ev, pcVal),
+        keepalive: true,
+      }).catch(() => {});
+    } catch (e) {}
+  }
+  // exit: sendBeacon (text/plain, no preflight, survives unload), fail-silent.
+  function analyticsBeacon(ev, pcVal) {
+    if (!analyticsEnabled()) return;
+    try { navigator.sendBeacon(ANALYTICS_URL, analyticsBody(ev, pcVal)); } catch (e) {}
+  }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  // Called on every displayed beat (from save()): fires "start" once per reader
+  // ever, and "chapter" once per new chapter number reached. Both deduped via
+  // localStorage so a reload / resume never re-sends.
+  function analyticsProgress() {
+    if (!analyticsEnabled()) return;
+    if (!lsGet("ethy_started")) { analyticsFetch("start", pc); lsSet("ethy_started", "1"); }
+    const ch = st.chapter | 0;
+    if (ch > 0) { // chapter 0 = title / pre-chapter prologue; not a story chapter
+      let sent = [];
+      try { sent = JSON.parse(lsGet("ethy_ch_sent") || "[]") || []; } catch (e) { sent = []; }
+      if (!Array.isArray(sent)) sent = [];
+      if (sent.indexOf(ch) === -1) {
+        analyticsFetch("chapter", pc);
+        sent.push(ch);
+        lsSet("ethy_ch_sent", JSON.stringify(sent));
+      }
+    }
+  }
+  // "finish": once, when the end card shows. Called from endCard() while pc is
+  // still at the end of the script (before it is reset to 0).
+  function analyticsFinish() {
+    if (!analyticsEnabled()) return;
+    if (lsGet("ethy_finished")) return;
+    analyticsFetch("finish", pc);
+    lsSet("ethy_finished", "1");
+  }
+  // "exit": sendBeacon on pagehide / hidden. Throttled — only sends if the
+  // furthest pc reached exceeds the last pc an exit was sent for, so idle
+  // tab-switches with no reading progress send nothing.
+  function analyticsExit() {
+    if (!analyticsEnabled()) return;
+    const cur = Math.max(maxPc, pc);
+    let last = parseInt(lsGet("ethy_exit_pc") || "-1", 10);
+    if (isNaN(last)) last = -1;
+    if (cur <= last) return;
+    analyticsBeacon("exit", cur);
+    lsSet("ethy_exit_pc", String(cur));
   }
 
   /* ---------- execution ---------- */
@@ -1486,11 +1624,10 @@ if (typeof document !== "undefined") (function () {
     const sv = loadSave();
     $("btn-continue").style.display = sv && sv.pc > 0 && !sv.fin ? "" : "none";
     $("btn-chapters-title").style.display = sv && sv.max > 0 ? "" : "none";
-    // After finishing, the content warning becomes a re-read / no-spoilers note
-    // (two centered lines).
+    // After finishing, the content warning becomes a no-spoilers note.
     if (sv && sv.fin)
       $("title-notice").innerHTML =
-        "This story benefits from being read twice.<br>Please do not spoil it for others.";
+        "Please do not spoil this story for other readers.";
     else
       $("title-notice").innerHTML =
         "This is a grownup story. Content may be disturbing to some viewers." +
@@ -1526,6 +1663,7 @@ if (typeof document !== "undefined") (function () {
     setVoiceover("off", true); // clear Skagganauk's last line instantly as FIN appears
     finished = true;
     cameFromFinale = true; // returning to title from here keeps Skagganauk's music
+    analyticsFinish(); // fire the finish beacon while pc is still at the end
     pc = 0;
     save();
     mode = "menu";
@@ -1628,6 +1766,7 @@ if (typeof document !== "undefined") (function () {
   }
 
   function openPause() {
+    if (quickbarOpen) closeQuickbar();
     mode = "menu";
     $("pausemenu").style.display = "";
     // reassure mid-story readers that leaving for the title won't lose their place
@@ -1650,7 +1789,9 @@ if (typeof document !== "undefined") (function () {
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/\*([^*]+)\*/g, "<em>$1</em>");                      // *emphasis* -> italics
   }
-  function openHistory(fromTitle) {
+  // src: "pause" (from the pause menu) | "play" (from the in-story quick menu).
+  // Opening the backlog must never advance the story (pc is untouched here).
+  function openHistory(src) {
     const list = $("history-list");
     list.innerHTML = "";
     let vo = "off";
@@ -1680,7 +1821,7 @@ if (typeof document !== "undefined") (function () {
       empty.textContent = "No dialogue yet.";
       list.appendChild(empty);
     }
-    $("historymenu").dataset.from = fromTitle ? "title" : "pause";
+    $("historymenu").dataset.from = src || "pause";
     $("pausemenu").style.display = "none";
     $("historymenu").style.display = "";
     mode = "menu";
@@ -1688,8 +1829,45 @@ if (typeof document !== "undefined") (function () {
   }
   function closeHistory() {
     $("historymenu").style.display = "none";
-    openPause();
+    if ($("historymenu").dataset.from === "play") {
+      // opened from the in-story quick menu: return straight to reading
+      mode = "play";
+      updateChapterIndicator();
+    } else {
+      openPause();
+    }
   }
+
+  /* ---------- fullscreen + in-story quick menu ---------- */
+  function fullscreenSupported() {
+    const el = document.documentElement;
+    return !!(el.requestFullscreen || el.webkitRequestFullscreen);
+  }
+  function isFullscreen() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement);
+  }
+  function toggleFullscreen() {
+    const el = document.documentElement, d = document;
+    if (!isFullscreen()) {
+      (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+    } else {
+      (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+    }
+  }
+
+  // A single unobtrusive expander at the right end of the textbox opens a compact
+  // strip: ◂ Back · History · ⛶ Fullscreen · ≡ Menu. Collapsed by default; an
+  // outside click collapses it. It never advances the story.
+  let quickbarOpen = false;
+  function openQuickbar() {
+    quickbarOpen = true;
+    $("quickbar").classList.add("open");
+  }
+  function closeQuickbar() {
+    quickbarOpen = false;
+    $("quickbar").classList.remove("open");
+  }
+  function toggleQuickbar() { quickbarOpen ? closeQuickbar() : openQuickbar(); }
 
   /* ---------- first-time "click to continue" hint ---------- */
   const HINT_KEY = "ethy_hinted";
@@ -1855,6 +2033,7 @@ if (typeof document !== "undefined") (function () {
   function onAdvanceInput(e) {
     if (mode !== "play") return;
     e.preventDefault();
+    if (quickbarOpen) closeQuickbar();       // any advance also collapses the quick strip
     if (chapFading) return;                  // ignore input mid chapter transition
     if (shiftPeek) return;                   // Shift-hold peek: don't advance
     // Caps-Lock screenshot hide is sticky until the reader advances — this input
@@ -1884,11 +2063,42 @@ if (typeof document !== "undefined") (function () {
     window.addEventListener("pointerdown", unlockAudio, { capture: true });
     window.addEventListener("keydown", unlockAudio, { capture: true });
 
+    // Re-fit the current dialogue line whenever the stage box changes size (mobile
+    // URL-bar show/hide, device rotation, window resize). The fit is scale-invariant
+    // while the stage stays a clean 16:9 box, but this guarantees correctness through
+    // any transient where it isn't, so a line can never end up clipped below the box.
+    if (window.ResizeObserver) {
+      let roPending = false;
+      const ro = new ResizeObserver(() => {
+        if (roPending) return;
+        roPending = true;
+        requestAnimationFrame(() => { roPending = false; refitDialog(); });
+      });
+      ro.observe($("stage"));
+    }
+
     $("stage").addEventListener("click", (e) => {
       if (e.target.closest("#menubtn") || e.target.closest("#musicbtn") ||
           e.target.closest("#chapter-indicator") || e.target.closest(".menu")) return;
+      // an open quick-menu strip: an outside click just collapses it (no advance)
+      if (quickbarOpen && !e.target.closest("#quickbar")) { closeQuickbar(); return; }
+      if (e.target.closest("#quickbar")) return;
       onAdvanceInput(e);
     });
+
+    // Mousewheel navigation (Ren'Py-like): wheel-down advances (like a click),
+    // wheel-up steps back one displayed line via the rollback/seek machinery.
+    // Throttled so a fast flick steps several lines quickly but seeks never race.
+    let lastWheel = 0;
+    $("stage").addEventListener("wheel", (e) => {
+      if (mode !== "play" || chapFading || uiHidden) return; // ignore on title/menus/overlays-that-hide
+      e.preventDefault();
+      const now = performance.now();
+      if (now - lastWheel < 55) return; // coalesce rapid deltas (trackpads fire many)
+      lastWheel = now;
+      if (e.deltaY < 0) rollBack();        // wheel up = back one line (seek replay)
+      else if (e.deltaY > 0) rollForward(); // wheel down = advance / step forward
+    }, { passive: false });
     $("musicbtn").onclick = (e) => { e.stopPropagation(); toggleMusic(); };
     // clicking the chapter indicator opens the chapter list (progress + jump)
     $("chapter-indicator").onclick = (e) => {
@@ -1933,6 +2143,12 @@ if (typeof document !== "undefined") (function () {
     });
     window.addEventListener("blur", () => { capsSticky = false; showUI(); });
     window.addEventListener("blur", stopSkip);
+    // Analytics exit beacon: sendBeacon on pagehide, and on visibilitychange when
+    // the page becomes hidden (covers mobile / tab-close where fetch won't run).
+    window.addEventListener("pagehide", analyticsExit);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") analyticsExit();
+    });
     $("menubtn").onclick = (e) => {
       e.stopPropagation();
       // on the title the hamburger opens Settings; in play it opens the pause menu
@@ -1954,11 +2170,24 @@ if (typeof document !== "undefined") (function () {
     // the in-app doc viewer failed to load it.
     $("btn-scriptview-back").onclick = closeScriptView;
     $("btn-resume").onclick = closePause;
+    // Fullscreen is offered in both the pause menu and the quick strip; hide the
+    // controls entirely where the API is unsupported (e.g. iPhone Safari).
+    if (!fullscreenSupported()) {
+      $("btn-fullscreen").style.display = "none";
+      $("qb-fullscreen").style.display = "none";
+    }
+    $("btn-fullscreen").onclick = () => { toggleFullscreen(); };
+    // quick-menu strip (in-story)
+    $("quickbar-toggle").onclick = (e) => { e.stopPropagation(); toggleQuickbar(); };
+    $("qb-back").onclick = (e) => { e.stopPropagation(); closeQuickbar(); rollBack(); };
+    $("qb-history").onclick = (e) => { e.stopPropagation(); closeQuickbar(); openHistory("play"); };
+    $("qb-fullscreen").onclick = (e) => { e.stopPropagation(); closeQuickbar(); toggleFullscreen(); };
+    $("qb-menu").onclick = (e) => { e.stopPropagation(); closeQuickbar(); openPause(); };
     $("btn-chapters").onclick = () => {
       $("pausemenu").style.display = "none";
       openChapters(false);
     };
-    $("btn-history").onclick = () => openHistory(false);
+    $("btn-history").onclick = () => openHistory("pause");
     $("btn-history-back").onclick = closeHistory;
     $("btn-settings").onclick = () => openSettings(false);
     $("btn-settings-back").onclick = closeSettings;
@@ -2013,13 +2242,40 @@ if (typeof document !== "undefined") (function () {
     if (!r.ok) throw new Error(url + ": " + r.status);
     return r.text();
   }
+  // Fetch the production manifest if present, else null (dev). A 404 (no prod
+  // manifest checked in — the normal local-dev case) is NOT an error.
+  async function fetchProdManifest() {
+    try { return await fetchText("assets/manifest.prod.json"); }
+    catch (e) { return null; }
+  }
+  // Prod fail-loud guard: with a CDN base set, load one manifest-referenced
+  // image (through assetPath, so the base is applied) and confirm it resolves.
+  // A wrong base / un-uploaded media makes onerror fire fast -> boot-error, so
+  // the deploy fails visibly instead of half-loading placeholders. A slow load
+  // (timeout) is assumed OK so real readers on slow links aren't blocked.
+  function preflightMedia() {
+    return new Promise((resolve) => {
+      const bgIds = Object.keys(MANIFEST.bg || {});
+      const probe = assetPath("ui", "ui_title") ||
+                    (bgIds.length ? assetPath("bg", bgIds[0]) : null);
+      if (!probe) { resolve(true); return; }
+      let done = false;
+      const finish = (v) => { if (!done) { done = true; resolve(v); } };
+      const img = new Image();
+      img.onload = () => finish(true);
+      img.onerror = () => finish(false);
+      img.src = probe;
+      setTimeout(() => finish(true), 8000);
+    });
+  }
 
   async function boot() {
+    let usingProd = false;
     try {
-      const [mtext, stext] = await Promise.all([
-        fetchText("assets/manifest.json"),
-        fetchText("script.txt"),
-      ]);
+      const stext = await fetchText("script.txt");
+      const ptext = await fetchProdManifest();
+      const mtext = ptext != null ? ptext : await fetchText("assets/manifest.json");
+      usingProd = ptext != null;
       MANIFEST = JSON.parse(mtext);
       SCRIPT = parseScript(stext);
     } catch (err) {
@@ -2028,6 +2284,30 @@ if (typeof document !== "undefined") (function () {
         "Could not load script/assets (" + err.message + "). " +
         "If opening from file://, serve the folder instead, e.g.: python3 -m http.server";
       return;
+    }
+    // Asset base: the production manifest carries it; the dev manifest does not.
+    ASSET_BASE = (MANIFEST && typeof MANIFEST.base === "string") ? MANIFEST.base : "";
+    // Fail loudly on a broken production deploy rather than half-loading:
+    //  - a prod manifest with no base is a misconfiguration (its hashed paths
+    //    are NOT on Vercel, only on the CDN), and
+    //  - a set base whose media doesn't resolve (wrong URL / not uploaded).
+    if (usingProd) {
+      if (!ASSET_BASE) {
+        $("boot-error").style.display = "";
+        $("boot-error").textContent =
+          "Production manifest (assets/manifest.prod.json) has no \"base\". " +
+          "Set base in claude-notes/tools/media.config.json and re-run build_media.js, " +
+          "or remove manifest.prod.json to use the local dev assets.";
+        return;
+      }
+      const ok = await preflightMedia();
+      if (!ok) {
+        $("boot-error").style.display = "";
+        $("boot-error").textContent =
+          "Media did not load from the configured CDN base (" + ASSET_BASE + "). " +
+          "Check that dist-media was uploaded to the bucket and the base URL is correct.";
+        return;
+      }
     }
     const sv = loadSave();
     if (sv) { maxPc = sv.max || 0; finished = !!sv.fin; }

@@ -111,12 +111,24 @@
     position: absolute; inset: 0;
     background-size: 100% 100%; background-repeat: no-repeat;
   }
+  /* The baked PNG plate tab is retired: it was a fixed fraction of the 16:9 stage
+     drawn OVER the textbox, so its connector strip overhung the box top border at
+     every aspect — glaring at wide/short viewports where the textbox is a thin
+     strip. The nameplate is now a CSS box that hugs its text and can never overhang. */
+  #plate { display: none; }
   #namelabel {
     position: absolute;
-    left: 4.74%; top: 67.2%; width: 17.1%; height: 7.1%;
-    display: flex; align-items: center; justify-content: center;
+    left: 4.6%; bottom: 26.9%;         /* bottom edge rests on the textbox's top border */
+    max-width: 42%;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.5cqh 2.1cqh;
     font-family: var(--serif); font-size: 2.9cqh; color: #e8ddc4;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.04em; white-space: nowrap;
+    background: #201f27;               /* dark fill, matching the textbox interior */
+    border: 0.28cqh solid var(--gold);
+    border-bottom: none;               /* open bottom so it reads as a tab on the box */
+    border-radius: 0.8cqh 0.8cqh 0 0;
+    box-shadow: 0 -0.2cqh 0.9cqh #0006;
   }
   #dialog {
     position: absolute;
@@ -133,6 +145,34 @@
     animation: bob 1.1s ease-in-out infinite;
   }
   @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(0.5cqh);} }
+
+  /* ---- in-story quick-menu strip ----
+     One unobtrusive expander at the top-right of the textbox opens a compact strip
+     (◂ Back · History · ⛶ Fullscreen · ≡ Menu). Collapsed by default; sits on the
+     textbox's top border, clear of the dialogue text below. */
+  #quickbar {
+    position: absolute; right: 2.5%; bottom: 26.9%;
+    display: flex; align-items: center; gap: 0.6cqh;
+    pointer-events: auto; z-index: 6;
+  }
+  #quickbar-strip { display: none; align-items: center; gap: 0.6cqh; }
+  #quickbar.open #quickbar-strip { display: flex; }
+  #quickbar-toggle, #quickbar .qb-item {
+    font-family: var(--serif); color: #cfc7b4;
+    background: #000000cc; border: 1px solid #c9a75a55; border-radius: 0.7cqh;
+    cursor: pointer; line-height: 1;
+    transition: background .15s, border-color .15s, color .15s, opacity .2s;
+  }
+  #quickbar-toggle {
+    width: 5cqh; height: 3.4cqh; font-size: 2.4cqh; opacity: 0.5;
+  }
+  #quickbar-toggle:hover { opacity: 1; border-color: var(--gold); }
+  #quickbar.open #quickbar-toggle { opacity: 1; border-color: var(--gold); }
+  #quickbar .qb-item {
+    height: 3.4cqh; padding: 0 1.3cqh; font-size: 2.05cqh;
+    display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+  }
+  #quickbar .qb-item:hover { background: #23232fee; border-color: var(--gold); color: #f0ece2; }
 
   /* ---- voiceover (Skagganauk) ----
      Rev. 5 (author 2026-07-06): Cinzel small-caps in a jagged, eldritch dialogue
@@ -569,6 +609,16 @@
       <div id="namelabel"></div>
       <div id="dialog"></div>
       <div id="adv">▾</div>
+      <!-- unobtrusive quick-menu expander at the right end of the textbox -->
+      <div id="quickbar">
+        <div id="quickbar-strip">
+          <button class="qb-item" id="qb-back" title="Back one line">&#9666;</button>
+          <button class="qb-item" id="qb-history" title="History">History</button>
+          <button class="qb-item" id="qb-fullscreen" title="Fullscreen">&#9974;</button>
+          <button class="qb-item" id="qb-menu" title="Menu">&#8801;</button>
+        </div>
+        <button id="quickbar-toggle" title="More">&#8943;</button>
+      </div>
     </div>
 
     <div id="inscription" style="display:none"></div>
@@ -643,6 +693,7 @@
       <button id="btn-history">History</button>
       <button id="btn-chapters">Chapters</button>
       <button id="btn-settings">Settings</button>
+      <button id="btn-fullscreen">Fullscreen</button>
       <button id="btn-totitle">Title Screen</button>
       <div id="pause-save-note" class="menu-note">Your progress is saved automatically &mdash; &ldquo;Continue&rdquo; on the title screen picks up right where you left off.</div>
     </div>
@@ -728,6 +779,7 @@
 
     <div id="boot-error"></div>
   </div>
-  <script src="engine.js"></script>
+  <!-- release version; bump on deploy so cached engines refresh -->
+  <script src="engine.js?v=1.1.0"></script>
 </body>
 </html>

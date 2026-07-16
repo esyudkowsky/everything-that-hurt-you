@@ -19,5 +19,10 @@ __pycache__/
 # Local build / temp
 *.log
 
+# Media pipeline output — hashed media is uploaded to R2, never committed.
+# (assets/manifest.prod.json IS committed: Vercel serves it. See build_media.js.)
+/dist-media/
+
 # Local QA reroll candidates & rejects (chosen versions are promoted into assets/)
 claude-notes/qa/rerolls/
+.secrets/
