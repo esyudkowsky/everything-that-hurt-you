@@ -678,12 +678,16 @@ Avram: Gone. Don't move.
 
 Avram: I ordered you not to just fling yourself in front of me any time there's danger.
 
-Her: I didn't want them to take you away from me, Master. It wouldn't have been good for you.
+Her: I thought they were still trying to take you alive, Master.
+
+Avram: Would it have been better for you to be unconscious than me, if they only had one shot from a one-use magical device? | The end result might have been that they took you away, and killed me outright, rather than taking me as a slave.
+
+Her: ...
+
+Her: I did have less than a second to think about it, Master.
 
 @sprite avram gentle left
-Avram: That's a little more pride in our relationship than you've shown before.
-
-Her: Pride is one of the customs of my people.
+Avram: We all make mistakes, don't we, when we have that little time to think. At least it wasn't me flinging myself in front of you.
 
 @tint off
 

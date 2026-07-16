@@ -445,12 +445,17 @@ a speech he rehearsed. She is assessing a new master and finding him confusing.
 - **Avram:** "I ordered you not to just fling yourself in front of me any time there's danger."
   - *feeling:* anger that is really fear, plus guilt — she nearly died protecting him.
   - *wants to appear:* a stern master enforcing an order.
-- **Her:** "I didn't want them to take you away from me, Master. It wouldn't have been good for you."
-  - *feeling:* weak, sincere, unapologetic; deep personal attachment expressed in the only terms she is able to use — his welfare.
-- **Avram:** "That's a little more pride in our relationship than you've shown before."
-  - *feeling:* surprised warmth breaking through his exhaustion; gently probing the new thing he just heard.
-- **Her:** "Pride is one of the customs of my people."
-  - *feeling:* weak but wry; echoing his own stock excuse back at him as a joke, with real feeling inside the joke.
+- **Her:** "I thought they were still trying to take you alive, Master."
+  - *feeling:* weak, earnest, a little defensive; explaining her judgment — she believed she was stopping a capture, not throwing her life away.
+- **Avram:** "Would it have been better for you to be unconscious than me, if they only had one shot from a one-use magical device? | The end result might have been that they took you away, and killed me outright, rather than taking me as a slave."
+  - *feeling:* afraid and grim; working through how close her choice came to getting him killed.
+  - *wants to appear:* calm and reasonable.
+- **Her:** "..." *(silent panel)*
+  - *feeling:* stung; uncertain; without an answer.
+- **Her:** "I did have less than a second to think about it, Master."
+  - *feeling:* weak, honest, still a little defensive; conceding the point while defending herself.
+- **Avram:** "We all make mistakes, don't we, when we have that little time to think. At least it wasn't me flinging myself in front of you."
+  - *feeling:* forgiving, tender, tired, relieved; letting the argument go with a small joke.
 
 ---
 

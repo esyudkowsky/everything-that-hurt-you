@@ -8,6 +8,51 @@ master script and the live stage script must be kept in sync; check this file's
 
 ---
 
+## rev. 5 edit — post-ambush sick-room exchange reworked (2026-07-16)
+
+**Why (author, 2026-07-16):** the old sick-room exchange had her explain that she
+shielded him out of attachment ("I didn't want them to take you away from me,
+Master") and closed on the "pride is one of the customs of my people" callback.
+The author replaced it with a sharper exchange in which Avram argues that her
+sacrifice was a tactical miscalculation — throwing herself in front of a possibly
+lethal one-shot device could have gotten HIM killed and her captured — and then
+forgives her for it.
+
+**Old exchange (deleted):**
+- Her: "I didn't want them to take you away from me, Master. It wouldn't have been good for you."
+- *(silent beat: [avram gentle L])*
+- Avram: "That's a little more pride in our relationship than you've shown before."
+- Her: "Pride is one of the customs of my people."
+
+**New exchange (5 beats):**
+1. Her: "I thought they were still trying to take you alive, Master."
+2. Avram: "Would it have been better for you to be unconscious than me, if they
+   only had one shot from a one-use magical device? | The end result might have
+   been that they took you away, and killed me outright, rather than taking me as
+   a slave." (the `|` is the engine's in-line pause/paragraph break, kept literal
+   in script.txt as ` | ` per existing convention.)
+3. Her: "..." (silence panel)
+4. Her: "I did have less than a second to think about it, Master."
+5. Avram (now `avram gentle left`): "We all make mistakes, don't we, when we have
+   that little time to think. At least it wasn't me flinging myself in front of you."
+
+**Staging:** Avram holds `avram hollow left` (set at the wake) through his grim-logic
+line — the `[avram gentle L]` switch now precedes the closing "We all make mistakes"
+line, where he actually forgives her (argued in a new @note). The stale @note about
+the chapter ending on her line (with the removed trailing "Avram: ..." beat) is
+dropped, since the scene now ends on Avram's line.
+
+**Files touched:** `claude-inputs/script.md` (author edit; header → rev. 5),
+`script.txt` (staging echoed; header → stage script v3, from script.md rev. 5),
+`claude-notes/script-nocomments.txt` (comment-free copy synced),
+`claude-notes/voice-script.md` (old two entries removed, five new entries added).
+**Synced to:** script.md, script.txt, script-nocomments.txt, voice-script.md all in sync.
+**Verification:** validate_script.js 0 errors; no old-line text ("customs of my
+people", "take you away from me, Master") survives outside this change log / git
+history; new lines confirmed present in script.txt, script-nocomments.txt, voice-script.md.
+
+---
+
 ## rev. 4 edit — ch. 11 combat rework, "Code mauve" (2026-07-04)
 
 **Why (author, 2026-07-04):** story logic — the slavetakers know Avram is a valuable

@@ -1,8 +1,8 @@
 @note ============================================================
-@note EVERYTHING THAT HURT YOU — stage script v2 (from script.md rev. 3)
+@note EVERYTHING THAT HURT YOU — stage script v3 (from script.md rev. 5)
 @note This is the file the engine parses. Dialogue text is verbatim from
-@note claude-inputs/script.md rev. 3; only staging directives are added.
-@note See claude-inputs/SCRIPT-CHANGES.md for the diff between rev. 2 and rev. 3.
+@note claude-inputs/script.md rev. 5; only staging directives are added.
+@note See claude-inputs/SCRIPT-CHANGES.md for the diff between rev. 2 and rev. 5.
 @note ------------------------------------------------------------
 @note Directive extensions beyond the informal-spec minimum set:
 @note   @hold                 — textbox hidden, wait for one click (silent panel)
@@ -903,15 +903,20 @@ Avram: Gone. Don't move.
 
 Avram: I ordered you not to just fling yourself in front of me any time there's danger.
 
-Her: I didn't want them to take you away from me, Master. It wouldn't have been good for you.
+Her: I thought they were still trying to take you alive, Master.
+
+@note Avram stays hollow (not gentle yet) through his grim-logic line — he is
+@note correcting her calculation, not comforting her; the softening to gentle is
+@note held for the "We all make mistakes" line, where he actually forgives her.
+Avram: Would it have been better for you to be unconscious than me, if they only had one shot from a one-use magical device? | The end result might have been that they took you away, and killed me outright, rather than taking me as a slave.
+
+Her: ...
+
+Her: I did have less than a second to think about it, Master.
 
 @sprite avram gentle left
-Avram: That's a little more pride in our relationship than you've shown before.
+Avram: We all make mistakes, don't we, when we have that little time to think. At least it wasn't me flinging myself in front of you.
 
-Her: Pride is one of the customs of my people.
-
-@note (ch11 now ends on her line — the trailing silent "Avram: ..." beat was removed in script.md;
-@note restore it if that was unintended)
 @tint off
 
 

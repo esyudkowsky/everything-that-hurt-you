@@ -1,9 +1,9 @@
-# EVERYTHING THAT HURT YOU — full script (rev. 4)
+# EVERYTHING THAT HURT YOU — full script (rev. 5)
 
-*Regenerated from the stage script `/script.txt` (the file the engine plays), 2026-07-03.
-`/script.txt` is the source of truth; this master mirrors it in enough detail that edits
-here can be echoed back into the stage script. See `claude-inputs/SCRIPT-CHANGES.md` for
-the rev. 3 → rev. 4 diff and the (now inverted) sync direction.*
+*The author now edits this master directly; sessions echo those edits back into the stage
+script `/script.txt` (the file the engine plays). rev. 5 reworks the post-ambush sick-room
+exchange (author, 2026-07-16). See `claude-inputs/SCRIPT-CHANGES.md` for the full diff log
+and the (inverted) sync direction.*
 
 ## Conventions
 
@@ -682,13 +682,17 @@ Avram: Gone. Don't move.
 
 Avram: I ordered you not to just fling yourself in front of me any time there's danger.
 
-Her: I didn't want them to take you away from me, Master. It wouldn't have been good for you.
+Her: I thought they were still trying to take you alive, Master.
+
+Avram: Would it have been better for you to be unconscious than me, if they only had one shot from a one-use magical device? | The end result might have been that they took you away, and killed me outright, rather than taking me as a slave.
+
+Her: ...
+
+Her: I did have less than a second to think about it, Master.
 
 : [avram gentle L]
 
-Avram: That's a little more pride in our relationship than you've shown before.
-
-Her: Pride is one of the customs of my people.
+Avram: We all make mistakes, don't we, when we have that little time to think. At least it wasn't me flinging myself in front of you.
 
 ---
 
