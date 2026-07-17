@@ -26,3 +26,5 @@ __pycache__/
 # Local QA reroll candidates & rejects (chosen versions are promoted into assets/)
 claude-notes/qa/rerolls/
 .secrets/
+.vercel
+.env*
